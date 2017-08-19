@@ -1,0 +1,236 @@
+<!------------------------------------------------------------------------------------------------>
+<div id="contentColumnNoPadLeft" style="width:28%;height:200px">
+  <p class="titleSegoeLight">Tools</p>
+  <p class="bodyNormal" style="font-size:100%;">
+  <a href="https://github.com/pdollar/coco" target="_blank">Matlab+Python+Lua APIs [Version 2.0]</a>
+  </p>
+  <p style="font-size:8pt;" align="justify">V2.0 of the API was completed 07/2015 and includes detection evaluation code. The Lua API, added 05/2016, supports only load and view functionality (no eval code).</p>
+</div>
+<div id="contentColumn" style="width:34%;color:black;height:200px">
+  <p class="titleSegoeLight">Images</p>
+  <p class="bodyNormal" style="font-size:70%;line-height:200%;">
+  <a href="http://msvocds.blob.core.windows.net/coco2014/train2014.zip">2014 Training images [80K/13GB]</a><br>
+  <a href="http://msvocds.blob.core.windows.net/coco2014/val2014.zip">2014 Val. images [40K/6.2GB]</a><br>
+  <a href="http://msvocds.blob.core.windows.net/coco2014/test2014.zip">2014 Testing images [40K/6.2GB]</a><br>
+  <a href="http://msvocds.blob.core.windows.net/coco2015/test2015.zip">2015 Testing images [80K/12.4G]</a>
+  </p>
+</div>
+<div id="contentColumnNoPadLeft" style="width:38%;height:200px">
+  <p class="titleSegoeLight">Annotations</p>
+  <p class="bodyNormal" style="font-size:70%;line-height:200%;">
+  <a href="http://msvocds.blob.core.windows.net/annotations-1-0-3/instances_train-val2014.zip">2014 Train/Val object instances [158MB]</a><br>
+  <a href="http://msvocds.blob.core.windows.net/annotations-1-0-3/person_keypoints_trainval2014.zip">2014 Train/Val person keypoints [70MB]</a><br>
+  <a href="http://msvocds.blob.core.windows.net/annotations-1-0-3/captions_train-val2014.zip">2014 Train/Val image captions [18.8MB]</a><br>
+  <a href="http://msvocds.blob.core.windows.net/annotations-1-0-4/image_info_test2014.zip">2014 Testing Image info [0.74MB]</a><br>
+  <a href="http://msvocds.blob.core.windows.net/annotations-1-0-4/image_info_test2015.zip">2015 Testing Image info [1.83MB]</a>
+  <p style="font-size:8pt;color:black" align="justify">
+  Note: annotations updated on 07/23/2015 with the addition of a "coco_url" field (for allowing of direct downloads of individual images).
+  </p>
+</div>
+
+<div style="color: black; margin-top:-10px:width:100%">
+  <!------------------------------------------------------------------------------------------------>
+  <p class="titleSegoeLight" style="width:760px">1. Overview</p>
+  <p class="bodyNormal" style="color:black;" align="justify">
+  The 2014 Testing Images are for the <a href="#captions-challenge2015">COCO Captioning Challenge</a>, while the 2015 Testing Images are for the <a href="#detections-challenge2016">Detection</a> and <a href="#keypoints-challenge2016">Keypoint</a> Challenges. The train and val data are common to all challenges. Note also that as an alternative to downloading the large image zip files, individual images may be downloaded from the COCO website using the "coco_url" field specified in the image info struct (see details below).
+  </p>
+  <p class="bodyNormal" style="color:black;" align="justify">
+  Please follow the instructions in the <a href="https://github.com/pdollar/coco" target="_blank">README</a> to download and setup the COCO data (annotations and images). By downloading this dataset, you agree to our <a href="/terms_of_use" target="_blank">Terms of Use</a>.
+  </p>
+
+  <!------------------------------------------------------------------------------------------------>
+  <p class="titleSegoeLight" style="width:100%">2. COCO API</p>
+  <p class="bodyNormal" style="color:black;" align="justify">
+  The COCO API assists in loading, parsing, and visualizing annotations in COCO. The API supports object instance, object keypoint, and image caption annotations (for captions not all functionality is defined). For additional details see: <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/CocoApi.m" target="_blank">CocoApi.m</a>, <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/coco.py" target="_blank">coco.py</a>, and <a href="https://github.com/pdollar/coco/blob/master/LuaAPI/CocoApi.lua" target="_blank">CocoApi.lua</a> for Matlab, Python, and Lua code, respectively, and also the <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocoDemo.ipynb" target="_blank">Python API demo</a>.</p>
+  <div class="bodyNormal function" style="color:black;width:100%">
+    <div>Throughout the API "ann"=annotation, "cat"=category, and "img"=image.</div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">download</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Download COCO images from mscoco.org server.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">getAnnIds</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Get ann ids that satisfy given filter conditions.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">getCatIds</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Get cat ids that satisfy given filter conditions.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">getImgIds</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Get img ids that satisfy given filter conditions.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">loadAnns</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Load anns with the specified ids.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">loadCats</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Load cats with the specified ids.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">loadImgs</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Load imgs with the specified ids.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">loadRes</div>
+      <div style="margin-top:10px; width:72%; display:inline-block">Load algorithm results and create API for accessing them.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">showAnns</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Display the specified annotations.</div>
+    </div>
+  </div>
+
+  <!------------------------------------------------------------------------------------------------>
+  <p class="titleSegoeLight" style="width:100%">3. MASK API</p>
+  <p class="bodyNormal" style="color:black;" align="justify">
+  COCO provides segmentation masks for every object instance. This creates two challenges: storing masks compactly and performing mask computations efficiently. We solve both challenges using a custom Run Length Encoding (RLE) scheme. The size of the RLE representation is proportional to the number of boundaries pixels of a mask and operations such as area, union, or intersection can be computed efficiently directly on the RLE. Specifically, assuming fairly simple shapes, the RLE representation is O(&radic;n) where n is number of pixels in the object, and common computations are likewise O(&radic;n). Naively computing the same operations on the decoded masks (stored as an array) would be O(n).
+  </p>
+  <p class="bodyNormal" style="color:black;" align="justify">
+  The MASK API provides an interface for manipulating masks stored in RLE format. The API is defined below, for additional details see: <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/MaskApi.m" target="_blank">MaskApi.m</a>, <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/mask.py" target="_blank">mask.py</a>, or <a href="https://github.com/pdollar/coco/blob/master/LuaAPI/MaskApi.lua" target="_blank">MaskApi.lua</a>. Finally, we note that a majority of ground truth masks are stored as polygons (which are quite compact), these polygons are converted to RLE when needed.
+  </p>
+  <div class="bodyNormal function" style="color:black;width:100%">
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">encode</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Encode binary masks using RLE.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">decode</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Decode binary masks encoded via RLE.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">merge</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Compute union or intersection of encoded masks.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">iou</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Compute intersection over union between masks.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">area</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Compute area of encoded masks.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">toBbox</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Get bounding boxes surrounding encoded masks.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">frBbox</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Convert bounding boxes to encoded masks.</div>
+    </div>
+    <div>
+      <div class="function-title" style="margin-top:10px; width:25%; display:inline-block">frPoly</div>
+      <div style="margin-top:10px; width:70%; display:inline-block">Convert polygon to encoded mask.</div>
+    </div>
+  </div>
+
+  <!------------------------------------------------------------------------------------------------>
+  <p class="titleSegoeLight">4. Annotation format</p>
+  <p class="bodyNormal" style="color:black" align="justify">
+  COCO currently has three annotation types: object instances, object keypoints, and image captions. The annotations are stored using the <a href="http://json.org/" target="_blank">JSON</a> file format. All annotations share the basic data structure below:
+  </p>
+  <div class="bodyNormal json" style="color:black;width:100%">
+    <div class="jsontabstartend"> {</div>
+    <div class="jsontab"><div class="jsonfield">"info"           </div><span>: </span><div class="jsonvalue">info,</div></div>
+    <div class="jsontab"><div class="jsonfield">"images"         </div><span>: </span><div class="jsonvalue">[image],</div></div>
+    <div class="jsontab"><div class="jsonfield">"annotations"    </div><span>: </span><div class="jsonvalue">[annotation],</div></div>
+    <div class="jsontab"><div class="jsonfield">"licenses"       </div><span>: </span><div class="jsonvalue">[license],</div></div>
+    <div class="jsontabstartend"> }</div>
+    <br>
+    <div class="jsontabstartend"> <span class="jsonobject">info </span>{</div>
+    <div class="jsontab"><div class="jsonfield">"year"           </div><span>: </span><div class="jsonvalue">int,</div></div>
+    <div class="jsontab"><div class="jsonfield">"version"        </div><span>: </span><div class="jsonvalue">str,</div></div>
+    <div class="jsontab"><div class="jsonfield">"description"    </div><span>: </span><div class="jsonvalue">str,</div></div>
+    <div class="jsontab"><div class="jsonfield">"contributor"    </div><span>: </span><div class="jsonvalue">str,</div></div>
+    <div class="jsontab"><div class="jsonfield">"url"            </div><span>: </span><div class="jsonvalue">str,</div></div>
+    <div class="jsontab"><div class="jsonfield">"date_created"   </div><span>: </span><div class="jsonvalue">datetime,</div></div>
+    <div class="jsontabstartend"> }</div>
+    <br>
+    <div class="jsontabstartend"> <span class="jsonobject">image</span>{</div>
+    <div class="jsontab"><div class="jsonfield">"id"             </div><span>: </span><div class="jsonvalue">int,</div></div>
+    <div class="jsontab"><div class="jsonfield">"width"          </div><span>: </span><div class="jsonvalue">int,</div></div>
+    <div class="jsontab"><div class="jsonfield">"height"         </div><span>: </span><div class="jsonvalue">int,</div></div>
+    <div class="jsontab"><div class="jsonfield">"file_name"      </div><span>: </span><div class="jsonvalue">str,</div></div>
+    <div class="jsontab"><div class="jsonfield">"license"        </div><span>: </span><div class="jsonvalue">int,</div></div>
+    <div class="jsontab"><div class="jsonfield">"flickr_url"     </div><span>: </span><div class="jsonvalue">str,</div></div>
+    <div class="jsontab"><div class="jsonfield">"coco_url"       </div><span>: </span><div class="jsonvalue">str,</div></div>
+    <div class="jsontab"><div class="jsonfield">"date_captured"  </div><span>: </span><div class="jsonvalue">datetime,</div></div>
+    <div class="jsontabstartend"> }</div>
+    <br>
+    <div class="jsontabstartend"> <span class="jsonobject">license</span>{</div>
+    <div class="jsontab"><div class="jsonfield">"id"             </div><span>: </span><div class="jsonvalue">int,</div></div>
+    <div class="jsontab"><div class="jsonfield">"name"           </div><span>: </span><div class="jsonvalue">str,</div></div>
+    <div class="jsontab"><div class="jsonfield">"url"            </div><span>: </span><div class="jsonvalue">str,</div></div>
+    <div class="jsontabstartend"> }</div>
+  </div>
+  <p class="bodyNormal" style="color:black">
+  The data structures specific to the various annotation types are described below.
+  </p>
+
+  <!------------------------------------------------------------------------------------------------>
+  <p class="subtitleSegoeLight" style="font-size:18pt">
+  4.1. Object Instance Annotations
+  </p>
+  <p class="bodyNormal" style="color:black" align="justify">
+  Each instance annotation contains a series of fields, including the category id and segmentation mask of the object. The segmentation format depends on whether the instance represents a single object (iscrowd=0 in which case polygons are used) or a collection of objects (iscrowd=1 in which case RLE is used). Note that a single object (iscrowd=0) may require multiple polygons, for example if occluded. Crowd annotations (iscrowd=1) are used to label large groups of objects (e.g. a crowd of people). In addition, an enclosing bounding box is provided for each object (box coordinates are measured from the top left image corner and are 0-indexed). Finally, the categories field of the annotation structure stores the mapping of category id to category and supercategory names. See also the <a href="#detections-challenge2016">Detection Challenge</a>.
+  </p>
+  <div class="bodyNormal json" style="color:black;width:100%">
+    <div class="jsontabstartend"> <span class="jsonobject">annotation</span>{</div>
+    <div class="jsontab"><div class="jsonfield">"id"             </div><span>: </span><div class="jsonvalue">int,</div></div>
+    <div class="jsontab"><div class="jsonfield">"image_id"       </div><span>: </span><div class="jsonvalue">int,</div></div>
+    <div class="jsontab"><div class="jsonfield">"category_id"    </div><span>: </span><div class="jsonvalue">int,</div></div>
+    <div class="jsontab"><div class="jsonfield">"segmentation"   </div><span>: </span><div class="jsonvalue">RLE or [polygon],</div></div>
+    <div class="jsontab"><div class="jsonfield">"area"           </div><span>: </span><div class="jsonvalue">float,</div></div>
+    <div class="jsontab"><div class="jsonfield">"bbox"           </div><span>: </span><div class="jsonvalue">[x,y,width,height],</div></div>
+    <div class="jsontab"><div class="jsonfield">"iscrowd"        </div><span>: </span><div class="jsonvalue">0 or 1,</div></div>
+    <div class="jsontabstartend"> }</div>
+    <br>
+    <div class="jsontabstartend"> <span class="jsonobject">categories</span>[{</div>
+    <div class="jsontab"><div class="jsonfield">"id"             </div><span>: </span><div class="jsonvalue">int,</div></div>
+    <div class="jsontab"><div class="jsonfield">"name"           </div><span>: </span><div class="jsonvalue">str,</div></div>
+    <div class="jsontab"><div class="jsonfield">"supercategory"  </div><span>: </span><div class="jsonvalue">str,</div></div>
+    <div class="jsontabstartend"> }]</div>
+  </div>
+
+  <!------------------------------------------------------------------------------------------------>
+  <p class="subtitleSegoeLight">
+  4.2. Object Keypoint Annotations
+  </p>
+  <p class="bodyNormal" style="color:black" align="justify">
+  A keypoint annotation contains all the data of the object annotation (including id, bbox, etc.) and two additional fields. First, "keypoints" is a length 3k array where k is the total number of keypoints defined for the category. Each keypoint has a 0-indexed location x,y and a visibility flag v defined as v=0: not labeled (in which case x=y=0), v=1: labeled but not visible, and v=2: labeled and visible. A keypoint is considered visible if it falls inside the object segment. "num_keypoints" indicates the number of labeled keypoints (v>0) for a given object (many objects, e.g. crowds and small objects, will have num_keypoints=0). Finally, for each category, the categories struct has two additional fields: "keypoints," which is a length k array of keypoint names, and "skeleton", which defines connectivity via a list of keypoint edge pairs and is used for visualization. Currently keypoints are only labeled for the person category (for most medium/large non-crowd person instances). See also the <a href="#keypoints-challenge2016">Keypoint Challenge</a>.
+  </p>
+  <div class="bodyNormal json" style="color:black;width:100%">
+    <div class="jsontabstartend"> <span class="jsonobject">annotation</span>{</div>
+    <div class="jsontab"><div class="jsonfield">"keypoints"        </div><span>: </span><div class="jsonvalue">[x1,y1,v1,...],</div></div>
+    <div class="jsontab"><div class="jsonfield">"num_keypoints"    </div><span>: </span><div class="jsonvalue">int,</div></div>
+    <div class="jsontab"><div class="jsonfield">"[cloned]"         </div><span>: </span><div class="jsonvalue">...,</div></div>
+    <div class="jsontabstartend"> }</div>
+    <br>
+    <div class="jsontabstartend"> <span class="jsonobject">categories</span>[{</div>
+    <div class="jsontab"><div class="jsonfield">"keypoints"        </div><span>: </span><div class="jsonvalue">[str],</div></div>
+    <div class="jsontab"><div class="jsonfield">"skeleton"         </div><span>: </span><div class="jsonvalue">[edge],</div></div>
+    <div class="jsontab"><div class="jsonfield">"[cloned]"         </div><span>: </span><div class="jsonvalue">...,</div></div>
+    <div class="jsontabstartend"> }]</div>
+    <br>
+    <div class="jsontabstartend">"[cloned]": denotes fields copied from object instance annotations defined in 4.1.</div>
+  </div>
+
+  <!------------------------------------------------------------------------------------------------>
+  <p class="subtitleSegoeLight">
+  4.3. Image Caption Annotations
+  </p>
+  <p class="bodyNormal" style="color:black" align="justify">
+  These annotations are used to store image captions. Each caption describes the specified image and each image has at least 5 captions (some images have more). See also the <a href="#captions-challenge2015">Captioning Challenge</a>.
+  </p>
+  <div class="bodyNormal json" style="color:black;width:100%">
+    <div class="jsontabstartend"> <span class="jsonobject">annotation</span>{</div>
+    <div class="jsontab"><div class="jsonfield">"id"               </div><span>: </span><div class="jsonvalue">int,</div></div>
+    <div class="jsontab"><div class="jsonfield">"image_id"         </div><span>: </span><div class="jsonvalue">int,</div></div>
+    <div class="jsontab"><div class="jsonfield">"caption"          </div><span>: </span><div class="jsonvalue">str,</div></div>
+    <div class="jsontabstartend"> }</div>
+  </div>
+
+</div>
+<br>
+<br>

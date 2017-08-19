@@ -1,0 +1,101 @@
+{% include "_include.html" %}
+
+<!------------------------------------------------------------------------------------------------>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>COCO - Common Objects in Context</title>
+  <script>$(window).load(function(){highlightTab('home')});</script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+     ga('create', 'UA-37194031-2', 'mscoco.cloudapp.net');
+     ga('send', 'pageview');
+    </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37194031-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
+    </script>
+</head>
+
+<body>
+
+  {% include "_header.html" %}
+  <!------------------------------------------------------------------------------------------------>
+  <div id="contentRow">
+    <div class="centerwrapper">
+      <div id="contentColumn">
+        <p class="titleSegoeLight" style="width:280px">What is COCO?</p>
+        <img id="iconsImage" src="/static/images/icons.png" alt="Icons" />
+        <p class="bodyNormal">COCO is a new image recognition, segmentation, and captioning dataset. COCO has several features:</p>
+        <ul class="bodySegoeList no_bullet">
+          <li class="checkBullet">Object segmentation</li>
+          <li class="checkBullet">Recognition in Context</li>
+          <li class="checkBullet">Multiple objects per image</li>
+          <li class="checkBullet">More than 300,000 images</li>
+          <li class="checkBullet">More than 2 Million instances</li>
+          <li class="checkBullet">80 object categories</li>
+          <li class="checkBullet">5 captions per image</li>
+          <li class="checkBullet">Keypoints on 100,000 people</li>
+        </ul>
+      </div>
+      <div id="contentColumnNoPadLeft">
+        <p class="titleSegoeLight">Collaborators</p>
+        <div id="collaboratorsColumn">
+          <p class="bodyNormalCollaborators" style="line-height:25px">
+          <span class="bodyBold">Tsung-Yi Lin</span> Cornell Tech<br/>
+          <span class="bodyBold">Genevieve Patterson</span> MSR<br/>
+          <span class="bodyBold">Matteo Ruggero Ronchi</span> Caltech<br/>
+          <span class="bodyBold">Yin Cui</span> Cornell Tech<br/>
+          <span class="bodyBold">Michael Maire</span> TTI Chicago<br/>
+          <span class="bodyBold">Serge Belongie</span> Cornell Tech<br/>
+          <span class="bodyBold">Lubomir Bourdev</span> WaveOne, Inc.<br/>
+          <span class="bodyBold">Ross Girshick</span> Facebook AI <br/>
+          <span class="bodyBold">James Hays</span> Georgia Tech<br/>
+          <span class="bodyBold">Pietro Perona</span> Caltech<br/>
+          <span class="bodyBold">Deva Ramanan</span> CMU<br/>
+          <span class="bodyBold">Larry Zitnick</span> Facebook AI <br/>
+          <span class="bodyBold">Piotr Dollár</span> Facebook AI<br/>
+          </p>
+        </div>
+      </div>
+      <div id="contentColumnNoPadLeft">
+        <p class="titleSegoeLight">Sponsors</p>
+        <img id="sponsorsImage" src="/static/images/sponsors-microsoft.png" alt="Sponsors-Microsoft">
+        <img id="sponsorsImage" src="/static/images/sponsors-facebook.png" alt="Sponsors-Facebook">
+        <img id="sponsorsImage" src="/static/images/sponsors-MightyAI.svg" alt="Sponsors-MightyAi">
+      </div>
+    </div>
+  </div>
+
+  <!------------------------------------------------------------------------------------------------>
+  <div class="centerFullArea" style="margin-bottom:10px; margin-top:-20px;">
+    <p class="titleSegoeLight" style="margin-left:20px; font-size:20px">
+    <span style="font-size:30px; font-weight:bold">NEWS:</span> We are pleased to announce the COCO 2017 <a href="http://mscoco.org/dataset/#detections-challenge2017">Detection</a> and <a href="http://mscoco.org/dataset/#keypoints-challenge2017">Keypoint</a> Challenges!
+    <br>Results will be announced at the <a href="https://places-coco2017.github.io/">Joint COCO and Places Recognition </a> workshop at ICCV.
+    </p>
+  </div>
+
+  <!------------------------------------------------------------------------------------------------>
+  <div class="centerFullArea" style="margin-bottom:20px">
+    <a href="http://arxiv.org/abs/1405.0312" target="_blank" id="featureLink">
+      <img src="/static/images/feature.png" width="800" height="152" alt="Feature" /></a>
+  </div>
+
+  <!------------------------------------------------------------------------------------------------>
+  <div class="centerFullArea" style="margin-bottom:20px">
+    <img src="/static/images/dataset.jpg" width="800" height="243" alt="Feature" />
+  </div>
+
+  <!------------------------------------------------------------------------------------------------>
+  {% include "_footer.html" %}
+
+</body>
+</html>

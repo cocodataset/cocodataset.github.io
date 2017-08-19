@@ -1,0 +1,63 @@
+<!------------------------------------------------------------------------------------------------>
+<p class="titleSegoeLight" style="width:100%">1. Caption Evaluation</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+This page describes the <span style="font-style:italic">caption evaluation code</span> used by COCO. The evaluation code provided here can be used to obtain results on the publicly available COCO validation set. It computes multiple common metrics, including BLEU, METEOR, ROUGE-L, and CIDEr (the writeup below contains references and descriptions of each metric). If you use the captions, evaluation code, or server, we ask that you cite <a href="http://arxiv.org/abs/1504.00325" target="_blank">Microsoft COCO Captions: Data Collection and Evaluation Server</a>:</p>
+<div class="bodyNormal json" style="font-size:8pt;color:black;width:100%">
+  @article{capeval2015,
+  <div style="padding-left:30px">
+    Author={X. Chen and H. Fang and TY Lin and R. Vedantam and S. Gupta and P. Dollár and C. L. Zitnick}, <br>
+    Journal = {arXiv:1504.00325}, <br>
+    Title = {Microsoft COCO Captions: Data Collection and Evaluation Server}, <br>
+    Year = {2015}
+  </div>
+  }
+</div>
+<p class="bodyNormal" style="color:black;" align="justify">
+To obtain results on the COCO test set, for which ground truth annotations are hidden, generated results must be submitted to the <span style="font-style:italic">evaluation server</span>. For instructions on submitting results to the evaluation server please see the <a href="#captions-upload">upload</a> page. The exact same evaluation code, described below, is used to evaluate generated captions on the test set.
+</p>
+
+<!------------------------------------------------------------------------------------------------>
+<p class="titleSegoeLight" style="width:100%">2. Results Format</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+The results format used for storing generated captions is described on the <a href="#format">results format</a> page. For reference, here is a summary of the caption results format:
+</p>
+<div class="bodyNormal json" style="color:black;width:100%">
+  <div class="jsontabstartend"> [{</div>
+  <div class="jsontab"> <div class="jsonfield">"image_id"     </div><span>:</span>  <div class="jsonvalue">int,      </div> </div>
+  <div class="jsontab"> <div class="jsonfield">"caption"      </div><span>:</span>  <div class="jsonvalue">str,      </div> </div>
+  <div class="jsontabstartend"> }]</div>
+</div>
+
+<!------------------------------------------------------------------------------------------------>
+<p class="titleSegoeLight" style="width:100%">3. Evaluation Code</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+Evaluation code can be obtained on the <a href="http://github.com/tylin/coco-caption" target="_blank">coco-captions github</a> page. Unlike the general COCO API, the COCO caption evaluation code is only available under Python.
+</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+Running the evaluation code produces two data structures that summarize caption quality. The two structs are <span class="func_or_var">evalImgs</span> and <span class="func_or_var">eval</span>, which summarize caption quality per-image and aggregated across the entire test set, respectively. Details for the two data structures are given below. We recommend running the <a href="https://github.com/tylin/coco-caption/blob/master/cocoEvalCapDemo.ipynb" target="_blank">python caption evaluation demo</a> for more details.
+</p>
+
+<div class="bodyNormal json" style="color:black;width:100%">
+  <div class="jsontabstartend"> evalImgs[{</div>
+  <div class="jsontab"> <div class="jsonfield">"image_id"     </div><span>:</span>  <div class="jsonvalue">int,        </div> </div>
+  <div class="jsontab"> <div class="jsonfield">"BLEU_1"       </div><span>:</span>  <div class="jsonvalue">float,      </div> </div>
+  <div class="jsontab"> <div class="jsonfield">"BLEU_2"       </div><span>:</span>  <div class="jsonvalue">float,      </div> </div>
+  <div class="jsontab"> <div class="jsonfield">"BLEU_3"       </div><span>:</span>  <div class="jsonvalue">float,      </div> </div>
+  <div class="jsontab"> <div class="jsonfield">"BLEU_4"       </div><span>:</span>  <div class="jsonvalue">float,      </div> </div>
+  <div class="jsontab"> <div class="jsonfield">"METEOR"       </div><span>:</span>  <div class="jsonvalue">float,      </div> </div>
+  <div class="jsontab"> <div class="jsonfield">"ROUGE_L"      </div><span>:</span>  <div class="jsonvalue">float,      </div> </div>
+  <div class="jsontab"> <div class="jsonfield">"CIDEr"        </div><span>:</span>  <div class="jsonvalue">float,      </div> </div>
+  <div class="jsontabstartend"> }]</div>
+</div>
+
+<div class="bodyNormal json" style="color:black;width:100%;margin-top:10px; margin-bottom:40px">
+  <div class="jsontabstartend"> eval{</div>
+  <div class="jsontab"> <div class="jsonfield">"BLEU_1"       </div><span>:</span>  <div class="jsonvalue">float,      </div> </div>
+  <div class="jsontab"> <div class="jsonfield">"BLEU_2"       </div><span>:</span>  <div class="jsonvalue">float,      </div> </div>
+  <div class="jsontab"> <div class="jsonfield">"BLEU_3"       </div><span>:</span>  <div class="jsonvalue">float,      </div> </div>
+  <div class="jsontab"> <div class="jsonfield">"BLEU_4"       </div><span>:</span>  <div class="jsonvalue">float,      </div> </div>
+  <div class="jsontab"> <div class="jsonfield">"METEOR"       </div><span>:</span>  <div class="jsonvalue">float,      </div> </div>
+  <div class="jsontab"> <div class="jsonfield">"ROUGE_L"      </div><span>:</span>  <div class="jsonvalue">float,      </div> </div>
+  <div class="jsontab"> <div class="jsonfield">"CIDEr"        </div><span>:</span>  <div class="jsonvalue">float,      </div> </div>
+  <div class="jsontabstartend"> }</div>
+</div>

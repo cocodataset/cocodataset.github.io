@@ -1,0 +1,169 @@
+<!------------------------------------------------------------------------------------------------>
+<p class="titleSegoeLight" style="width:100%">1. Detection Evaluation</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+This page describes the <span style="font-style:italic">detection evaluation code</span> used by COCO. The evaluation code provided here can be used to obtain results on the publicly available COCO validation set. It computes multiple metrics described below. To obtain results on the COCO test set, for which ground truth annotations are hidden, generated results must be submitted to the <span style="font-style:italic">evaluation server</span>. For instructions on submitting results to the evaluation server please see the <a href="#detections-upload">upload</a> page. The exact same evaluation code, described below, is used to evaluate detections on the test set.
+</p>
+
+<!------------------------------------------------------------------------------------------------>
+<p class="titleSegoeLight" style="width:100%">2. Metrics</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+The following 12 metrics are used for characterizing the performance of an object detector on COCO:
+</p>
+<div class="bodyNormal json" style="color:black; width:100%; font-family:courier new; ">
+  <div style="display:inline-block; width:30%">
+    <b>Average Precision (AP):</b><br>
+    <div class="jsontab">AP<br></div>
+    <div class="jsontab">AP<sup>IoU=.50</sup><br></div>
+    <div class="jsontab">AP<sup>IoU=.75</sup><br></div>
+    <b>AP Across Scales:</b><br>
+    <div class="jsontab">AP<sup>small</sup><br></div>
+    <div class="jsontab">AP<sup>medium</sup><br></div>
+    <div class="jsontab">AP<sup>large</sup><br></div>
+    <b>Average Recall (AR):</b><br>
+    <div class="jsontab">AR<sup>max=1</sup><br></div>
+    <div class="jsontab">AR<sup>max=10</sup><br></div>
+    <div class="jsontab">AR<sup>max=100</sup><br></div>
+    <b>AR Across Scales:</b><br>
+    <div class="jsontab">AR<sup>small</sup><br></div>
+    <div class="jsontab">AR<sup>medium</sup><br></div>
+    <div class="jsontab">AR<sup>large</sup><br></div>
+  </div>
+  <div style="display:inline-block; width:74%; margin-left:-35px">
+    <div class="jsontab">% AP at IoU=.50:.05:.95 <b>(primary challenge metric)</b></div>
+    <div class="jsontab">% AP at IoU=.50 (PASCAL VOC metric)</div>
+    <div class="jsontab">% AP at IoU=.75 (strict metric)</div>
+    <br>
+    <div class="jsontab">% AP for small objects: area &lt; 32<sup>2</sup></div>
+    <div class="jsontab">% AP for medium objects: 32<sup>2</sup> &lt; area &lt; 96<sup>2</sup></div>
+    <div class="jsontab">% AP for large objects: area &gt; 96<sup>2</sup></div>
+    <br>
+    <div class="jsontab">% AR given 1 detection per image </div>
+    <div class="jsontab">% AR given 10 detections per image</div>
+    <div class="jsontab">% AR given 100 detections per image</div>
+    <br>
+    <div class="jsontab">% AR for small objects: area &lt; 32<sup>2</sup></div>
+    <div class="jsontab">% AR for medium objects: 32<sup>2</sup> &lt; area &lt; 96<sup>2</sup></div>
+    <div class="jsontab">% AR for large objects: area &gt; 96<sup>2</sup></div>
+  </div>
+</div>
+<ol class="bodyNormal" style="color:black;font-size:75%;margin-top:15px" align="justify">
+  <li>Unless otherwise specified, <i>AP and AR are averaged over multiple Intersection over Union (IoU) values</i>. Specifically we use 10 IoU thresholds of .50:.05:.95. This is a break from tradition, where AP is computed at a single IoU of .50 (which corresponds to our metric AP<sup>IoU=.50</sup>). Averaging over IoUs rewards detectors with better localization.</li>
+  <li>AP is averaged over all categories. Traditionally, this is called "mean average precision" (mAP). We make no distinction between AP and mAP (and likewise AR and mAR) and assume the difference is clear from context.</li>
+  <li>AP (averaged across all 10 IoU thresholds and all 80 categories) will determine the challenge winner. This should be considered the single most important metric when considering performance on COCO.</li>
+  <li>In COCO, there are more small objects than large objects. Specifically: approximately 41% of objects are small (area &lt; 32<sup>2</sup>), 34% are medium (32<sup>2</sup> &lt; area &lt; 96<sup>2</sup>), and 24% are large (area &gt; 96<sup>2</sup>). Area is measured as the number of pixels in the segmentation mask.</li>
+  <li>AR is the maximum recall given a fixed number of detections per image, averaged over categories and IoUs. AR is related to the metric of the same name used in <a href="http://arxiv.org/abs/1502.05082" target="_blank">proposal evaluation</a> but is computed on a per-category basis.</li>
+  <li>All metrics are computed allowing for at most 100 top-scoring detections per image (across all categories).</li>
+  <li>The evaluation metrics for detection with bounding boxes and segmentation masks are identical in all respects except for the IoU computation (which is performed over boxes or masks, respectively).</li>
+</ol>
+
+<!------------------------------------------------------------------------------------------------>
+<p class="titleSegoeLight" style="width:100%">3. Results Format</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+The results format used for storing generated detections is described on the <a href="#format">results format</a> page. For reference, here is a summary of the detection results format for boxes and segments, respectively:
+</p>
+<div class="bodyNormal json" style="color:black;width:100%;">
+  <div class="jsontabstartend"> [{</div>
+  <div class="jsontab"> <div class="jsonfield">"image_id"     </div><span>:</span> <div class="jsonvalue">int,  </div></div>
+  <div class="jsontab"> <div class="jsonfield">"category_id"  </div><span>:</span> <div class="jsonvalue">int,  </div></div>
+  <div class="jsontab"> <div class="jsonfield">"bbox"         </div><span>:</span> <div class="jsonvalue">[x,y,width,height],</div></div>
+  <div class="jsontab"> <div class="jsonfield">"score"        </div><span>:</span> <div class="jsonvalue">float,</div></div>
+  <div class="jsontabstartend"> }]</div>
+</div>
+<p class="bodyNormal" style="color:black;" align="justify">
+Note: box coordinates are floats measured from the top left image corner (and are 0-indexed). We recommend rounding coordinates to the nearest tenth of a pixel to reduce resulting JSON file size.
+</p>
+
+<div class="bodyNormal json" style="color:black;width:100%;margin-top:10px;">
+  <div class="jsontabstartend"> [{</div>
+  <div class="jsontab"> <div class="jsonfield">"image_id"     </div><span>:</span> <div class="jsonvalue">int,  </div></div>
+  <div class="jsontab"> <div class="jsonfield">"category_id"  </div><span>:</span> <div class="jsonvalue">int,  </div></div>
+  <div class="jsontab"> <div class="jsonfield">"segmentation" </div><span>:</span> <div class="jsonvalue">RLE,  </div></div>
+  <div class="jsontab"> <div class="jsonfield">"score"        </div><span>:</span> <div class="jsonvalue">float,</div></div>
+  <div class="jsontabstartend"> }]</div>
+</div>
+<p class="bodyNormal" style="color:black;" align="justify">
+Note: binary masks should be encoded via RLE using the MaskApi function <span class="func_or_var">encode()</span>.
+</p>
+
+<!------------------------------------------------------------------------------------------------>
+<p class="titleSegoeLight" style="width:100%">4. Evaluation Code</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+Evaluation code is available on the <a href="https://github.com/pdollar/coco" target="_blank">COCO github</a>. Specifically, see either <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/CocoEval.m" target="_blank">CocoEval.m</a> or <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/cocoeval.py" target="_blank">cocoeval.py</a> in the Matlab or Python code, respectively. Also see <span class="func_or_var">evalDemo</span> in either the Matlab or Python code (<a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocoEvalDemo.ipynb" target="_blank">demo</a>).
+</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+The evaluation parameters are as follows (defaults in brackets, in general no need to change):
+</p>
+<div class="bodyNormal json" style="color:black;width:100%">
+  <div class="jsontabstartend"> params{</div>
+  <div class="jsontab"><div class="jsonfield">"imgIds"  </div><span>:</span> <div class="jsonvalue">[all] N img ids to use for evaluation</div></div>
+  <div class="jsontab"><div class="jsonfield">"catIds"  </div><span>:</span> <div class="jsonvalue">[all] K cat ids to use for evaluation</div></div>
+  <div class="jsontab"><div class="jsonfield">"iouThrs" </div><span>:</span> <div class="jsonvalue">[.5:.05:.95] T=10 IoU thresholds for evaluation</div></div>
+  <div class="jsontab"><div class="jsonfield">"recThrs" </div><span>:</span> <div class="jsonvalue">[0:.01:1] R=101 recall thresholds for evaluation</div></div>
+  <div class="jsontab"><div class="jsonfield">"areaRng" </div><span>:</span> <div class="jsonvalue">[all,small,medium,large] A=4 area ranges for evaluation</div></div>
+  <div class="jsontab"><div class="jsonfield">"maxDets" </div><span>:</span> <div class="jsonvalue">[1 10 100] M=3 thresholds on max detections per image</div></div>
+  <div class="jsontab"><div class="jsonfield">"useSegm" </div><span>:</span> <div class="jsonvalue">[1] if true evaluate against ground-truth segments</div></div>
+  <div class="jsontab"><div class="jsonfield">"useCats" </div><span>:</span> <div class="jsonvalue">[1] if true use category labels for evaluation</div></div>
+  <div class="jsontabstartend"> }</div>
+</div>
+<p class="bodyNormal" style="color:black;" align="justify">
+Running the evaluation code via calls to <span class="func_or_var">evaluate()</span> and <span class="func_or_var">accumulate()</span> produces two data structures that measure detection quality. The two structs are <span class="func_or_var">evalImgs</span> and <span class="func_or_var">eval</span>, which measure quality per-image and aggregated across the entire dataset, respectively. The evalImgs struct has KxA entries, one per evaluation setting, while the eval struct combines this information into precision and recall arrays. Details for the two structs are below (see also <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/CocoEval.m" target="_blank">CocoEval.m</a> or <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/cocoeval.py" target="_blank">cocoeval.py</a>):
+</p>
+<div class="bodyNormal json" style="color:black;width:100%">
+  <div class="jsontabstartend"> evalImgs[{</div>
+  <div class="jsontab"><div class="jsonfield">"dtIds"     </div><span>:</span> <div class="jsonvalue">[1xD] id for each of the D detections (dt)</div></div>
+  <div class="jsontab"><div class="jsonfield">"gtIds"     </div><span>:</span> <div class="jsonvalue">[1xG] id for each of the G ground truths (gt)</div></div>
+  <div class="jsontab"><div class="jsonfield">"dtImgIds"  </div><span>:</span> <div class="jsonvalue">[1xD] image id for each dt</div></div>
+  <div class="jsontab"><div class="jsonfield">"gtImgIds"  </div><span>:</span> <div class="jsonvalue">[1xG] image id for each gt</div></div>
+  <div class="jsontab"><div class="jsonfield">"dtMatches" </div><span>:</span> <div class="jsonvalue">[TxD] matching gt id at each IoU or 0</div></div>
+  <div class="jsontab"><div class="jsonfield">"gtMatches" </div><span>:</span> <div class="jsonvalue">[TxG] matching dt id at each IoU or 0</div></div>
+  <div class="jsontab"><div class="jsonfield">"dtScores"  </div><span>:</span> <div class="jsonvalue">[1xD] confidence of each dt</div></div>
+  <div class="jsontab"><div class="jsonfield">"dtIgnore"  </div><span>:</span> <div class="jsonvalue">[TxD] ignore flag for each dt at each IoU</div></div>
+  <div class="jsontab"><div class="jsonfield">"gtIgnore"  </div><span>:</span> <div class="jsonvalue">[1xG] ignore flag for each gt</div></div>
+  <div class="jsontabstartend"> }]</div>
+</div>
+<div class="bodyNormal json" style="color:black;width:100%;margin-top:10px;">
+  <div class="jsontabstartend"> eval{</div>
+  <div class="jsontab"><div class="jsonfield">"params"    </div><span>:</span> <div class="jsonvalue">parameters used for evaluation</div></div>
+  <div class="jsontab"><div class="jsonfield">"date"      </div><span>:</span> <div class="jsonvalue">date evaluation was performed</div></div>
+  <div class="jsontab"><div class="jsonfield">"counts"    </div><span>:</span> <div class="jsonvalue">[T,R,K,A,M] parameter dimensions (see above)</div></div>
+  <div class="jsontab"><div class="jsonfield">"precision" </div><span>:</span> <div class="jsonvalue">[TxRxKxAxM] precision for every evaluation setting</div></div>
+  <div class="jsontab"><div class="jsonfield">"recall"    </div><span>:</span> <div class="jsonvalue">[TxKxAxM] max recall for every evaluation setting</div></div>
+  <div class="jsontabstartend"> }</div>
+</div>
+<p class="bodyNormal" style="color:black;" align="justify">
+Finally <span class="func_or_var">summarize()</span> computes the 12 detection metrics defined earlier based on the <span class="func_or_var">eval</span> struct.
+</p>
+
+<!------------------------------------------------------------------------------------------------>
+<p class="titleSegoeLight" style="width:100%">5. Analysis Code</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+In addition to the evaluation code, we also provide a function <span class="func_or_var">analyze()</span> for performing a detailed breakdown of false positives. This was inspired by <a href="http://web.engr.illinois.edu/~dhoiem/projects/detectionAnalysis/" target="_blank">Diagnosing Error in Object Detectors</a> by Derek Hoiem et al., but is quite different in implementation and details. The code generates plots like this:
+</p>
+<p class="bodyNormal" align="center" style="margin-top:20px">
+<img src="http://mscoco.org/static/images/MSRA_analysis_person.jpg" style="width:40%; margin-right:20px" align="center" />
+<img src="http://mscoco.org/static/images/MSRA_analysis_all.jpg" style="width:42%" align="center" />
+</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+Both plots show analysis of the <a href="http://arxiv.org/abs/1512.03385" target="_blank">ResNet</a> (bbox) detector from Kaiming He et al., winner of the <a href="#detections-challenge2015">2015 Detection Challenge</a>. The first plot shows a breakdown of errors of ResNet for the person class; the second plot is an overall analysis of ResNet averaged over all categories.
+<p class="bodyNormal" style="color:black;" align="justify">
+Each plot is a series of precision recall curves where each PR curve is guaranteed to be strictly higher than the previous as the evaluation setting becomes more permissive. The curves are as follows:
+</p>
+<ol class="bodyNormal" style="color:black;font-size:75%;" align="justify">
+  <li><b>C75</b>: PR at IoU=.75 (AP at strict IoU), area under curve corresponds to AP<sup>IoU=.75</sup> metric.</li>
+  <li><b>C50</b>: PR at IoU=.50 (AP at PASCAL IoU), area under curve corresponds to AP<sup>IoU=.50</sup> metric.</li>
+  <li><b>Loc</b>: PR at IoU=.10 (localization errors ignored, but not duplicate detections). All remaining settings use IoU=.1.</li>
+  <li><b>Sim</b>: PR after supercategory false positives (fps) are removed. Specifically, any matches to objects with a different class label but that belong to the same supercategory don't count as either a fp (or tp). Sim is computed by setting all objects in the same supercategory to have the same class label as the class in question and setting their ignore flag to 1. Note that person is a singleton supercategory so its Sim result is identical to Loc.</li>
+  <li><b>Oth</b>: PR after all class confusions are removed. Similar to Sim, except now if a detection matches <i>any</i> other object it is no longer a fp (or tp). Oth is computed by setting all other objects to have the same class label as the class in question and setting their ignore flag to 1.</li>
+  <li><b>BG</b>: PR after all background (and class confusion) fps are removed. For a single category, BG is a step function that is 1 until max recall is reached then drops to 0 (the curve is smoother after averaging across categories).</li>
+  <li><b>FN</b>: PR after all remaining errors are removed (trivially AP=1).</li>
+</ol>
+<p class="bodyNormal" style="color:black;" align="justify">
+The area under each curve is shown in brackets in the legend. In the case of the ResNet detector, overall AP at IoU=.75 is .399 and perfect localization would increase AP to .682. Interesting, removing all class confusions (both within supercategory and across supercategories) would only raise AP slightly to .713. Removing background fp would bump performance to .870 AP and the rest of the errors are missing detections (although presumably if more detections were added this would also add lots of fps). In summary, ResNet's errors are dominated by imperfect localization and background confusions.
+</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+For a given detector, the code generates a total of 372 plots! There are 80 categories, 12 supercategories, and 1 overall result, for a total of 93 different settings, and the analysis is performed at 4 scales (all, small, medium, large, so 93*4=372 plots). The file naming is [supercategory]-[category]-[size].pdf for the 80*4 per-category results, overall-[supercategory]-[size].pdf for the 12*4 per supercategory results, and overall-all-[size].pdf for the 1*4 overall results. Of all the plots, typically the overall and supercategory results are of the most interest.
+</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+<b>Note:</b> <span class="func_or_var">analyze()</span> can take significant time to run, please be patient. As such, we typically do not run this code on the evaluation server; you must run the code locally using the validation set. Finally, currently <span class="func_or_var">analyze()</span> is only part of the Matlab API; <i>Python code coming soon</i>.
+</p>
+<br>

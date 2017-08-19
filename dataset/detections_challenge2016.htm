@@ -1,0 +1,76 @@
+<!------------------------------------------------------------------------------------------------>
+<p align="center" class="titleSegoeLight" style="width:100%">Welcome to the COCO 2016 Detection Challenge!</p>
+<p align="center"><img src="/static/images/detections-challenge2015.png" style="width:100%" /></p>
+
+<!------------------------------------------------------------------------------------------------>
+<p align="justify" class="titleSegoeLight" style="width:100%">1. Overview</p>
+<p align="justify" class="bodyNormal" style="color:black;font-size:90%">
+The COCO 2016 Detection Challenge is designed to push the state of the art in object detection forward. Teams are encouraged to compete in either (or both) of two object detection challenges: using bounding box output or object segmentation output.
+</p>
+<p align="justify" class="bodyNormal" style="color:black;font-size:90%">
+This challenge is part of the <a href="http://image-net.org/challenges/ilsvrc+coco2016">ImageNet and COCO Visual Recognition</a> workshop at ECCV 2016. For further details about the joint workshop please visit the workshop website. Participants are encouraged to participate in both the COCO and ImageNet detection challenges. Please also see the concurrent <a href="#keypoints-challenge2016">COCO 2016 Keypoint Challenge</a>.
+</p>
+<p align="justify" class="bodyNormal" style="color:black;font-size:90%">
+The COCO train, validation, and test sets, containing more than 200,000 images and 80 object categories, are available on the <a href="#download">download</a> page. All object instances are annotated with a detailed segmentation mask. Annotations on the training and validation sets (with over 500,000 object instances segmented) are publicly available.
+</p>
+<p align="justify" class="bodyNormal" style="color:black;font-size:90%">
+This is the second COCO detection challenge and it closely follows the <a href="#detections-challenge2015">COCO 2015 Detection Challenge</a>. In particular, the same data and metrics are being used for this year's challenge.
+</p>
+
+<!------------------------------------------------------------------------------------------------>
+<p align="justify" class="titleSegoeLight" style="width:100%">2. Dates</p>
+<div class="json" style="width:99%;margin-bottom:20px">
+  <div style="width:30%;display:inline-block">June 1, 2016</div> <div style="width:65%;display:inline-block">Challenge officially announced</div>
+  <div style="color:blue;width:30%;display:inline-block">September 16, 2016</div> <div style="width:65%;display:inline-block">[Extended] Submission deadline (11:59 PST)</div>
+  <div style="width:30%;display:inline-block">October 2, 2016</div> <div style="width:65%;display:inline-block">Challenge results released</div>
+  <div style="width:30%;display:inline-block">October 9, 2016</div> <div style="width:65%;display:inline-block">Winners present at ECCV 2016 Workshop</div>
+</div>
+
+<!------------------------------------------------------------------------------------------------>
+<p align="justify" class="titleSegoeLight" style="width:100%">3. Organizers</p>
+<div class="bodyNormal" style="color:black;font-size:90%">Tsung-Yi Lin (Cornell)</div>
+<div class="bodyNormal" style="color:black;font-size:90%">Yin Cui (Cornell)</div>
+<div class="bodyNormal" style="color:black;font-size:90%">Genevieve Patterson (Brown)</div>
+<div class="bodyNormal" style="color:black;font-size:90%">Matteo Ruggero Ronchi (Caltech)</div>
+<div class="bodyNormal" style="color:black;font-size:90%">Ross Girshick (Facebook AI Research)</div>
+<div class="bodyNormal" style="color:black;font-size:90%">Piotr Dollár (Facebook AI Research)</div>
+
+<!------------------------------------------------------------------------------------------------>
+<p align="justify" class="titleSegoeLight" style="width:100%">4. Award Committee</p>
+<div class="bodyNormal" style="color:black;font-size:90%">Yin Cui (Cornell)</div>
+<div class="bodyNormal" style="color:black;font-size:90%">Genevieve Patterson (Brown)</div>
+<div class="bodyNormal" style="color:black;font-size:90%">Matteo Ruggero Ronchi (Caltech)</div>
+<div class="bodyNormal" style="color:black;font-size:90%">Serge Belongie (Cornell)</div>
+<div class="bodyNormal" style="color:black;font-size:90%">Lubomir Bourdev (UC Berkeley)</div>
+<div class="bodyNormal" style="color:black;font-size:90%">Michael Maire (TTI Chicago)</div>
+<div class="bodyNormal" style="color:black;font-size:90%">Pietro Perona (Caltech)</div>
+<div class="bodyNormal" style="color:black;font-size:90%">Deva Ramanan (CMU)</div>
+
+<!------------------------------------------------------------------------------------------------>
+<p align="justify" class="titleSegoeLight" style="width:500px">5. Challenge Guidelines</p>
+<p align="justify" class="bodyNormal" style="color:black;font-size:90%">
+The <a href="#detections-eval">detection evaluation</a> page lists detailed information regarding how submissions will be scored. Instructions for submitting results are available on the <a href="#detections-upload">detection upload</a> page.
+</p>
+<p align="justify" class="bodyNormal" style="color:black;font-size:90%">
+To limit overfitting while giving researchers more flexibility to test their system, we have divided the test set into a number of splits, including test-dev, test-standard, and test-challenge. Test-dev is used for debugging and validation experiments and allows for unlimited submission to the evaluation server. Test-standard is used to maintain a public <a href="#detections-leaderboard">leaderboard</a> that is updated upon submission. Finally, test-challenge is used for the workshop competition; results will be revealed during the workshop at ECCV 2016. A more thorough explanation is available on the <a href="#detections-upload">upload</a> page.
+</p>
+<p align="justify" class="bodyNormal" style="color:black;font-size:90%">
+Competitors are recommended but not restricted to train their algorithms on COCO 2014 train and val sets. The <a href="#download">download</a> page contains links to all COCO 2014 train+val images and associated annotations as well as the 2015 test images.  Please specify any and all external data used for training in the "method description" when uploading results to the evaluation server.
+</p>
+<p align="justify" class="bodyNormal" style="color:black;font-size:90%">
+By the challenge deadline, results must be submitted to the evaluation server. Competitors' algorithms will be evaluated according to the rules described on the <a href="#detections-eval">evaluation</a> page. Challenge participants with the most successful and innovative methods will be invited to present.
+</p>
+<p align="justify" class="bodyNormal" style="color:black;font-size:90%">
+After careful consideration, this challenge uses a more comprehensive comparison metric than the traditional AP at Intersection over Union (IoU) threshold of 0.5. Specifically, AP is averaged over multiple IoU values between 0.5 and 1.0; this rewards detectors with better localization. Please refer to the "Metrics" section of the <a href="#detections-eval">evaluation</a> page for a detailed explanation of the competition metrics.
+</p>
+
+<!------------------------------------------------------------------------------------------------>
+<p align="justify" class="titleSegoeLight" style="width:500px">6. Tools and Instructions</p>
+<p align="justify" class="bodyNormal" style="color:black;font-size:90%">
+We provide extensive API support for the COCO images, annotations, and evaluation code. To download the COCO API, please visit our <a href="https://github.com/pdollar/coco">GitHub repository</a>. For an overview of how to use the API, please visit the <a href="#download">download</a> page and consult the sections entitled COCO API and MASK API.
+</p>
+<p align="justify" class="bodyNormal" style="color:black;font-size:90%">
+Due to the large size of the COCO dataset and the complexity of this challenge, the process of competing in this challenge may not seem simple. To help, we provide explanations and instructions for each step of the process on the <a href="#download">download</a>, <a href="#format">format</a>, <a href="#detections-eval">evaluation</a>, and <a href="#detections-upload">upload</a> pages. For additional questions, please contact <a href="mailto:cocodataset@outlook.com">cocodataset@outlook.com</a>.
+</p>
+<br>
+<br>

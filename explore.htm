@@ -1,0 +1,446 @@
+{% include "_include.html" %}
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="/static/styles/jquery.tagit.css">
+<link rel="stylesheet" href="/static/styles/tagit.ui-zendesk.css">
+<title>COCO - Common Objects in Context</title>
+<script src="/static/js/tag-it.min.js"></script>
+
+<script>
+var objects = [];
+var toggleState = false;
+var icon_name_list = new Array();
+var im_id_list = [];
+var search_state = 'GO';
+var url_state = 'closed';
+var sentences_state = 'closed';
+// =================== scroll load ==========================
+$(window).scroll(function() {
+   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+       loadSearch();
+   }
+});
+
+$(window).load(function(){
+    $('#canvas_template').hide();
+    // change header image
+    highlightTab('explore')
+    setupIconsSearchPanel();
+
+    {% if not im_id == -1 %}
+        $("#tags").tagit("createTag", "{{im_id}}");
+        loadSearch();
+    {% endif %}
+    // setup dialog
+     $("#dialog-modal" ).dialog({
+           autoOpen: false,
+           height: 250,
+           modal: true,
+         buttons: {
+             'ok':function(){
+                 $( this ).dialog( "close" );
+             },
+         }
+     });
+// end of window.load
+});
+// =============== TAG IT SET UP ======================
+$(function() {
+    $("#tags").tagit({
+        availableTags: [
+            {% for cat in cats %}
+            '{{ cat.name }}',
+            {% endfor %}
+        ],
+        allowDuplicates: false,
+        afterTagAdded: function(event, ui){
+            if (icon_name_list.indexOf(ui.tagLabel) != -1 || !isNaN(ui.tagLabel)){
+                addTags(ui.tagLabel);
+            }else{
+                $("#tags").tagit("removeTagByLabel", ui.tagLabel);
+            }
+
+        },
+        afterTagRemoved: function(event, ui){
+            removeTags(ui.tagLabel);
+        }
+    });
+  });
+
+// =============== load visualization by sebd AJAX ======
+function loadVisualizations(tags){
+    $('#btn-search').attr("disabled", "disabled");;
+    $('#btn-loading').show();
+//    $('#btn-search').hide();
+    if (search_state == 'STOP'){
+        $('#btn-search').removeAttr("disabled");
+        $('#btn-loading').hide();
+        return -1;
+    }
+    $('#btn-stop').hide();
+    if (search_state == 'LOADING'){
+        return -1;
+    }
+    search_state = 'LOADING';
+    var req= {};
+    if(tags.length == 0){
+        tags = ["RANDOM"];
+    }
+    //alert(tags)
+    req['tags'] = tags;
+    req['im_id_list'] = im_id_list;
+    req = JSON.stringify(req);
+    $.ajax({
+        type: 'POST',
+        url: '/explore_visualization/',
+        data: {'req': req },
+      }).done( function(data) {
+         $('#btn-search').removeAttr("disabled");
+          if (data == ''){
+            $('#btn-loading').hide();
+            $('#btn-stop').show();
+            search_state = 'STOP';
+            return -1;
+          }
+          var data = JSON.parse(data);
+          var objs_list = data['objs_list'];
+          var search_count = data['count'];
+          if ($('#search-count').text() == ''){
+              if (search_count == 1){
+                  $('#search-count').text(search_count + ' result');
+              }else{
+                 $('#search-count').text(search_count + ' results');
+              }
+          }
+          for (ind = 0; ind < objs_list.length; ind++){
+              createImage(objs_list[ind]);
+              im_id_list.push(objs_list[ind]['id']);
+          }
+          search_state = 'GO';
+       }) ;
+}
+// create DOM structure for one image
+function createImage(objs){
+     var canvas_div = $('#canvas_template').clone();
+     canvas_div.addClass('canvas_template');
+     canvas_div.show();
+     var imidDOM = canvas_div.children('.imid');
+     var sentencesDOM = canvas_div.children('.sentences');
+     var urlDOM = canvas_div.children('.url');
+     var canvasDOM = canvas_div.children('.canvas_div').children('canvas')[0];
+     var iconsDOM = canvas_div.children('.icons');
+     objects = objs;
+     var im = new Image();
+     im.src = 'https://msvocds.blob.core.windows.net/images/'+objs['urlid']+'_z.jpg';
+//     imidDOM.text('image id: ' + objs['id']);
+      // process sentence
+      sentences = objs['sentences'];
+      txt = '';
+      for (i=0; i<sentences.length; i++){
+          txt += sentences[i].toLowerCase() + '<br>';
+      }
+      sentencesDOM.html(txt);
+      // process url
+      urlDOM.html('<a href="http://mscoco.org/explore/?id='+objs['id']+'" target="_blank">'+ 'http://mscoco.org/explore/?id='+objs['id'] +'</a>' +
+                  '<br>'+
+                  '<a href="'+objs['flickrurl']+'" target="_blank">'+ objs['flickrurl'] +'</a>');
+      // control toggle
+      if (sentences_state=='open'){
+          $(".sentences").show();
+      }
+
+
+      im.objs = objs;
+      im.iconsDOM = iconsDOM;
+      im.canvasDOM = canvasDOM;
+      im.urlDOM = urlDOM;
+      im.sentencesDOM = sentencesDOM;
+      im.canvas_id = canvas_div;
+      im.canvas_div  = canvas_div;
+      canvas_div.appendTo('#contentColumn')
+      // create toggle
+      sentencesDOM.hide();
+     im.onload = function(){
+         var objs = im.objs;
+         var iconsDOM = im.iconsDOM;
+         var icon_list = [];
+         var convas_div = im.convas_div;
+         var canvas = im.canvasDOM;
+         var ctx=canvas.getContext("2d");
+
+         canvas.width = this.width;
+         canvas.height = this.height;
+         ctx.drawImage(this, 0,0);
+         var icon_name_list = [];
+         for (i=0; i<objs['object'].length; i++){
+             // add icons
+             var cat_id = objs['object'][i].cat_id;
+             var name = objs['object'][i].name;
+             if (icon_list.indexOf(cat_id) == -1){
+                 icon_list.push(cat_id);
+                 icon_name_list.push(name);
+             }
+         }
+         im.icon_name_list = icon_name_list;
+         renderSegmentation(objs, icon_list, this, ctx);
+         renderIcons(objs, icon_list, this, ctx);
+
+         canvas_div.data('im', this);
+         canvas_div.on('canvasToggleEventHandler', function(e, eventInfo){
+             var im = $(this).data('im')
+             if (eventInfo == true){
+                 renderImage(objs, im, ctx);
+             }else{
+                  renderSegmentation(objs, icon_list, im, ctx);
+             }
+         })
+         $('#btn-loading').hide();
+    }
+}
+// render icons_list
+function renderIcons(objs, icon_list, im, ctx){
+    im.iconsDOM.empty();
+
+    // url icons
+    var icon = $('<span class="icon_list" sytle="display:inline-block;width:50px;height:50px" title="url to share this image"><img style="width:50px;height:50px"  src="/static/icons/url.jpg"></span>')
+    icon.appendTo(im.iconsDOM);
+    icon.click(
+        function(ev){
+            if      (url_state=='closed'){$('.url').show('slow'); url_state = 'open'}
+            else if (url_state=='open'  ){$('.url').hide('slow'); url_state = 'closed'};
+        }
+    );
+
+    // sentences icon
+    var icon = $('<span class="icon_list" sytle="display:inline-block;width:50px;height:50px" title="show captions"><img style="width:50px;height:50px; margin-right:10px"  src="/static/icons/sentences.jpg"></span>')
+    icon.appendTo(im.iconsDOM);
+    icon.click(
+        function(){
+            if      (sentences_state=='closed'){$('.sentences').show('slow'); sentences_state = 'open'}
+            else if (sentences_state=='open'  ){$('.sentences').hide('slow'); sentences_state = 'closed'};
+        }
+    );
+
+    // group icons
+    for (i=0; i<icon_list.length;i++){
+        var icon = $('<span class="icon_list" sytle="display:inline-block;width:50px;height:50px" title="'+im.icon_name_list[i]+'"><img style="width:50px;height:50px"  src="/static/icons/'+icon_list[i]+'.jpg"></span>')
+        icon.appendTo(im.iconsDOM);
+        icon.data('cat_id', icon_list[i])
+        icon.hover(
+            function(){
+                if (toggleState == false){
+                    renderImage(objs, im, ctx);
+                    renderSegmentation(objs, [$(this).data('cat_id')], im, ctx)
+//                    renderDots(objs, [$(this).data('cat_id')], im, ctx)
+                }
+            },
+            function(){
+                if (toggleState == false){
+                    renderImage(objs, im, ctx);
+                    renderSegmentation(objs, icon_list, im, ctx);
+                }
+            }
+        );
+        icon.click(function(){
+            var target_offset = icon.offset();
+            var target_top = target_offset.top - 35;
+            $('html, body').animate({scrollTop:target_top}, 1000, 'easeInSine');
+        });
+    }
+    // blank icons
+    var icon = $('<span class="icon_list" sytle="display:inline-block;width:50px;height:50px" title="hide segmentations"><img style="width:50px;height:50px"  src="/static/icons/blank.jpg"></span>')
+    icon.appendTo(im.iconsDOM);
+    icon.hover(
+        function(){
+            renderImage(objs, im, ctx);
+        },
+        function(){
+            renderSegmentation(objs, icon_list, im, ctx);
+        }
+    );
+    icon.click(function(){
+        var target_offset = icon.offset();
+        var target_top = target_offset.top - 35;
+        $('html, body').animate({scrollTop:target_top}, 1000, 'easeInSine');
+    });
+
+
+
+}
+// redner dots
+function renderDots(objs, icon_list, im,  ctx){
+    for (i=0; i<icon_list.length; i++){
+        var click_list = objs['clicks'][icon_list[i]];
+        for (j=0; j< click_list.length; j++){
+            ctx.font="60px Georgia";
+            ctx.fillStyle = 'rgba('+0+','+0+','+0+',1)';
+            ctx.fillText("+",click_list[j][0]*im.width-30-2, click_list[j][1]*im.height+30);
+            ctx.fillText("+",click_list[j][0]*im.width-30-2, click_list[j][1]*im.height+30);
+            ctx.fillText("+",click_list[j][0]*im.width-30+2, click_list[j][1]*im.height+30);
+            ctx.fillText("+",click_list[j][0]*im.width-30+2, click_list[j][1]*im.height+30);
+            ctx.fillText("+",click_list[j][0]*im.width-30, click_list[j][1]*im.height+28);
+            ctx.fillText("+",click_list[j][0]*im.width-30, click_list[j][1]*im.height+28);
+            ctx.fillText("+",click_list[j][0]*im.width-30, click_list[j][1]*im.height+32);
+            ctx.fillText("+",click_list[j][0]*im.width-30, click_list[j][1]*im.height+32);
+            ctx.fillStyle = 'rgba('+255+','+255+','+255+',1)';
+            ctx.fillText("+",click_list[j][0]*im.width-30, click_list[j][1]*im.height+30);
+            ctx.fillText("+",click_list[j][0]*im.width-30, click_list[j][1]*im.height+30);
+        }
+    }
+}
+// render segmentation
+function renderSegmentation(objs, icon_list, im,  ctx){
+    for (i=0; i<objs['object'].length; i++){
+         if (icon_list.indexOf(objs['object'][i]['cat_id']) == -1){
+            continue
+         }
+         // set color for each object
+         var r = Math.floor(Math.random() * 255);
+         var g = Math.floor(Math.random() * 255);
+         var b = Math.floor(Math.random() * 255);
+         ctx.fillStyle = 'rgba('+r+','+g+','+b+',0.7)';
+         poly_x = objs['object'][i]['poly_x'];
+         poly_y = objs['object'][i]['poly_y'];
+//         poly_x_split = poly_x_str.split(';');
+//         poly_y_split = poly_y_str.split(';');
+         for (j=0; j<poly_x.length; j++){
+             px = poly_x[j];
+             py = poly_y[j];
+             // let's draw!!!!
+             ctx.beginPath();
+             ctx.moveTo(parseFloat(px[0]), parseFloat(py[0]));
+             for (k=1; k< px.length; k+=1){
+                 ctx.lineTo(parseFloat(px[k]), parseFloat(py[k]));
+             }
+//             ctx.moveTo(parseFloat(px[0])*im.width, parseFloat(py[0])*im.height);
+//             for (k=1; k< px.length; k+=1){
+//                 ctx.lineTo(parseFloat(px[k])*im.width, parseFloat(py[k])*im.height);
+//             }
+             ctx.lineWidth = 3;
+             ctx.closePath();
+             ctx.fill();
+             ctx.strokeStyle = 'black';
+             ctx.stroke();
+         }
+     }
+}
+function renderImage(objs, im, ctx){
+    ctx.clearRect(0, 0, im.width, im.height);
+    ctx.drawImage(im, 0, 0);
+}
+function loadSearch(){
+     loadVisualizations($("#tags").tagit("assignedTags"));
+}
+function clearCanvas(){
+    search_state = 'GO';
+    im_id_list = [];
+    $('.canvas_template').remove();
+}
+
+function setupIconsSearchPanel(){
+    var icons = $(".icons");
+    for (i=0; i<icons.length; i++){
+        var icon = $(icons[i]);
+        icon.data('state', true);
+        icon.mousedown(function(ev){
+            var state = $(this).data('state');
+            var cat_name = $(this).attr('title');
+            if (state){
+                $(this).css('border-color', '#00FF00');
+                $("#tags").tagit("createTag", cat_name);
+            }else{
+                $(this).css('border-color', 'transparent');
+                $("#tags").tagit("removeTagByLabel", cat_name);
+            }
+            $(this).data('state', !state);
+        }
+        );
+        icon_name_list.push(icon.attr('title'));
+    }
+}
+
+function removeTags(tag){
+    var icons = $(".icons");
+    for (i=0; i<icons.length; i++){
+        var icon = $(icons[i]);
+        if (icon.attr('title') == tag){
+            var state = icon.data('state');
+            icon.data('state', true);
+            icon.css('border-color', 'transparent');
+        }
+    }
+}
+function addTags(tag){
+    var icons = $(".icons");
+    for (i=0; i<icons.length; i++){
+        var icon = $(icons[i]);
+        if (icon.attr('title') == tag){
+            var state = icon.data('state');
+            icon.data('state', false);
+            icon.css('border-color', '#00FF00');
+        }
+    }
+}
+
+</script>
+
+</head>
+
+<body>
+
+  {% include "_header.html" %}
+  <div id="dialog-modal" title="Message"></div>
+  <div id="contentRow" style="height:640px; margin-top:165px">
+    <div class="centerwrapper">
+      <div id="contentColumn">
+        <div class="ui-widget">
+          <span style='color:black;font-size:12pt'> COCO 2014 train/val browser (123,287 images, 886,284 instances). Crowd labels not shown.  </span>
+          <div id='icon_panel' style="margin-bottom:25px">
+            <div class='icon_group' style='width:800px'>
+              {% for scat_id in scat_id_list %}
+              <div style="width:70px;height:150px; display:inline-block;vertical-align:top; margin-left:-3px">
+                {% for cat in cats %}
+                {% if cat.supercat_id == scat_id %}
+                <div id="icon_{{cat.id}}" class="icons" title="{{cat.name}}" style="margin-right:-8px;width:36px;height:36px;display:inline-block;vertical-align:top; border-color:transparent;border-style:solid;border-width:3px;cursor:pointer;">
+                  <img src='/static/icons/{{cat.id}}.jpg' style='width:30px;height:30px' />
+                </div>
+                {% endif %}
+                {% endfor %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div style="width:800px;">
+            <div style='width:88%;display:inline-block;vertical-align:middle'>
+              <input id="tags" style='width:80%' />
+            </div>
+            <div style='width:10%;height:74px;display:inline-block;vertical-align:middle'>
+              <button id="btn-search" type="button" style='margin-top:13px;font-size:14pt;height:37px;' class="btn btn-primary" onclick='clearCanvas();$("#search-count").text("");loadSearch();'>
+                search
+              </button>
+            </div>
+            <div id='search-count' style='font-size:8pt;color:#888888;margin-top:-15px;margin-bottom:15px'></div>
+          </div>
+        </div>
+        <span id='msg' > </span>
+        <div id='canvas_template' style='margin-bottom:15px'>
+          <div class="imid"></div>
+          <div class="icons" style='display:inline-block'></div>
+          <div class="url" style="color:black;display:none;cursor:pointer"></div>
+          <div class="sentences" style="color:black;cursor:pointer"></div>
+          <div class="canvas_div" style="margin-top:1px">
+            <canvas class="canvas"></canvas>
+          </div>
+        </div>
+      </div>
+      <div id="btn-loading" align="center" style="display:none"><img src='/static/images/ajax-loader.gif'></img></div>
+      <div id="btn-stop" align="center" style="display:none;color:black">no more images to show</img></div>
+    </div>
+    <p><br/></p>
+
+    {% include "_footer.html" %}
+  </div>
+
+</body>
+</html>

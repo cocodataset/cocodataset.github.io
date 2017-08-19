@@ -1,0 +1,101 @@
+<!------------------------------------------------------------------------------------------------>
+<p class="titleSegoeLight" style="width:100%">1. Keypoints Upload</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+This page describes the <i>upload instructions</i> for submitting results to the keypoint <a href="https://competitions.codalab.org/competitions/12061">evaluation server</a>. Before proceeding, please review the <a href="#format">results format</a> and <a href="#keypoints-eval">evaluation details</a>. Submitting results allows you to participate in the <a href="#keypoints-challenge2016">COCO Keypoints Challenge</a> and compare results to the state-of-the-art on the keypoints <a href="#keypoints-leaderboard">leaderboard</a>.
+</p>
+
+<!------------------------------------------------------------------------------------------------>
+<p class="titleSegoeLight" style="width:100%">2. Competition Details</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+The COCO 2015 Test Set can be obtained on the <a href="#download">download page.</a> The recommended training data consists of the COCO 2014 Training and Validation sets. External data of any form is allowed (except of course any form of annotation on the COCO Test set is forbidden). Please specify any and all external data used for training in the "method description" when uploading results to the evaluation server.
+</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+Please limit the number of entries to the evaluation server to a reasonable number, e.g. one entry per paper. To avoid overfitting, the <i>number of submissions per user is limited to 2 upload per day and a maximum of 5 submissions per user</i>. It is not acceptable to create multiple accounts for a single project to circumvent this limit. The exception to this is if a group publishes two papers describing unrelated methods, in this case both sets of results can be submitted for evaluation.
+</p>
+
+<!------------------------------------------------------------------------------------------------>
+<p class="titleSegoeLight" style="font-size:18pt">
+2.1. Test Set Splits
+</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+The 2015 COCO Test set consists of ~80K test images. To limit overfitting while giving researchers more flexibility to test their system, we have divided the test set into four roughly equally sized splits of ~20K images each: <i>test-dev</i>, <i>test-standard</i>, <i>test-challenge</i>, and <i>test-reserve</i>. Submission to the test set automatically results in submission on each split (identities of the splits are not publicly revealed). In addition, to allow for debugging and validation experiments, we allow researcher <i>unlimited</i> submission to test-dev. Each test split serves a distinct role; details below.
+</p>
+<div class="bodyNormal json" style="color:black; width:100%; font-family:courier new; ">
+  <table style="border-spacing: 5px;"  >
+    <tr>
+      <th style="padding-right: 30px">split</th>
+      <th style="padding-right: 30px">#imgs</th>
+      <th style="padding-right: 30px">submission</th>
+      <th style="padding-right: 30px">scores reported</th>
+    </tr>
+    <tr>
+      <td style="padding-right: 30px">Test-Dev</td>
+      <td style="padding-right: 30px">~20K</td>
+      <td style="padding-right: 30px">unlimited</td>
+      <td style="padding-right: 30px">immediately</td>
+    </tr>
+    <tr>
+      <td style="padding-right: 30px">Test-Standard</td>
+      <td style="padding-right: 30px">~20K</td>
+      <td style="padding-right: 30px">limited</td>
+      <td style="padding-right: 30px">immediately</td>
+    </tr>
+    <tr>
+      <td style="padding-right: 30px">Test-Challenge</td>
+      <td style="padding-right: 30px">~20K</td>
+      <td style="padding-right: 30px">limited</td>
+      <td style="padding-right: 30px">challenge</td>
+    </tr>
+    <tr>
+      <td style="padding-right: 30px">Test-Reserve</td>
+      <td style="padding-right: 30px">~20K</td>
+      <td style="padding-right: 30px">limited</td>
+      <td style="padding-right: 30px">never</td>
+    </tr>
+  </table>
+</div>
+<p class="bodyNormal" style="color:black;" align="justify">
+These are identical to the test splits used for the object detection challenge. To understand their role in more detail, and for best practices, please see the <a href="#detections-upload">detection upload</a> page (section 2).
+</p>
+
+<!------------------------------------------------------------------------------------------------>
+<p class="titleSegoeLight" style="width:100%">3. Enter The Competition</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+First you need to create an account on <a href="https://codalab.org" target="_blank">CodaLab</a>. From your account you will be able to participate in all COCO challenges.
+</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+Before uploading your results to the evaluation server, you will need to create a JSON file containing your results in the correct <a href="#format">format</a>. The file should be named "person_keypoints_[testset]_[alg]_results.json". Replace [alg] with your algorithm name and [testset] with either "test-dev2015" or "test2015" depending on the test split you are using. Place the JSON file into a zip file named "person_keypoints_[testset]_[alg]_results.zip".
+</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+To submit your zipped result file to the COCO Detection Challenge click on the “Participate” tab on the CodaLab <a href="https://www.codalab.org/competitions/12061" target="_blank">evaluation server</a>. Select test split (test-dev or test). When you select “Submit / View Results” you will be given the option to submit new results. Please fill in the required fields and click “Submit”. A pop-up will prompt you to select the results zip file for upload. After the file is uploaded the evaluation server will begin processing. To view the status of your submission please select “Refresh Status”. If the status of your submission is “Failed” please check your file is named correctly and has the right <a href="#format">format</a>.
+</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+After you submit your results to the evaluation server, you can control whether your results are publicly posted to the CodaLab leaderboard. To toggle the public visibility of your results please select either “post to leaderboard” or “remove from leaderboard”. For now only one result can be published to the leaderboard at any time, we may change this in the future.
+</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+In addition to the CodaLab leaderboard, we also host our own more detailed <a href="#keypoints-leaderboard">leaderboard</a> that includes additional results and method information (such as paper references). Note that the CodaLab leaderboard may contain results not yet migrated to our own leaderboard.
+</p>
+
+<!------------------------------------------------------------------------------------------------>
+<p class="titleSegoeLight" style="width:100%">4. Download Evaluation Results</p>
+<p class="bodyNormal" style="color:black;" align="justify">
+After evaluation is complete and the server shows a status of “Finished”, you will have the option to download your evaluation results by selecting “Download evaluation output from scoring step.” The zip file will contain three files:
+</p>
+<div class="bodyNormal json" style="color:black;width:100%; font-family: courier new; ">
+  <div class="jsontabstartend">
+    <div style="display:inline-block; width:52%">
+      eval.json<br>
+      metadata<br>
+      scores.txt
+    </div>
+    <div style="display:inline-block; width:45%;font-family:arial">
+      % aggregated evaluation on test <br>
+      % automatically generated (safe to ignore) <br>
+      % automatically generated (safe to ignore)
+    </div>
+  </div>
+</div>
+<p class="bodyNormal" style="color:black;" align="justify">
+The format of the eval file is described on the <a href="#keypoints-eval">keypoints evaluation</a> page.
+</p>
+<br>

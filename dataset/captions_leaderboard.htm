@@ -1,0 +1,227 @@
+<script>
+var initCaptioningLeaderboard = function() {
+  // data columns
+  var colsTable = ["CIDEr", "METEOR", "ROUGE_L", "Bleu_1", "Bleu_2", "Bleu_3", "Bleu_4", "SPICE", "date"];
+  var colsChallenge = ["q1", "q2", "q3", "q4", "q5", "date"];
+  // load single entry from database into leaderboard
+  var loadEntry = function( dataset, results, name, publication, url, date ) {
+    var i=dataset.main.length;
+    var cols = dataset.cols;
+    dataset.main[i] = new Array();
+    results = JSON.parse(results);
+    results["date"] = date;
+    dataset.main[i][0] = name+"<sup>["+(i+1)+"]</sup>";
+    for( var j=0; j<cols.length; j++ ){
+        if (!results[cols[j]])
+            dataset.main[i][j+1] = 0
+        else
+            dataset.main[i][j+1] = results[cols[j]];
+    }
+    if(url != "") name = "<a href='" + url + "' target='_blank'> " + name + " </a>";
+    dataset.refs[i] = new Array();
+    dataset.refs[i][0] = "["+(i+1)+"] " + name;
+    dataset.refs[i][1] = publication;
+  };
+  // load all leaderboard data using Django
+  var N = {{ datasets_caps | length }}
+  var datasets = new Array(N);
+  var leaderboards = new Array(N);
+  for( i=0; i<N; i++ )
+    datasets[i] = { main:[], refs:[], cols:colsTable }
+  {% for name, entries in datasets_caps %}
+    var i = {{ forloop.counter0 }};
+    leaderboards[i] = "{{name}}";
+    if ("{{name}}" == "cap-challenge2015")
+      datasets[i].cols = colsChallenge;
+    {% for e in entries %}
+    loadEntry( datasets[i], "{{e.results | escapejs}}", "{{e.team.name | escapejs}}", "{{e.publication | escapejs}}", "{{e.url}}", "{{e.date|date:'Y-m-d'}}" );
+    {% endfor %}
+  {% endfor %}
+  // metrics and challenge ranking are hardcoded
+  var metricsMain = [
+    ['CIDEr-D', '<a href="http://arxiv.org/pdf/1411.5726.pdf" target="_blank"> CIDEr: Consensus-based Image Description Evaluation</a>'],
+    ['METEOR',  '<a href="http://www.cs.cmu.edu/~alavie/METEOR/pdf/meteor-1.5.pdf" target="_blank">Meteor Universal: Language Specific Translation Evaluation for Any Target Language</a>'],
+    ['Rouge-L', '<a href="http://anthology.aclweb.org/W/W04/W04-1013.pdf" target="_blank"> ROUGE: A Package for Automatic Evaluation of Summaries</a>'],
+    ['BLEU',    '<a href="http://www.aclweb.org/anthology/P02-1040.pdf" target="_blank"> BLEU: a Method for Automatic Evaluation of Machine Translation</a>'],
+    ['SPICE',    '<a href="https://arxiv.org/pdf/1607.08822.pdf" target="_blank"> SPICE: Semantic Propositional Image Caption Evaluation</a>']
+  ];
+  var metricsChallenge = [
+    ['M1', 'Percentage of captions that are evaluated as better or equal to human caption.'],
+    ['M2', 'Percentage of captions that pass the Turing Test.'],
+    ['M3', 'Average correctness of the captions on a scale 1-5 (incorrect - correct).'],
+    ['M4', 'Average amount of detail of the captions on a scale 1-5 (lack of details - very detailed).'],
+    ['M5', 'Percentage of captions that are similar to human description.']
+  ];
+  var ranksChallenge = [
+    ['Google', 5, 4, 9, '1st(tie)'],
+    ['MSR', 4, 5, 9, '1st(tie)'],
+    ['MSR Captivator', 2, 3, 5, '3rd(tie)'],
+    ['Montreal/Toronto', 3, 2, 5, '3rd(tie)'],
+    ['Berkeley LRCN', 1, 1, 2, '5th']
+  ];
+  // initialize and format DataTables https://www.datatables.net/
+  var propsRefs = { 'paging':false, 'info':false, 'filter':false, 'sort':false, 'autoWidth':false };
+  propsRefs.columnDefs = [{'targets':0,'sWidth':'25%'}];
+  var propsData = { 'paging':false, 'info':false, 'filter':false, 'order':[[1, 'desc']] };
+  propsData.columnDefs = [{'targets':['_all'],'orderSequence':['desc','asc']}];
+  for( var i=0; i<N; i++ ) {
+    $('#div-'+leaderboards[i]+' #data').DataTable(propsData).rows.add(datasets[i].main).draw();
+    $('#div-'+leaderboards[i]+' #refs').DataTable(propsRefs).rows.add(datasets[i].refs).draw();
+  };
+  $('#div-cap-c5 #metrics').DataTable(propsRefs).rows.add(metricsMain).draw();
+  $('#div-cap-c40 #metrics').DataTable(propsRefs).rows.add(metricsMain).draw();
+  $('#div-cap-challenge2015 #metrics').DataTable(propsRefs).rows.add(metricsChallenge).draw();
+  $('#div-cap-challenge2015 #rank').DataTable(propsData).rows.add(ranksChallenge).draw();
+};
+$( function() { initCaptioningLeaderboard(); } );
+</script>
+
+<!------------------------------------------------------------------------------------------------>
+<style>
+  #captioning td { padding: 6px 0px 6px 10px; vertical-align:middle }
+  #captioning th { padding: 6px 16px 6px 0px; text-align:center }
+</style>
+<div style="margin-top:10px; margin-bottom:10px; display:inline-block">
+  <ul class="nav nav-pills">
+    <li>               <a href="#div-cap-c5"  data-toggle="tab">Table-C5 </a></li>
+    <li>               <a href="#div-cap-c40" data-toggle="tab">Table-C40</a></li>
+    <li class="active"><a href="#div-cap-challenge2015" data-toggle="tab">Challenge2015</a></li>
+  </ul>
+</div>
+
+<div class="tab-content" id="captioning">
+
+  <!------------------------------------------------------------------------------------------------>
+  <div id="div-cap-c5" style="font-size:13px" class="tab-pane">
+    <div style="margin-bottom:20px;">
+      Last updated: 12/08/2016. Please visit <a href="https://www.codalab.org/competitions/3221#results" target="_blank">CodaLab</a> for the latest results.
+    </div>
+    <table id="data" class="table order-column hover">
+      <thead><tr>
+        <th></th>
+        <th>CIDEr-D</th>
+        <th>Meteor</th>
+        <th>ROUGE-L</th>
+        <th>BLEU-1</th>
+        <th>BLEU-2</th>
+        <th>BLEU-3</th>
+        <th>BLEU-4</th>
+        <th>SPICE</th>
+        <th>date</th>
+      </tr></thead>
+    </table>
+    <p class="titleSegoeLight" style="margin-bottom:0px">Metrics</p>
+    <table id="metrics" style="margin-bottom:10px" class="table table-striped hover">
+      <thead><tr>
+        <th></th>
+        <th></th>
+      </tr></thead>
+    </table>
+    <div>
+      For the details of data collection and evaluation, please read <a href="http://arxiv.org/pdf/1504.00325.pdf" target="_blank">Microsoft COCO Captions: Data Collection and Evaluation Server</a>.
+    </div>
+    <p class="titleSegoeLight" style="margin-bottom:0px">References</p>
+    <table id="refs" class="table table-striped hover">
+      <thead><tr>
+        <th></th>
+        <th></th>
+      </tr></thead>
+    </table>
+  </div>
+
+  <!------------------------------------------------------------------------------------------------>
+  <div id="div-cap-c40" style="font-size:13px" class="tab-pane">
+    <div style="margin-bottom:20px;">
+      Last updated: 12/08/2016. Please visit <a href="https://www.codalab.org/competitions/3221#results" target="_blank">CodaLab</a> for the latest results.
+    </div>
+    <table id="data" class="table order-column hover">
+      <thead><tr>
+        <th></th>
+        <th>CIDEr-D</th>
+        <th>Meteor</th>
+        <th>ROUGE-L</th>
+        <th>BLEU-1</th>
+        <th>BLEU-2</th>
+        <th>BLEU-3</th>
+        <th>BLEU-4</th>
+        <th>SPICE(x10)</th>
+        <th>date</th>
+      </tr></thead>
+    </table>
+    <p class="titleSegoeLight" style="margin-bottom:0px">Metrics</p>
+    <table id="metrics" style="margin-bottom:10px" class="table table-striped hover">
+      <thead><tr>
+        <th></th>
+        <th></th>
+      </tr></thead>
+    </table>
+    <div>
+      For the details of data collection and evaluation, please read <a href="http://arxiv.org/pdf/1504.00325.pdf" target="_blank">Microsoft COCO Captions: Data Collection and Evaluation Server</a>.
+    </div>
+    <p class="titleSegoeLight" style="margin-bottom:0px">References</p>
+    <table id="refs" class="table table-striped hover">
+      <thead><tr>
+        <th></th>
+        <th></th>
+      </tr></thead>
+    </table>
+  </div>
+
+  <!------------------------------------------------------------------------------------------------>
+  <div id="div-cap-challenge2015" style="font-size:13px" class="tab-pane active in">
+    <div style="margin-bottom:20px;">
+      Results of the <a href="#captions-challenge2015">2015 Captioning Challenge</a>. Finalized 06/2015. See other tabs for up-to-date results.
+    </div>
+    <table id="data" style="width:70%" class="table order-column hover">
+      <thead><tr>
+        <th></th>
+        <th>M1</th>
+        <th>M2</th>
+        <th>M3</th>
+        <th>M4</th>
+        <th>M5</th>
+        <th>date</th>
+      </tr></thead>
+    </table>
+    <p class="titleSegoeLight" style="margin-bottom:10px">Metrics</p>
+    <div align="justify">
+      We conducted a human study to understand how satisfactory are the results obtained from the captions submitted in the COCO captioning challenge. We were interested in three main points:
+      <br/><br/>
+      <ul>
+        <li> Which algorithm produces the best captions?</li>
+        <li> What are the factors determining which is the best algorithm?</li>
+        <li> Do the algorithms produce captions resembling human-generated sentences?</li>
+      </ul>
+      To address the above questions we developed five Graphical User Interfaces (GUI) on the Amazon Mechanical Turk (AMT) platform to collect human responses. From the responses we designed the following five metrics
+    </div>
+    <table id="metrics" class="table table-striped hover">
+      <thead><tr>
+        <th></th>
+        <th></th>
+      </tr></thead>
+    </table>
+    <p class="titleSegoeLight" style="margin-bottom:10px">Ranking</p>
+    <div align="justify">
+      The ranking for the competition was based on the results from M1 and M2. The other metrics have been used as diagnostic and interpretation of the results. Points are assigned to the top 5 teams for:
+    </div>
+    <table id="rank" style="width:60%" class="table table-striped hover">
+      <thead><tr>
+        <th></th>
+        <th>M1</th>
+        <th>M2</th>
+        <th>TOTAL</th>
+        <th>Ranking</th>
+      </tr></thead>
+    </table>
+    <p class="titleSegoeLight" style="margin-bottom:0px">References</p>
+    <table id="refs" class="table table-striped hover">
+      <thead><tr>
+        <th></th>
+        <th></th>
+      </tr></thead>
+    </table>
+  </div>
+
+</div>
+<br>
+<br>
