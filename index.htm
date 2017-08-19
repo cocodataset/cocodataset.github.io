@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>COCO - Common Objects in Context</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="other/styles.css" />
+  <script src="other/cocoscripts.js"></script>
+  <script>googleAnalytics();</script>
+</head>
+
+<body>
+  <script>$(function(){populateHeaders('Home')})</script>
+  <script>$(function(){populateHomePage()})</script>
+  <div id="header"><div id="headerBody"><img id="headerImage" src="images/logo.png" alt="Logo" /><div id="headerTabs"></div></div></div>
+  <div id="content">
+    <div class="column">
+      <p class="fontTitle">What is COCO?</p>
+      <img class="iconsImage" src="images/icons.png"/>
+      <p class="fontSubtle">COCO is a new image recognition, segmentation, and captioning dataset. COCO has several features:</p>
+      <ul class="fontSubtle fontBold noBullet">
+        <li class="checkBullet">Object segmentation</li>
+        <li class="checkBullet">Recognition in Context</li>
+        <li class="checkBullet">Multiple objects per image</li>
+        <li class="checkBullet">More than 300,000 images</li>
+        <li class="checkBullet">More than 2 Million instances</li>
+        <li class="checkBullet">80 object categories</li>
+        <li class="checkBullet">5 captions per image</li>
+        <li class="checkBullet">Keypoints on 100,000 people</li>
+      </ul>
+    </div>
+    <div class="columnSpacer"></div>
+    <div class="columnPeople">
+      <p class="fontTitle">Collaborators</p>
+      <div class="fontSubtle" id="cocoPeople"></div>
+    </div>
+    <div class="columnSpacer"></div>
+    <div class="columnSponsors">
+      <p class="fontTitle">Sponsors</p>
+      <p><img class="wide" src="images/sponsors-microsoft.png">
+      <p><img class="wide" src="images/sponsors-facebook.png">
+      <p><img class="wide" src="images/sponsors-MightyAI.svg">
+    </div>
+    <p class="fontSubsubtitle">
+      <span class="fontBold">NEWS:</span> We are pleased to announce the COCO 2017
+      <a href="https://cocodataset.github.io/dataset.htm#detection-challenge2017">Detection</a> and
+      <a href="https://cocodataset.github.io/dataset.htm#keypoints-challenge2017">Keypoint</a> Challenges!<br/>
+      Results will be announced at the <a href="https://places-coco2017.github.io/">Joint COCO and Places Recognition </a> workshop at ICCV.
+    </p>
+    <p><a href="http://arxiv.org/abs/1405.0312" target="_blank"><img class="wide" src="images/feature.png"/></a></p>
+    <p><img class="wide" src="images/dataset.jpg"/></p>
+  </div>
+  <div id="footer"><div><a href="termsofuse.htm">Terms of Use</a></div></div>
+</body>

@@ -46,8 +46,8 @@ var initKptLeaderboard = function() {
   $('div.toolbar_kpt').css({'text-align':'center','padding-top':'4px','font-size':'14px'})
   // load core leaderboard data
   $.ajax({ type:'POST', url:'/leaderboard_get_kpts_entries/', data:{'team_id':0}})
-    .done( function(json) { 
-            loadData(JSON.parse(json).entries) 
+    .done( function(json) {
+            loadData(JSON.parse(json).entries)
             });
 };
 $( function() { initKptLeaderboard(); } );
@@ -58,7 +58,7 @@ $( function() { initKptLeaderboard(); } );
   #leaderboard td { padding: 6px 4px; vertical-align:middle }
   #leaderboard th { padding: 6px 16px 6px 0px; text-align:right; width:36px }
 </style>
-<div align="justify" style="font-size:13px; margin:10px;">
+<div style="font-size:13px; margin:10px;">
 </div>
 <div style="margin:10px 0px; display:inline-block">
   <ul class="nav nav-pills">
@@ -86,42 +86,25 @@ $( function() { initKptLeaderboard(); } );
       </tr>
     </thead>
   </table>
-  <p class="titleSegoeLight" style="margin-bottom:15px">Metrics</p>
-  <div class="bodyNormal json" style="color:black; width:100%; font-family:courier new; ">
-    <div style="display:inline-block; width:30%">
-      <b>Average Precision (AP):</b><br>
-      <div class="jsontab">AP<br></div>
-      <div class="jsontab">AP<sup>IoU=.50</sup><br></div>
-      <div class="jsontab">AP<sup>IoU=.75</sup><br></div>
-      <b>AP Across Scales:</b><br>
-      <div class="jsontab">AP<sup>medium</sup><br></div>
-      <div class="jsontab">AP<sup>large</sup><br></div>
-      <b>Average Recall (AR):</b><br>
-      <div class="jsontab">AR<br></div>
-      <div class="jsontab">AR<sup>IoU=.50</sup><br></div>
-      <div class="jsontab">AR<sup>IoU=.75</sup><br></div>
-      <b>AR Across Scales:</b><br>
-      <div class="jsontab">AR<sup>medium</sup><br></div>
-      <div class="jsontab">AR<sup>large</sup><br></div>
-    </div>
-    <div style="display:inline-block; width:74%; margin-left:-35px">
-      <div class="jsontab">% AP at IoU=.50:.05:.95 <b>(primary challenge metric)</b></div>
-      <div class="jsontab">% AP at IoU=.50 </div>
-      <div class="jsontab">% AP at IoU=.75 (strict metric)</div>
-      <br>
-      <div class="jsontab">% AP for medium objects: 32<sup>2</sup> &lt; area &lt; 96<sup>2</sup></div>
-      <div class="jsontab">% AP for large objects: area &gt; 96<sup>2</sup></div>
-      <br>
-      <div class="jsontab">% AR at IoU=.50:.05:.95 </div>
-      <div class="jsontab">% AR at IoU=.50 </div>
-      <div class="jsontab">% AR at IoU=.75 </div>
-      <br>
-      <div class="jsontab">% AR for medium objects: 32<sup>2</sup> &lt; area &lt; 96<sup>2</sup></div>
-      <div class="jsontab">% AR for large objects: area &gt; 96<sup>2</sup></div>
-    </div>
+  <p class="fontTitle" style="margin-bottom:15px">Metrics</p>
+  <div class="json fontMono">
+    <div class="jsonreg"><b>Average Precision (AP):</b></div>
+    <div class="jsonk">AP</div><div class="jsonv">% AP at OKS=.50:.05:.95 <b>(primary challenge metric)</b></div>
+    <div class="jsonk">AP<sup>OKS=.50</sup></div><div class="jsonv">% AP at OKS=.50 (loose metric)</div>
+    <div class="jsonk">AP<sup>OKS=.75</sup></div><div class="jsonv">% AP at OKS=.75 (strict metric)</div>
+    <div class="jsonreg"><b>AP Across Scales:</b></div>
+    <div class="jsonk">AP<sup>medium</sup></div><div class="jsonv">% AP for medium objects: 32<sup>2</sup> &lt; area &lt; 96<sup>2</sup></div>
+    <div class="jsonk">AP<sup>large</sup></div><div class="jsonv">% AP for large objects: area &gt; 96<sup>2</sup></div>
+    <div class="jsonreg"><b>Average Recall (AR):</b></div>
+    <div class="jsonk">AR</div><div class="jsonv">% AR at OKS=.50:.05:.95</div>
+    <div class="jsonk">AR<sup>OKS=.50</sup></div><div class="jsonv">% AR at OKS=.50</div>
+    <div class="jsonk">AR<sup>OKS=.75</sup></div><div class="jsonv">% AR at OKS=.75</div>
+    <div class="jsonreg"><b>AR Across Scales:</b></div>
+    <div class="jsonk">AR<sup>medium</sup></div><div class="jsonv">% AR for medium objects: 32<sup>2</sup> &lt; area &lt; 96<sup>2</sup></div>
+    <div class="jsonk">AR<sup>large</sup></div><div class="jsonv">% AR for large objects: area &gt; 96<sup>2</sup></div>
   </div>
   <p>Please see the <a href="#keypoints-eval">evaluation</a> page for more detailed information about the metrics.</p>
-  <p class="titleSegoeLight" style="margin-bottom:0px">References</p>
+  <p class="fontTitle" style="margin-bottom:0px">References</p>
   <table id="refs" class="table table-striped hover" style="font-size:13px">
     <thead><tr>
       <th></th>
@@ -130,5 +113,3 @@ $( function() { initKptLeaderboard(); } );
     </tr></thead>
   </table>
 </div>
-<br>
-<br>

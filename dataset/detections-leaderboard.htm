@@ -88,18 +88,18 @@ $( function() { initLeaderboard(); } );
   #leaderboard td { padding: 6px 4px; vertical-align:middle }
   #leaderboard th { padding: 6px 16px 6px 0px; text-align:right; width:36px }
 </style>
-<div align="justify" style="font-size:13px; margin:10px;">
+<div style="font-size:13px; margin:10px;">
   Last pdated: 06/20/2017 (results migrated weekly from <a href="https://www.codalab.org/competitions/5181" target="_blank">CodaLab</a>). For information about each test split please see the <a href="#detections-upload">upload</a> page. <b>Hints</b>: use the buttons below to select the dataset <i>split</i>, click on column headers to <i>sort</i> the data, use the <i>search</i> bar to filter results, use the buttons to <i>export</i> the current table view, and click on method names to show <i>per-category</i> results.
 </div>
 <div style="margin:10px 0px; display:inline-block">
   <ul class="nav nav-pills">
-    <li><a style="margin-left:-10px; color:black; padding:5px;font-size:small">BBOX:</a></li>
+    <li><a style="margin-left:-10px; color:#1d2125; padding:5px;font-size:small">BBOX:</a></li>
     <li class="active"><a data-toggle="tab" style="padding:5px;font-size:small" id="a_bbox_standard2015">Standard</a></li>
     <li><a data-toggle="tab" style="padding:5px;font-size:small" id="a_bbox_dev2015">Dev</a></li>
     <li><a data-toggle="tab" style="padding:5px;font-size:small" id="a_bbox_challenge2015">Challenge2015</a></li>
     <li><a data-toggle="tab" style="padding:5px;font-size:small" id="a_bbox_challenge2016">Challenge2016</a></li>
-    <br>
-    <li><a style="margin-left:-10px; color:black; padding:5px;font-size:small">SEGM:</a></li>
+    <br/>
+    <li><a style="margin-left:-10px; color:#1d2125; padding:5px;font-size:small">SEGM:</a></li>
     <li><a data-toggle="tab" style="padding:5px;font-size:small" id="a_segm_standard2015">Standard</a></li>
     <li><a data-toggle="tab" style="padding:5px;font-size:small" id="a_segm_dev2015">Dev</a></li>
     <li><a data-toggle="tab" style="padding:5px;font-size:small" id="a_segm_challenge2015">Challenge2015</a></li>
@@ -127,46 +127,27 @@ $( function() { initLeaderboard(); } );
       </tr>
     </thead>
   </table>
-  <p class="titleSegoeLight" style="margin-bottom:15px">Metrics</p>
-  <div class="bodyNormal json" style="color:black; width:100%; font-family:courier new; ">
-    <div style="display:inline-block; width:30%">
-      <b>Average Precision (AP):</b><br>
-      <div class="jsontab">AP<br></div>
-      <div class="jsontab">AP<sup>IoU=.50</sup><br></div>
-      <div class="jsontab">AP<sup>IoU=.75</sup><br></div>
-      <b>AP Across Scales:</b><br>
-      <div class="jsontab">AP<sup>small</sup><br></div>
-      <div class="jsontab">AP<sup>medium</sup><br></div>
-      <div class="jsontab">AP<sup>large</sup><br></div>
-      <b>Average Recall (AR):</b><br>
-      <div class="jsontab">AR<sup>max=1</sup><br></div>
-      <div class="jsontab">AR<sup>max=10</sup><br></div>
-      <div class="jsontab">AR<sup>max=100</sup><br></div>
-      <b>AR Across Scales:</b><br>
-      <div class="jsontab">AR<sup>small</sup><br></div>
-      <div class="jsontab">AR<sup>medium</sup><br></div>
-      <div class="jsontab">AR<sup>large</sup><br></div>
-    </div>
-    <div style="display:inline-block; width:74%; margin-left:-35px">
-      <div class="jsontab">% AP at IoU=.50:.05:.95 <b>(primary challenge metric)</b></div>
-      <div class="jsontab">% AP at IoU=.50 (PASCAL VOC metric)</div>
-      <div class="jsontab">% AP at IoU=.75 (strict metric)</div>
-      <br>
-      <div class="jsontab">% AP for small objects: area &lt; 32<sup>2</sup></div>
-      <div class="jsontab">% AP for medium objects: 32<sup>2</sup> &lt; area &lt; 96<sup>2</sup></div>
-      <div class="jsontab">% AP for large objects: area &gt; 96<sup>2</sup></div>
-      <br>
-      <div class="jsontab">% AR given 1 detection per image </div>
-      <div class="jsontab">% AR given 10 detections per image</div>
-      <div class="jsontab">% AR given 100 detections per image</div>
-      <br>
-      <div class="jsontab">% AR for small objects: area &lt; 32<sup>2</sup></div>
-      <div class="jsontab">% AR for medium objects: 32<sup>2</sup> &lt; area &lt; 96<sup>2</sup></div>
-      <div class="jsontab">% AR for large objects: area &gt; 96<sup>2</sup></div>
-    </div>
+  <p class="fontTitle" style="margin-bottom:15px">Metrics</p>
+  <div class="json fontMono">
+    <div class="jsonreg"><b>Average Precision (AP):</b></div>
+    <div class="jsonk">AP</div><div class="jsonv">% AP at IoU=.50:.05:.95 <b>(primary challenge metric)</b></div>
+    <div class="jsonk">AP<sup>IoU=.50</sup></div><div class="jsonv">% AP at IoU=.50 (PASCAL VOC metric)</div>
+    <div class="jsonk">AP<sup>IoU=.75</sup></div><div class="jsonv">% AP at IoU=.75 (strict metric)</div>
+    <div class="jsonreg"><b>AP Across Scales:</b></div>
+    <div class="jsonk">AP<sup>small</sup></div><div   class="jsonv">% AP for small objects: area &lt; 32<sup>2</sup></div>
+    <div class="jsonk">AP<sup>medium</sup></div><div  class="jsonv">% AP for medium objects: 32<sup>2</sup> &lt; area &lt; 96<sup>2</sup></div>
+    <div class="jsonk">AP<sup>large</sup></div><div   class="jsonv">% AP for large objects: area &gt; 96<sup>2</sup></div>
+    <div class="jsonreg"><b>Average Recall (AR):</b></div>
+    <div class="jsonk">AR<sup>max=1</sup></div><div   class="jsonv">% AR given 1 detection per image </div>
+    <div class="jsonk">AR<sup>max=10</sup></div><div  class="jsonv">% AR given 10 detections per image</div>
+    <div class="jsonk">AR<sup>max=100</sup></div><div class="jsonv">% AR given 100 detections per image</div>
+    <div class="jsonreg"><b>AR Across Scales:</b></div>
+    <div class="jsonk">AR<sup>small</sup></div><div   class="jsonv">% AR for small objects: area &lt; 32<sup>2</sup></div>
+    <div class="jsonk">AR<sup>medium</sup></div><div  class="jsonv">% AR for medium objects: 32<sup>2</sup> &lt; area &lt; 96<sup>2</sup></div>
+    <div class="jsonk">AR<sup>large</sup></div><div   class="jsonv">% AR for large objects: area &gt; 96<sup>2</sup></div>
   </div>
   <p>Please see the <a href="#detections-eval">evaluation</a> page for more detailed information about the metrics.</p>
-  <p class="titleSegoeLight" style="margin-bottom:0px">References</p>
+  <p class="fontTitle" style="margin-bottom:0px">References</p>
   <table id="refs" class="table table-striped hover" style="font-size:13px">
     <thead><tr>
       <th></th>
@@ -175,5 +156,3 @@ $( function() { initLeaderboard(); } );
     </tr></thead>
   </table>
 </div>
-<br>
-<br>

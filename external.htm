@@ -1,126 +1,24 @@
-{% include "_include.html" %}
-
+<!DOCTYPE html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="UTF-8">
   <title>COCO - Common Objects in Context</title>
-  <script>$(window).load(function(){highlightTab('external')});</script>
-  <style>
-    .dataset {width:95%; height:1650px}
-    .dataset-container {width:100%; float:left; min-height:170px; max-height:220px}
-    .dataset-title {width:100%; font-size:28pt; margin-top:-8px}
-    .dataset-description {width:100%; color:black; text-align:justify; cursor:auto}
-    .dataset-image {width:30%; margin-right:25px; margin-bottom:60px; cursor:pointer; float:left; }
-    .dataset-img {width:100%; max-height:160px;}
-  </style>
-  <script>
-  $(window).ready(function() {
-    var datasets = new Array(16);
-    for( var i=0; i<datasets.length; i++ ) { datasets[i]=new Object(); }
-    var i=0;
-    datasets[i].name="COCO-Stuff";
-    datasets[i].url = "https://github.com/nightrome/cocostuff";
-    datasets[i].src = "/static/images/external/coco-stuff.png";
-    datasets[i].description = "COCO-Stuff augments the COCO dataset with pixel-level stuff annotations for 10,000 images. The 91 stuff classes are carefully selected to have a similar level of granularity to the thing classes in COCO, allowing the study of stuff and things in context."; i++;
-    datasets[i].name="SPEECH-COCO";
-    datasets[i].url = "https://persyval-platform.imag.fr/perscido/web/DS80/detaildataset";
-    datasets[i].src = "/static/images/external/speecoco.png";
-    datasets[i].description = "SPEECH-COCO augments COCO with speech captions generated using TTS synthesis. The corpus contains 600K+ spoken captions, allowing research of language acquisition, term discovery, keyword spotting, or semantic embedding using speech and vision."; i++;
-    datasets[i].name="VISUAL GENOME";
-    datasets[i].url = "https://visualgenome.org/";
-    datasets[i].src = "/static/images/external/visualgenome.png";
-    datasets[i].description = "Visual Genome is a dataset, a knowledge base, an ongoing effort to connect structured image concepts to language."; i++;
-    datasets[i].name="RefCOCO";
-    datasets[i].url = "https://github.com/lichengunc/refer";
-    datasets[i].src = "/static/images/external/ref_coco.png";
-    datasets[i].description = "RefCOCO dataset was collected using the <a href='http://referitgame.com/'>Refer-it Game</a>. Each expression aims to unambiguously indicate a particular person or object in an image."; i++;
-    datasets[i].name="COCO Attributes";
-    datasets[i].url = "http://cs.brown.edu/~gen/cocottributes.html";
-    datasets[i].src = "/static/images/external/coco_attr.png";
-    datasets[i].description = "COCO Attributes has over 3.5M attribute annotations for People, Animals, and Objects from the COCO training dataset."; i++;
-    datasets[i].name="G-Ref";
-    datasets[i].url = "https://github.com/mjhucla/Google_Refexp_toolbox";
-    datasets[i].src = "/static/images/external/G_ref_dataset.jpg";
-    datasets[i].description = "Google referring expression dataset (G-Ref) is a dataset focuses on unambiguous object text descriptions (i.e. referring expressions) that allow one to uniquely identify a single object or region within an image."; i++;
-    datasets[i].name="VerSe";
-    datasets[i].url = "https://github.com/spandanagella/verse";
-    datasets[i].src = "/static/images/external/VerSe.png";
-    datasets[i].description = "VerSe annotates COCO images with OntoNotes senses for 90 verbs (actions) which have ambiguous visual usages. Along with the sense information we provide visualness labels for OntoNotes senses of 150 visual verbs."; i++;
-    datasets[i].name="COCO-Text" // Jan-26 2016
-    datasets[i].url = "http://vision.cornell.edu/se3/coco-text";
-    datasets[i].src = "/static/images/external/cocotext.jpg";
-    datasets[i].description = "COCO-Text is for both text detection and recognition. The dataset annotates scene text with transcriptions along with attributes such as legibility, printed or handwritten text."; i++;
-    datasets[i].name = "FM-IQA"; // May-21 2015
-    datasets[i].url = "http://idl.baidu.com/FM-IQA.html";
-    datasets[i].src = "/static/images/external/FM-IQA.jpg";
-    datasets[i].description = "The Freestyle Multilingual Image Question Answering (FM-IQA) dataset contains over 120,000 images and 250,000 freestyle Chinese question-answer pairs and their English translations."; i++;
-    datasets[i].name = "VQA"; // May-3 2015
-    datasets[i].url = "http://www.visualqa.org/";
-    datasets[i].src = "/static/images/external/vqa.jpg";
-    datasets[i].description = "VQA is a new dataset containing open-ended questions about images.  These  questions require an understanding of vision, language and  commonsense  knowledge to answer."; i++;
-    datasets[i].name = "VISUAL MADLIBS"; // May-31 2015
-    datasets[i].url = "http://tamaraberg.com/visualmadlibs/";
-    datasets[i].src = "/static/images/external/visual_madlib.jpg";
-    datasets[i].description = "Visual Madlibs is a new dataset consisting of focused natural language descriptions collected using automatically produced fill-in-the-blank templates. This dataset can be used for targeted generation or multiple-choice question-answering."; i++;
-    datasets[i].name = "COCO-a"; // June-7 2015
-    datasets[i].url = "http://www.vision.caltech.edu/~mronchi/projects/Cocoa/";
-    datasets[i].src = "/static/images/external/cocoa.png";
-    datasets[i].description = "COCO-a annotates human actions and interactions with objects (or other people) with 140 visual actions (verbs with an unambiguous visual connotation), along with information such as emotional state and relative distance and position with the object."; i++;
-    datasets[i].name = "SALICON"; // CVPR2015
-    datasets[i].url = "http://salicon.net";
-    datasets[i].src = "/static/images/external/salicon.png";
-    datasets[i].description = "The SALICON dataset offers a large set of saliency annotations on the COCO dataset. This data complements the task-specific annotations to advance the ultimate goal of visual understanding."; i++;
-    datasets[i].name = "PASCAL VOC"; // PASCAL
-    datasets[i].url = "http://host.robots.ox.ac.uk:8080/pascal/VOC/";
-    datasets[i].src = "/static/images/external/pascal.jpg";
-    datasets[i].description = "Annotations for PASCAL VOC 2007 and 2012 in COCO format. This allows use of the PASCAL detection data with the COCO API (including visualization and evaluation tools). JSON available <a href='/static/annotations/PASCAL_VOC.zip'>here</a>."; i++;
-    datasets[i].name = "ImageNet Detection"; // ImageNet
-    datasets[i].url = "http://image-net.org/challenges/LSVRC/";
-    datasets[i].src = "/static/images/external/imagenet.jpg";
-    datasets[i].description = "Annotations for ImageNet 2014 train/val in COCO format. This allows use of the ImageNet detection data with the COCO API (including visualization and evaluation tools). JSON available <a href='/static/annotations/ILSVRC2014.zip'>here</a>."; i++;
-    datasets[i].name = "YOUR DATASET"; // Your Dataset
-    datasets[i].url = "";
-    datasets[i].src = "/static/images/external/image_placeholder.jpg";
-    datasets[i].description = "Please contact us to add your dataset here! Do <b>not</b> release annotations on the test-set images under any circumstances to keep the integrity of the COCO challenges intact (please contact us with any questions if in doubt)."; i++;
-    // populate html w external datasets
-    var containers = new Array();
-    for( var i=0; i<datasets.length; i++ ) {
-      var dataset = datasets[i];
-      var container = $('#dataset-container-template').clone().show();
-      container.find(".dataset-img").attr("src", dataset.src);
-      if( dataset.url=="" ) {
-        container.find(".dataset-title").html('<a>'+dataset.name+'</a>');
-      } else {
-        container.find(".dataset-image").attr("onclick", "window.open('"+dataset.url+"', '_blank')");
-        container.find(".dataset-title").html($('<a href="'+dataset.url+'" target="_blank"> '+dataset.name+' </a>'));
-      }
-      container.find(".dataset-description").html(dataset.description);
-      containers.push(container);
-    }
-    $(".dataset").append(containers);
-  });
-  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="other/styles.css" />
+  <script src="other/cocoscripts.js"></script>
 </head>
 
 <body>
-  {% include "_header.html" %}
-  <div id="contentRow">
-    <div class="centerwrapper">
-      <div id="contentColumn">
-        <p class="titleSegoeLight">External Annotations on COCO and Related Datasets</p>
-        <p class="funSegoeLight" style="margin-top:-5px;cursor:auto">Please contact us to add your dataset here! Do <b>not</b> release annotations on test set images under any circumstances to keep the integrity of the COCO challenges intact (contact us with any questions). Note: the following datasets may use COCO data but are independent efforts not directly affiliated with COCO.</p>
-        <div class="centerFullArea" style="margin-left:0px; margin-top:40px">
-          <div class="dataset">
-            <!-- Template -->
-            <div id="dataset-container-template" class="dataset-container" style="display:none">
-              <div class="dataset-image"><img class="dataset-img" src="" /></div>
-              <div class="dataset-title titleSegoeLight"></div>
-              <div class="dataset-description funSegoeLight"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <script>$(function(){populateHeaders('External')})</script>
+  <script>$(function(){populateExternalPage()})</script>
+  <div id="header"><div id="headerBody"><img id="headerImage" src="images/logo.png" alt="Logo" /><div id="headerTabs"></div></div></div>
+  <div id="content">
+    <p class="fontTitle">External Annotations on COCO and Related Datasets</p>
+    <p class="fontBig">Please contact us to add your dataset here! Do <b>not</b> release annotations on test set images under any circumstances to keep the integrity of the COCO challenges intact (contact us with any questions). Note: the following datasets may use COCO data but are independent efforts not directly affiliated with COCO.</p>
   </div>
-  {% include "_footer.html" %}
+  <div id="footer"><div><a href="termsofuse.htm">Terms of Use</a></div></div>
 </body>
-</html>

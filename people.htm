@@ -1,98 +1,23 @@
-{% include "_include.html" %}
-
+<!DOCTYPE html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="UTF-8">
   <title>COCO - Common Objects in Context</title>
-  <script>$(window).load(function(){highlightTab('people')});</script>
-  <style>
-    .people{
-      display:inline-block;
-      color:black;
-      cursor:pointer;
-      margin-right: 5px;
-      margin-bottom: 25px;
-    }
-  </style>
-  <script>
-    // data for every member of COCO consortium
-    var data = {
-      'Tsung': {'name': 'Tsung-Yi Lin', 'affiliation': 'Cornell Tech', 'url':'http://vision.ucsd.edu/~tylin'},
-      'gen': {'name': 'Genevieve Patterson', 'affiliation': 'Microsoft Research', 'url':'https://www.microsoft.com/en-us/research/people/gen/'},
-      'matteo': {'name': 'Matteo R. Ronchi', 'affiliation': 'Caltech', 'url':'http://vision.caltech.edu/~mronchi/'},
-      'yin': {'name': 'Yin Cui', 'affiliation': 'Cornell Tech', 'url':'http://www.cs.cornell.edu/~ycui/'},
-      'michael': {'name': 'Michael Maire', 'affiliation': 'TTI Chicago', 'url':'http://ttic.uchicago.edu/~mmaire/'},
-      'serge': {'name': 'Serge Belongie', 'affiliation': 'Cornell Tech', 'url':'http://vision.cornell.edu/se3/people/serge-belongie/'},
-      'lubomir': {'name': 'Lubomir Bourdev', 'affiliation': 'WaveOne, Inc.', 'url':'http://www.lubomir.org'},
-      'ross': {'name': 'Ross Girshick', 'affiliation': 'Facebook AI Research', 'url':'http://www.cs.berkeley.edu/~rbg/'},
-      'james': {'name': 'James Hays', 'affiliation': 'Georgia Tech', 'url':'http://www.cc.gatech.edu/~hays/'},
-      'pietro': {'name': 'Pietro Perona', 'affiliation': 'Caltech', 'url':'http://www.vision.caltech.edu/Perona.html'},
-      'deva': {'name': 'Deva Ramanan', 'affiliation': 'CMU', 'url':'http://www.ics.uci.edu/~dramanan/'},
-      'larry': {'name': 'Larry Zitnick', 'affiliation': 'Facebook AI Research', 'url':'http://larryzitnick.org/'},
-      'piotr': {'name': 'Piotr Dollár', 'affiliation': 'Facebook AI Research', 'url':'https://pdollar.github.io/'},
-    };
-    // display function for user profile
-    $(window).load(function(){
-      $('canvas').each(function(){
-        var ctx = $(this)[0].getContext("2d");
-        var id = $(this)[0].id;
-        var image = new Image();
-        $('#'+id).click(function(){window.open(data[id]['url'], '_blank')});
-        image.src = '/static/images/people/'+ id + '.JPG';
-        image.ctx = ctx;
-        image.pl_id = id;
-        $(this).attr('height', 200).attr('width', 150)
-        image.onload = function(){
-          var w = 124; var h = 140; var W = 150; var H = 200;
-          $(this).width(w);
-          $(this).height(h);
-          var ctx = $(this)[0].ctx;
-          var pl_id = $(this)[0].pl_id;
-          ctx.font="15px Segoe UI";
-          ctx.fillStyle = 'rgba(80,80,80,255)';
-          ctx.fillText(data[pl_id]['name'], 0,h+25);
-          ctx.font="normal 200 12px sans-serif";
-          ctx.fillStyle = 'rgba(80,80,80,255)';
-          ctx.fillText(data[pl_id]['affiliation'], 0,h+42);
-          ctx.fill();
-          ctx.drawImage($(this)[0],0,0,$(this)[0].width,$(this)[0].height, 0,0,w,h);
-          ctx.beginPath();
-          ctx.rect(w+1, 0, 7, h);
-          ctx.fillStyle = 'rgba(0,127,181,255)';
-          ctx.fill();
-          ctx.beginPath();
-          ctx.rect(w+8, 0, 8, H);
-          ctx.fillStyle = 'rgba(0,192,115,255)';
-          ctx.fill();
-        };
-      });
-    });
-  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="other/styles.css" />
+  <script src="other/cocoscripts.js"></script>
 </head>
 
 <body>
-  {% include "_header.html" %}
-  <div id="contentRow">
-    <div class="centerwrapper">
-      <div id="contentColumn">
-        <p class="titleSegoeLight">COCO Consortium</p>
-        <div class="centerFullArea" style="margin-left:0px;">
-          <div id="Tsung"   class='people'><canvas id='Tsung'></canvas></div>
-          <div id="gen"     class='people'><canvas id='gen'></canvas></div>
-          <div id="matteo"  class='people'><canvas id='matteo'></canvas></div>
-          <div id="yin"     class='people'><canvas id='yin'></canvas></div>
-          <div id="michael" class='people'><canvas id='michael'></canvas></div>
-          <div id="serge"   class='people'><canvas id='serge'></canvas></div>
-          <div id="lubomir" class='people'><canvas id='lubomir'></canvas></div>
-          <div id="ross"    class='people'><canvas id='ross'></canvas></div>
-          <div id="james"   class='people'><canvas id='james'></canvas></div>
-          <div id="pietro"  class='people'><canvas id='pietro'></canvas></div>
-          <div id="deva"    class='people'><canvas id='deva'></canvas></div>
-          <div id="larry"   class='people'><canvas id='larry'></canvas></div>
-          <div id="piotr"   class='people'><canvas id='piotr'></canvas></div>
-        </div>
-      </div>
-    </div>
+  <script>$(function(){populateHeaders('People')})</script>
+  <script>$(function(){populatePeoplePage()})</script>
+  <div id="header"><div id="headerBody"><img id="headerImage" src="images/logo.png" alt="Logo" /><div id="headerTabs"></div></div></div>
+  <div id="content">
+    <p class="fontTitle">COCO Consortium</p>
   </div>
-  {% include "_footer.html" %}
+  <div id="footer"><div><a href="termsofuse.htm">Terms of Use</a></div></div>
 </body>
-</html>

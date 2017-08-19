@@ -1,87 +1,57 @@
 <!------------------------------------------------------------------------------------------------>
-<p class="titleSegoeLight" style="width:100%">1. Results Format Overview</p>
-<p class="bodyNormal" style="color:black;" align="justify">
-This page describes the <span style="font-style:italic">results format</span> used by COCO. The general structure of the results format is similar for all annotation types: for both object detection (using either bounding boxes or object segments) and image caption generation. Submitting algorithm results on COCO for evaluation requires using the formats described below.
-</p>
+<p class="fontTitle">1. Results Format Overview</p>
+<p>This page describes the <span class="fontItalic">results format</span> used by COCO. The general structure of the results format is similar for all annotation types: for both object detection (using either bounding boxes or object segments) and image caption generation. Submitting algorithm results on COCO for evaluation requires using the formats described below.</p>
 
 <!------------------------------------------------------------------------------------------------>
-<p class="titleSegoeLight" style="width:100%">2. Results Format</p>
-<p class="bodyNormal" style="color:black;" align="justify">
-The results format used by COCO closely mimics the format of the ground truth as described on the <a href="#download">download </a> page. We suggest reviewing the ground truth format before proceeding.
-</p>
-<p class="bodyNormal" style="color:black;" align="justify">
-Each algorithmically produced result, such as an object bounding box, object segment, or image caption, is stored separately in its own <span style="font-style:italic">result</span> struct.
-This singleton <span style="font-style:italic">result</span> struct must contains the id of the image from which the result was generated (note that a single image will typically have multiple associated results). Results across the whole dataset are aggregated in an array of such <span style="font-style:italic">result</span> structs. Finally, the entire <span style="font-style:italic">result</span> struct array is stored to disk as a single JSON file (save via
-<a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/gason.m" target="_blank" style="font-family: courier new">gason</a>
-in Matlab or
-<a href="https://docs.python.org/2/library/json.html" target="_blank" style="font-family: courier new">json.dump</a>
-in Python).
-</p>
-<p class="bodyNormal" style="color:black;" align="justify">
-The data struct for each of the three result types is described below. The format of the individual fields below (category_id, bbox, segmentation, etc.) is the same as for the ground truth (for details see the <a href="#download">download</a> page).
-</p>
+<p class="fontTitle">2. Results Format</p>
+<p>The results format used by COCO closely mimics the format of the ground truth as described on the <a href="#download">download </a> page. We suggest reviewing the ground truth format before proceeding.</p>
+<p>Each algorithmically produced result, such as an object bounding box, object segment, or image caption, is stored separately in its own <span class="fontItalic">result</span> struct. This singleton <span class="fontItalic">result</span> struct must contains the id of the image from which the result was generated (note that a single image will typically have multiple associated results). Results across the whole dataset are aggregated in an array of such <span class="fontItalic">result</span> structs. Finally, the entire <span class="fontItalic">result</span> struct array is stored to disk as a single JSON file (save via <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/gason.m" target="_blank" class="fontMono">gason</a> in Matlab or <a href="https://docs.python.org/2/library/json.html" target="_blank" class="fontMono">json.dump</a> in Python).</p>
+<p>The data struct for each of the three result types is described below. The format of the individual fields below (category_id, bbox, segmentation, etc.) is the same as for the ground truth (for details see the <a href="#download">download</a> page).</p>
 
 <!------------------------------------------------------------------------------------------------>
-<p class="titleSegoeLight" style="font-size:18pt">
-2.1. Object detection (bounding boxes)
-</p>
-<div class="bodyNormal json" style="color:black;width:100%">
-  <div class="jsontabstartend"> [{</div>
-  <div class="jsontab"> <div class="jsonfield">"image_id"     </div><span>:</span> <div class="jsonvalue">int,  </div></div>
-  <div class="jsontab"> <div class="jsonfield">"category_id"  </div><span>:</span> <div class="jsonvalue">int,  </div></div>
-  <div class="jsontab"> <div class="jsonfield">"bbox"         </div><span>:</span> <div class="jsonvalue">[x,y,width,height],</div></div>
-  <div class="jsontab"> <div class="jsonfield">"score"        </div><span>:</span> <div class="jsonvalue">float,</div></div>
-  <div class="jsontabstartend"> }]</div>
+<p class="fontSubtitle">2.1. Object detection (bounding boxes)</p>
+<div class="json">
+  <div class="jsonreg">[{</div>
+  <div class="jsonk">"image_id"     </div><div class="jsonv">: int,  </div>
+  <div class="jsonk">"category_id"  </div><div class="jsonv">: int,  </div>
+  <div class="jsonk">"bbox"         </div><div class="jsonv">: [x,y,width,height],</div>
+  <div class="jsonk">"score"        </div><div class="jsonv">: float,</div>
+  <div class="jsonreg">}]</div>
 </div>
-<p class="bodyNormal" style="color:black;" align="justify">
-Note: box coordinates are floats measured from the top left image corner (and are 0-indexed). We recommend rounding coordinates to the nearest tenth of a pixel to reduce resulting JSON file size.
-</p>
+<p>Note: box coordinates are floats measured from the top left image corner (and are 0-indexed). We recommend rounding coordinates to the nearest tenth of a pixel to reduce resulting JSON file size.</p>
 
 <!------------------------------------------------------------------------------------------------>
-<p class="titleSegoeLight" style="font-size:18pt">
-2.2. Object detection (segmentation)
-</p>
-<div class="bodyNormal json" style="color:black;width:100%">
-  <div class="jsontabstartend"> [{</div>
-  <div class="jsontab"> <div class="jsonfield">"image_id"     </div><span>:</span> <div class="jsonvalue">int,  </div></div>
-  <div class="jsontab"> <div class="jsonfield">"category_id"  </div><span>:</span> <div class="jsonvalue">int,  </div></div>
-  <div class="jsontab"> <div class="jsonfield">"segmentation" </div><span>:</span> <div class="jsonvalue">RLE,  </div></div>
-  <div class="jsontab"> <div class="jsonfield">"score"        </div><span>:</span> <div class="jsonvalue">float,</div></div>
-  <div class="jsontabstartend"> }]</div>
+<p class="fontSubtitle">2.2. Object detection (segmentation)</p>
+<div class="json">
+  <div class="jsonreg">[{</div>
+  <div class="jsonk">"image_id"     </div><div class="jsonv">: int,  </div>
+  <div class="jsonk">"category_id"  </div><div class="jsonv">: int,  </div>
+  <div class="jsonk">"segmentation" </div><div class="jsonv">: RLE,  </div>
+  <div class="jsonk">"score"        </div><div class="jsonv">: float,</div>
+  <div class="jsonreg">}]</div>
 </div>
-<p class="bodyNormal" style="color:black;" align="justify">
-Note: a binary mask containing an object segment should be encoded to RLE using the MaskApi function <span class="func_or_var">encode()</span>. For additional details see either <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/MaskApi.m" target="_blank">MaskApi.m</a> or <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/mask.py" target="_blank">mask.py</a>. Note that the core RLE code is written in c (see <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/private/maskApi.h" target="_blank">maskApi.h</a>), so it is possible to perform encoding without using Matlab or Python, but we do not provide support for this case.
-</p>
+<p>Note: a binary mask containing an object segment should be encoded to RLE using the MaskApi function <span class="fontMono">encode()</span>. For additional details see either <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/MaskApi.m" target="_blank">MaskApi.m</a> or <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/mask.py" target="_blank">mask.py</a>. Note that the core RLE code is written in c (see <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/private/maskApi.h" target="_blank">maskApi.h</a>), so it is possible to perform encoding without using Matlab or Python, but we do not provide support for this case.</p>
 
 <!------------------------------------------------------------------------------------------------>
-<p class="titleSegoeLight" style="font-size:18pt">
-2.3. Keypoint detection
-<div class="bodyNormal json" style="color:black;width:100%;">
-  <div class="jsontabstartend"> [{</div>
-  <div class="jsontab"> <div class="jsonfield">"image_id"     </div><span>:</span> <div class="jsonvalue">int,  </div></div>
-  <div class="jsontab"> <div class="jsonfield">"category_id"  </div><span>:</span> <div class="jsonvalue">int,  </div></div>
-  <div class="jsontab"> <div class="jsonfield">"keypoints"    </div><span>:</span> <div class="jsonvalue"> [x<sub>1</sub>,y<sub>1</sub>,v<sub>1</sub>,...,x<sub>k</sub>,y<sub>k</sub>,v<sub>k</sub>],</div></div>
-  <div class="jsontab"> <div class="jsonfield">"score"        </div><span>:</span> <div class="jsonvalue">float,</div></div>
-  <div class="jsontabstartend"> }]</div>
+<p class="fontSubtitle">2.3. Keypoint detection</p>
+<div class="json">
+  <div class="jsonreg">[{</div>
+  <div class="jsonk">"image_id"     </div><div class="jsonv">: int,  </div>
+  <div class="jsonk">"category_id"  </div><div class="jsonv">: int,  </div>
+  <div class="jsonk">"keypoints"    </div><div class="jsonv">:  [x<sub>1</sub>,y<sub>1</sub>,v<sub>1</sub>,...,x<sub>k</sub>,y<sub>k</sub>,v<sub>k</sub>],</div>
+  <div class="jsonk">"score"        </div><div class="jsonv">: float,</div>
+  <div class="jsonreg">}]</div>
 </div>
-<p class="bodyNormal" style="color:black;" align="justify">
-Note: keypoint coordinates are floats measured from the top left image corner (and are 0-indexed). We recommend rounding coordinates to the nearest pixel to reduce file size. Note also that the visibility flags v<sub>i</sub> are <i>not</i> currently used (except for controlling visualization), we recommend simply setting v<sub>i</sub>=1.
-</p>
+<p>Note: keypoint coordinates are floats measured from the top left image corner (and are 0-indexed). We recommend rounding coordinates to the nearest pixel to reduce file size. Note also that the visibility flags v<sub>i</sub> are <i>not</i> currently used (except for controlling visualization), we recommend simply setting v<sub>i</sub>=1.</p>
 
 <!------------------------------------------------------------------------------------------------>
-<p class="titleSegoeLight" style="font-size:18pt">
-2.4. Caption generation
-</p>
-<div class="bodyNormal json" style="color:black;width:100%">
-  <div class="jsontabstartend"> [{</div>
-  <div class="jsontab"> <div class="jsonfield">"image_id"     </div><span>:</span>  <div class="jsonvalue">int,      </div> </div>
-  <div class="jsontab"> <div class="jsonfield">"caption"      </div><span>:</span>  <div class="jsonvalue">str,      </div> </div>
-  <div class="jsontabstartend"> }]</div>
+<p class="fontSubtitle">2.4. Caption generation</p>
+<div class="json">
+  <div class="jsonreg">[{</div>
+  <div class="jsonk">"image_id"     </div><div class="jsonv">: int,      </div>
+  <div class="jsonk">"caption"      </div><div class="jsonv">: str,      </div>
+  <div class="jsonreg">}]</div>
 </div>
 
-<p class="titleSegoeLight" style="width:100%">3. Storing and Browsing Results</p>
-<p class="bodyNormal" style="color:black;" align="justify">
-Example result JSON files are available in <a href="https://github.com/pdollar/coco/tree/master/results" target="_blank">coco/results/</a> as part of the github package. Because the results format is similar to the ground truth annotation format, the CocoApi for accessing the ground truth can also be used to visualize and browse algorithm results. For details please see <span style="font-family: courier new;">evalDemo</span> (<a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocoEvalDemo.ipynb" target="_blank">demo</a>) and also <span style="font-family: courier new;">loadRes()</span> in the CocoApi.
-</p>
-<br>
-<br>
+<p class="fontTitle">3. Storing and Browsing Results</p>
+<p>Example result JSON files are available in <a href="https://github.com/pdollar/coco/tree/master/results" target="_blank">coco/results/</a> as part of the github package. Because the results format is similar to the ground truth annotation format, the CocoApi for accessing the ground truth can also be used to visualize and browse algorithm results. For details please see <span class="fontMono">evalDemo</span> (<a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocoEvalDemo.ipynb" target="_blank">demo</a>) and also <span class="fontMono">loadRes()</span> in the CocoApi.</p>

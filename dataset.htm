@@ -1,117 +1,94 @@
-{% include "_include.html" %}
-
-<script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" />
-<script src="https://cdn.datatables.net/buttons/1.1.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.html5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.1.2/css/buttons.dataTables.min.css" />
-
+<!DOCTYPE html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="UTF-8">
   <title>COCO - Common Objects in Context</title>
-  <script>$(window).load(function(){highlightTab('download')});</script>
-  <script>
-    // Enable subtab navigation controls. See also: http://getbootstrap.com/javascript/#tabs and
-    // http://stackoverflow.com/questions/12131273/twitter-bootstrap-tabs-url-doesnt-change
-    $(function(){
-      var hash = window.location.hash;
-      if(!hash) window.location.hash = '#overview'
-      if(hash) $('ul.nav a[href="' + hash + '"]').tab('show');
-      if(hash) $('html,body').scrollTop(0);
-      $('.nav-tabs a').click(function (e) {
-        if(this.hash) window.location.hash = this.hash;
-        $('html,body').scrollTop(0);
-      });
-      $(window).bind( 'hashchange', function(e) {
-        var hash = window.location.hash;
-        $('html,body').scrollTop(0
-        $('#li-' + hash.substring(1) +' a').tab('show');
-      });
-    });
-  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+  <script src="https://cdn.datatables.net/buttons/1.4.0/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.32/build/pdfmake.min.js"></script>
+  <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.32/build/vfs_fonts.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" />
+  <link rel="stylesheet" href="other/styles.css" />
+  <script src="other/cocoscripts.js"></script>
 </head>
 
 <body>
-  {% include "_header.html" %}
-  <div id="contentRow">
-    <div class="centerwrapper" style="position:relative; top:10px; margin-bottom: 10px">
-      <div id="contentColumn" style="color:black;width:800px">
-        <div class="bs-docs-example">
-          <ul id="myTab" class="nav nav-tabs">
-            <li id="li-overview" class="active">
-              <a href="#overview" data-toggle="tab"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Overview</a>
-            </li>
-            <li id="li-challenge" class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Challenges<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li id="li-keypoints-challenge2017"><a href="#keypoints-challenge2017" data-toggle="tab">Keypoints 2017</a></li>
-                <li id="li-detections-challenge2017"><a href="#detections-challenge2017" data-toggle="tab">Detection 2017</a></li>
-                <li id="li-stuff-challenge2017"><a href="#stuff-challenge2017" data-toggle="tab">Stuff 2017</a></li>
-                <li class="divider"></li>
-                <li id="li-keypoints-challenge2016"><a href="#keypoints-challenge2016" data-toggle="tab">Keypoints 2016</a></li>
-                <li id="li-detections-challenge2016"><a href="#detections-challenge2016" data-toggle="tab">Detection 2016</a></li>
-                <li class="divider"></li>
-                <li id="li-detections-challenge2015"><a href="#detections-challenge2015" data-toggle="tab">Detection 2015</a></li>
-                <li id="li-captions-challenge2015"><a href="#captions-challenge2015" data-toggle="tab">Captioning 2015</a></li>
-              </ul>
-            </li>
-            <li id="li-download">
-              <a id="a-download" href="#download" data-toggle="tab"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download</a>
-            </li>
-            <li id="li-evaluate" class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Evaluate<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li id="li-format"><a href="#format" data-toggle="tab">Results Format</a></li>
-                <li class="divider"></li>
-                <li id="li-detections-eval"><a href="#detections-eval" data-toggle="tab">Detections: Eval</a></li>
-                <li id="li-detections-upload"><a href="#detections-upload" data-toggle="tab">Detections: Upload</a></li>
-                <li class="divider"></li>
-                <li id="li-keypoints-eval"><a href="#keypoints-eval" data-toggle="tab">Keypoints: Eval</a></li>
-                <li id="li-keypoints-upload"><a href="#keypoints-upload" data-toggle="tab">Keypoints: Upload</a></li>
-                <li class="divider"></li>
-                <li id="li-captions-eval"><a href="#captions-eval" data-toggle="tab">Captions: Eval</a></li>
-                <li id="li-captions-upload"><a href="#captions-upload" data-toggle="tab">Captions: Upload</a></li>
-              </ul>
-            </li>
-            <li id="li-leaderboard" class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Leaderboard<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li id="li-detections-leaderboard"><a href="#detections-leaderboard" data-toggle="tab">Detection</a></li>
-                <li id="li-keypoints-leaderboard"><a href="#keypoints-leaderboard" data-toggle="tab">Keypoints</a></li>
-                <li id="li-captions-leaderboard"><a href="#captions-leaderboard" data-toggle="tab">Captioning</a></li>
-              </ul>
-            </li>
-          </ul>
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade active in" id="overview"> {% include "demo/dataset/overview.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="download">           {% include "demo/dataset/download.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="format">             {% include "demo/dataset/format.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="detections-eval">    {% include "demo/dataset/detections_eval.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="detections-upload">  {% include "demo/dataset/detections_upload.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="keypoints-eval">     {% include "demo/dataset/keypoints_eval.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="keypoints-upload">   {% include "demo/dataset/keypoints_upload.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="captions-eval">      {% include "demo/dataset/captions_eval.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="captions-upload">    {% include "demo/dataset/captions_upload.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="captions-challenge2015">     {% include "demo/dataset/captions_challenge2015.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="detections-challenge2015">   {% include "demo/dataset/detections_challenge2015.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="detections-challenge2016">   {% include "demo/dataset/detections_challenge2016.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="keypoints-challenge2016">    {% include "demo/dataset/keypoints_challenge2016.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="detections-challenge2017">   {% include "demo/dataset/detections_challenge2017.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="keypoints-challenge2017">    {% include "demo/dataset/keypoints_challenge2017.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="stuff-challenge2017">        {% include "demo/dataset/stuff_challenge2017.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="captions-leaderboard">       {% include "demo/dataset/captions_leaderboard.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="keypoints-leaderboard">      {% include "demo/dataset/keypoints_leaderboard.htm" %}</div>
-            <div role="tabpanel" class="tab-pane fade" id="detections-leaderboard">     {% include "demo/dataset/detections_leaderboard.htm" %}</div>
-          </div>
-        </div>
-      </div>
+  <script>$(function(){populateHeaders('Dataset')})</script>
+  <script>$(function(){datasetTabNav()});</script>
+  <div id="header"><div id="headerBody"><img id="headerImage" src="images/logo.png" alt="Logo" /><div id="headerTabs"></div></div></div>
+  <div id="content">
+    <ul class="nav nav-tabs" id="dataset-tabs">
+      <li class="active">
+        <a data-toggle="tab" href="#overview"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Overview</a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Challenges<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a data-toggle="tab" href="#keypoints-challenge2017">Keypoints 2017</a></li>
+          <li><a data-toggle="tab" href="#detections-challenge2017">Detection 2017</a></li>
+          <li class="divider"></li>
+          <li><a data-toggle="tab" href="#keypoints-challenge2016">Keypoints 2016</a></li>
+          <li><a data-toggle="tab" href="#detections-challenge2016">Detection 2016</a></li>
+          <li class="divider"></li>
+          <li><a data-toggle="tab" href="#detections-challenge2015">Detection 2015</a></li>
+          <li><a data-toggle="tab" href="#captions-challenge2015">Captioning 2015</a></li>
+        </ul>
+      </li>
+      <li>
+        <a data-toggle="tab" href="#download"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download</a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Evaluate<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a data-toggle="tab" href="#format">Results Format</a></li>
+          <li class="divider"></li>
+          <li><a data-toggle="tab" href="#detections-eval">Detections: Eval</a></li>
+          <li><a data-toggle="tab" href="#detections-upload">Detections: Upload</a></li>
+          <li class="divider"></li>
+          <li><a data-toggle="tab" href="#keypoints-eval">Keypoints: Eval</a></li>
+          <li><a data-toggle="tab" href="#keypoints-upload">Keypoints: Upload</a></li>
+          <li class="divider"></li>
+          <li><a data-toggle="tab" href="#captions-eval">Captions: Eval</a></li>
+          <li><a data-toggle="tab" href="#captions-upload">Captions: Upload</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Leaderboard<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a data-toggle="tab" href="#detections-leaderboard">Detection</a></li>
+          <li><a data-toggle="tab" href="#keypoints-leaderboard">Keypoints</a></li>
+          <li><a data-toggle="tab" href="#captions-leaderboard">Captioning</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane fade active in" id="overview"></div>
+      <div role="tabpanel" class="tab-pane fade" id="download"></div>
+      <div role="tabpanel" class="tab-pane fade" id="format"></div>
+      <div role="tabpanel" class="tab-pane fade" id="detections-eval"></div>
+      <div role="tabpanel" class="tab-pane fade" id="detections-upload"></div>
+      <div role="tabpanel" class="tab-pane fade" id="keypoints-eval"></div>
+      <div role="tabpanel" class="tab-pane fade" id="keypoints-upload"></div>
+      <div role="tabpanel" class="tab-pane fade" id="captions-eval"></div>
+      <div role="tabpanel" class="tab-pane fade" id="captions-upload"></div>
+      <div role="tabpanel" class="tab-pane fade" id="captions-challenge2015"></div>
+      <div role="tabpanel" class="tab-pane fade" id="detections-challenge2015"></div>
+      <div role="tabpanel" class="tab-pane fade" id="detections-challenge2016"></div>
+      <div role="tabpanel" class="tab-pane fade" id="keypoints-challenge2016"></div>
+      <div role="tabpanel" class="tab-pane fade" id="detections-challenge2017"></div>
+      <div role="tabpanel" class="tab-pane fade" id="keypoints-challenge2017"></div>
+      <div role="tabpanel" class="tab-pane fade" id="captions-leaderboard"></div>
+      <div role="tabpanel" class="tab-pane fade" id="keypoints-leaderboard"></div>
+      <div role="tabpanel" class="tab-pane fade" id="detections-leaderboard"></div>
     </div>
   </div>
-  {% include "_footer.html" %}
+  <div id="footer"><div><a href="termsofuse.htm">Terms of Use</a></div></div>
 </body>
-
-</html>
