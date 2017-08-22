@@ -55,7 +55,7 @@ function datasetTabNav() {
 }
 
 var cocoPeople = {
-  'Tsung': {'name': 'Tsung-Yi Lin', 'full': 'Cornell Tech', 'short': 'Cornell Tech', 'url':'http://vision.ucsd.edu/~tylin'},
+  'Tsung': {'name': 'Tsung-Yi Lin', 'full': 'Cornell Tech', 'short': 'Cornell Tech', 'url':'https://vision.cornell.edu/se3/people/tsung-yi-lin/'},
   'gen': {'name': 'Genevieve Patterson', 'full': 'Microsoft Research', 'short': 'MSR', 'url':'https://www.microsoft.com/en-us/research/people/gen/'},
   'matteo': {'name': 'Matteo R. Ronchi', 'full': 'Caltech', 'short': 'Caltech', 'url':'http://vision.caltech.edu/~mronchi/'},
   'yin': {'name': 'Yin Cui', 'full': 'Cornell Tech', 'short': 'Cornell Tech', 'url':'http://www.cs.cornell.edu/~ycui/'},
