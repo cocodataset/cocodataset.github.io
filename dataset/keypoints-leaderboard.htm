@@ -1,62 +1,15 @@
 <script>
-var initKptLeaderboard = function() {
-  // constants and global variables
-  var types = ["kpt_challenge2016", "kpt_standard", "kpt_dev"];
-  var metrics = ["AP", "AP_50", "AP_75", "AP_medium", "AP_large", "AR", "AR_50", "AR_75", "AR_medium", "AR_large"];
-  var N=types.length, current={type:'kpt_challenge2016',team:-1}, data=new Array(N);
-  for( var i=0; i<N; i++ ) data[i]={ main:[], refs:[], teams:[], cats:[] };
-  // extract main data for leaderboard for all teams
-  var loadData = function( entries ) {
-    for( var i=0; i<N; i++ ) {
-      for( var j=0; j<entries[types[i]].length; j++ ) {
-        var e=entries[types[i]][j], name=e.team.name, r=JSON.parse(e.results);
-        data[i].main[j] = new Array(2+metrics.length); data[i].main[j][0]=name;
-        for( var k=0; k<metrics.length; k++ ) data[i].main[j][k+1] = r[metrics[k]];
-        data[i].main[j][metrics.length+1] = e.date;
-        if(e.url != "") name = "<a href='" + e.url + "' target='_blank'> " + name + " </a>";
-        data[i].refs[j] = ["["+(j+1)+"] "+name, e.team.members, e.description];
-        data[i].teams[j]=e.team.id; data[i].cats[j]=[];
-      }
-    }
-    setData(current.type,current.team);
-  };
-  // function to set the data shown in the leaderboard and event binders
-  var bindSetType=function(e,type) { var t=type; e.click( function(){setData(t,current.team)} )};
-//  var bindSetTeam=function(e,team) { var t=team; e.click( function(){setData(current.type,t)} )};
-  for( var i=0; i<N; i++ ) bindSetType($('#a_'+types[i]),types[i]);
-  var setData = function( type, team ) {
-    var i=$.inArray(type,types), j=$.inArray(team,data[i].teams);
-    if(j==-1) team=-1; current.type=type; current.team=team;
-    tableRefs.clear().rows.add(data[i].refs).draw();
-    if( team==-1 ) {
-      tableData.clear().rows.add(data[i].main).draw();
-    } else if( data[i].cats[j].length>0 ) {
-      tableData.clear().rows.add(data[i].cats[j]).draw();
-      //bindSetTeam($('#clearTeam'),-1);
-    }
-  }
-  // initialize and format DataTables https://www.datatables.net/
-  var propsRefs = { 'paging':false, 'info':false, 'filter':false, 'sort':false, 'autoWidth':false };
-  propsRefs.columnDefs = [{'targets':0,'sWidth':'20%'}];
-  var propsData = { 'paging':false, 'info':false, 'order':[[1, 'desc']], 'dom':'fB<"toolbar_kpt">rtip' };
-  propsData.buttons=[{extend:'copyHtml5',title:'leaderboard',exportOptions:{orthogonal:'export'},text:'Copy to Clipboard'}, {extend:'csvHtml5', title:'leaderboard',exportOptions:{orthogonal:'export'},text:'Export to CSV'}];
-  propsData.columnDefs = [{'targets':0,'render':function(x,type,row,meta) {return (type==='export')?x:(current.team===-1)?x+'<sup>'+(meta.row+1)+'</sup>':'<span style="font-size:11px">'+x+'</span>'}}, {'targets':11,'render':function(x) {return '<span style="font-size:10px">'+x+'</span>'}}, {'targets':['_all'],'orderSequence':['desc', 'asc']}];
-  var tableData = $('#leaderboard_kpt #data').DataTable(propsData);
-  var tableRefs = $('#leaderboard_kpt #refs').DataTable(propsRefs);
-  $('div.toolbar_kpt').css({'text-align':'center','padding-top':'4px','font-size':'14px'})
-  // load core leaderboard data
-  $.ajax({ type:'POST', url:'/leaderboard_get_kpts_entries/', data:{'team_id':0}})
-    .done( function(json) {
-            loadData(JSON.parse(json).entries)
-            });
-};
-$( function() { initKptLeaderboard(); } );
+var types = ["kpt_standard", "kpt_dev", "kpt_challenge2016"];
+var metrics = ["AP", "AP_50", "AP_75", "AP_medium", "AP_large", "AR", "AR_50", "AR_75", "AR_medium", "AR_large"];
+var table = "leaderboard_kpt";
+var isSetTeam = false;
+$( function() { initLeaderboard(types, metrics, table, isSetTeam); } );
 </script>
 
 <!------------------------------------------------------------------------------------------------>
 <style>
-  #leaderboard td { padding: 6px 4px; vertical-align:middle }
-  #leaderboard th { padding: 6px 16px 6px 0px; text-align:right; width:36px }
+  #leaderboard_kpt td { padding: 6px 4px; vertical-align:middle }
+  #leaderboard_kpt th { padding: 6px 16px 6px 0px; text-align:right; width:36px }
 </style>
 <div style="font-size:13px; margin:10px;">
 </div>
@@ -71,7 +24,7 @@ $( function() { initKptLeaderboard(); } );
   <table id="data" class="table order-column hover">
     <thead>
       <tr>
-        <th style="width:200px"></th>
+        <th></th>
         <th>AP</th>
         <th>AP<sup>50</sup></th>
         <th>AP<sup>75</sup></th>
@@ -82,7 +35,7 @@ $( function() { initKptLeaderboard(); } );
         <th>AR<sup>75</sup></th>
         <th>AR<sup>M</sup></th>
         <th>AR<sup>L</sup></th>
-        <th style="width:70px">date</th>
+        <th>date</th>
       </tr>
     </thead>
   </table>
