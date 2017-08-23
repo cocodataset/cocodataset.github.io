@@ -197,9 +197,9 @@ li.checkBullet {
 #footer {
   margin-top:40px;
   width:100%;
-  height:430px;
+  height:180px;
   background-color:#1d2125;
-  border-bottom:400px solid white;
+  border-bottom:150px solid white;
 }
 #footer div {
   margin:auto;
@@ -231,6 +231,57 @@ li.checkBullet {
 .external-image {
   width:100%;
   max-height:160px;
+}
+/* Leaderboard ------------------------------------ */
+.ldbdTabs {
+  display:inline-block;
+  margin-bottom:20px;
+}
+.ldbdTabHead {
+  padding: 5px 10px;
+  width:100px;
+}
+.ldbdTabs a {
+  padding: 5px 10px !important;
+  cursor:pointer;
+}
+.ldbdData td {
+  padding: 6px 4px !important;
+  vertical-align:middle !important;
+  text-align:right;
+}
+.ldbdData th {
+  padding: 6px 16px 6px 0px !important;
+  text-align:right;
+}
+td.ldbdMethod {
+  width:160px;
+  text-align:left;
+}
+td.ldbdDate {
+  font-size:10px;
+}
+td.ldbdPlus {
+  background:url('../images/iconOpen.png') no-repeat center center;
+  width:20px !important;
+  cursor:pointer;
+}
+tr.shown td.ldbdPlus {
+  background:url('../images/iconClose.png') no-repeat center center;
+}
+.ldbdPerCat td.ldbdPlus {
+  background:url('../images/iconBack.png') no-repeat center center;
+}
+.ldbdMore td {
+  text-align:left;
+}
+.ldbdMore {
+  color:#888;
+  width:100%;
+}
+.ldbdMore td:nth-child(1) {
+  padding-left:32px !important;
+  width:100px;
 }
 /* JSON ------------------------------------ */
 .json {

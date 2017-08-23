@@ -1,29 +1,19 @@
-<script>
-var types = ["kpt_standard", "kpt_dev", "kpt_challenge2016"];
-var metrics = ["AP", "AP_50", "AP_75", "AP_medium", "AP_large", "AR", "AR_50", "AR_75", "AR_medium", "AR_large"];
-var table = "leaderboard_kpt";
-var isSetTeam = false;
-$( function() { initLeaderboard(types, metrics, table, isSetTeam); } );
-</script>
-
-<!------------------------------------------------------------------------------------------------>
-<style>
-  #leaderboard_kpt td { padding: 6px 4px; vertical-align:middle }
-  #leaderboard_kpt th { padding: 6px 16px 6px 0px; text-align:right; width:36px }
-</style>
-<div style="font-size:13px; margin:10px;">
-</div>
-<div style="margin:10px 0px; display:inline-block">
-  <ul class="nav nav-pills">
-    <li class="active"><a data-toggle="tab" style="padding:10px" id="a_kpt_standard">Standard</a></li>
-    <li><a data-toggle="tab" style="padding:10px" id="a_kpt_dev">Dev</a></li>
-    <li><a data-toggle="tab" style="padding:10px" id="a_kpt_challenge2016">Challenge2016</a></li>
-  </ul>
-</div>
-<div class="tab-content" id="leaderboard_kpt" style="font-size:12px">
-  <table id="data" class="table order-column hover">
+<script>$(function(){initLeaderboardKeypoints()});</script>
+<p class="fontSubtle">
+  For <i>additional information</i> about each method when available please click the <img src="images/iconOpen.png" /> icon next to the method name.
+  Please see the <a href="#keypoints-challenge2017">challenge</a> and <a href="#keypoints-upload">upload</a> pages for more information about the keypoint challenge and dataset splits.
+  Note: leaderboard results are imported from <a href="https://www.codalab.org/competitions/12061" target="_blank">CodaLab Keypoint Server</a> and may not contain the latest results.
+</p>
+<ul class="nav nav-pills ldbdTabs fontSubsubtitle">
+  <li class="active"><a data-toggle="tab" id="a_kpt_standard">Standard</a></li>
+  <li><a data-toggle="tab" id="a_kpt_dev">Dev</a></li>
+  <li><a data-toggle="tab" id="a_kpt_challenge2016">Challenge2016</a></li>
+</ul>
+<div class="tab-content" id="ldbdKeypoints">
+  <table class="table order-column hover fontSmall ldbdData">
     <thead>
       <tr>
+        <th></th>
         <th></th>
         <th>AP</th>
         <th>AP<sup>50</sup></th>
@@ -39,7 +29,7 @@ $( function() { initLeaderboard(types, metrics, table, isSetTeam); } );
       </tr>
     </thead>
   </table>
-  <p class="fontTitle" style="margin-bottom:15px">Metrics</p>
+  <p class="fontTitle">Metrics</p>
   <div class="json fontMono">
     <div class="jsonreg"><b>Average Precision (AP):</b></div>
     <div class="jsonk">AP</div><div class="jsonv">% AP at OKS=.50:.05:.95 <b>(primary challenge metric)</b></div>
@@ -57,12 +47,4 @@ $( function() { initLeaderboard(types, metrics, table, isSetTeam); } );
     <div class="jsonk">AR<sup>large</sup></div><div class="jsonv">% AR for large objects: area &gt; 96<sup>2</sup></div>
   </div>
   <p>Please see the <a href="#keypoints-eval">evaluation</a> page for more detailed information about the metrics.</p>
-  <p class="fontTitle" style="margin-bottom:0px">References</p>
-  <table id="refs" class="table table-striped hover" style="font-size:13px">
-    <thead><tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr></thead>
-  </table>
 </div>

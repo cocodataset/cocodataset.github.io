@@ -151,98 +151,154 @@ function populateExternalPage() {
   $("#content").append(s);
 }
 
-function initLeaderboard(types, metrics, table, isSetTeam){
-  // constants and global variables
-  // var metrics = ["AP", "AP_50", "AP_75", "AP_small", "AP_medium", "AP_large", "AR_max_1", "AR_max_10", "AR_max_100", "AR_small", "AR_medium", "AR_large"];
-  var supercats = ["accessory", "animal", "appliance", "electronic", "food", "furniture", "indoor", "kitchen", "outdoor", "person", "sports", "vehicle"];
+function initLeaderboardDetection() {
+  var types = ["bbox_standard2015", "segm_standard2015", "bbox_dev2015", "segm_dev2015", "bbox_challenge2016", "segm_challenge2016", "bbox_challenge2015", "segm_challenge2015"];
+  var metrics = ["AP", "AP_50", "AP_75", "AP_small", "AP_medium", "AP_large", "AR_max_1", "AR_max_10", "AR_max_100", "AR_small", "AR_medium", "AR_large"];
+  var table = "ldbdDetection";
+  initLeaderboard(types, metrics, table, true);
+}
+
+function initLeaderboardKeypoints() {
+  var types = ["kpt_standard", "kpt_dev", "kpt_challenge2016"];
+  var metrics = ["AP", "AP_50", "AP_75", "AP_medium", "AP_large", "AR", "AR_50", "AR_75", "AR_medium", "AR_large"];
+  var table = "ldbdKeypoints";
+  initLeaderboard(types, metrics, table, false);
+}
+
+function initLeaderboardCaptions() {
+  // initialize C5 and C40 captioning leaderboards
+  var types1 = ["cap_c5", "cap_c40"];
+  var metrics1 = ["CIDEr", "METEOR", "ROUGE_L", "Bleu_1", "Bleu_2", "Bleu_3", "Bleu_4", "SPICE"];
+  var table1 = "ldbdCaption";
+  initLeaderboard(types1, metrics1, table1, false);
+  // initilize challenge captioning leaderboards
+  var types2 = ["cap_challenge2015"];
+  var metrics2 = ["q1", "q2", "q3", "q4", "q5"];
+  var table2 = "ldbdCaptionChallenge";
+  initLeaderboard(types2, metrics2, table2, false);
+  // controls for toggling visible leaderboard
+  for(var i=0; i<types1.length; i++) $('#a_'+types1[i]).click( function(){$('#'+table1).show(); $('#'+table2).hide();})
+  for(var i=0; i<types2.length; i++) $('#a_'+types2[i]).click( function(){$('#'+table2).show(); $('#'+table1).hide();})
+  $('#'+table2).hide();
+  // initialize metrics and ranks DataTables
+  var metricsMain = [
+    ['CIDEr-D', '<a href="http://arxiv.org/pdf/1411.5726.pdf" target="_blank"> CIDEr: Consensus-based Image Description Evaluation</a>'],
+    ['METEOR',  '<a href="http://www.cs.cmu.edu/~alavie/METEOR/pdf/meteor-1.5.pdf" target="_blank">Meteor Universal: Language Specific Translation Evaluation for Any Target Language</a>'],
+    ['Rouge-L', '<a href="http://anthology.aclweb.org/W/W04/W04-1013.pdf" target="_blank"> ROUGE: A Package for Automatic Evaluation of Summaries</a>'],
+    ['BLEU',    '<a href="http://www.aclweb.org/anthology/P02-1040.pdf" target="_blank"> BLEU: a Method for Automatic Evaluation of Machine Translation</a>'],
+    ['SPICE',   '<a href="https://arxiv.org/pdf/1607.08822.pdf" target="_blank"> SPICE: Semantic Propositional Image Caption Evaluation</a>']
+  ];
+  var metricsChallenge = [
+    ['M1', 'Percentage of captions that are evaluated as better or equal to human caption.'],
+    ['M2', 'Percentage of captions that pass the Turing Test.'],
+    ['M3', 'Average correctness of the captions on a scale 1-5 (incorrect - correct).'],
+    ['M4', 'Average amount of detail of the captions on a scale 1-5 (lack of details - very detailed).'],
+    ['M5', 'Percentage of captions that are similar to human description.']
+  ];
+  var ranksChallenge = [
+    ['Google', 5, 4, 9, '1st(tie)'],
+    ['MSR', 4, 5, 9, '1st(tie)'],
+    ['MSR Captivator', 2, 3, 5, '3rd(tie)'],
+    ['Montreal/Toronto', 3, 2, 5, '3rd(tie)'],
+    ['Berkeley LRCN', 1, 1, 2, '5th']
+  ];
+  var propsm = { 'paging':false, 'info':false, 'filter':false, 'sort':false, 'autoWidth':false };
+  var propsr = { 'paging':false, 'info':false, 'filter':false, 'order':[[1, 'desc']] };
+  $('#'+table1).find('#ldbdCaptionMetrics').DataTable(propsm).rows.add(metricsMain).draw();
+  $('#'+table2).find('#ldbdCaptionMetrics').DataTable(propsm).rows.add(metricsChallenge).draw();
+  $('#'+table2).find('#ldbdCaptionRank').DataTable(propsr).rows.add(ranksChallenge).draw();
+}
+
+function initLeaderboard(types, metrics, table, isDetection){
+  // populate leaderboard table with data in json
+  var supercats=["accessory", "animal", "appliance", "electronic", "food", "furniture", "indoor", "kitchen", "outdoor", "person", "sports", "vehicle"];
   var cats =[[9,"person"], [11,"bicycle"], [11,"car"], [11,"motorcycle"], [11,"airplane"], [11,"bus"], [11,"train"], [11,"truck"], [11,"boat"], [8,"traffic light"], [8,"fire hydrant"], [8,"stop sign"], [8,"parking meter"], [8,"bench"], [1,"bird"], [1,"cat"], [1,"dog"], [1,"horse"], [1,"sheep"], [1,"cow"], [1,"elephant"], [1,"bear"], [1,"zebra"], [1,"giraffe"], [0,"backpack"], [0,"umbrella"], [0,"handbag"], [0,"tie"], [0,"suitcase"], [10,"frisbee"], [10,"skis"], [10,"snowboard"], [10,"sports ball"], [10,"kite"], [10,"baseball bat"], [10,"baseball glove"], [10,"skateboard"], [10,"surfboard"], [10,"tennis racket"], [7,"bottle"], [7,"wine glass"], [7,"cup"], [7,"fork"], [7,"knife"], [7,"spoon"], [7,"bowl"], [4,"banana"], [4,"apple"], [4,"sandwich"], [4,"orange"], [4,"broccoli"], [4,"carrot"], [4,"hot dog"], [4,"pizza"], [4,"donut"], [4,"cake"], [5,"chair"], [5,"couch"], [5,"potted plant"], [5,"bed"], [5,"dining table"], [5,"toilet"], [3,"tv"], [3,"laptop"], [3,"mouse"], [3,"remote"], [3,"keyboard"], [3,"cell phone"], [2,"microwave"], [2,"oven"], [2,"toaster"], [2,"sink"], [2,"refrigerator"], [6,"book"], [6,"clock"], [6,"vase"], [6,"scissors"], [6,"teddy bear"], [6,"hair drier"], [6,"toothbrush"]];
-  var N=types.length, current={type:types[0],team:-1}, data=new Array(N);
-  for( var i=0; i<N; i++ ) data[i]={ main:[], refs:[], teams:[], cats:[] };
-  // extract main data for leaderboard for all teams
-  var loadData = function( entries ) {
-    for( var i=0; i<N; i++ ) {
-      for( var j=0; j<entries[types[i]].length; j++ ) {
-        var e=entries[types[i]][j], name=e.team.name, r=JSON.parse(e.results);
-        data[i].main[j] = new Array(2+metrics.length); data[i].main[j][0]=name;
-        for( var k=0; k<metrics.length; k++ ) data[i].main[j][k+1] = r[metrics[k]];
-        data[i].main[j][metrics.length+1] = e.date;
-        if(e.url != "") name = "<a href='" + e.url + "' target='_blank'> " + name + " </a>";
-        data[i].refs[j] = ["["+(j+1)+"] "+name, e.team.members, e.description];
-        data[i].teams[j]=e.team.id; data[i].cats[j]=[];
-      }
-    }
-    setData(current.type,current.team);
-  };
-  // extract category data for leaderboard for current team
-  var loadCats = function( entries, team ) {
-    for( var i=0; i<N; i++ ) {
-      var j, d, K, r, c, t;
-      j=$.inArray(current.team,data[i].teams); if(j==-1) continue;
-      t=$.inArray(team, $.map(entries[types[i]], function(value, index) { return [value.team.id];}));
-      d=JSON.parse(entries[types[i]][t].results_details);
-      K=cats.length+supercats.length; data[i].cats[j]=new Array(K);
-      for( var k=0; k<K; k++ ) {
-        if( k<supercats.length ) {
-          c=supercats[k]; r=d.per_supercategory[c]; c+=": [all]";
-        } else {
-          c=cats[k-supercats.length]; r=d.per_category[c[1]]; c=supercats[c[0]]+": "+c[1];
+  // load all json leaderboards *synchronously* (asynch too much effort)
+  $.ajaxSetup({async:false}); var json={};
+  for (var i=0; i<types.length; i++) {
+    var url ='leaderboard/'+types[i]+'.json';
+    $.getJSON(url,function(data) {json[types[i]]=data});
+  }
+  $.ajaxSetup({async:true});
+  // extract data for leaderboard from json
+  var n=types.length, m=metrics.length, data=new Array(n);
+  for( var i=0; i<n; i++ ) {
+    data[i]={ main:[], refs:[], teams:[], cats:[] };
+    for( var j=0; j<json[types[i]].length; j++ ) {
+      var e=json[types[i]][j], name=e.team.name, r=JSON.parse(e.results);
+      data[i].teams[j]=e.team.id;
+      // poulate main: ["",method-name,results,date]
+      data[i].main[j]=new Array(m+3);
+      data[i].main[j][0]=''; data[i].main[j][1]=name;
+      for( var k=0; k<m; k++ ) data[i].main[j][k+2]=r[metrics[k]];
+      data[i].main[j][m+2]=e.date;
+      // populate refs
+      if(e.url!= "") e.url="<a href='"+e.url+"' target='_blank'> "+e.url+"</a>";
+      data[i].refs[j]=['Team',e.team.members,'Description',e.description,'Link',e.url];
+      // poulate cats: ["",category-name,results,date]
+      if(isDetection) {
+        var d=JSON.parse(json[types[i]][j].results_details);
+        var p=cats.length+supercats.length; data[i].cats[j]=new Array(p);
+        for( var k=0; k<p; k++ ) {
+          var r, c;
+          if( k<supercats.length ) {
+            c=supercats[k]; r=d.per_supercategory[c]; c+=": [all]";
+          } else {
+            c=cats[k-supercats.length]; r=d.per_category[c[1]]; c=supercats[c[0]]+": "+c[1];
+          }
+          data[i].cats[j][k]=new Array(m+3);
+          data[i].cats[j][k][0]=''; data[i].cats[j][k][1]=c;
+          for(var l=0; l<m; l++) data[i].cats[j][k][l+2]=r[l];
+          data[i].cats[j][k][m+2]=data[i].main[j][m+2];
         }
-        data[i].cats[j][k]=new Array(2+metrics.length); data[i].cats[j][k][0]=c;
-        for( var l=0; l<metrics.length; l++ ) data[i].cats[j][k][l+1]=r[l];
-        data[i].cats[j][k][metrics.length+1] = data[i].main[j][metrics.length+1];
+        data[i].cats[j][p]=[];
+        data[i].cats[j][p][0]=''; data[i].cats[j][p][1]="[all]: [all]";
+        for(var l=2; l<m+3; l++) data[i].cats[j][p][l]=data[i].main[j][l];
       }
-      data[i].cats[j][K]=[]; data[i].cats[j][K][0]="[all]: [all]";
-      for(var l=1; l<metrics.length+2; l++) data[i].cats[j][K][l]=data[i].main[j][l];
     }
-    setData(current.type,current.team);
-  };
+  }
   // function to set the data shown in the leaderboard and event binders
-  var bindSetType=function(e,type) { var t=type; e.click( function(){setData(t,current.team)} )};
-  var bindSetTeam=function(e,team) { var t=team; e.click( function(){setData(current.type,t)} )};
-  for( var i=0; i<N; i++ ) bindSetType($('#a_'+types[i]),types[i]);
-  var setData = function( type, team ) {
+  var current={type:types[0],team:-1};
+  var bindSetType=function(e,type) { var t=type; e.click( function(){setDisplayData(t,current.team)} )};
+  var bindSetTeam=function(e,team) { var t=team; e.click( function(){setDisplayData(current.type,t)} )};
+  for( var i=0; i<n; i++ ) bindSetType($('#a_'+types[i]),types[i]);
+  var setDisplayData=function( type, team ) {
     var i=$.inArray(type,types), j=$.inArray(team,data[i].teams);
     if(j==-1) team=-1; current.type=type; current.team=team;
-    tableRefs.clear().rows.add(data[i].refs).draw();
-    if( team==-1 ) {
-      $('div.toolbar_'+table).html('');
-      tableData.clear().rows.add(data[i].main).draw();
-    } else if( data[i].cats[j].length>0 ) {
-      $('div.toolbar_'+table).html('<a id="clearTeam"><b>&#8629; '+data[i].main[j][0]+'</a><sup>'+(j+1)+'</sup>');
-      tableData.clear().rows.add(data[i].cats[j]).draw(); bindSetTeam($('#clearTeam'),-1);
-    } else {
-      loadCats(json, team);
-    }
+    var datashow=team==-1 ? data[i].main : data[i].cats[j];
+    tableData.clear().rows.add(datashow).order((team==-1)?[2,'desc']:[1,'asc']).draw();
+    $('#'+table).find('.ldbdData').toggleClass("ldbdPerCat",team!==-1);
   };
   // initialize and format DataTables https://www.datatables.net/
-  var propsRefs = { 'paging':false, 'info':false, 'filter':false, 'sort':false, 'autoWidth':false };
-  propsRefs.columnDefs = [{'targets':0,'sWidth':'20%'}];
-  var propsData = { 'paging':false, 'info':false, 'order':[[1, 'desc']], 'dom':'fB<"toolbar_'+ table +'">rtip' };
-  propsData.buttons=[{extend:'copyHtml5',title:'leaderboard',exportOptions:{orthogonal:'export'},text:'Copy to Clipboard'}, {extend:'csvHtml5', title:'leaderboard',exportOptions:{orthogonal:'export'},text:'Export to CSV'}];
-  propsData.columnDefs = [
-      {'targets':0, 'render':function(x,type,row,meta) {return (type==='export')?x:(current.team===-1)?'<a id="setTeam'+meta.row+'" style="font-size:12px">'+x+'</a><sup>'+(meta.row+1)+'</sup>':'<span style="font-size:10px">'+x+'</span>'}},
-      {'targets':metrics.length+1,'render':function(x) {return '<span style="font-size:10px">'+x+'</span>'}},
-      {'targets':['_all'], 'orderSequence':['desc', 'asc'],'render':function(x) {return '<span style="font-size:12px">'+x+'</span>'}}];
-  propsData.drawCallback = function() {
-    if(current.team>0) return; var teams=data[$.inArray(current.type,types)].teams;
-    if (isSetTeam) {for( var k=0; k<teams.length; k++) bindSetTeam($('#setTeam'+k),teams[k]);}
-  };
-  var tableData = $('#'+table).find('#data').DataTable(propsData);
-  var tableRefs = $('#'+table).find('#refs').DataTable(propsRefs);
-  $('div.toolbar_' + table).css({'text-align':'center','padding-top':'4px','font-size':'14px'})
-  // load core leaderboard data
-  var json = {};
-  for (var j=0; j<N; j++) {
-    var type_j = types[j];
-    $.ajax({
-        url: 'leaderboard/' + type_j + '.json',
-        dataType: 'json',
-        async: false,
-        success: function (json_data) {
-          json[type_j] = json_data;
-        }
-    });
-  }
-  // load data to leaderboard after async ajax calls are all done.
-  loadData(json);
+  var propsData={'paging':true,'info':false,'order':[[2,'desc']],'dom':'fBrtilp','iDisplayLength':25};
+  propsData.buttons=[
+    {extend:'copyHtml5',title:'leaderboard',exportOptions:{orthogonal:'export'},text:'Copy to Clipboard'},
+    {extend:'csvHtml5', title:'leaderboard',exportOptions:{orthogonal:'export'},text:'Export to CSV'}
+  ];
+  propsData.columnDefs=[
+    {'targets':0,"orderable":false,"className":'ldbdPlus'},
+    {'targets':1,"className":'ldbdMethod'},
+    {'targets':m+2,"className":'ldbdDate'},
+    {'targets':[0,1,m+2],'render':function(x) {return x}},
+    {'targets':['_all'],'orderSequence':['desc','asc'],'render':function(x) {return parseFloat(x).toFixed(3)}}
+  ];
+  var tableData=$('#'+table).find('.ldbdData').DataTable(propsData);
+  // populate extra info tab
+  $('#'+table).on('click','td.ldbdPlus', function() {
+    if($('#'+table).find('.ldbdData').hasClass('ldbdPerCat')) {setDisplayData(current.type,-1); return;}
+    var tr=$(this).closest('tr'), row=tableData.row(tr);
+    if( row.child.isShown() ) {
+      row.child.hide(); tr.removeClass('shown');
+    } else {
+      var i=$.inArray(current.type,types), j=row.index();
+      var mr=function(k,v) {return '<tr><td>'+k+':</td><td>'+v+'</td></tr>'};
+      var t='<table class="ldbdMore">', refs=data[i].refs[j];
+      for(var k=0; k<data[i].refs[j].length; k+=2) t+=mr(refs[k],refs[k+1]);
+      if(isDetection) t+=mr("More",'<a id="setTeam'+j+'">Per Category Results</a>');
+      t+='</table>'; row.child(t).show(); tr.addClass('shown');
+      if(isDetection) bindSetTeam($('#setTeam'+j),data[i].teams[j]);
+    }
+  });
+  // load data to tables and populate
+  setDisplayData(current.type,current.team);
 }
