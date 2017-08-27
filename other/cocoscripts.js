@@ -40,14 +40,15 @@ function populateHeaders(tab) {
 function datasetTabNav() {
   // Enable dataset tab controls. See also: https://getbootstrap.com/docs/3.3/javascript/#tabs
   // And: http://stackoverflow.com/questions/12131273/twitter-bootstrap-tabs-url-doesnt-change
+  var loaded = {};
   $('.nav-tabs a').click(function (e) {
     if(this.hash) window.location.hash = this.hash;
     $('html,body').scrollTop(0);
   });
   $(window).bind( 'hashchange', function(e) {
     var hash = window.location.hash;
-    $(hash).load("dataset/"+hash.substring(1)+".htm");
-    $('a[href="'+hash+'"]').tab('show');
+    if(!loaded[hash]) $(hash).load("dataset/"+hash.substring(1)+".htm");
+    loaded[hash]=true; $('a[href="'+hash+'"]').tab('show');
     $('html,body').scrollTop(0);
   });
   if(!window.location.hash) window.location.hash = '#overview';
@@ -213,15 +214,17 @@ function initLeaderboard(types, metrics, table, isDetection){
   // populate leaderboard table with data in json
   var supercats=["accessory", "animal", "appliance", "electronic", "food", "furniture", "indoor", "kitchen", "outdoor", "person", "sports", "vehicle"];
   var cats =[[9,"person"], [11,"bicycle"], [11,"car"], [11,"motorcycle"], [11,"airplane"], [11,"bus"], [11,"train"], [11,"truck"], [11,"boat"], [8,"traffic light"], [8,"fire hydrant"], [8,"stop sign"], [8,"parking meter"], [8,"bench"], [1,"bird"], [1,"cat"], [1,"dog"], [1,"horse"], [1,"sheep"], [1,"cow"], [1,"elephant"], [1,"bear"], [1,"zebra"], [1,"giraffe"], [0,"backpack"], [0,"umbrella"], [0,"handbag"], [0,"tie"], [0,"suitcase"], [10,"frisbee"], [10,"skis"], [10,"snowboard"], [10,"sports ball"], [10,"kite"], [10,"baseball bat"], [10,"baseball glove"], [10,"skateboard"], [10,"surfboard"], [10,"tennis racket"], [7,"bottle"], [7,"wine glass"], [7,"cup"], [7,"fork"], [7,"knife"], [7,"spoon"], [7,"bowl"], [4,"banana"], [4,"apple"], [4,"sandwich"], [4,"orange"], [4,"broccoli"], [4,"carrot"], [4,"hot dog"], [4,"pizza"], [4,"donut"], [4,"cake"], [5,"chair"], [5,"couch"], [5,"potted plant"], [5,"bed"], [5,"dining table"], [5,"toilet"], [3,"tv"], [3,"laptop"], [3,"mouse"], [3,"remote"], [3,"keyboard"], [3,"cell phone"], [2,"microwave"], [2,"oven"], [2,"toaster"], [2,"sink"], [2,"refrigerator"], [6,"book"], [6,"clock"], [6,"vase"], [6,"scissors"], [6,"teddy bear"], [6,"hair drier"], [6,"toothbrush"]];
-  // load all json leaderboards *synchronously* (asynch too much effort)
-  $.ajaxSetup({async:false}); var json={};
-  for (var i=0; i<types.length; i++) {
-    var url ='leaderboard/'+types[i]+'.json';
-    $.getJSON(url,function(data) {json[types[i]]=data});
+  // load all json leaderboards asynchronously
+  var n=types.length, t=$('#'+table), json=t.data('json')
+  if( !json ) {
+    t.data('json',{});
+    var onload=function(i) { return function(d){var j=t.data('json'); j[i]=d; t.data('json',j);} }
+    for(var i=0; i<n; i++) $.getJSON('leaderboard/'+types[i]+'.json',onload(types[i]));
   }
-  $.ajaxSetup({async:true});
+  var done=json; for(var i=0; i<n; i++) done=done && json[types[i]];
+  if(!done) { setTimeout(function(){initLeaderboard(types,metrics,table,isDetection)},10); return; };
   // extract data for leaderboard from json
-  var n=types.length, m=metrics.length, data=new Array(n);
+  var m=metrics.length, data=new Array(n);
   for( var i=0; i<n; i++ ) {
     data[i]={ main:[], refs:[], teams:[], cats:[] };
     for( var j=0; j<json[types[i]].length; j++ ) {
