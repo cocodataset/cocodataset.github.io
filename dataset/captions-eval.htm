@@ -1,4 +1,3 @@
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">1. Caption Evaluation</p>
 <p>This page describes the <span class="fontItalic">caption evaluation code</span> used by COCO. The evaluation code provided here can be used to obtain results on the publicly available COCO validation set. It computes multiple common metrics, including BLEU, METEOR, ROUGE-L, and CIDEr (the writeup below contains references and descriptions of each metric). If you use the captions, evaluation code, or server, we ask that you cite <a href="http://arxiv.org/abs/1504.00325" target="_blank">Microsoft COCO Captions: Data Collection and Evaluation Server</a>:</p>
 <div class="json fontSmall">
@@ -13,7 +12,6 @@
 </div>
 <p>To obtain results on the COCO test set, for which ground truth annotations are hidden, generated results must be submitted to the <span class="fontItalic">evaluation server</span>. For instructions on submitting results to the evaluation server please see the <a href="#captions-upload">upload</a> page. The exact same evaluation code, described below, is used to evaluate generated captions on the test set.</p>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">2. Results Format</p>
 <p>The results format used for storing generated captions is described on the <a href="#format">results format</a> page. For reference, here is a summary of the caption results format:</p>
 <div class="json">
@@ -23,7 +21,6 @@
   <div class="jsonreg">}]</div>
 </div>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">3. Evaluation Code</p>
 <p>Evaluation code can be obtained on the <a href="http://github.com/tylin/coco-caption" target="_blank">coco-captions github</a> page. Unlike the general COCO API, the COCO caption evaluation code is only available under Python.</p>
 <p>Running the evaluation code produces two data structures that summarize caption quality. The two structs are <span class="fontMono">evalImgs</span> and <span class="fontMono">eval</span>, which summarize caption quality per-image and aggregated across the entire test set, respectively. Details for the two data structures are given below. We recommend running the <a href="https://github.com/tylin/coco-caption/blob/master/cocoEvalCapDemo.ipynb" target="_blank">python caption evaluation demo</a> for more details.</p>

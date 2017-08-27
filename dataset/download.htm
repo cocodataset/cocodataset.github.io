@@ -1,4 +1,3 @@
-<!------------------------------------------------------------------------------------------------>
 <div class="column3">
   <p class="fontTitle">Tools</p>
   <p class="fontBig"><a href="https://github.com/pdollar/coco" target="_blank">Matlab+Python+Lua APIs</a></p>
@@ -26,12 +25,10 @@
   </p>
 </div>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">1. Overview</p>
 <p>The 2014 Testing Images are for the <a href="#captions-challenge2015">COCO Captioning Challenge</a>, while the 2015 Testing Images are for the <a href="#detections-challenge2016">Detection</a> and <a href="#keypoints-challenge2016">Keypoint</a> Challenges. The train and val data are common to all challenges. Note also that as an alternative to downloading the large image zip files, individual images may be downloaded from the COCO website using the "coco_url" field specified in the image info struct (see details below).</p>
 <p>Please follow the instructions in the <a href="https://github.com/pdollar/coco" target="_blank">README</a> to download and setup the COCO data (annotations and images). By downloading this dataset, you agree to our <a href="/termsofuse" target="_blank">Terms of Use</a>.</p>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">2. COCO API</p>
 <p>The COCO API assists in loading, parsing, and visualizing annotations in COCO. The API supports object instance, object keypoint, and image caption annotations (for captions not all functionality is defined). For additional details see: <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/CocoApi.m" target="_blank">CocoApi.m</a>, <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/coco.py" target="_blank">coco.py</a>, and <a href="https://github.com/pdollar/coco/blob/master/LuaAPI/CocoApi.lua" target="_blank">CocoApi.lua</a> for Matlab, Python, and Lua code, respectively, and also the <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocoDemo.ipynb" target="_blank">Python API demo</a>.</p>
 <div class="json">
@@ -47,7 +44,6 @@
   <div class="jsonkfunc">showAnns</div><div class="jsonvtxt">Display the specified annotations.</div>
 </div>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">3. MASK API</p>
 <p>COCO provides segmentation masks for every object instance. This creates two challenges: storing masks compactly and performing mask computations efficiently. We solve both challenges using a custom Run Length Encoding (RLE) scheme. The size of the RLE representation is proportional to the number of boundaries pixels of a mask and operations such as area, union, or intersection can be computed efficiently directly on the RLE. Specifically, assuming fairly simple shapes, the RLE representation is O(&radic;n) where n is number of pixels in the object, and common computations are likewise O(&radic;n). Naively computing the same operations on the decoded masks (stored as an array) would be O(n).</p>
 <p>The MASK API provides an interface for manipulating masks stored in RLE format. The API is defined below, for additional details see: <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/MaskApi.m" target="_blank">MaskApi.m</a>, <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/mask.py" target="_blank">mask.py</a>, or <a href="https://github.com/pdollar/coco/blob/master/LuaAPI/MaskApi.lua" target="_blank">MaskApi.lua</a>. Finally, we note that a majority of ground truth masks are stored as polygons (which are quite compact), these polygons are converted to RLE when needed.</p>
@@ -62,7 +58,6 @@
   <div class="jsonkfunc">frPoly</div><div class="jsonvtxt">Convert polygon to encoded mask.</div>
 </div>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">4. Annotation format</p>
 <p>COCO currently has three annotation types: object instances, object keypoints, and image captions. The annotations are stored using the <a href="http://json.org/" target="_blank">JSON</a> file format. All annotations share the basic data structure below:</p>
 <div class="json">
@@ -101,7 +96,6 @@
 </div>
 <p>The data structures specific to the various annotation types are described below.</p>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontSubtitle">4.1. Object Instance Annotations</p>
 <p>Each instance annotation contains a series of fields, including the category id and segmentation mask of the object. The segmentation format depends on whether the instance represents a single object (iscrowd=0 in which case polygons are used) or a collection of objects (iscrowd=1 in which case RLE is used). Note that a single object (iscrowd=0) may require multiple polygons, for example if occluded. Crowd annotations (iscrowd=1) are used to label large groups of objects (e.g. a crowd of people). In addition, an enclosing bounding box is provided for each object (box coordinates are measured from the top left image corner and are 0-indexed). Finally, the categories field of the annotation structure stores the mapping of category id to category and supercategory names. See also the <a href="#detections-challenge2016">Detection Challenge</a>.</p>
 <div class="json">
@@ -122,7 +116,6 @@
   <div class="jsonreg">}]</div>
 </div>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontSubtitle">4.2. Object Keypoint Annotations</p>
 <p>A keypoint annotation contains all the data of the object annotation (including id, bbox, etc.) and two additional fields. First, "keypoints" is a length 3k array where k is the total number of keypoints defined for the category. Each keypoint has a 0-indexed location x,y and a visibility flag v defined as v=0: not labeled (in which case x=y=0), v=1: labeled but not visible, and v=2: labeled and visible. A keypoint is considered visible if it falls inside the object segment. "num_keypoints" indicates the number of labeled keypoints (v>0) for a given object (many objects, e.g. crowds and small objects, will have num_keypoints=0). Finally, for each category, the categories struct has two additional fields: "keypoints," which is a length k array of keypoint names, and "skeleton", which defines connectivity via a list of keypoint edge pairs and is used for visualization. Currently keypoints are only labeled for the person category (for most medium/large non-crowd person instances). See also the <a href="#keypoints-challenge2016">Keypoint Challenge</a>.</p>
 <div class="json">
@@ -141,7 +134,6 @@
   "[cloned]": denotes fields copied from object instance annotations defined in 4.1.</div>
 </div>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontSubtitle">4.3. Image Caption Annotations</p>
 <p>These annotations are used to store image captions. Each caption describes the specified image and each image has at least 5 captions (some images have more). See also the <a href="#captions-challenge2015">Captioning Challenge</a>.</p>
 <div class="json">

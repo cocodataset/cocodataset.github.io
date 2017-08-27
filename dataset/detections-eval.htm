@@ -1,8 +1,6 @@
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">1. Detection Evaluation</p>
 <p>This page describes the <span class="fontItalic">detection evaluation code</span> used by COCO. The evaluation code provided here can be used to obtain results on the publicly available COCO validation set. It computes multiple metrics described below. To obtain results on the COCO test set, for which ground truth annotations are hidden, generated results must be submitted to the <span class="fontItalic">evaluation server</span>. For instructions on submitting results to the evaluation server please see the <a href="#detections-upload">upload</a> page. The exact same evaluation code, described below, is used to evaluate detections on the test set.</p>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">2. Metrics</p>
 <p>The following 12 metrics are used for characterizing the performance of an object detector on COCO:</p>
 <div class="json fontMono">
@@ -33,7 +31,6 @@
   <li>The evaluation metrics for detection with bounding boxes and segmentation masks are identical in all respects except for the IoU computation (which is performed over boxes or masks, respectively).</li>
 </ol>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">3. Results Format</p>
 <p>The results format used for storing generated detections is described on the <a href="#format">results format</a> page. For reference, here is a summary of the detection results format for boxes and segments, respectively:</p>
 <div class="json">
@@ -56,7 +53,6 @@
 </div>
 <p>Note: binary masks should be encoded via RLE using the MaskApi function <span class="fontMono">encode()</span>.</p>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">4. Evaluation Code</p>
 <p>Evaluation code is available on the <a href="https://github.com/pdollar/coco" target="_blank">COCO github</a>. Specifically, see either <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/CocoEval.m" target="_blank">CocoEval.m</a> or <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/cocoeval.py" target="_blank">cocoeval.py</a> in the Matlab or Python code, respectively. Also see <span class="fontMono">evalDemo</span> in either the Matlab or Python code (<a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocoEvalDemo.ipynb" target="_blank">demo</a>).</p>
 <p>The evaluation parameters are as follows (defaults in brackets, in general no need to change):</p>
@@ -97,7 +93,6 @@
 </div>
 <p>Finally <span class="fontMono">summarize()</span> computes the 12 detection metrics defined earlier based on the <span class="fontMono">eval</span> struct.</p>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">5. Analysis Code</p>
 <p>In addition to the evaluation code, we also provide a function <span class="fontMono">analyze()</span> for performing a detailed breakdown of false positives. This was inspired by <a href="http://web.engr.illinois.edu/~dhoiem/projects/detectionAnalysis/" target="_blank">Diagnosing Error in Object Detectors</a> by Derek Hoiem et al., but is quite different in implementation and details. The code generates plots like this:</p>
 <p>

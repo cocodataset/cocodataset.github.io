@@ -1,14 +1,11 @@
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">1. Keypoint Evaluation</p>
 <p><b>Note: Evaluation metrics were updated 09/05/2016. They are likely finalized, but are still subject to change if we discover any issues before the competition deadline. If you discover any flaws or pitfalls in the proposed metrics please contact us asap.</b></p>
 <p>This page describes the keypoint evaluation metric used by COCO. The COCO keypoint task requires simultaneously detecting objects and localizing their keypoints (object locations are not given at test time). As the task of <i>simultaneous detection and keypoint estimation</i> is relatively new, we chose to adopt a novel metric inspired by object detection metrics. For simplicity, we refer to this task as <i>keypoint detection</i> and the prediction algorithm as the <i>keypoint detector</i>.</p>
 <p>We suggest reviewing the evaluation metrics for <a href="#detections-eval">object detection</a> before proceeding. As in the other COCO tasks, the evaluation code can be used to evaluate results on the publicly available validation set. To obtain results on the test set, for which ground truth annotations are hidden, generated results must be submitted to the evaluation server. For instructions on submitting results to the evaluation server please see the <a href="#keypoints-upload">upload</a> page.</p>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontSubtitle">1.1. Evaluation Overview</p>
 <p>The core idea behind evaluating keypoint detection is to mimic the evaluation metrics used for object detection, namely average precision (AP) and average recall (AR) and their variants. At the heart of these metrics is a similarity measure between ground truth objects and predicted objects. In the case of object detection, the IoU serves as this similarity measure (for both boxes and segments). Thesholding the IoU defines matches between the ground truth and predicted objects and allows computing precision-recall curves. To adopt AP/AR for keypoints detection, we thus only need to define an analogous similarity measure. We do so next by defining an <i>object keypoint similarity</i> (OKS) which plays the same role as the IoU.</p>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontSubtitle">1.2. Object Keypoint Similarity</p>
 <p>For each object, ground truth keypoints have the form [x<sub>1</sub>,y<sub>1</sub>,v<sub>1</sub>,...,x<sub>k</sub>,y<sub>k</sub>,v<sub>k</sub>], where x,y are the keypoint locations and v is a visibility flag defined as v=0: not labeled, v=1: labeled but not visible, and v=2: labeled and visible. Each ground truth object also has a scale s which we define as the square root of the object segment area. For details on the ground truth format please see the <a href="#download">download</a> page.</p>
 <p>For each object, the keypoint detector must output keypoint locations and an object-level confidence. Predicted keypoints for an object should have the same form as the ground truth: [x<sub>1</sub>,y<sub>1</sub>,v<sub>1</sub>,...,x<sub>k</sub>,y<sub>k</sub>,v<sub>k</sub>]. However, the detector's predicted v<sub>i</sub> are <i>not</i> currently used during evaluation, that is the keypoint detector is not required to predict per-keypoint visibilities or confidences.</p>
@@ -20,7 +17,6 @@
 </div>
 <p>The d<sub>i</sub> are the Euclidean distances between each corresponding ground truth and detected keypoint and the v<sub>i</sub> are the visibility flags of the ground truth (the detector's predicted v<sub>i</sub> are not used). To compute OKS, we pass the d<sub>i</sub> through an unnormalized Guassian with standard deviation s&kappa;<sub>i</sub>, where s is the object scale and &kappa;<sub>i</sub> is a per-keypont constant that controls falloff. For each keypoint this yields a keypoint <i>similarity</i> that ranges between 0 and 1. These similarities are averaged over all labeled keypoints (keypoints for which v<sub>i</sub>>0). Predicted keypoints that are not labeled (v<sub>i</sub>=0) do not affect the OKS. Perfect predictions will have OKS=1 and predictions for which all keypoints are off by more than a few standard deviations s&kappa;<sub>i</sub> will have OKS~0. The OKS is analogous to the IoU. Given the OKS, we can compute AP and AR just as the IoU allows us to compute these metrics for box/segment detection.</p>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontSubtitle">1.3. Tuning OKS</p>
 <p>We tune the &kappa;<sub>i</sub> such that the OKS is a perceptually meaningful and easy to interpret similarity measure. First, using 5000 redundantly annotated images in val, for each keypoint type i we measured the per-keypoint standard deviation &sigma;<sub>i</sub> with respect to object scale s. That is we compute <b>&sigma;<sub>i</sub><sup>2</sup>=E[d<sub>i</sub><sup>2</sup>/s<sup>2</sup>]</b>. &sigma;<sub>i</sub> varies substantially for different keypoints: keypoints on a person's body (shoulders, knees, hips, etc.) tend to have a &sigma; much larger than on a person's head (eyes, nose, ears).</p>
 <p>To obtain a perceptually meaningful and interpretable similarity metric we set <b>&kappa;<sub>i</sub>=2&sigma;<sub>i</sub></b>. With this setting of &kappa;<sub>i</sub>, at one, two, and three standard deviations of d<sub>i</sub>/s the keypoint similarity exp(-d<sub>i</sub><sup>2</sup>/2s<sup>2</sup>&kappa;<sub>i</sub><sup>2</sup>) takes on values of e<sup>-1/8</sup>=.88, e<sup>-4/8</sup>=.61 and e<sup>-9/8</sup>=.32. As expected, human annotated keypoints are normally distributed (ignoring occasional outliers). Thus, recalling the <a href="https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule" target="_blank">68–95–99.7 </a>rule, setting &kappa;<sub>i</sub>=2&sigma;<sub>i</sub> means that 68%, 95%, and 99.7% of human annotated keypoints should have a keypoint similarity of .88, .61, or .32 or higher, respectively (in practice the percentages are 75%, 95% and 98.7%).</p>
@@ -28,7 +24,6 @@
 <p><img src="images/keypoints-oks-person.png" class="wide80" align="center"/></p>
 <p>The curves don't match exactly for a few reasons: (1) object keypoints are not independent, (2) the number of labeled keypoints per objects varies, and (3) the real data contains 1-2% outliers (most of which are caused by annotators mistaking left for right or annotating the wrong person when two people are nearby). Nevertheless, the behavior is roughly as expected. We conclude with a few observations about human performance: (1) at OKS of .50, human performance is nearly perfect (95%), (2) median human OKS is ~.91, (3) human performance drops rapidly after an OKS of .95. Note that this OKS distribution can be used to predict human AR (as AR doesn't depend on false positives).</p>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">2. Metrics</p>
 <p>The following 10 metrics are used for characterizing the performance of a keypoint detector on COCO:</p>
 <div class="json fontMono">
@@ -57,7 +52,6 @@
   <li>Each object is given equal importance, regardless of the number of labeled/visible keypoints. We do not filter objects with only a few keypoints, nor do we weight object examples by the number of keypoints present.</li>
 </ol>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">3. Results Format</p>
 <p>The results format used for storing generated keypoints is described on the <a href="#format">results format</a> page. For reference, here is a summary of the keypoint results:</p>
 <div class="json">
@@ -70,6 +64,5 @@
 </div>
 <p>Note: keypoint coordinates are floats measured from the top left image corner (and are 0-indexed). We recommend rounding coordinates to the nearest pixel to reduce file size. Note also that the visibility flags v<sub>i</sub> are <i>not</i> currently used (except for controlling visualization), we recommend simply setting v<sub>i</sub>=1.</p>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">4. Evaluation Code</p>
 <p>Evaluation code is available on the <a href="https://github.com/pdollar/coco" target="_blank">COCO github</a>. Specifically, see either <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/CocoEval.m" target="_blank">CocoEval.m</a> or <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/cocoeval.py" target="_blank">cocoeval.py</a> in the Matlab or Python code, respectively. Also see <span class="fontMono">evalDemo</span> in either the Matlab or Python code (<a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocoEvalDemo.ipynb" target="_blank">demo</a>).</p>

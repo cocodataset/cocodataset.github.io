@@ -1,15 +1,12 @@
-<!------------------------------------------------------------------------------------------------>
 <p align="center" class="fontTitle">Welcome to the COCO 2016 Keypoint Challenge!</p>
 <p align="center"><a href="images/keypoints-challenge2016-big.png"><img src="images/keypoints-challenge2016.png" class="wide"/></a></p>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">1. Overview</p>
 <p><b>Deadline has been extended to 09/16. We apologize for the delay of releasing evaluation code. The <a href="#keypoints-eval">keypoint evaluation metrics</a> is finalized and the <a href="http://competitions.codalab.org/competitions/12061">keypoint evaluation server</a> is open for test-dev evaluation. The full test set evaluation will open shortly.  Thank you for your patience!</b></p>
 <p>The COCO 2016 Keypoint Challenge requires localization of person keypoints in challenging, uncontrolled conditions. The keypoint challenge involves simultaneously detecting people <i>and</i> localizing their keypoints (person locations are <i>not</i> given at test time). For full details of this task please see the <a href="#keypoints-eval">keypoint evaluation</a> page.</p>
 <p>This challenge is part of the <a href="http://image-net.org/challenges/ilsvrc+coco2016">ImageNet and COCO Visual Recognition</a> workshop at ECCV 2016. For further details about the joint workshop please visit the workshop website. Please also see the concurrent <a href="#detections-challenge2016">COCO 2016 Detection Challenge</a>.</p>
 <p>Training and val data have now been released. The training set for this task consists of over 100K person instances labeled with keypoints (the majority of people in COCO at medium and large scales) and over 1 million total labeled keypoints. The val set has an addtional 50K annotated people.</p>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">2. Dates</p>
 <div class="json">
   <div class="jsonktxt">June 1, 2016</div><div class="jsonvtxt">Challenge officially announced</div>
@@ -19,7 +16,6 @@
   <div class="jsonktxt">October 9, 2016</div><div class="jsonvtxt">Winners present at ECCV 2016 Workshop</div>
 </div>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">3. Organizers</p>
 <div>Tsung-Yi Lin (Cornell)</div>
 <div>Yin Cui (Cornell)</div>
@@ -29,7 +25,6 @@
 <div>Ross Girshick (Facebook AI Research)</div>
 <div>Piotr Dollár (Facebook AI Research)</div>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">4. Award Committee</p>
 <div>Yin Cui (Cornell)</div>
 <div>Genevieve Patterson (Brown)</div>
@@ -40,7 +35,6 @@
 <div>Pietro Perona (Caltech)</div>
 <div>Deva Ramanan (CMU)</div>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">5. Challenge Guidelines</p>
 <p>The <a href="#keypoints-eval">keypoint evaluation</a> page lists detailed information regarding how submissions will be scored. Instructions for submitting results are available on the <a href="#keypoints-upload">keypoint upload</a> page. Note that the keypoint challenge follows the <a href="#detections-challenge2016">detection challenge</a> quite closely. Specifically, the same challenge rules apply and the same COCO images sets are used. Details follow below.</p>
 <p>To limit overfitting while giving researchers more flexibility to test their system, we have divided the test set into a number of splits, including test-dev, test-standard, and test-challenge. Test-dev is used for debugging and validation experiments and allows for unlimited submission to the evaluation server. Test-standard is used to maintain a public <a href="#keypoints-leaderboard">leaderboard</a> that is updated upon submission. Finally, test-challenge is used for the workshop competition; results will be revealed during the workshop at ECCV 2016. A more thorough explanation is available on the <a href="#keypoints-upload">upload</a> page.</p>
@@ -48,7 +42,6 @@
 <p>By the challenge deadline, results must be submitted to the evaluation server. Competitors' algorithms will be evaluated according to the rules described on the <a href="#keypoints-eval">evaluation</a> page. Challenge participants with the most successful and innovative methods will be invited to present.</p>
 <p>As noted earlier, the keypoint challenge involves simultaneously detecting people and localizing their keypoints (person locations are not given at test time). As this is a fairly under-explored setting, we have carefully designed a new set of metrics for this task. Please refer to the "Metrics" section of the <a href="#keypoints-eval">evaluation</a> page for a detailed explanation of the competition metrics.</p>
 
-<!------------------------------------------------------------------------------------------------>
 <p class="fontTitle">6. Tools and Instructions</p>
 <p>We provide extensive API support for the COCO images, annotations, and evaluation code. To download the COCO API, please visit our <a href="https://github.com/pdollar/coco">GitHub repository</a>. For an overview of how to use the API, please visit the <a href="#download">download</a> page.</p>
 <p>Due to the large size of the COCO dataset and the complexity of this challenge, the process of competing in this challenge may not seem simple. To help, we provide explanations and instructions for each step of the process on the <a href="#download">download</a>, <a href="#format">format</a>, <a href="#keypoints-eval">evaluation</a>, and <a href="#keypoints-upload">upload</a> pages. For additional questions, please contact <a href="mailto:cocodataset@outlook.com">cocodataset@outlook.com</a>.</p>
