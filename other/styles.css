@@ -40,7 +40,7 @@ a img {
   text-align:left;
 }
 .fontBlue {
-  color:blue;
+  color:#3355bb;
 }
 .fontBold {
   font-weight:700;
@@ -151,10 +151,6 @@ li.checkBullet {
 .column {
   display:table-cell;
 }
-.column3 {
-  display:table-cell;
-  width:31%;
-}
 .columnSpacer {
   display:table-cell;
   width:3%;
@@ -170,6 +166,15 @@ li.checkBullet {
   display:table-cell;
   width:180px;
   padding-right:20px;
+}
+.columnApi {
+  display:table-cell;
+  padding-left:20px;
+  width:250px;
+}
+.columnDownloads {
+  display:table-cell;
+  width:320px;
 }
 .cocoPerson {
   display:inline-block;

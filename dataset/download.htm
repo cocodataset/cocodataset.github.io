@@ -1,33 +1,58 @@
-<div class="column3">
+<div class="columnApi">
   <p class="fontTitle">Tools</p>
-  <p class="fontBig"><a href="https://github.com/pdollar/coco" target="_blank">Matlab+Python+Lua APIs</a></p>
-  <p class="fontSmall">V2.0 of the API was completed 07/2015 and includes detection eval code. The Lua API, added 05/2016, supports only load and view functionality (no eval code).</p>
+  <p class="fontSubtitle"><a href="https://github.com/pdollar/coco" target="_blank">COCO API</a></p>
 </div>
-<div class="columnSpacer"></div>
-<div class="column3">
+<div class="columnDownloads">
   <p class="fontTitle">Images</p>
   <p class="fontSmall">
-    <a href="http://msvocds.blob.core.windows.net/coco2014/train2014.zip">2014 Training images [80K/13GB]</a><br/><br/>
-    <a href="http://msvocds.blob.core.windows.net/coco2014/val2014.zip">2014 Val. images [40K/6.2GB]</a><br/><br/>
-    <a href="http://msvocds.blob.core.windows.net/coco2014/test2014.zip">2014 Testing images [40K/6.2GB]</a><br/><br/>
-    <a href="http://msvocds.blob.core.windows.net/coco2015/test2015.zip">2015 Testing images [80K/12.4G]</a>
+    <a href="http://images.cocodataset.org/zips/train2014.zip">2014 Train</a> / <a href="http://images.cocodataset.org/zips/val2014.zip">2014 Val</a> [123K/19GB]<br/>
+    <a href="http://images.cocodataset.org/zips/test2014.zip">2014 Testing images [41K/6GB]</a><br/>
+    <a href="http://images.cocodataset.org/zips/test2015.zip">2015 Testing images [81K/12GB]</a><br/>
+    <a href="http://images.cocodataset.org/zips/train2017.zip">2017 Train</a> / <a href="http://images.cocodataset.org/zips/val2017.zip">2017 Val</a> [123K/19GB]<br/>
+    <a href="http://images.cocodataset.org/zips/test2017.zip">2017 Testing images [41K/6GB]</a><br/>
+    <a href="http://images.cocodataset.org/zips/unlabeled2017.zip">2017 Unlabeled Images [123K/19GB]</a><br/>
   </p>
 </div>
-<div class="column3">
+<div class="columnDownloads">
   <p class="fontTitle">Annotations</p>
   <p class="fontSmall">
-    <a href="http://msvocds.blob.core.windows.net/annotations-1-0-3/instances_train-val2014.zip">2014 Train/Val object instances [158MB]</a><br/><br/>
-    <a href="http://msvocds.blob.core.windows.net/annotations-1-0-3/person_keypoints_trainval2014.zip">2014 Train/Val person keypoints [70MB]</a><br/><br/>
-    <a href="http://msvocds.blob.core.windows.net/annotations-1-0-3/captions_train-val2014.zip">2014 Train/Val image captions [18.8MB]</a><br/><br/>
-    <a href="http://msvocds.blob.core.windows.net/annotations-1-0-4/image_info_test2014.zip">2014 Testing Image info [0.74MB]</a><br/><br/>
-    <a href="http://msvocds.blob.core.windows.net/annotations-1-0-4/image_info_test2015.zip">2015 Testing Image info [1.83MB]</a><br/><br/>
-    Note: annotations updated on 07/23/2015 with the addition of a "coco_url" field (for allowing of direct downloads of individual images).
+    <a href="http://images.cocodataset.org/annotations/annotations_trainval2014.zip">2014 Train/Val annotations [271.7MB]</a><br/>
+    <a href="http://images.cocodataset.org/annotations/image_info_test2014.zip">2014 Testing Image info [0.8MB]</a><br/>
+    <a href="http://images.cocodataset.org/annotations/image_info_test2015.zip">2015 Testing Image info [1.9MB]</a><br/>
+    <a href="http://images.cocodataset.org/annotations/annotations_trainval2017.zip">2017 Train/Val annotations [271.7MB]</a><br/>
+    <a href="http://images.cocodataset.org/annotations/image_info_test2017.zip">2017 Testing Image info [1.1MB]</a><br/>
+    <a href="http://images.cocodataset.org/annotations/image_info_unlabeled2017.zip">2017 Unlabeled Image info [4.5MB]</a><br/>
   </p>
 </div>
-
 <p class="fontTitle">1. Overview</p>
-<p>The 2014 Testing Images are for the <a href="#captions-challenge2015">COCO Captioning Challenge</a>, while the 2015 Testing Images are for the <a href="#detections-challenge2016">Detection</a> and <a href="#keypoints-challenge2016">Keypoint</a> Challenges. The train and val data are common to all challenges. Note also that as an alternative to downloading the large image zip files, individual images may be downloaded from the COCO website using the "coco_url" field specified in the image info struct (see details below).</p>
-<p>Please follow the instructions in the <a href="https://github.com/pdollar/coco" target="_blank">README</a> to download and setup the COCO data (annotations and images). By downloading this dataset, you agree to our <a href="/termsofuse" target="_blank">Terms of Use</a>.</p>
+
+<p>Which dataset splits should you download? Each year's split is associated with different challenges. Specifically:</p>
+<div class="json">
+  <div class="jsonktxt">2014 Train/Val</div><div class="jsonvtxt"><a href="#detections-challenge2015">Detection 2015</a>, <a href="#captions-challenge2015">Captioning 2015</a>, <a href="#detections-challenge2016">Detection 2016</a>, <a href="#keypoints-challenge2016">Keypoints 2016</a></div>
+  <div class="jsonktxt">2014 Testing  </div><div class="jsonvtxt"><a href="#captions-challenge2015">Captioning 2015</a></div>
+  <div class="jsonktxt">2015 Testing  </div><div class="jsonvtxt"><a href="#detections-challenge2015">Detection 2015</a>, <a href="#detections-challenge2016">Detection 2016</a>, <a href="#keypoints-challenge2016">Keypoints 2016</a></div>
+  <div class="jsonktxt">2017 Train/Val</div><div class="jsonvtxt"><a href="#detections-challenge2017">Detection 2017</a>, <a href="#keypoints-challenge2017">Keypoints 2017</a>, <a href="#stuff-challenge2017">Stuff 2017</a></div>
+  <div class="jsonktxt">2017 Testing  </div><div class="jsonvtxt"><a href="#detections-challenge2017">Detection 2017</a>, <a href="#keypoints-challenge2017">Keypoints 2017</a>, <a href="#stuff-challenge2017">Stuff 2017</a></div>
+  <div class="jsonktxt">2017 Unlabeled</div><div class="jsonvtxt fontBlue">[optional data for any competition]</div>
+</div>
+<p class="fontSubtle">If you are submitting to a 2017 challenge, you only need to download the 2017 data. You can disregard earlier data splits.</p>
+<p>For efficiently downloading the images, we recommend using <a href="#gsutil-rsync" data-toggle="collapse" class="fontBold"><span class="glyphicon glyphicon-expand"></span> gsutil rsync</a> to avoid the download of large zip files.</p>
+<div id="gsutil-rsync" class="collapse">
+  <div class="json">
+    <p>Our data is hosted on Google Cloud Platform (GCP). <span class="fontMono"> gsutil</span> provides tools for efficiently accessing this data. You do <i>not</i> need a GCP account to use <span class="fontMono"> gsutil</span>. Instructions for downloading the data are as follows:</p>
+    <div class="jsonktxt">(1) Install gsutil via:</div><div class="jsonvtxt fontBlue">curl https://sdk.cloud.google.com | bash </div>
+    <div class="jsonktxt">(2) Make local dir:</div><div class="jsonvtxt fontBlue">mkdir val2017</div>
+    <div class="jsonktxt">(3) Synchronize via:</div><div class="jsonvtxt fontBlue">gsutil -m rsync gs://images.cocodataset.org/val2017 val2017</div>
+    <p>The splits are available for download via rsync are: train2014, val2014, test2014, test2015, train2017, val2017, test2017, unlabeled2017. Simply replace 'val2017' with the split you wish to download and repeat steps (2)-(3). Finally, you can also download all the annotation zip files via:</p>
+    <div class="jsonktxt">(4) Get annotations: </div><div class="jsonvtxt fontBlue">gsutil -m rsync gs://images.cocodataset.org/annotations [localdir]</div>
+    <p>The download is multi-threaded, you can control other options of the download as well (see <a href="https://cloud.google.com/storage/docs/gsutil/commands/rsync">gsutil rsync</a>). Please do not contact us with help
+    <a href="https://cloud.google.com/storage/docs/gsutil_install">installing gsutil</a> (we note only that you do not need to run <span class="fontMono"> gcloud init</span>).</p>
+  </div>
+</div>
+<p>Please follow the instructions in the <a href="https://github.com/pdollar/coco" target="_blank">COCO API Readme</a> to setup the downloaded COCO data (the images and annotations).
+By downloading this dataset, you agree to our <a href="termsofuse.htm">Terms of Use</a>.</p>
+<p><b>2017 Update:</b> The main change in 2017 is that instead of an 80K/40K train/val split, based on community feedback the split is now 115K/5K for train/val. The same exact images are used, and no new annotations for detection/keypoints are provided. However, new in 2017 are stuff annotations on 40K train images (subset of the full 115K train images from 2017) and 5K val images. Also, for testing, in 2017 the test set only has two splits (dev/challenge), instead of the four splits (dev/standard/reserve/challenge) used in previous years. Finally, new in 2017 we are releasing 120K unlabeled images from COCO that follow the same class distribution as the labeled images; this may be useful for semi-supervised learning on COCO.</p>
+<p><b>Note:</b> Annotations last updated <i>09/01/2017</i>. If you find any issues with the data please let us know. Thanks!</br><b>Note:</b> 2017 stuff annotations will be available no later than <i>09/08/2017</i>.</p>
 
 <p class="fontTitle">2. COCO API</p>
 <p>The COCO API assists in loading, parsing, and visualizing annotations in COCO. The API supports object instance, object keypoint, and image caption annotations (for captions not all functionality is defined). For additional details see: <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/CocoApi.m" target="_blank">CocoApi.m</a>, <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/coco.py" target="_blank">coco.py</a>, and <a href="https://github.com/pdollar/coco/blob/master/LuaAPI/CocoApi.lua" target="_blank">CocoApi.lua</a> for Matlab, Python, and Lua code, respectively, and also the <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocoDemo.ipynb" target="_blank">Python API demo</a>.</p>
