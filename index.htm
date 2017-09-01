@@ -18,27 +18,26 @@
   <script>$(function(){populateHomePage()})</script>
   <div id="header"><div id="headerBody"><img id="headerImage" src="images/logo.png" alt="Logo" /><div id="headerTabs"></div></div></div>
   <div id="content">
-    <div class="column">
+    <div class="columnFeatures">
       <p class="fontTitle">What is COCO?</p>
       <img class="iconsImage" src="images/icons.png"/>
-      <p class="fontSubtle">COCO is a new image recognition, segmentation, and captioning dataset. COCO has several features:</p>
+      <p class="fontSubtle">COCO is a large-scale object detection, segmentation, and captioning dataset. COCO has several features:</p>
       <ul class="fontSubtle fontBold noBullet">
         <li class="checkBullet">Object segmentation</li>
+        <li class="checkBullet">Stuff segmentation</li>
         <li class="checkBullet">Recognition in Context</li>
-        <li class="checkBullet">Multiple objects per image</li>
-        <li class="checkBullet">More than 300,000 images</li>
-        <li class="checkBullet">More than 2 Million instances</li>
+        <li class="checkBullet">330K images (&gt;200K labeled)</li>
+        <li class="checkBullet">1.5 million object instances</li>
         <li class="checkBullet">80 object categories</li>
+        <li class="checkBullet">91 stuff categories</li>
         <li class="checkBullet">5 captions per image</li>
-        <li class="checkBullet">Keypoints on 100,000 people</li>
+        <li class="checkBullet">100,000 people with keypoints</li>
       </ul>
     </div>
-    <div class="columnSpacer"></div>
     <div class="columnPeople">
       <p class="fontTitle">Collaborators</p>
       <div class="fontSubtle" id="cocoPeople"></div>
     </div>
-    <div class="columnSpacer"></div>
     <div class="columnSponsors">
       <p class="fontTitle">Sponsors</p>
       <p><img class="wide" src="images/sponsors-microsoft.png"></p>
@@ -46,7 +45,7 @@
       <p><img class="wide" src="images/sponsors-MightyAI.svg"></p>
     </div>
     <div class="fontTitle">News</div>
-    <ul class="fontSubtle fontSubtle fontSubsubtitle">
+    <ul class="fontSubtle fontSubsubtitle">
       <li>We are pleased to announce the COCO 2017 <a href="dataset.htm#detections-challenge2017">Detection</a> and <a href="dataset.htm#keypoints-challenge2017">Keypoint</a> Challenges.<br/></li>
       <li>This year we will also be hosting a new COCO <a href="dataset.htm#stuff-challenge2017">Stuff Segmentation</a> Challenge!</br></li>
       <li>Results to be announced at the <a href="https://places-coco2017.github.io/">Joint COCO and Places Recognition</a> ICCV workshop.</li>

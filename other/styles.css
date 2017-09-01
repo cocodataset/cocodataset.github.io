@@ -37,7 +37,6 @@ a img {
 }
 .fontSubtle {
   color:#888;
-  text-align:left;
 }
 .fontBlue {
   color:#3355bb;
@@ -58,7 +57,7 @@ ul.noBullet {
 }
 li.checkBullet {
   background:url(../images/check.gif) no-repeat left top;
-  height:24px;
+  height:22px;
   padding-left:38px;
 }
 .wide {
@@ -148,17 +147,15 @@ li.checkBullet {
   min-height:600px;
   padding-left:20px;
 }
-.column {
+.columnFeatures {
   display:table-cell;
-}
-.columnSpacer {
-  display:table-cell;
-  width:3%;
+  width:340px;
+  padding-right:85px;
+  padding-bottom:20px;
 }
 .columnPeople {
   display:table-cell;
-  width:220px;
-  margin-top:-30px;
+  width:270px;
   line-height:25px;
   font-size:12px;
 }
@@ -243,7 +240,7 @@ li.checkBullet {
   margin-bottom:20px;
 }
 .ldbdTabHead {
-  padding: 5px 10px;
+  padding: 5px 0px;
   width:100px;
 }
 .ldbdTabs a {
