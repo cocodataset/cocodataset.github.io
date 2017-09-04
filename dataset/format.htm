@@ -1,5 +1,5 @@
 <p class="fontTitle">1. Results Format Overview</p>
-<p>This page describes the <span class="fontItalic">results format</span> used by COCO. The general structure of the results format is similar for all annotation types: for both object detection (using either bounding boxes or object segments) and image caption generation. Submitting algorithm results on COCO for evaluation requires using the formats described below.</p>
+<p>This page describes the <span class="fontItalic">results format</span> used by COCO. The general structure of the results format is similar for all annotation types. Submitting algorithm results on COCO for evaluation requires using the formats described below.</p>
 
 <p class="fontTitle">2. Results Format</p>
 <p>The results format used by COCO closely mimics the format of the ground truth as described on the <a href="#download">download </a> page. We suggest reviewing the ground truth format before proceeding.</p>
@@ -39,7 +39,17 @@
 </div>
 <p>Note: keypoint coordinates are floats measured from the top left image corner (and are 0-indexed). We recommend rounding coordinates to the nearest pixel to reduce file size. Note also that the visibility flags v<sub>i</sub> are <i>not</i> currently used (except for controlling visualization), we recommend simply setting v<sub>i</sub>=1.</p>
 
-<p class="fontSubtitle">2.4. Caption generation</p>
+<p class="fontSubtitle">2.4. Stuff segmentation</p>
+<div class="json">
+  <div class="jsonreg">[{</div>
+  <div class="jsonk">"image_id"     </div><div class="jsonv">: int,  </div>
+  <div class="jsonk">"category_id"  </div><div class="jsonv">: int,  </div>
+  <div class="jsonk">"segmentation" </div><div class="jsonv">: RLE,  </div>
+  <div class="jsonreg">}]</div>
+</div>
+<p>The stuff segmentation format is identical to the object segmentation format except the score field is not necessary. Note: we recommend encoding each label that occurs in an image with a single binary mask. Binary masks should be encoded via RLE using the MaskApi function <span class="fontMono">encode()</span>. <b>Additional utility functions coming soon.</b></p>
+
+<p class="fontSubtitle">2.5. Caption generation</p>
 <div class="json">
   <div class="jsonreg">[{</div>
   <div class="jsonk">"image_id"     </div><div class="jsonv">: int,      </div>

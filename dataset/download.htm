@@ -159,7 +159,10 @@ By downloading this dataset, you agree to our <a href="termsofuse.htm">Terms of 
   "[cloned]": denotes fields copied from object instance annotations defined in 4.1.</div>
 </div>
 
-<p class="fontSubtitle">4.3. Image Caption Annotations</p>
+<p class="fontSubtitle">4.3. Stuff Segmentation Annotations</p>
+<p>The stuff annotation format is identical and fully compatible to the object instance annotation format above (except iscrowd is unnecessary and set to 0). Each category present in an image is encoded with a single RLE annotation (see Mask API above for more details). The category_id represents the id of the current stuff category. For more details on stuff categories and supercategories see the <a href="#stuff-eval">stuff evaluation</a> page. <b>Additional utility functions coming soon.</b> See also the <a href="#stuff-challenge2017">Stuff Challenge</a>.</p>
+
+<p class="fontSubtitle">4.4. Image Caption Annotations</p>
 <p>These annotations are used to store image captions. Each caption describes the specified image and each image has at least 5 captions (some images have more). See also the <a href="#captions-challenge2015">Captioning Challenge</a>.</p>
 <div class="json">
   <div class="jsonreg">annotation{</div>

@@ -1,1 +1,75 @@
-<p class="fontTitle">Coming Soon!</p>
+<p class="fontTitle">1. Stuff Evaluation</p>
+<p><b>Note: stuff annotations are finalized and will be available for download shortly.</b></br>
+<b>Note: stuff evaluation code is being finalized and will be part of the COCO API shortly.</b></p>
+<p>This page describes the <span class="fontItalic">stuff evaluation code</span> used by COCO and provides instructions for submitting results to the evaluation server. The evaluation code provided here can be used to obtain results on the publicly available COCO validation set. It computes multiple metrics described below. To obtain results on the COCO test set, for which ground truth annotations are hidden, generated results must be submitted to the <span class="fontItalic">evaluation server</span>. The exact same evaluation code, described below, is used to evaluate results on the test set.</p>
+<p>The COCO 2017 Stuff Segmentation Challenge builds on the COCO-Stuff project as described on <a href="https://github.com/nightrome/cocostuff">this website</a> and in this <a href="https://arxiv.org/abs/1612.03716">research paper</a>. This challenge includes and extends the original dataset release. Please note that in order to scale annotation, stuff segmentations were collected on superpixel segmentations of an image.</p>
+
+<p class="fontTitle">2. Classes</p>
+<p>The stuff labels for the COCO 2017 Stuff Segmentation Challenge are organized in a <a href="images/stuff-challenge2017-labelhierarchy.png">semantic hierarchy</a>. Additionally there is a single 'other' category and a supercategory of the same name that subsumes all the thing categories in COCO along with unlabeled stuff categories. For compatibility with the COCO thing categories we use the following category ids:</p>
+<div class="json fontMono">
+  <div class="jsonk">1-91</div><div class="jsonv">% thing categories (not used for stuff segmentation)</div>
+  <div class="jsonk">100</div><div class="jsonv">% other category (all thing pixels and unlabeled stuff)</div>
+  <div class="jsonk">101-191</div><div class="jsonv">% stuff categories</div>
+</div>
+<p>Notes: every pixel has at most one label (but not all pixels have a label). Unassigned pixels are ignored during evaluation (when stored as an image, they are are given label 0). The equal number of thing and stuff categories is a coincidence.</p>
+
+<p class="fontTitle">3. Metrics</p>
+<p>The following metrics are used for characterizing the performance of stuff segmentation methods on COCO. The same metrics are used for leaf node evaluation (e.g. grass, wall-stone, other), as well as for supercategories (e.g. plant, wall, other). The challenge winner will be determined based on the highest Mean IoU over leaf nodes. An overview of these metrics can be found in [<a href="https://arxiv.org/abs/1605.06211" target="_blank">Shelhamer PAMI 2016</a>].</p>
+<div class="json fontMono">
+  <div class="jsonreg"><b>Leaf category metrics:</b></div>
+  <div class="jsonk">mIoU</div><div class="jsonv">% Mean IoU <b>(primary challenge metric)</b></div>
+  <div class="jsonk">fIoU</div><div class="jsonv">% Frequency Weighted IoU</div>
+  <div class="jsonk">mAcc</div><div class="jsonv">% Mean Accuracy</div>
+  <div class="jsonk">pAcc</div><div class="jsonv">% Pixel Accuracy</div>
+  <div class="jsonreg"><b>Supercategory metrics:</b></div>
+  <div class="jsonk">mIoU<sup>S</sup></div><div class="jsonv">% Mean IoU</div>
+  <div class="jsonk">fIoU<sup>S</sup></div><div class="jsonv">% Frequency Weighted IoU</div>
+  <div class="jsonk">mAcc<sup>S</sup></div><div class="jsonv">% Mean Accuracy</div>
+  <div class="jsonk">pAcc<sup>S</sup></div><div class="jsonv">% Pixel Accuracy</div>
+</div><br/>
+<ol class="fontSmall">
+  <li>Intersection Over Union (IoU) is computed as IoU=TP/(TP+FP+FN), where TP=true positives, FP=false positives, and FN=false negatives.</li>
+  <li>Mean IoU (mIoU) is the average over the IoUs of each class.</li>
+  <li>Frequency Weighted IoU (fIoU) weights every class proportional to the number of pixels for that class.</li>
+  <li>Mean Accuracy (mAcc) denotes the fraction of correct pixels per class averaged over classes.</li>
+  <li>Pixel Accuracy (pAcc) denotes the fraction of correct pixels.</li>
+  <li>Note that metrics are computed on the <i>pixels</i> in each image, <i>not on object instances</i>.</li>
+  <li>All metrics are computed only on valid pixels (91 stuff classes + 1 other class). Unlabeled pixels are not considered.</li>
+  <li>If there are no ground-truth pixels for a class in the validation/test set, that class is removed from consideration.</li>
+</ol>
+
+<p class="fontTitle">4. Results Format</p>
+<p>The results format used for storing segmentations is described on the <a href="#format">results format</a> page. For reference, here is a summary:</p>
+<div class="json">
+  <div class="jsonreg">[{</div>
+  <div class="jsonk">"image_id"     </div><div class="jsonv">: int,  </div>
+  <div class="jsonk">"category_id"  </div><div class="jsonv">: int,  </div>
+  <div class="jsonk">"segmentation" </div><div class="jsonv">: RLE,  </div>
+  <div class="jsonreg">}]</div>
+</div>
+<p>Note: we recommend encoding each label that occurs in an image with a single binary mask. Binary masks should be encoded via RLE using the MaskApi function <span class="fontMono">encode()</span>. <b>Additional utility functions coming soon.</b></p>
+
+<p class="fontTitle">5. Evaluation Code</p>
+<p><b>Note: stuff evaluation code is being finalized and will be part of the COCO API shortly.</b></p>
+
+<p class="fontTitle">6. Upload Results</p>
+<p><b>Note: 2017 evaluation servers will be opened shortly.</b></p>
+<p>This section describes the <i>upload instructions</i> for submitting results to the <a target="_blank">stuff evaluation server</a>. Submitting results allows you to participate in the <a href="#stuff-challenge2017">COCO Stuff Challenge</a> and compare results to the state-of-the-art on the <a href="#stuff-leaderboard">stuff leaderboard</a>. Before you continue, please carefully review the <a href="#guidelines">guidelines</a> for using the COCO test sets. Note that the 2017 Stuff Challenge uses only a subset of the train, test-dev and test-challenge sets (see the corresponding stuff JSON files).</p>
+<p>First, please create an account on <a href="https://codalab.org" target="_blank">CodaLab</a> if you have not done so previously. Before uploading your results to the evaluation server, you will need to create a JSON file containing your results in the correct <a href="#format">format</a>. The file should be named "stuff_[testset]_[alg]_results.json". Replace [alg] with your algorithm name and [testset] with either "test-dev2017" or "test2017" depending on the test split you are using. Place the JSON file into a zip file named "stuff_[testset]_[alg]_results.zip". To submit your zipped result file to the COCO Stuff Challenge click on the “Participate” tab on the CodaLab <a target="_blank">stuff evaluation server</a>. Select the test split (test-dev or test). When you select “Submit / View Results” you will be given the option to submit new results. Please fill in the required fields and click “Submit”. A pop-up will prompt you to select the results zip file for upload. After the file is uploaded the evaluation server will begin processing. To view the status of your submission please select “Refresh Status”. Please be patient, the evaluation may take quite some time to complete (~20min on test-dev and ~40min on the full test set). If the status of your submission is “Failed” please check your file is named correctly and has the right <a href="#format">format</a>.</p>
+<p>After you submit your results to the evaluation server, you can control whether your results are publicly posted to the CodaLab leaderboard. To toggle the public visibility of your results please select either “post to leaderboard” or “remove from leaderboard”. Only one result can be published to the leaderboard at any time. In addition to the CodaLab leaderboard, we also host our own more detailed <a href="#stuff-leaderboard">leaderboard</a> that includes additional results and method information (such as paper references). Note that the CodaLab leaderboard may contain results not yet migrated to our own leaderboard. Once results are migrated to our public leaderboard they cannot be removed (but they can be updated).</p>
+<p>After evaluation is complete and the server shows a status of “Finished”, you will have the option to download your evaluation results by selecting “Download evaluation output from scoring step.” The zip file will contain three files:</p>
+<div class="json fontMono">
+  <div class="jsonreg">
+    <div class="jsonblk">
+      stuff_[testset]_[alg]_eval.json<br/>
+      metadata<br/>
+      scores.txt
+    </div>
+    <div class="jsonblk">
+      % aggregated evaluation on test <br/>
+      % auto generated (safe to ignore) <br/>
+      % auto generated (safe to ignore)
+    </div>
+  </div>
+</div>
+<p>The format of the json eval file is described earlier on this page.</p>
