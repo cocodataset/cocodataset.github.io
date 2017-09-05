@@ -1,15 +1,14 @@
 <p class="fontTitle">1. Stuff Evaluation</p>
-<p><b>Note: stuff annotations are finalized and will be available for download shortly.</b></br>
 <b>Note: stuff evaluation code is being finalized and will be part of the COCO API shortly.</b></p>
 <p>This page describes the <span class="fontItalic">stuff evaluation code</span> used by COCO and provides instructions for submitting results to the evaluation server. The evaluation code provided here can be used to obtain results on the publicly available COCO validation set. It computes multiple metrics described below. To obtain results on the COCO test set, for which ground truth annotations are hidden, generated results must be submitted to the <span class="fontItalic">evaluation server</span>. The exact same evaluation code, described below, is used to evaluate results on the test set.</p>
 <p>The COCO 2017 Stuff Segmentation Challenge builds on the COCO-Stuff project as described on <a href="https://github.com/nightrome/cocostuff">this website</a> and in this <a href="https://arxiv.org/abs/1612.03716">research paper</a>. This challenge includes and extends the original dataset release. Please note that in order to scale annotation, stuff segmentations were collected on superpixel segmentations of an image.</p>
 
 <p class="fontTitle">2. Classes</p>
-<p>The stuff labels for the COCO 2017 Stuff Segmentation Challenge are organized in a <a href="images/stuff-challenge2017-labelhierarchy.png">semantic hierarchy</a>. Additionally there is a single 'other' category and a supercategory of the same name that subsumes all the thing categories in COCO along with unlabeled stuff categories. For compatibility with the COCO thing categories we use the following category ids:</p>
+<p>The stuff labels for the COCO 2017 Stuff Segmentation Challenge are organized in a <a href="images/stuff-challenge2017-labelhierarchy.png">semantic hierarchy</a>. Additionally there is a single 'other' category and a supercategory of the same name that subsumes all the thing categories in COCO. For compatibility with the COCO thing categories we use the following category ids:</p>
 <div class="json fontMono">
   <div class="jsonk">1-91</div><div class="jsonv">% thing categories (not used for stuff segmentation)</div>
-  <div class="jsonk">100</div><div class="jsonv">% other category (all thing pixels and unlabeled stuff)</div>
-  <div class="jsonk">101-191</div><div class="jsonv">% stuff categories</div>
+  <div class="jsonk">92-182</div><div class="jsonv">% stuff categories</div>
+  <div class="jsonk">183</div><div class="jsonv">% other category (all thing pixels)</div>
 </div>
 <p>Notes: every pixel has at most one label (but not all pixels have a label). Unassigned pixels are ignored during evaluation (when stored as an image, they are are given label 0). The equal number of thing and stuff categories is a coincidence.</p>
 

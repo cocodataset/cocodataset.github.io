@@ -5,23 +5,26 @@
 <div class="columnDownloads">
   <p class="fontTitle">Images</p>
   <p class="fontSmall">
-    <a href="http://images.cocodataset.org/zips/train2014.zip">2014 Train</a> / <a href="http://images.cocodataset.org/zips/val2014.zip">2014 Val</a> [123K/19GB]<br/>
-    <a href="http://images.cocodataset.org/zips/test2014.zip">2014 Testing images [41K/6GB]</a><br/>
-    <a href="http://images.cocodataset.org/zips/test2015.zip">2015 Testing images [81K/12GB]</a><br/>
-    <a href="http://images.cocodataset.org/zips/train2017.zip">2017 Train</a> / <a href="http://images.cocodataset.org/zips/val2017.zip">2017 Val</a> [123K/19GB]<br/>
-    <a href="http://images.cocodataset.org/zips/test2017.zip">2017 Testing images [41K/6GB]</a><br/>
-    <a href="http://images.cocodataset.org/zips/unlabeled2017.zip">2017 Unlabeled Images [123K/19GB]</a><br/>
+    <a href="http://images.cocodataset.org/zips/train2014.zip">2014 Train images [83K/13GB]</a><br/>
+    <a href="http://images.cocodataset.org/zips/val2014.zip">2014 Val images [41K/6GB]</a><br/>
+    <a href="http://images.cocodataset.org/zips/test2014.zip">2014 Test images [41K/6GB]</a><br/>
+    <a href="http://images.cocodataset.org/zips/test2015.zip">2015 Test images [81K/12GB]</a><br/>
+    <a href="http://images.cocodataset.org/zips/train2017.zip">2017 Train images [118K/18GB]</a><br/>
+    <a href="http://images.cocodataset.org/zips/val2017.zip">2017 Val images [5K/1GB]</a><br/>
+    <a href="http://images.cocodataset.org/zips/test2017.zip">2017 Test images [41K/6GB]</a><br/>
+    <a href="http://images.cocodataset.org/zips/unlabeled2017.zip">2017 Unlabeled images [123K/19GB]</a><br/>
   </p>
 </div>
 <div class="columnDownloads">
   <p class="fontTitle">Annotations</p>
   <p class="fontSmall">
-    <a href="http://images.cocodataset.org/annotations/annotations_trainval2014.zip">2014 Train/Val annotations [271.7MB]</a><br/>
-    <a href="http://images.cocodataset.org/annotations/image_info_test2014.zip">2014 Testing Image info [0.8MB]</a><br/>
-    <a href="http://images.cocodataset.org/annotations/image_info_test2015.zip">2015 Testing Image info [1.9MB]</a><br/>
-    <a href="http://images.cocodataset.org/annotations/annotations_trainval2017.zip">2017 Train/Val annotations [271.7MB]</a><br/>
-    <a href="http://images.cocodataset.org/annotations/image_info_test2017.zip">2017 Testing Image info [1.1MB]</a><br/>
-    <a href="http://images.cocodataset.org/annotations/image_info_unlabeled2017.zip">2017 Unlabeled Image info [4.5MB]</a><br/>
+    <a href="http://images.cocodataset.org/annotations/annotations_trainval2014.zip">2014 Train/Val annotations [241MB]</a><br/>
+    <a href="http://images.cocodataset.org/annotations/image_info_test2014.zip">2014 Testing Image info [1MB]</a><br/>
+    <a href="http://images.cocodataset.org/annotations/image_info_test2015.zip">2015 Testing Image info [2MB]</a><br/>
+    <a href="http://images.cocodataset.org/annotations/annotations_trainval2017.zip">2017 Train/Val annotations [241MB]</a><br/>
+    <a href="http://images.cocodataset.org/annotations/stuff_annotations_trainval2017.zip">2017 Stuff Train/Val annotations [191MB]</a><br/>
+    <a href="http://images.cocodataset.org/annotations/image_info_test2017.zip">2017 Testing Image info [1MB]</a><br/>
+    <a href="http://images.cocodataset.org/annotations/image_info_unlabeled2017.zip">2017 Unlabeled Image info [4MB]</a><br/>
   </p>
 </div>
 <p class="fontTitle">1. Overview</p>
@@ -52,7 +55,7 @@
 <p>Please follow the instructions in the <a href="https://github.com/pdollar/coco" target="_blank">COCO API Readme</a> to setup the downloaded COCO data (the images and annotations).
 By downloading this dataset, you agree to our <a href="termsofuse.htm">Terms of Use</a>.</p>
 <p><b>2017 Update:</b> The main change in 2017 is that instead of an 80K/40K train/val split, based on community feedback the split is now 115K/5K for train/val. The same exact images are used, and no new annotations for detection/keypoints are provided. However, new in 2017 are stuff annotations on 40K train images (subset of the full 115K train images from 2017) and 5K val images. Also, for testing, in 2017 the test set only has two splits (dev / challenge), instead of the four splits (dev / standard / reserve / challenge) used in previous years. Finally, new in 2017 we are releasing 120K unlabeled images from COCO that follow the same class distribution as the labeled images; this may be useful for semi-supervised learning on COCO.</p>
-<p><b>Note:</b> Annotations last updated <i>09/01/2017</i>. If you find any issues with the data please let us know. Thanks!</br><b>Note:</b> 2017 stuff annotations will be available no later than <i>09/08/2017</i>.</p>
+<p><b>Note:</b> Annotations last updated <i>09/05/2017</i> (stuff annotations added). If you find any issues with the data please let us know!</p>
 
 <p class="fontTitle">2. COCO API</p>
 <p>The COCO API assists in loading, parsing, and visualizing annotations in COCO. The API supports object instance, object keypoint, and image caption annotations (for captions not all functionality is defined). For additional details see: <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/CocoApi.m" target="_blank">CocoApi.m</a>, <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/coco.py" target="_blank">coco.py</a>, and <a href="https://github.com/pdollar/coco/blob/master/LuaAPI/CocoApi.lua" target="_blank">CocoApi.lua</a> for Matlab, Python, and Lua code, respectively, and also the <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocoDemo.ipynb" target="_blank">Python API demo</a>.</p>
