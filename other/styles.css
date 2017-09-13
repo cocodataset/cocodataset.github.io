@@ -85,60 +85,69 @@ li.checkBullet {
   vertical-align:top;
   margin-top:50px;
   margin-left:15px;
-  margin-right:35px;
+  margin-right:30px;
   width:285px;
   height:80px;
 }
 #headerTabs {
   display:inline-block;
   vertical-align:top;
-  width:455px;
+  width:460px;
   padding-top:70px;
 }
-#tabEmail {
+#headerEmail {
   display:inline-block;
   vertical-align:top;
-  width:455px;
+  width:460px;
   height:20px;
   color:white;
   font-size:13px;
   padding-right:5px;
   text-align:right;
 }
-.tabDiv {
-  height:56px;
-  margin-left:2px;
-  cursor:pointer;
-  font-weight:700;
-  display:inline-block;
-  vertical-align:text-bottom;
-  text-align:center;
-}
-.tabDivHead {
-  height:4px;
-  background-color:#1d2125;
-}
-.tabDivHeadSelected {
-  height:4px;
-  background-color:#e16c03;
-}
-.tabDivBody {
-  height:52px;
-  padding:0px 7px;
+.nav-tabs {
+  margin-top:0px;
   font-size:21px;
+  background-color:#1d2125;
+  border:0px;
+}
+.nav-tabs > li > a,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
   color:white;
-  background-color:#1d2125;
-  border-top:1px solid #1d2125;
-  border-bottom:5px solid #1d2125;
-}
-.tabDivBodySelected {
-  height:52px;
+  height:47px;
+  border:0px;
+  border-radius:0px;
   padding:0px 7px;
-  font-size:21px;
+  font-weight:700;
+  margin:0px 1px;
+}
+.nav-tabs > .open > a,
+.nav-tabs > .open > a:hover,
+.nav-tabs > .open > a:focus,
+.nav-tabs > li:hover > a,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+  color:#1d2125;
+  background-color:#00a35c;
+  border:0px;
+  cursor:pointer;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
   color:#1d2125;
   background-color:#02b770;
-  border-top:1px solid #1d2125;
-  border-bottom:5px solid #1d2125;
+  border:0px;
+}
+.nav-tab-header {
+  height:4px;
+  margin:1px;
+}
+.nav-tabs > .open > .nav-tab-header,
+.nav-tabs > li:hover > .nav-tab-header,
+.nav-tabs > li.active > .nav-tab-header {
+  background-color:#e16c03;
 }
 /* CONTENT ------------------------------------ */
 #content {
@@ -190,10 +199,6 @@ li.checkBullet {
 }
 .datasetSplits td, th {
   padding-right:30px;
-}
-#dataset-tabs {
-  margin-top:5px;
-  font-size:18px;
 }
 /* FOOTER ------------------------------------ */
 #footer {

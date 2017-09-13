@@ -1,57 +1,33 @@
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <title>COCO - Common Objects in Context</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="other/styles.css" />
-    <script src="other/cocoscripts.js"></script>
-    <script src="other/explore.js"></script>
-    <script>googleAnalytics();</script>
-    <!--sources for tag-it-->
-    <link rel="stylesheet" href="other/jquery.tagit.css">
-    <script src="other/tag-it.min.js"></script>
-    <style>
-        .exploreIcon {display:inline-block;width:50px;height:50px}
-        .exploreIconImage {width:50px;height:50px; cursor:pointer}
-        .exploreIconPanel {margin-bottom: 25px}
-        .exploreTags {width:90%;display:inline-block;vertical-align:middle}
-        .exploreButton {display:inline-block}
-        #exploreSearchCount {font-size:8pt;color:#888888; margin-bottom:15px}
-    </style>
-    <script>
-        $(window).on('load', function() {
-            loadIconPanel();
-            setupIconsSearchPanel();
-            var image_id = getUrlParameter("id");
-            if (image_id != undefined){
-                $("#tags").tagit("createTag", image_id);
-                loadSearch();
-            }
-        });
-    </script>
-
-</head>
-    <body>
-        <script>$(function(){populateHeaders('Explore')})</script>
-        <div id="header"><div id="headerBody"><img id="headerImage" src="images/logo.png" alt="Logo" /><div id="headerTabs"></div></div></div>
-        <div id="dialog-modal" title="Message"></div>
-        <div id="content">
-            <span> COCO 2017 train/val browser (123,287 images, 886,284 instances). Crowd labels not shown. </span>
-            <div id='exploreIconPanel' class='exploreIconPanel' style='width:800px'></div>
-            <div class="exploreTags"><input id="tags" /></div>
-            <div class="exploreButton">
-              <button id="btn-search" type="button" style="margin-top:-10px" class="btn btn-primary" onclick='clearCanvas(); loadSearch();'> search </button>
-            </div>
-            <div id='exploreSearchCount'></div>
-            <div id="exploreImageDisplayList"></div>
-            <div id="btn-loading" align="center" style="display:none"><img src='images/ajax-loader.gif'></img></div>
-            <div id="btn-stop" align="center" style="display:none">no more images to show</div>
-        </div>
-        <div id="footer"><div><a href="termsofuse.htm">Terms of Use</a></div></div>
-    </body>
-</html>
+<script src="other/explore.js"></script>
+<link rel="stylesheet" href="other/jquery.tagit.css">
+<script src="other/tag-it.min.js"></script>
+<style>
+  .exploreIcon {display:inline-block;width:50px;height:50px}
+  .exploreIconImage {width:50px;height:50px; cursor:pointer}
+  .exploreIconPanel {margin-bottom: 25px}
+  .exploreTags {width:90%;display:inline-block;vertical-align:middle}
+  .exploreButton {display:inline-block}
+  #exploreSearchCount {font-size:8pt;color:#888888; margin-bottom:15px}
+</style>
+<script>
+$(function(){
+  loadIconPanel();
+  setupIconsSearchPanel();
+  var image_id = getUrlParameter("id");
+  if (image_id != undefined){
+    $("#tags").tagit("createTag", image_id);
+    loadSearch();
+  }
+});
+</script>
+<div id="dialog-modal" title="Message"></div>
+<p> COCO 2017 train/val browser (123,287 images, 886,284 instances). Crowd labels not shown.</p>
+<div id='exploreIconPanel' class='exploreIconPanel' style='width:800px'></div>
+<div class="exploreTags"><input id="tags" /></div>
+<div class="exploreButton">
+  <button id="btn-search" type="button" style="margin-top:-10px" class="btn btn-primary" onclick='clearCanvas(); loadSearch();'> search </button>
+</div>
+<div id='exploreSearchCount'></div>
+<div id="exploreImageDisplayList"></div>
+<div id="btn-loading" align="center" style="display:none"><img src='images/ajax-loader.gif'></img></div>
+<div id="btn-stop" align="center" style="display:none">no more images to show</div>

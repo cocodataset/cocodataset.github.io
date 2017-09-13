@@ -17,29 +17,13 @@ function googleAnalytics() {
   })();
 }
 
-function highlightTab(tab) {
-  $('#'+tab+'TabHead').attr('class','tabDivHeadSelected');
-  $('#'+tab+'TabBody').attr('class','tabDivBodySelected');
-};
-
-function populateHeaders(tab) {
-  var links = ['index','people','explore','dataset','external'];
-  var tabs = ['Home','People','Explore','Dataset','External'];
-  var s = '<div id="tabEmail">cocodataset@outlook.com</div>';
-  for( var i=0; i<links.length; i++ ) {
-    s += '<div class="tabDiv" onclick="window.location=\''+links[i]+'.htm\'">'
-    s += '<div class="tabDivHead" id="'+tabs[i]+'TabHead"></div>'
-    s += '<div class="tabDivBody" id="'+tabs[i]+'TabBody">'+tabs[i]+'</div></div>'
-  }
-  $("#headerTabs").append(s);
-  setTimeout(function(){highlightTab(tab)},10);
-  setTimeout(function(){highlightTab(tab)},100);
-  setTimeout(function(){highlightTab(tab)},1000);
-}
-
 function datasetTabNav() {
   // Enable dataset tab controls. See also: https://getbootstrap.com/docs/3.3/javascript/#tabs
   // And: http://stackoverflow.com/questions/12131273/twitter-bootstrap-tabs-url-doesnt-change
+  var tabs = ["people", "overview", "download", "explore", "external", "termsofuse", "detections-challenge2017", "keypoints-challenge2017", "stuff-challenge2017", "detections-challenge2016", "keypoints-challenge2016", "detections-challenge2015", "captions-challenge2015", "format", "guidelines", "detections-eval", "keypoints-eval", "stuff-eval", "captions-eval", "detections-leaderboard", "keypoints-leaderboard", "stuff-leaderboard", "captions-leaderboard"];
+  for( var i=0; i<tabs.length; i++ ) {
+    $("#content").append('<div role="tabpanel" class="tab-pane fade" id="' + tabs[i] + '"></div>');
+  }
   var loaded = {};
   $('.nav-tabs a').click(function (e) {
     if(this.hash) window.location.hash = this.hash;
@@ -51,7 +35,7 @@ function datasetTabNav() {
     loaded[hash]=true; $('a[href="'+hash+'"]').tab('show');
     $('html,body').scrollTop(0);
   });
-  if(!window.location.hash) window.location.hash = '#overview';
+  if(!window.location.hash) window.location.hash = '#home';
   $(window).trigger('hashchange');
 }
 
@@ -72,15 +56,15 @@ var cocoPeople = {
 };
 
 function populateHomePage() {
-  for( p in cocoPeople ) {
+  for( var p in cocoPeople ) {
     $("#cocoPeople").append('<span class="fontBold">'+cocoPeople[p].name +
     '</span> '+cocoPeople[p].short+'<br/>');
   }
 }
 
 function populatePeoplePage() {
-  for( p in cocoPeople ) {
-    $("#content").append("<div id='"+p+"' class='cocoPerson'><canvas id='"+p+"'></canvas></div> ");
+  for( var p in cocoPeople ) {
+    $("#people").append("<div id='"+p+"' class='cocoPerson'><canvas id='"+p+"'></canvas></div> ");
   }
   $('canvas').each(function(){
     var ctx = $(this)[0].getContext("2d");
@@ -149,7 +133,7 @@ function populateExternalPage() {
     s += '</div>';
     s += '</div>';
   }
-  $("#content").append(s);
+  $("#external").append(s);
 }
 
 function initLeaderboardDetection() {
