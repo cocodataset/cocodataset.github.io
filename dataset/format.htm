@@ -47,7 +47,7 @@
   <div class="jsonk">"segmentation" </div><div class="jsonv">: RLE,  </div>
   <div class="jsonreg">}]</div>
 </div>
-<p>The stuff segmentation format is identical to the object segmentation format except the score field is not necessary. Note: we recommend encoding each label that occurs in an image with a single binary mask. Binary masks should be encoded via RLE using the MaskApi function <span class="fontMono">encode()</span>. <b>Additional utility functions coming soon.</b></p>
+<p>The stuff segmentation format is identical to the object segmentation format except the score field is not necessary. Note: We recommend encoding each label that occurs in an image with a single binary mask. Binary masks should be encoded via RLE using the MaskApi function <span class="fontMono">encode()</span>. For an example see <span class="fontMono">segmentationToCocoResult()</span> in <a href="https://github.com/nightrome/coco/blob/master/PythonAPI/pycocotools/cocostuffhelper.py#L36">cocostuffhelper.py</a>.</p>
 
 <p class="fontSubtitle">2.5. Caption generation</p>
 <div class="json">

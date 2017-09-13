@@ -1,1 +1,118 @@
-<p class="fontTitle">Coming Soon!</p>
+<script>
+var initKptLeaderboard = function() {
+  // constants and global variables
+  var types = ["stuff_challenge2017", "stuff_dev"];
+  var metrics = ["MIOU_L", "FIOU_L", "MACC_L", "PACC_L", "MIOU_S", "FIOU_S", "MACC_S", "PACC_S"];
+  var N=types.length, current={type:'stuff_challenge2017',team:-1}, data=new Array(N);
+  for( var i=0; i<N; i++ ) data[i]={ main:[], refs:[], teams:[], cats:[] };
+  // extract main data for leaderboard for all teams
+  var loadData = function( entries ) {
+    for( var i=0; i<N; i++ ) {
+      for( var j=0; j<entries[types[i]].length; j++ ) {
+        var e=entries[types[i]][j], name=e.team.name, r=JSON.parse(e.results);
+        data[i].main[j] = new Array(2+metrics.length); data[i].main[j][0]=name;
+        for( var k=0; k<metrics.length; k++ ) data[i].main[j][k+1] = r[metrics[k]];
+        data[i].main[j][metrics.length+1] = e.date;
+        if(e.url != "") name = "<a href='" + e.url + "' target='_blank'> " + name + " </a>";
+        data[i].refs[j] = ["["+(j+1)+"] "+name, e.team.members, e.description];
+        data[i].teams[j]=e.team.id; data[i].cats[j]=[];
+      }
+    }
+    setData(current.type,current.team);
+  };
+  // function to set the data shown in the leaderboard and event binders
+  var bindSetType=function(e,type) { var t=type; e.click( function(){setData(t,current.team)} )};
+//  var bindSetTeam=function(e,team) { var t=team; e.click( function(){setData(current.type,t)} )};
+  for( var i=0; i<N; i++ ) bindSetType($('#a_'+types[i]),types[i]);
+  var setData = function( type, team ) {
+    var i=$.inArray(type,types), j=$.inArray(team,data[i].teams);
+    if(j==-1) team=-1; current.type=type; current.team=team;
+    tableRefs.clear().rows.add(data[i].refs).draw();
+    if( team==-1 ) {
+      tableData.clear().rows.add(data[i].main).draw();
+    } else if( data[i].cats[j].length>0 ) {
+      tableData.clear().rows.add(data[i].cats[j]).draw();
+      //bindSetTeam($('#clearTeam'),-1);
+    }
+  }
+  // initialize and format DataTables https://www.datatables.net/
+  var propsRefs = { 'paging':false, 'info':false, 'filter':false, 'sort':false, 'autoWidth':false };
+  propsRefs.columnDefs = [{'targets':0,'sWidth':'20%'}];
+  var propsData = { 'paging':false, 'info':false, 'order':[[1, 'desc']], 'dom':'fB<"toolbar_stuff">rtip' };
+  propsData.buttons=[{extend:'copyHtml5',title:'leaderboard',exportOptions:{orthogonal:'export'},text:'Copy to Clipboard'}, {extend:'csvHtml5', title:'leaderboard',exportOptions:{orthogonal:'export'},text:'Export to CSV'}];
+  propsData.columnDefs = [{'targets':0,'render':function(x,type,row,meta) {return (type==='export')?x:(current.team===-1)?x+'<sup>'+(meta.row+1)+'</sup>':'<span style="font-size:11px">'+x+'</span>'}}, {'targets':11,'render':function(x) {return '<span style="font-size:10px">'+x+'</span>'}}, {'targets':['_all'],'orderSequence':['desc', 'asc']}];
+  var tableData = $('#leaderboard_stuff #data').DataTable(propsData);
+  var tableRefs = $('#leaderboard_stuff #refs').DataTable(propsRefs);
+  $('div.toolbar_stuff').css({'text-align':'center','padding-top':'4px','font-size':'14px'})
+  // load core leaderboard data
+  $.ajax({ type:'POST', url:'/leaderboard_get_stuff_entries/', data:{'team_id':0}})
+    .done( function(json) {
+            loadData(JSON.parse(json).entries)
+            });
+};
+$( function() { initKptLeaderboard(); } );
+</script>
+
+<!------------------------------------------------------------------------------------------------>
+<style>
+  #leaderboard td { padding: 6px 4px; vertical-align:middle }
+  #leaderboard th { padding: 6px 16px 6px 0px; text-align:right; width:36px }
+</style>
+<div style="font-size:13px; margin:10px;">
+</div>
+<div style="margin:10px 0px; display:inline-block">
+  <ul class="nav nav-pills">
+    <li><a data-toggle="tab" style="padding:10px" id="a_stuff_dev">Dev</a></li>
+    <li><a data-toggle="tab" style="padding:10px" id="a_stuff_challenge2017">Challenge2017</a></li>
+  </ul>
+</div>
+<div class="tab-content" id="leaderboard_stuff" style="font-size:12px">
+  <table id="data" class="table order-column hover">
+    <thead>
+      <tr>
+        <th style="width:200px"></th>
+        <th>mIoU</th>
+        <th>fIoU</th>
+        <th>mAcc</th>
+        <th>pAcc</th>
+        <th>mIoU<sup>S</sup></th>
+        <th>fIoU<sup>S</sup></th>
+        <th>mAcc<sup>S</sup></th>
+        <th>pAcc<sup>S</sup></th>
+        <th style="width:70px">date</th>
+      </tr>
+    </thead>
+  </table>
+  <p class="fontTitle" style="margin-bottom:15px">Metrics</p>
+<div class="json fontMono">
+  <div class="jsonreg"><b>Leaf categories:</b></div>
+  <div class="jsonk">mIoU</div><div class="jsonv">% Mean IoU <b>(primary challenge metric)</b></div>
+  <div class="jsonk">fIoU</div><div class="jsonv">% Frequency Weighted IoU</div>
+  <div class="jsonk">mAcc</div><div class="jsonv">% Mean Accuracy</div>
+  <div class="jsonk">pAcc</div><div class="jsonv">% Pixel Accuracy</div>
+  <div class="jsonreg"><b>Super categories:</b></div>
+  <div class="jsonk">mIoU<sup>S</sup></div><div class="jsonv">% Mean IoU</div>
+  <div class="jsonk">fIoU<sup>S</sup></div><div class="jsonv">% Frequency Weighted IoU</div>
+  <div class="jsonk">mAcc<sup>S</sup></div><div class="jsonv">% Mean Accuracy</div>
+  <div class="jsonk">pAcc<sup>S</sup></div><div class="jsonv">% Pixel Accuracy</div>
+</div>
+<ol class="fontSmall">
+  <li>Intersection Over Union (IoU) is computed as IoU=TP/(TP+FP+FN), where TP=true positives, FP=false positives, and FN=false negatives.</li>
+  <li>Mean IoU (mIoU) is the average over the IoUs of each class.</li>
+  <li>Frequency Weighted IoU (fIoU) weights every class proportional to the number of pixels for that class.</li>
+  <li>Mean Accuracy (mAcc) denotes the fraction of correct pixels per class averaged over classes.</li>
+  <li>Pixel Accuracy (pAcc) denotes the fraction of correct pixels.</li>
+  <li>Note that metrics are computed on the <i>pixels</i> in each image, <i>not on object instances</i>.</li>
+  <li>All metrics are computed only on valid pixels (91 stuff classes + 1 other class). Unlabeled pixels are not considered.</li>
+  <li>If there are no ground-truth pixels for a class in the validation/test set, that class is removed from consideration.</li>
+</ol>
+  <p>Please see the <a href="#stuff-eval">evaluation</a> page for more detailed information about the metrics.</p>
+  <p class="fontTitle" style="margin-bottom:0px">References</p>
+  <table id="refs" class="table table-striped hover" style="font-size:13px">
+    <thead><tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr></thead>
+  </table>
+</div>
