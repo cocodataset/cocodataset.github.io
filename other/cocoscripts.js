@@ -44,7 +44,7 @@ var cocoPeople = {
   'gen': {'name': 'Genevieve Patterson', 'full': 'Microsoft Research', 'short': 'MSR', 'url':'https://www.microsoft.com/en-us/research/people/gen/'},
   'matteo': {'name': 'Matteo R. Ronchi', 'full': 'Caltech', 'short': 'Caltech', 'url':'http://vision.caltech.edu/~mronchi/'},
   'yin': {'name': 'Yin Cui', 'full': 'Cornell Tech', 'short': 'Cornell Tech', 'url':'http://www.cs.cornell.edu/~ycui/'},
-  'michael': {'name': 'Michael Maire', 'full': 'TTI Chicago', 'short': 'TTI Chicago', 'url':'http://ttic.uchicago.edu/~mmaire/'},
+  'michael': {'name': 'Michael Maire', 'full': 'TTI-Chicago', 'short': 'TTI-Chicago', 'url':'http://ttic.uchicago.edu/~mmaire/'},
   'serge': {'name': 'Serge Belongie', 'full': 'Cornell Tech', 'short': 'Cornell Tech', 'url':'http://vision.cornell.edu/se3/people/serge-belongie/'},
   'lubomir': {'name': 'Lubomir Bourdev', 'full': 'WaveOne, Inc.', 'short': 'WaveOne, Inc.', 'url':'http://www.lubomir.org'},
   'ross': {'name': 'Ross Girshick', 'full': 'Facebook AI Research', 'short': 'FAIR', 'url':'http://www.cs.berkeley.edu/~rbg/'},

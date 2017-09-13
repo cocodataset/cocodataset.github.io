@@ -92,17 +92,17 @@ li.checkBullet {
 #headerTabs {
   display:inline-block;
   vertical-align:top;
-  width:460px;
+  width:465px;
   padding-top:70px;
 }
 #headerEmail {
   display:inline-block;
   vertical-align:top;
-  width:460px;
+  width:465px;
   height:20px;
   color:white;
   font-size:13px;
-  padding-right:5px;
+  padding-right:10px;
   text-align:right;
 }
 .nav-tabs {
