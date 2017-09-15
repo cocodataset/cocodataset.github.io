@@ -75,8 +75,11 @@ function populateExplorer() {
   $('#exploreLoading').hide();
   $('#exploreDone').hide();
   // if hash is #explore?id then go to given image id on load
-  var hash = window.location.hash, id;
-  var q=hash.indexOf('?'); if(q!=-1) id=hash.substr(q+1);
+  var hash, args, id;
+  hash = window.location.hash;
+  hash = hash.substring(hash.indexOf('?')+1);
+  args = hash.split('&').map(function(x) {return x.split('=')});
+  for (var i=0; i<args.length; i++) if (args[i][0] == 'id') id = args[i][1];
   if(id!=undefined){ $("#exploreTags").tagit("createTag",id); loadSearch(); }
 }
 
@@ -301,12 +304,14 @@ function renderImage(ctx, img) {
   ctx.drawImage(img, 0, 0);
 }
 
-function loadSearch() {
+function loadSearch(ids) {
   var tags = $("#exploreTags").tagit("assignedTags");
   $('#exploreSearchBtn').prop("disabled", true);
   $('#exploreLoading').show();
   $('#exploreDone').hide();
-  if ($.isNumeric(tags[0])){
+  if (ids != undefined){
+    loadVisualizations(ids);
+  } else if($.isNumeric(tags[0])){
     loadVisualizations([tags[0]]);
     imIdList = [];
   } else {

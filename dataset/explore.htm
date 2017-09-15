@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="other/jquery.tagit.css">
 <script src="other/tag-it.min.js"></script>
 <script src="other/cocoexplorer.js"></script>
-<script>$(function(){populateExplorer()})</script>
+<script>$(window).on('load', function(){populateExplorer()})</script>
 
 <p class="fontTitle">COCO Explorer</p>
 <p class="fontSubtle">COCO 2017 train/val browser (123,287 images, 886,284 instances). Crowd labels not shown.</p>
