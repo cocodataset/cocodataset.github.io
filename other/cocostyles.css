@@ -69,6 +69,12 @@ li.checkBullet {
 .wide40 {
   width:40%;
 }
+a[aria-expanded=true] .glyphicon-chevron-right {
+   display: none;
+}
+a[aria-expanded=false] .glyphicon-chevron-down {
+   display: none;
+}
 /* HEADER ------------------------------------ */
 #header {
   height:154px;
