@@ -1,33 +1,15 @@
-<script src="other/cocoexplorer.js"></script>
+<!-- uses https://github.com/aehlke/tag-it -->
 <link rel="stylesheet" href="other/jquery.tagit.css">
 <script src="other/tag-it.min.js"></script>
-<style>
-  .exploreIcon {display:inline-block;width:50px;height:50px}
-  .exploreIconImage {width:50px;height:50px; cursor:pointer}
-  .exploreIconPanel {margin-bottom: 25px}
-  .exploreTags {width:90%;display:inline-block;vertical-align:middle}
-  .exploreButton {display:inline-block}
-  #exploreSearchCount {font-size:8pt;color:#888888; margin-bottom:15px}
-</style>
-<script>
-$(function(){
-  loadIconPanel();
-  setupIconsSearchPanel();
-  var image_id = getUrlParameter("id");
-  if (image_id != undefined){
-    $("#tags").tagit("createTag", image_id);
-    loadSearch();
-  }
-});
-</script>
-<div id="dialog-modal" title="Message"></div>
-<p> COCO 2017 train/val browser (123,287 images, 886,284 instances). Crowd labels not shown.</p>
-<div id='exploreIconPanel' class='exploreIconPanel' style='width:800px'></div>
-<div class="exploreTags"><input id="tags" /></div>
-<div class="exploreButton">
-  <button id="btn-search" type="button" style="margin-top:-10px" class="btn btn-primary" onclick='clearCanvas(); loadSearch();'> search </button>
-</div>
-<div id='exploreSearchCount'></div>
+<script src="other/cocoexplorer.js"></script>
+<script>$(function(){populateExplorer()})</script>
+
+<p class="fontTitle">COCO Explorer</p>
+<p class="fontSubtle">COCO 2017 train/val browser (123,287 images, 886,284 instances). Crowd labels not shown.</p>
+<div id='exploreIconPanel'></div>
+<div id="exploreSearchBox"><input id="exploreTags"/></div>
+<button id="exploreSearchBtn" type="button" class="btn btn-primary">search</button>
+<div id='exploreSearchCount' class="fontSubtle"></div>
 <div id="exploreImageDisplayList"></div>
-<div id="btn-loading" align="center" style="display:none"><img src='images/ajax-loader.gif'></img></div>
-<div id="btn-stop" align="center" style="display:none">no more images to show</div>
+<div id="exploreLoading" align="center"><img src='images/ajax-loader.gif'></img></div>
+<div id="exploreDone" class="fontSubtle">No more images to show.</div>

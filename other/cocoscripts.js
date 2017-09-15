@@ -31,6 +31,7 @@ function datasetTabNav() {
   });
   $(window).bind( 'hashchange', function(e) {
     var hash = window.location.hash;
+    var q=hash.indexOf('?'); if(q!=-1) hash=hash.substring(0,q);
     if(!loaded[hash]) $(hash).load("dataset/"+hash.substring(1)+".htm");
     loaded[hash]=true; $('a[href="'+hash+'"]').tab('show');
     $('html,body').scrollTop(0);

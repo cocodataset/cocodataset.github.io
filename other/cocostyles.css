@@ -290,6 +290,47 @@ tr.shown td.ldbdPlus {
   padding-left:32px !important;
   width:100px;
 }
+/* Explorer ------------------------------------ */
+.exploreIconSubpanel {
+  display:inline-block;
+  vertical-align:top;
+  width:66px;
+  margin:2px;
+  margin-bottom:10px;
+}
+.exploreIconSelect {
+  display:inline-block;
+  vertical-align:top;
+  margin:-1px;
+  width:35px;
+  height:35px;
+  border-width:2px;
+  border-color:transparent;
+  border-style:solid;
+  cursor:pointer;
+}
+#exploreSearchBox {
+  display:inline-block;
+  vertical-align:middle;
+  width:90%;
+}
+#exploreSearchBtn {
+  display:inline-block;
+  margin-top:-10px;
+}
+#exploreSearchCount {
+  margin-bottom:15px;
+}
+.exploreIcon {
+  display:inline-block;
+  width:50px;
+  height:50px;
+}
+.exploreIconImage {
+  width:50px;
+  height:50px;
+  cursor:pointer;
+}
 /* JSON ------------------------------------ */
 .json {
   border:2px solid #a1a1a1;
