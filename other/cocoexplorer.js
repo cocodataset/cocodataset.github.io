@@ -75,8 +75,11 @@ function populateExplorer() {
   $('#exploreLoading').hide();
   $('#exploreDone').hide();
   // if hash is #explore?id then go to given image id on load
-  var hash = window.location.hash, id;
-  var q=hash.indexOf('?'); if(q!=-1) id=hash.substr(q+1);
+  var hash, args, id;
+  hash = window.location.hash;
+  hash = hash.substring(hash.indexOf('?')+1);
+  args = hash.split('&').map(function(x) {return x.split('=')});
+  for (var i=0; i<args.length; i++) if (args[i][0] == 'id') id = args[i][1];
   if(id!=undefined){ $("#exploreTags").tagit("createTag",id); loadSearch(); }
 }
 
@@ -161,22 +164,31 @@ function loadImageData(imageIds, callback) {
 }
 
 function loadVisualizations(imageIds) {
-  loadImageData(imageIds, function (dataImage) {
-    var imageIds = Object.keys(dataImage);
-    for (var j = 0; j < imageIds.length; j++) {
-      var imageId = imageIds[j];
-      var instances = dataImage[imageId]['instances'];
-      var captions = dataImage[imageId]['captions'];
-      var flickrUrl = dataImage[imageId]['flickr_url'];
-      var cocoUrl = dataImage[imageId]['coco_url'];
-      var catToSegms = {};
-      for (var i = 0; i < instances.length; i++) catToSegms[instances[i]['category_id']] = [];
-      for (var i = 0; i < instances.length; i++) {
-        catToSegms[instances[i]['category_id']].push(instances[i]);
+  if (imageIds.length > 0){
+    loadImageData(imageIds, function (dataImage) {
+      var imageIds = Object.keys(dataImage);
+      for (var j = 0; j < imageIds.length; j++) {
+        var imageId = imageIds[j];
+        var instances = dataImage[imageId]['instances'];
+        var captions = dataImage[imageId]['captions'];
+        var flickrUrl = dataImage[imageId]['flickr_url'];
+        var cocoUrl = dataImage[imageId]['coco_url'];
+        var catToSegms = {};
+        for (var i = 0; i < instances.length; i++) catToSegms[instances[i]['category_id']] = [];
+        for (var i = 0; i < instances.length; i++) {
+          catToSegms[instances[i]['category_id']].push(instances[i]);
+        }
+        createDisplay(imageId, captions, catToSegms, flickrUrl, cocoUrl);
       }
-      createDisplay(imageId, captions, catToSegms, flickrUrl, cocoUrl);
-    }
-  });
+      // unlock search button
+      $('#exploreSearchBtn').prop("disabled", false);
+      $('#exploreLoading').hide();
+    });
+  }else{
+    // unlock search button
+    $('#exploreSearchBtn').prop("disabled", false);
+    $('#exploreLoading').hide();
+  }
 }
 
 function createDisplay(imageId, captions, catToSegms, flickrUrl, cocoUrl) {
@@ -206,9 +218,6 @@ function createDisplay(imageId, captions, catToSegms, flickrUrl, cocoUrl) {
   '</div>';
   // Create DOMs
   $('#exploreImageDisplayList').append(display);
-  // Refresh loading button
-  $('#exploreSearchBtn').prop("disabled", false);
-  $('#exploreLoading').hide();
   var display = $('#imageDisplay' + imageId)
   // Draw polygon on the image
   var canvas = display.find('.canvas')[0];
@@ -301,12 +310,15 @@ function renderImage(ctx, img) {
   ctx.drawImage(img, 0, 0);
 }
 
-function loadSearch() {
+function loadSearch(ids) {
   var tags = $("#exploreTags").tagit("assignedTags");
+  // disable search button and show loading
   $('#exploreSearchBtn').prop("disabled", true);
   $('#exploreLoading').show();
   $('#exploreDone').hide();
-  if ($.isNumeric(tags[0])){
+  if (ids != undefined){
+    loadVisualizations(ids);
+  } else if($.isNumeric(tags[0])){
     loadVisualizations([tags[0]]);
     imIdList = [];
   } else {
