@@ -96,8 +96,8 @@
 <p class="fontTitle">5. Analysis Code</p>
 <p>In addition to the evaluation code, we also provide a function <span class="fontMono">analyze()</span> for performing a detailed breakdown of false positives. This was inspired by <a href="http://web.engr.illinois.edu/~dhoiem/projects/detectionAnalysis/" target="_blank">Diagnosing Error in Object Detectors</a> by Derek Hoiem et al., but is quite different in implementation and details. The code generates plots like this:</p>
 <p>
-  <img src="images/MSRA_analysis_person.jpg" class="wide40" />
-  <img src="images/MSRA_analysis_all.jpg" class="wide40" />
+  <img src="images/detections-analysis-MSRA15-person.jpg" class="wide40" />
+  <img src="images/detections-analysis-MSRA15-all.jpg" class="wide40" />
 </p>
 <p>Both plots show analysis of the <a href="http://arxiv.org/abs/1512.03385" target="_blank">ResNet</a> (bbox) detector from Kaiming He et al., winner of the <a href="#detections-challenge2015">2015 Detection Challenge</a>. The first plot shows a breakdown of errors of ResNet for the person class; the second plot is an overall analysis of ResNet averaged over all categories.</p>
 <p>Each plot is a series of precision recall curves where each PR curve is guaranteed to be strictly higher than the previous as the evaluation setting becomes more permissive. The curves are as follows:</p>

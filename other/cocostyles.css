@@ -56,7 +56,7 @@ ul.noBullet {
   margin:0;
 }
 li.checkBullet {
-  background:url(../images/check.gif) no-repeat left top;
+  background:url(../images/icons/iconCheck.gif) no-repeat left top;
   height:22px;
   padding-left:38px;
 }
@@ -278,15 +278,15 @@ td.ldbdDate {
   font-size:10px;
 }
 td.ldbdPlus {
-  background:url('../images/iconOpen.png') no-repeat center center;
+  background:url('../images/icons/iconOpen.png') no-repeat center center;
   width:20px !important;
   cursor:pointer;
 }
 tr.shown td.ldbdPlus {
-  background:url('../images/iconClose.png') no-repeat center center;
+  background:url('../images/icons/iconClose.png') no-repeat center center;
 }
 .ldbdPerCat td.ldbdPlus {
-  background:url('../images/iconBack.png') no-repeat center center;
+  background:url('../images/icons/iconBack.png') no-repeat center center;
 }
 .ldbdMore td {
   text-align:left;
