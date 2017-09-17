@@ -220,9 +220,12 @@ a[aria-expanded=false] .glyphicon-chevron-down {
 }
 #footer a {
   display:inline-block;
-  padding-left:85%;
+  padding-left:20px;
   padding-top:6px;
   color:white;
+}
+#footer a:first-of-type  {
+  width:82%;
 }
 /* EXTERNAL ------------------------------------ */
 .external-container {
