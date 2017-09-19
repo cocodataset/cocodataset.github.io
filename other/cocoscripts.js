@@ -20,7 +20,7 @@ function googleAnalytics() {
 function datasetTabNav() {
   // Enable dataset tab controls. See also: https://getbootstrap.com/docs/3.3/javascript/#tabs
   // And: http://stackoverflow.com/questions/12131273/twitter-bootstrap-tabs-url-doesnt-change
-  var tabs = ["people", "overview", "download", "explore", "external", "termsofuse", "detections-challenge2017", "keypoints-challenge2017", "stuff-challenge2017", "detections-challenge2016", "keypoints-challenge2016", "detections-challenge2015", "captions-challenge2015", "format", "guidelines", "detections-eval", "keypoints-eval", "stuff-eval", "captions-eval", "detections-leaderboard", "keypoints-leaderboard", "stuff-leaderboard", "captions-leaderboard"];
+  var tabs = ["people", "overview", "download", "explore", "external", "termsofuse", "detections-challenge2017", "keypoints-challenge2017", "stuff-challenge2017", "detections-challenge2016", "keypoints-challenge2016", "detections-challenge2015", "captions-challenge2015", "format", "guidelines", "upload", "detections-eval", "keypoints-eval", "stuff-eval", "captions-eval", "detections-leaderboard", "keypoints-leaderboard", "stuff-leaderboard", "captions-leaderboard"];
   for( var i=0; i<tabs.length; i++ ) {
     $("#content").append('<div role="tabpanel" class="tab-pane fade" id="' + tabs[i] + '"></div>');
   }
