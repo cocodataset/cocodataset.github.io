@@ -3,12 +3,20 @@ html, body {
   font-size:14px;
   background:white;
   color:#1d2125;
-  height:100%;
   margin:0;
   padding:0;
   border:0;
   line-height:1.3;
   text-align:justify;
+  box-sizing:border-box;
+}
+html {
+  height:100%;
+}
+body {
+  position:relative;
+  min-height:100%;
+  padding-bottom:60px;
 }
 p {
   margin:20px 0;
@@ -159,7 +167,6 @@ a[aria-expanded=false] .glyphicon-chevron-down {
 #content {
   margin:auto;
   width:800px;
-  min-height:600px;
   padding-left:20px;
 }
 .columnFeatures {
@@ -208,24 +215,24 @@ a[aria-expanded=false] .glyphicon-chevron-down {
 }
 /* FOOTER ------------------------------------ */
 #footer {
-  margin-top:40px;
   width:100%;
-  height:180px;
+  height:30px;
+  position:absolute;
+  bottom:0;
   background-color:#1d2125;
-  border-bottom:150px solid white;
 }
 #footer div {
+  padding-left:20px;
   margin:auto;
   width:800px;
 }
 #footer a {
   display:inline-block;
-  padding-left:20px;
   padding-top:6px;
   color:white;
 }
-#footer a:first-of-type  {
-  width:82%;
+#footer a:last-of-type  {
+  float:right;
 }
 /* EXTERNAL ------------------------------------ */
 .external-container {
