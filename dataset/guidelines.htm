@@ -1,17 +1,17 @@
-<p class="fontTitle">1. Test Guidelines</p>
+<p class="fontTitle">Test Guidelines</p>
 <p>The COCO data can be obtained from the <a href="#download">download page.</a> Each challenge has a different training / validation / testing set, details are provided on the download page and summarized here:</p>
 <div class="json">
   <div class="jsonktxt">2014 Train/Val</div><div class="jsonvtxt"><a href="#detections-challenge2015">Detection 2015</a>, <a href="#captions-challenge2015">Captioning 2015</a>, <a href="#detections-challenge2016">Detection 2016</a>, <a href="#keypoints-challenge2016">Keypoints 2016</a></div>
   <div class="jsonktxt">2014 Testing  </div><div class="jsonvtxt"><a href="#captions-challenge2015">Captioning 2015</a></div>
-  <div class="jsonktxt">2015 Testing  </div><div class="jsonvtxt"><a href="#detections-challenge2015">Detection 2015</a>, <a href="#detections-challenge2016">Detection 2016</a>, <a href="#keypoints-challenge2016">Keypoints 2016</a>, <a href="#stuff-challenge2017">Stuff 2017</a></div>
+  <div class="jsonktxt">2015 Testing  </div><div class="jsonvtxt"><a href="#detections-challenge2015">Detection 2015</a>, <a href="#detections-challenge2016">Detection 2016</a>, <a href="#keypoints-challenge2016">Keypoints 2016</a></div>
   <div class="jsonktxt">2017 Train/Val</div><div class="jsonvtxt"><a href="#detections-challenge2017">Detection 2017</a>, <a href="#keypoints-challenge2017">Keypoints 2017</a>, <a href="#stuff-challenge2017">Stuff 2017</a></div>
-  <div class="jsonktxt">2017 Testing  </div><div class="jsonvtxt"><a href="#detections-challenge2017">Detection 2017</a>, <a href="#keypoints-challenge2017">Keypoints 2017</a></div>
+  <div class="jsonktxt">2017 Testing  </div><div class="jsonvtxt"><a href="#detections-challenge2017">Detection 2017</a>, <a href="#keypoints-challenge2017">Keypoints 2017</a>, <a href="#stuff-challenge2017">Stuff 2017</a></div>
   <div class="jsonktxt">2017 Unlabeled</div><div class="jsonvtxt fontBlue">[optional data for any competition]</div>
 </div>
 <p>The recommended training data for participating in any COCO challenge consists of the corresponding COCO training set. Validation data may also be used for training when submitting results on the test set (although starting in 2017 the validation set only has 5K images, so the benefits of this are minimized). Note that the 2017 train/val data includes the same images as the 2014 train/val data just organized differently, so there is no benefit of using 2014 training data for the 2017 competition.</p>
 <p><i>External data</i> of any form is allowed. Any and all external data used for training must be specified in the "method description" when uploading results to the server. We emphasize that any form of annotation or use of the COCO test sets for supervised or unsupervised training is strictly forbidden. <b>Note: please explicitly specify any and all external data used for training in the "method description" when uploading results to the evaluation server.</b></p>
 
-<p class="fontTitle">2. Test Set Splits</p>
+<p class="fontTitle">Test Set Splits</p>
 <p>Prior to 2017, the test set had four splits (dev / standard / reserve / challenge). Starting in 2017, we simplified the test set to only the dev / challenge splits, with the other two splits removed. The original purpose of the four splits was to protect the integrity of the challenge while giving researchers flexibility to test their system. After multiple years of running the challenges, we saw no evidence of overfitting to specific splits (the output space complexity and the test set size protect against simple attacks such as <a href="http://blog.mrtz.org/2015/03/09/competition.html" targe="_blank">wacky boosting</a>). Therefore, we simplified participation in the challenges accordingly in 2017.</p>
 
 <p class="fontSubtitle">2017 Test Set Splits</p>
