@@ -36,6 +36,10 @@ a img {
   font-size:20px;
   font-weight:300;
 }
+.fontBigger {
+  font-size:18px;
+  font-weight:300;
+}
 .fontBig {
   font-size:16px;
   font-weight:300;
