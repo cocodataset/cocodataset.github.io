@@ -53,6 +53,9 @@ a img {
 .fontBlue {
   color:#3355bb;
 }
+.fontBoldish {
+  font-weight:500;
+}
 .fontBold {
   font-weight:700;
 }
