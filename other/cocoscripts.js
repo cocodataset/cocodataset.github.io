@@ -151,6 +151,13 @@ function initLeaderboardKeypoints() {
   initLeaderboard(types, metrics, table, false);
 }
 
+function initLeaderboardStuff() {
+  var types = ["stuff_dev2017"];
+  var metrics = ["MIOU", "FIOU", "MACC", "PACC", "MIOUS", "FIOUS", "MACCS", "PACCS"];
+  var table = "ldbdStuff";
+  initLeaderboard(types, metrics, table, false);
+}
+
 function initLeaderboardCaptions() {
   // initialize C5 and C40 captioning leaderboards
   var types1 = ["cap_c5", "cap_c40"];
