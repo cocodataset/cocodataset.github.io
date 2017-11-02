@@ -153,7 +153,7 @@ function initLeaderboardKeypoints() {
 }
 
 function initLeaderboardStuff() {
-  var types = ["stuff_dev2017"];
+  var types = ["stuff_dev2017", "stuff_challenge2017"];
   var metrics = ["MIOU", "FIOU", "MACC", "PACC", "MIOUS", "FIOUS", "MACCS", "PACCS"];
   var table = "ldbdStuff";
   initLeaderboard(types, metrics, table, 2);
