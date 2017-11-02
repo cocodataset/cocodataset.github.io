@@ -139,14 +139,14 @@ function populateExternalPage() {
 }
 
 function initLeaderboardDetection() {
-  var types = ["bbox_standard2015", "segm_standard2015", "bbox_dev2015", "segm_dev2015", "bbox_challenge2016", "segm_challenge2016", "bbox_challenge2015", "segm_challenge2015"];
+  var types = ["bbox_standard2015", "segm_standard2015", "bbox_dev2015", "segm_dev2015", "bbox_challenge2016", "segm_challenge2016", "bbox_challenge2015", "segm_challenge2015", "bbox_challenge2017", "segm_challenge2017"];
   var metrics = ["AP", "AP_50", "AP_75", "AP_small", "AP_medium", "AP_large", "AR_max_1", "AR_max_10", "AR_max_100", "AR_small", "AR_medium", "AR_large"];
   var table = "ldbdDetection";
   initLeaderboard(types, metrics, table, 1);
 }
 
 function initLeaderboardKeypoints() {
-  var types = ["kpt_standard", "kpt_dev", "kpt_challenge2016"];
+  var types = ["kpt_standard", "kpt_dev", "kpt_challenge2016", "kpt_challenge2017"];
   var metrics = ["AP", "AP_50", "AP_75", "AP_medium", "AP_large", "AR", "AR_50", "AR_75", "AR_medium", "AR_large"];
   var table = "ldbdKeypoints";
   initLeaderboard(types, metrics, table, 0);
