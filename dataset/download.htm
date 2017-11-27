@@ -1,6 +1,6 @@
 <div class="columnApi">
   <p class="fontTitle">Tools</p>
-  <p class="fontSubtitle"><a href="https://github.com/pdollar/coco" target="_blank">COCO API</a></p>
+  <p class="fontSubtitle"><a href="https://github.com/cocodataset/cocoapi" target="_blank">COCO API</a></p>
 </div>
 <div class="columnDownloads">
   <p class="fontTitle">Images</p>
@@ -33,9 +33,9 @@
 <div class="json">
   <div class="jsonktxt">2014 Train/Val</div><div class="jsonvtxt"><a href="#detections-challenge2015">Detection 2015</a>, <a href="#captions-challenge2015">Captioning 2015</a>, <a href="#detections-challenge2016">Detection 2016</a>, <a href="#keypoints-challenge2016">Keypoints 2016</a></div>
   <div class="jsonktxt">2014 Testing  </div><div class="jsonvtxt"><a href="#captions-challenge2015">Captioning 2015</a></div>
-  <div class="jsonktxt">2015 Testing  </div><div class="jsonvtxt"><a href="#detections-challenge2015">Detection 2015</a>, <a href="#detections-challenge2016">Detection 2016</a>, <a href="#keypoints-challenge2016">Keypoints 2016</a>, <a href="#stuff-challenge2017">Stuff 2017</a></div>
+  <div class="jsonktxt">2015 Testing  </div><div class="jsonvtxt"><a href="#detections-challenge2015">Detection 2015</a>, <a href="#detections-challenge2016">Detection 2016</a>, <a href="#keypoints-challenge2016">Keypoints 2016</a></div>
   <div class="jsonktxt">2017 Train/Val</div><div class="jsonvtxt"><a href="#detections-challenge2017">Detection 2017</a>, <a href="#keypoints-challenge2017">Keypoints 2017</a>, <a href="#stuff-challenge2017">Stuff 2017</a></div>
-  <div class="jsonktxt">2017 Testing  </div><div class="jsonvtxt"><a href="#detections-challenge2017">Detection 2017</a>, <a href="#keypoints-challenge2017">Keypoints 2017</a></div>
+  <div class="jsonktxt">2017 Testing  </div><div class="jsonvtxt"><a href="#detections-challenge2017">Detection 2017</a>, <a href="#keypoints-challenge2017">Keypoints 2017</a>, <a href="#stuff-challenge2017">Stuff 2017</a></div>
   <div class="jsonktxt">2017 Unlabeled</div><div class="jsonvtxt fontBlue">[optional data for any competition]</div>
 </div>
 <p class="fontSubtle">If you are submitting to a 2017 challenge, you only need to download the 2017 data. You can disregard earlier data splits.</p>
@@ -52,13 +52,13 @@
     <a href="https://cloud.google.com/storage/docs/gsutil_install">installing gsutil</a> (we note only that you do not need to run <span class="fontMono"> gcloud init</span>).</p>
   </div>
 </div>
-<p>Please follow the instructions in the <a href="https://github.com/pdollar/coco" target="_blank">COCO API Readme</a> to setup the downloaded COCO data (the images and annotations).
+<p>Please follow the instructions in the <a href="https://github.com/cocodataset/cocoapi" target="_blank">COCO API Readme</a> to setup the downloaded COCO data (the images and annotations).
 By downloading this dataset, you agree to our <a href="#termsofuse">Terms of Use</a>.</p>
 <p><b>2017 Update:</b> The main change in 2017 is that instead of an 80K/40K train/val split, based on community feedback the split is now 115K/5K for train/val. The same exact images are used, and no new annotations for detection/keypoints are provided. However, new in 2017 are stuff annotations on 40K train images (subset of the full 115K train images from 2017) and 5K val images. Also, for testing, in 2017 the test set only has two splits (dev / challenge), instead of the four splits (dev / standard / reserve / challenge) used in previous years. Finally, new in 2017 we are releasing 120K unlabeled images from COCO that follow the same class distribution as the labeled images; this may be useful for semi-supervised learning on COCO.</p>
 <p><b>Note:</b> Annotations last updated <i>09/05/2017</i> (stuff annotations added). If you find any issues with the data please let us know!</p>
 
 <p class="fontTitle">2. COCO API</p>
-<p>The COCO API assists in loading, parsing, and visualizing annotations in COCO. The API supports object instance, object keypoint, and image caption annotations (for captions not all functionality is defined). For additional details see: <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/CocoApi.m" target="_blank">CocoApi.m</a>, <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/coco.py" target="_blank">coco.py</a>, and <a href="https://github.com/pdollar/coco/blob/master/LuaAPI/CocoApi.lua" target="_blank">CocoApi.lua</a> for Matlab, Python, and Lua code, respectively, and also the <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocoDemo.ipynb" target="_blank">Python API demo</a>.</p>
+<p>The COCO API assists in loading, parsing, and visualizing annotations in COCO. The API supports object instance, object keypoint, and image caption annotations (for captions not all functionality is defined). For additional details see: <a href="https://github.com/cocodataset/cocoapi/blob/master/MatlabAPI/CocoApi.m" target="_blank">CocoApi.m</a>, <a href="https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/coco.py" target="_blank">coco.py</a>, and <a href="https://github.com/cocodataset/cocoapi/blob/master/LuaAPI/CocoApi.lua" target="_blank">CocoApi.lua</a> for Matlab, Python, and Lua code, respectively, and also the <a href="https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocoDemo.ipynb" target="_blank">Python API demo</a>.</p>
 <div class="json">
   <div>Throughout the API "ann"=annotation, "cat"=category, and "img"=image.</div>
   <div class="jsonkfunc">download</div><div class="jsonvtxt">Download COCO images from mscoco.org server.</div>
@@ -74,7 +74,7 @@ By downloading this dataset, you agree to our <a href="#termsofuse">Terms of Use
 
 <p class="fontTitle">3. MASK API</p>
 <p>COCO provides segmentation masks for every object instance. This creates two challenges: storing masks compactly and performing mask computations efficiently. We solve both challenges using a custom Run Length Encoding (RLE) scheme. The size of the RLE representation is proportional to the number of boundaries pixels of a mask and operations such as area, union, or intersection can be computed efficiently directly on the RLE. Specifically, assuming fairly simple shapes, the RLE representation is O(&radic;n) where n is number of pixels in the object, and common computations are likewise O(&radic;n). Naively computing the same operations on the decoded masks (stored as an array) would be O(n).</p>
-<p>The MASK API provides an interface for manipulating masks stored in RLE format. The API is defined below, for additional details see: <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/MaskApi.m" target="_blank">MaskApi.m</a>, <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/mask.py" target="_blank">mask.py</a>, or <a href="https://github.com/pdollar/coco/blob/master/LuaAPI/MaskApi.lua" target="_blank">MaskApi.lua</a>. Finally, we note that a majority of ground truth masks are stored as polygons (which are quite compact), these polygons are converted to RLE when needed.</p>
+<p>The MASK API provides an interface for manipulating masks stored in RLE format. The API is defined below, for additional details see: <a href="https://github.com/cocodataset/cocoapi/blob/master/MatlabAPI/MaskApi.m" target="_blank">MaskApi.m</a>, <a href="https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/mask.py" target="_blank">mask.py</a>, or <a href="https://github.com/cocodataset/cocoapi/blob/master/LuaAPI/MaskApi.lua" target="_blank">MaskApi.lua</a>. Finally, we note that a majority of ground truth masks are stored as polygons (which are quite compact), these polygons are converted to RLE when needed.</p>
 <div class="json">
   <div class="jsonkfunc">encode</div><div class="jsonvtxt">Encode binary masks using RLE.</div>
   <div class="jsonkfunc">decode</div><div class="jsonvtxt">Decode binary masks encoded via RLE.</div>

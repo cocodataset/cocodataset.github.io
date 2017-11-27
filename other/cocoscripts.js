@@ -20,7 +20,7 @@ function googleAnalytics() {
 function datasetTabNav() {
   // Enable dataset tab controls. See also: https://getbootstrap.com/docs/3.3/javascript/#tabs
   // And: http://stackoverflow.com/questions/12131273/twitter-bootstrap-tabs-url-doesnt-change
-  var tabs = ["people", "overview", "download", "explore", "external", "termsofuse", "detections-challenge2017", "keypoints-challenge2017", "stuff-challenge2017", "detections-challenge2016", "keypoints-challenge2016", "detections-challenge2015", "captions-challenge2015", "format", "guidelines", "detections-eval", "keypoints-eval", "stuff-eval", "captions-eval", "detections-leaderboard", "keypoints-leaderboard", "stuff-leaderboard", "captions-leaderboard"];
+  var tabs = ["people", "overview", "download", "explore", "external", "termsofuse", "detections-challenge2017", "keypoints-challenge2017", "stuff-challenge2017", "detections-challenge2016", "keypoints-challenge2016", "detections-challenge2015", "captions-challenge2015", "format", "guidelines", "upload", "detections-eval", "keypoints-eval", "stuff-eval", "captions-eval", "detections-leaderboard", "keypoints-leaderboard", "stuff-leaderboard", "captions-leaderboard"];
   for( var i=0; i<tabs.length; i++ ) {
     $("#content").append('<div role="tabpanel" class="tab-pane fade" id="' + tabs[i] + '"></div>');
   }
@@ -104,6 +104,7 @@ function populatePeoplePage() {
 
 var external = [
   {"name":"COCO-Stuff", "url":"https://github.com/nightrome/cocostuff", "src":"images/external/coco-stuff.png", "description":"COCO-Stuff augments the COCO dataset with pixel-level stuff annotations for 10,000 images. The 91 stuff classes are carefully selected to have a similar level of granularity to the thing classes in COCO, allowing the study of stuff and things in context."},
+  {"name":"FOIL", "url":"https://foilunitn.github.io/", "src":"images/external/FOIL.png", "description":"Don't be foiled: Detect the mistake and correct it! FOIL augments COCO images with incorrect ('foil') captions which differ from the original ones by introducing one single error. The dataset contains ~300K datapoints and 98K unique images."},
   {"name":"SPEECH-COCO", "url":"https://persyval-platform.imag.fr/perscido/web/DS80/detaildataset", "src":"images/external/speecoco.png", "description":"SPEECH-COCO augments COCO with speech captions generated using TTS synthesis. The corpus contains 600K+ spoken captions, allowing research of language acquisition, term discovery, keyword spotting, or semantic embedding using speech and vision."},
   {"name":"VISUAL GENOME", "url":"http://visualgenome.org/", "src":"images/external/visualgenome.png", "description":"Visual Genome is a dataset, a knowledge base, an ongoing effort to connect structured image concepts to language."},
   {"name":"RefCOCO", "url":"https://github.com/lichengunc/refer", "src":"images/external/ref_coco.png", "description":"RefCOCO dataset was collected using the <a href='http://referitgame.com/'>Refer-it Game</a>. Each expression aims to unambiguously indicate a particular person or object in an image."},
@@ -138,17 +139,24 @@ function populateExternalPage() {
 }
 
 function initLeaderboardDetection() {
-  var types = ["bbox_standard2015", "segm_standard2015", "bbox_dev2015", "segm_dev2015", "bbox_challenge2016", "segm_challenge2016", "bbox_challenge2015", "segm_challenge2015"];
+  var types = ["bbox_standard2015", "segm_standard2015", "bbox_dev2015", "segm_dev2015", "bbox_challenge2016", "segm_challenge2016", "bbox_challenge2015", "segm_challenge2015", "bbox_challenge2017", "segm_challenge2017"];
   var metrics = ["AP", "AP_50", "AP_75", "AP_small", "AP_medium", "AP_large", "AR_max_1", "AR_max_10", "AR_max_100", "AR_small", "AR_medium", "AR_large"];
   var table = "ldbdDetection";
-  initLeaderboard(types, metrics, table, true);
+  initLeaderboard(types, metrics, table, 1);
 }
 
 function initLeaderboardKeypoints() {
-  var types = ["kpt_standard", "kpt_dev", "kpt_challenge2016"];
+  var types = ["kpt_standard", "kpt_dev", "kpt_challenge2016", "kpt_challenge2017"];
   var metrics = ["AP", "AP_50", "AP_75", "AP_medium", "AP_large", "AR", "AR_50", "AR_75", "AR_medium", "AR_large"];
   var table = "ldbdKeypoints";
-  initLeaderboard(types, metrics, table, false);
+  initLeaderboard(types, metrics, table, 0);
+}
+
+function initLeaderboardStuff() {
+  var types = ["stuff_dev2017", "stuff_challenge2017"];
+  var metrics = ["MIOU", "FIOU", "MACC", "PACC", "MIOUS", "FIOUS", "MACCS", "PACCS"];
+  var table = "ldbdStuff";
+  initLeaderboard(types, metrics, table, 2);
 }
 
 function initLeaderboardCaptions() {
@@ -156,12 +164,12 @@ function initLeaderboardCaptions() {
   var types1 = ["cap_c5", "cap_c40"];
   var metrics1 = ["CIDEr", "METEOR", "ROUGE_L", "Bleu_1", "Bleu_2", "Bleu_3", "Bleu_4", "SPICE"];
   var table1 = "ldbdCaption";
-  initLeaderboard(types1, metrics1, table1, false);
+  initLeaderboard(types1, metrics1, table1, 0);
   // initilize challenge captioning leaderboards
   var types2 = ["cap_challenge2015"];
   var metrics2 = ["q1", "q2", "q3", "q4", "q5"];
   var table2 = "ldbdCaptionChallenge";
-  initLeaderboard(types2, metrics2, table2, false);
+  initLeaderboard(types2, metrics2, table2, 0);
   // controls for toggling visible leaderboard
   for(var i=0; i<types1.length; i++) $('#a_'+types1[i]).click( function(){$('#'+table1).show(); $('#'+table2).hide();})
   for(var i=0; i<types2.length; i++) $('#a_'+types2[i]).click( function(){$('#'+table2).show(); $('#'+table1).hide();})
@@ -195,10 +203,15 @@ function initLeaderboardCaptions() {
   $('#'+table2).find('#ldbdCaptionRank').DataTable(propsr).rows.add(ranksChallenge).draw();
 }
 
-function initLeaderboard(types, metrics, table, isDetection){
+function initLeaderboard(types, metrics, table, perCategory){
   // populate leaderboard table with data in json
-  var supercats=["accessory", "animal", "appliance", "electronic", "food", "furniture", "indoor", "kitchen", "outdoor", "person", "sports", "vehicle"];
-  var cats =[[9,"person"], [11,"bicycle"], [11,"car"], [11,"motorcycle"], [11,"airplane"], [11,"bus"], [11,"train"], [11,"truck"], [11,"boat"], [8,"traffic light"], [8,"fire hydrant"], [8,"stop sign"], [8,"parking meter"], [8,"bench"], [1,"bird"], [1,"cat"], [1,"dog"], [1,"horse"], [1,"sheep"], [1,"cow"], [1,"elephant"], [1,"bear"], [1,"zebra"], [1,"giraffe"], [0,"backpack"], [0,"umbrella"], [0,"handbag"], [0,"tie"], [0,"suitcase"], [10,"frisbee"], [10,"skis"], [10,"snowboard"], [10,"sports ball"], [10,"kite"], [10,"baseball bat"], [10,"baseball glove"], [10,"skateboard"], [10,"surfboard"], [10,"tennis racket"], [7,"bottle"], [7,"wine glass"], [7,"cup"], [7,"fork"], [7,"knife"], [7,"spoon"], [7,"bowl"], [4,"banana"], [4,"apple"], [4,"sandwich"], [4,"orange"], [4,"broccoli"], [4,"carrot"], [4,"hot dog"], [4,"pizza"], [4,"donut"], [4,"cake"], [5,"chair"], [5,"couch"], [5,"potted plant"], [5,"bed"], [5,"dining table"], [5,"toilet"], [3,"tv"], [3,"laptop"], [3,"mouse"], [3,"remote"], [3,"keyboard"], [3,"cell phone"], [2,"microwave"], [2,"oven"], [2,"toaster"], [2,"sink"], [2,"refrigerator"], [6,"book"], [6,"clock"], [6,"vase"], [6,"scissors"], [6,"teddy bear"], [6,"hair drier"], [6,"toothbrush"]];
+  if( perCategory==1 ) {
+    var supercats=["accessory", "animal", "appliance", "electronic", "food", "furniture", "indoor", "kitchen", "outdoor", "person", "sports", "vehicle"];
+    var cats =[[9,"person"], [11,"bicycle"], [11,"car"], [11,"motorcycle"], [11,"airplane"], [11,"bus"], [11,"train"], [11,"truck"], [11,"boat"], [8,"traffic light"], [8,"fire hydrant"], [8,"stop sign"], [8,"parking meter"], [8,"bench"], [1,"bird"], [1,"cat"], [1,"dog"], [1,"horse"], [1,"sheep"], [1,"cow"], [1,"elephant"], [1,"bear"], [1,"zebra"], [1,"giraffe"], [0,"backpack"], [0,"umbrella"], [0,"handbag"], [0,"tie"], [0,"suitcase"], [10,"frisbee"], [10,"skis"], [10,"snowboard"], [10,"sports ball"], [10,"kite"], [10,"baseball bat"], [10,"baseball glove"], [10,"skateboard"], [10,"surfboard"], [10,"tennis racket"], [7,"bottle"], [7,"wine glass"], [7,"cup"], [7,"fork"], [7,"knife"], [7,"spoon"], [7,"bowl"], [4,"banana"], [4,"apple"], [4,"sandwich"], [4,"orange"], [4,"broccoli"], [4,"carrot"], [4,"hot dog"], [4,"pizza"], [4,"donut"], [4,"cake"], [5,"chair"], [5,"couch"], [5,"potted plant"], [5,"bed"], [5,"dining table"], [5,"toilet"], [3,"tv"], [3,"laptop"], [3,"mouse"], [3,"remote"], [3,"keyboard"], [3,"cell phone"], [2,"microwave"], [2,"oven"], [2,"toaster"], [2,"sink"], [2,"refrigerator"], [6,"book"], [6,"clock"], [6,"vase"], [6,"scissors"], [6,"teddy bear"], [6,"hair drier"], [6,"toothbrush"]];
+  } else if(perCategory==2) {
+    var supercats=["building", "ceiling", "floor", "food-stuff", "furniture-stuff", "ground", "other", "plant", "raw-material", "sky", "solid", "structural", "textile", "wall", "water", "window"];
+    var cats=[[12, "banner"], [12, "blanket"], [7, "branch"], [0, "bridge"], [0, "building-other"], [7, "bush"], [4, "cabinet"], [11, "cage"], [8, "cardboard"], [2, "carpet"], [1, "ceiling-other"], [1, "ceiling-tile"], [12, "cloth"], [12, "clothes"], [9, "clouds"], [4, "counter"], [4, "cupboard"], [12, "curtain"], [4, "desk-stuff"], [5, "dirt"], [4, "door-stuff"], [11, "fence"], [2, "floor-marble"], [2, "floor-other"], [2, "floor-stone"], [2, "floor-tile"], [2, "floor-wood"], [7, "flower"], [14, "fog"], [3, "food-other"], [3, "fruit"], [4, "furniture-other"], [7, "grass"], [5, "gravel"], [5, "ground-other"], [10, "hill"], [0, "house"], [7, "leaves"], [4, "light"], [12, "mat"], [8, "metal"], [4, "mirror-stuff"], [7, "moss"], [10, "mountain"], [5, "mud"], [12, "napkin"], [11, "net"], [8, "paper"], [5, "pavement"], [12, "pillow"], [7, "plant-other"], [8, "plastic"], [5, "platform"], [5, "playingfield"], [11, "railing"], [5, "railroad"], [14, "river"], [5, "road"], [10, "rock"], [0, "roof"], [12, "rug"], [3, "salad"], [5, "sand"], [14, "sea"], [4, "shelf"], [9, "sky-other"], [0, "skyscraper"], [5, "snow"], [10, "solid-other"], [4, "stairs"], [10, "stone"], [7, "straw"], [11, "structural-other"], [4, "table"], [0, "tent"], [12, "textile-other"], [12, "towel"], [7, "tree"], [3, "vegetable"], [13, "wall-brick"], [13, "wall-concrete"], [13, "wall-other"], [13, "wall-panel"], [13, "wall-stone"], [13, "wall-tile"], [13, "wall-wood"], [14, "water-other"], [14, "waterdrops"], [15, "window-blind"], [15, "window-other"], [10, "wood"], [6, "other"]];
+  }
   // initialize and format DataTable https://www.datatables.net/
   var tableData = $('#'+table).find('.ldbdData'), m=metrics.length;
   if( $.fn.DataTable.isDataTable(tableData) ) {
@@ -214,7 +227,7 @@ function initLeaderboard(types, metrics, table, isDetection){
       {'targets':1,"className":'ldbdMethod'},
       {'targets':m+2,"className":'ldbdDate'},
       {'targets':[0,1,m+2],'render':function(x) {return x}},
-      {'targets':['_all'],'orderSequence':['desc','asc'],'render':function(x) {return parseFloat(x).toFixed(3)}}
+      {'targets':['_all'],'orderSequence':['desc','asc'],'render':function(x) {return x=='-1'?'':parseFloat(x).toFixed(3);}}
     ];
     tableData = tableData.DataTable(propsData);
   }
@@ -226,7 +239,7 @@ function initLeaderboard(types, metrics, table, isDetection){
     for(var i=0; i<n; i++) $.getJSON('leaderboard/'+types[i]+'.json',onload(types[i]));
   }
   var done=json; for(var i=0; i<n; i++) done=done && json[types[i]];
-  if(!done) { setTimeout(function(){initLeaderboard(types,metrics,table,isDetection)},10); return; };
+  if(!done) { setTimeout(function(){initLeaderboard(types,metrics,table,perCategory)},10); return; };
   // extract data for leaderboard from json
   var data=new Array(n);
   for( var i=0; i<n; i++ ) {
@@ -243,7 +256,7 @@ function initLeaderboard(types, metrics, table, isDetection){
       if(e.url!= "") e.url="<a href='"+e.url+"' target='_blank'> "+e.url+"</a>";
       data[i].refs[j]=['Team',e.team.members,'Description',e.description,'Link',e.url];
       // poulate cats: ["",category-name,results,date]
-      if(isDetection) {
+      if(perCategory) {
         var d=JSON.parse(json[types[i]][j].results_details);
         var p=cats.length+supercats.length; data[i].cats[j]=new Array(p);
         for( var k=0; k<p; k++ ) {
@@ -287,9 +300,9 @@ function initLeaderboard(types, metrics, table, isDetection){
       var mr=function(k,v) {return '<tr><td>'+k+':</td><td>'+v+'</td></tr>'};
       var t='<table class="ldbdMore">', refs=data[i].refs[j];
       for(var k=0; k<data[i].refs[j].length; k+=2) t+=mr(refs[k],refs[k+1]);
-      if(isDetection) t+=mr("More",'<a id="setTeam'+j+'">Per Category Results</a>');
+      if(perCategory) t+=mr("More",'<a id="setTeam'+j+'">Per Category Results</a>');
       t+='</table>'; row.child(t).show(); tr.addClass('shown');
-      if(isDetection) bindSetTeam($('#setTeam'+j),data[i].teams[j]);
+      if(perCategory) bindSetTeam($('#setTeam'+j),data[i].teams[j]);
     }
   });
   // load data to tables and populate

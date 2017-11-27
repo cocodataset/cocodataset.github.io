@@ -30,7 +30,7 @@ function populateExplorer() {
     var cats = categories[superCats[i]];
     for( j=0; j<cats.length; j++ ){
       div += '<img title="' + cats[j].name + '" id="icon_' + cats[j].id;
-      div += '" class="exploreIconSelect" src="images/icons/'+cats[j].id+'.jpg"/>';
+      div += '" class="exploreIconSelect" src="images/cocoicons/'+cats[j].id+'.jpg"/>';
     }
     div += '</div>';
   }
@@ -193,21 +193,21 @@ function loadVisualizations(imageIds) {
 
 function createDisplay(imageId, captions, catToSegms, flickrUrl, cocoUrl) {
   // url
-  var urlIcon = '<span class="exploreIcon" title="url to share this image"><img id="exploreURLIcon" class="exploreIconImage" src="images/icons/url.jpg"></span>'
+  var urlIcon = '<span class="exploreIcon" title="url to share this image"><img id="exploreURLIcon" class="exploreIconImage" src="images/cocoicons/url.jpg"></span>'
   var cocoURL = '<a href="#explore?id=' + imageId + '" target="_blank">' + 'http://cocodataset.org/#explore?id=' + imageId + '</a>';
   var flickrURL = '<a href="' + flickrUrl + '" target="_blank">' + flickrUrl + '</a>';
   var urlText = cocoURL + '<br>' + flickrURL;
   // caption
-  var captionIcon = '<span class="exploreIcon" style="margin-right:10px" title="show captions"><img id="exploreCaptionIcon" class="exploreIconImage" src="images/icons/sentences.jpg"></span>'
+  var captionIcon = '<span class="exploreIcon" style="margin-right:10px" title="show captions"><img id="exploreCaptionIcon" class="exploreIconImage" src="images/cocoicons/sentences.jpg"></span>'
   var captionText = '<span>' + captions.join('<br>') + '</span>';
   // icon
   var catIcons = '';
   var iconIds = Object.keys(catToSegms);
   for (var i = 0; i < iconIds.length; i++) {
-    catIcons += '<span class="exploreIcon" title="' + idToCat[iconIds[i]] + '"><img data="' + iconIds[i] + '" class="exploreIconImage exploreCategoryImage" src="images/icons/' + iconIds[i] + '.jpg"></span>';
+    catIcons += '<span class="exploreIcon" title="' + idToCat[iconIds[i]] + '"><img data="' + iconIds[i] + '" class="exploreIconImage exploreCategoryImage" src="images/cocoicons/' + iconIds[i] + '.jpg"></span>';
   }
   // blank
-  var blankIcon = '<span class="exploreIcon" title="hide segmentations"><img id="exploreBlankIcon" class="exploreIconImage" src="images/icons/blank.jpg"></span>';
+  var blankIcon = '<span class="exploreIcon" title="hide segmentations"><img id="exploreBlankIcon" class="exploreIconImage" src="images/cocoicons/blank.jpg"></span>';
   // Create explore image display
   var display =
   '<div class="imageDisplay" id="imageDisplay' + imageId + '" style="margin-bottom:15px">' +

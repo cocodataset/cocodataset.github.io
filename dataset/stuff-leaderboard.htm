@@ -1,1 +1,42 @@
-<p class="fontTitle">Coming Soon!</p>
+<script>$(function(){initLeaderboardStuff()});</script>
+<p class="fontTitle">Stuff Leaderboard</p>
+<ul class="nav nav-pills ldbdTabs fontSubsubtitle">
+  <li class="active"><a data-toggle="tab" id="a_stuff_dev2017">Dev17</a></li>
+  <li><a data-toggle="tab" id="a_stuff_challenge2017">Challenge17</a></li>
+</ul>
+<div class="tab-content" id="ldbdStuff">
+  <table class="table order-column hover fontSmall ldbdData">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>mIoU</th>
+        <th>fIoU</th>
+        <th>mAcc</th>
+        <th>pAcc</th>
+        <th>mIoU<sup>S</sup></th>
+        <th>fIoU<sup>S</sup></th>
+        <th>mAcc<sup>S</sup></th>
+        <th>pAcc<sup>S</sup></th>
+        <th>date</th>
+      </tr>
+    </thead>
+  </table>
+  <p class="fontTitle">Metrics</p>
+  <div class="json fontMono">
+    <div class="jsonreg"><b>Leaf category metrics:</b></div>
+    <div class="jsonk">mIoU</div><div class="jsonv">% Mean IoU <b>(primary challenge metric)</b></div>
+    <div class="jsonk">fIoU</div><div class="jsonv">% Frequency Weighted IoU</div>
+    <div class="jsonk">mAcc</div><div class="jsonv">% Mean Accuracy</div>
+    <div class="jsonk">pAcc</div><div class="jsonv">% Pixel Accuracy</div>
+    <div class="jsonreg"><b>Supercategory metrics:</b></div>
+    <div class="jsonk">mIoU<sup>S</sup></div><div class="jsonv">% Mean IoU</div>
+    <div class="jsonk">fIoU<sup>S</sup></div><div class="jsonv">% Frequency Weighted IoU</div>
+    <div class="jsonk">mAcc<sup>S</sup></div><div class="jsonv">% Mean Accuracy</div>
+    <div class="jsonk">pAcc<sup>S</sup></div><div class="jsonv">% Pixel Accuracy</div>
+  </div>
+  <p>
+    Please see the <a href="#stuff-eval">evaluation</a> page for more detailed information about the metrics, and the <a href="#stuff-challenge2017">challenge</a> and <a href="#guidelines">guidelines</a> pages for more information about the stuff challenge and dataset splits.
+    Note: leaderboard results are imported from <a href="https://competitions.codalab.org/competitions/17443" target="_blank">CodaLab Stuff Server</a> and may not contain the latest results.
+  </p>
+</div>

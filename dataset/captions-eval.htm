@@ -12,17 +12,8 @@
 </div>
 <p>To obtain results on the COCO test set, for which ground truth annotations are hidden, generated results must be submitted to the <span class="fontItalic">evaluation server</span>. The exact same evaluation code, described below, is used to evaluate generated captions on the test set.</p>
 
-<p class="fontTitle">2. Results Format</p>
-<p>The results format used for storing generated captions is described on the <a href="#format">results format</a> page. For reference, here is a summary of the caption results format:</p>
-<div class="json">
-  <div class="jsonreg">[{</div>
-  <div class="jsonk">"image_id"     </div><div class="jsonv">: int,      </div>
-  <div class="jsonk">"caption"      </div><div class="jsonv">: str,      </div>
-  <div class="jsonreg">}]</div>
-</div>
-
-<p class="fontTitle">3. Evaluation Code</p>
-<p>Evaluation code can be obtained on the <a href="http://github.com/tylin/coco-caption" target="_blank">coco-captions github</a> page. Unlike the general COCO API, the COCO caption evaluation code is only available under Python.</p>
+<p class="fontTitle">2. Evaluation Code</p>
+<p>Evaluation code can be obtained on the <a href="http://github.com/tylin/coco-caption" target="_blank">coco-captions github</a> page. Unlike the general COCO API, the COCO caption evaluation code is only available under Python. Before running the evaluation code, please prepare your results in the format described on the <a href="#format">results format</a> page.</p>
 <p>Running the evaluation code produces two data structures that summarize caption quality. The two structs are <span class="fontMono">evalImgs</span> and <span class="fontMono">eval</span>, which summarize caption quality per-image and aggregated across the entire test set, respectively. Details for the two data structures are given below. We recommend running the <a href="https://github.com/tylin/coco-caption/blob/master/cocoEvalCapDemo.ipynb" target="_blank">python caption evaluation demo</a> for more details.</p>
 
 <div class="json">
@@ -50,7 +41,7 @@
   <div class="jsonreg">}</div>
 </div>
 
-<p class="fontTitle">4. Upload Results</p>
+<p class="fontTitle">3. Upload Results</p>
 <p>This rest of this page describes the <i>upload instructions</i> for submitting results to the caption <a href="https://competitions.codalab.org/competitions/3221" target="_blank">evaluation server</a>. Submitting results allows you to participate in the <a href="#captions-challenge2015">COCO Captioning Challenge 2015</a> and compare results to the state-of-the-art on the <a href="#captions-leaderboard">captioning leaderboard</a>.</p>
 <p><i>Training Data</i>: The recommended training set for the captioning challenge is the COCO 2014 Training Set. The COCO 2014 Validation Set may also be used for training when submitting results on the test set. External data of any form is allowed (except any form of annotation on the COCO Testing set is forbidden). Please specify any and all external data used for training in the "method description" when uploading results to the evaluation server.</p>
 <p>Please limit the number of entries to the captioning challenge to a reasonable number, e.g. one entry per paper. To avoid overfitting to the test data, the <i>number of submissions per user is limited to 1 upload per day and a maximum of 5 submissions per user</i>. It is not acceptable to create multiple accounts for a single project to circumvent this limit. The exception to this is if a group publishes two papers describing unrelated methods, in this case both sets of results can be submitted for evaluation.</p>

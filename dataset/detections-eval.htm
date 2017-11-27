@@ -1,5 +1,5 @@
 <p class="fontTitle">1. Detection Evaluation</p>
-<p>This page describes the <span class="fontItalic">detection evaluation code</span> used by COCO and provides instructions for submitting results to the evaluation server. The evaluation code provided here can be used to obtain results on the publicly available COCO validation set. It computes multiple metrics described below. To obtain results on the COCO test set, for which ground truth annotations are hidden, generated results must be submitted to the <span class="fontItalic">evaluation server</span>. The exact same evaluation code, described below, is used to evaluate detections on the test set.</p>
+<p>This page describes the <i>detection evaluation metrics</i> used by COCO. The evaluation code provided here can be used to obtain results on the publicly available COCO validation set. It computes multiple metrics described below. To obtain results on the COCO test set, for which ground-truth annotations are hidden, generated results must be <a href="#upload">uploaded</a> to the evaluation server. The exact same evaluation code, described below, is used to evaluate results on the test set.</p>
 
 <p class="fontTitle">2. Metrics</p>
 <p>The following 12 metrics are used for characterizing the performance of an object detector on COCO:</p>
@@ -31,30 +31,8 @@
   <li>The evaluation metrics for detection with bounding boxes and segmentation masks are identical in all respects except for the IoU computation (which is performed over boxes or masks, respectively).</li>
 </ol>
 
-<p class="fontTitle">3. Results Format</p>
-<p>The results format used for storing generated detections is described on the <a href="#format">results format</a> page. For reference, here is a summary of the detection results format for boxes and segments, respectively:</p>
-<div class="json">
-  <div class="jsonreg">[{</div>
-  <div class="jsonk">"image_id"     </div><div class="jsonv">: int,  </div>
-  <div class="jsonk">"category_id"  </div><div class="jsonv">: int,  </div>
-  <div class="jsonk">"bbox"         </div><div class="jsonv">: [x,y,width,height],</div>
-  <div class="jsonk">"score"        </div><div class="jsonv">: float,</div>
-  <div class="jsonreg">}]</div>
-</div>
-<p>Note: box coordinates are floats measured from the top left image corner (and are 0-indexed). We recommend rounding coordinates to the nearest tenth of a pixel to reduce resulting JSON file size.</p>
-
-<div class="json">
-  <div class="jsonreg">[{</div>
-  <div class="jsonk">"image_id"     </div><div class="jsonv">: int,  </div>
-  <div class="jsonk">"category_id"  </div><div class="jsonv">: int,  </div>
-  <div class="jsonk">"segmentation" </div><div class="jsonv">: RLE,  </div>
-  <div class="jsonk">"score"        </div><div class="jsonv">: float,</div>
-  <div class="jsonreg">}]</div>
-</div>
-<p>Note: binary masks should be encoded via RLE using the MaskApi function <span class="fontMono">encode()</span>.</p>
-
-<p class="fontTitle">4. Evaluation Code</p>
-<p>Evaluation code is available on the <a href="https://github.com/pdollar/coco" target="_blank">COCO github</a>. Specifically, see either <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/CocoEval.m" target="_blank">CocoEval.m</a> or <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/cocoeval.py" target="_blank">cocoeval.py</a> in the Matlab or Python code, respectively. Also see <span class="fontMono">evalDemo</span> in either the Matlab or Python code (<a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocoEvalDemo.ipynb" target="_blank">demo</a>).</p>
+<p class="fontTitle">3. Evaluation Code</p>
+<p>Evaluation code is available on the <a href="https://github.com/cocodataset/cocoapi" target="_blank">COCO github</a>. Specifically, see either <a href="https://github.com/cocodataset/cocoapi/blob/master/MatlabAPI/CocoEval.m" target="_blank">CocoEval.m</a> or <a href="https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/cocoeval.py" target="_blank">cocoeval.py</a> in the Matlab or Python code, respectively. Also see <span class="fontMono">evalDemo</span> in either the Matlab or Python code (<a href="https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocoEvalDemo.ipynb" target="_blank">demo</a>). Before running the evaluation code, please prepare your results in the format described on the <a href="#format">results format</a> page.</p>
 <p>The evaluation parameters are as follows (defaults in brackets, in general no need to change):</p>
 <div class="json">
   <div class="jsonreg">params{</div>
@@ -68,7 +46,7 @@
   <div class="jsonk">"useCats" </div><div class="jsonv">: [1] if true use category labels for evaluation</div>
   <div class="jsonreg">}</div>
 </div>
-<p>Running the evaluation code via calls to <span class="fontMono">evaluate()</span> and <span class="fontMono">accumulate()</span> produces two data structures that measure detection quality. The two structs are <span class="fontMono">evalImgs</span> and <span class="fontMono">eval</span>, which measure quality per-image and aggregated across the entire dataset, respectively. The evalImgs struct has KxA entries, one per evaluation setting, while the eval struct combines this information into precision and recall arrays. Details for the two structs are below (see also <a href="https://github.com/pdollar/coco/blob/master/MatlabAPI/CocoEval.m" target="_blank">CocoEval.m</a> or <a href="https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/cocoeval.py" target="_blank">cocoeval.py</a>):</p>
+<p>Running the evaluation code via calls to <span class="fontMono">evaluate()</span> and <span class="fontMono">accumulate()</span> produces two data structures that measure detection quality. The two structs are <span class="fontMono">evalImgs</span> and <span class="fontMono">eval</span>, which measure quality per-image and aggregated across the entire dataset, respectively. The evalImgs struct has KxA entries, one per evaluation setting, while the eval struct combines this information into precision and recall arrays. Details for the two structs are below (see also <a href="https://github.com/cocodataset/cocoapi/blob/master/MatlabAPI/CocoEval.m" target="_blank">CocoEval.m</a> or <a href="https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/cocoeval.py" target="_blank">cocoeval.py</a>):</p>
 <div class="json">
   <div class="jsonreg">evalImgs[{</div>
   <div class="jsonk">"dtIds"     </div><div class="jsonv">: [1xD] id for each of the D detections (dt)</div>
@@ -93,11 +71,11 @@
 </div>
 <p>Finally <span class="fontMono">summarize()</span> computes the 12 detection metrics defined earlier based on the <span class="fontMono">eval</span> struct.</p>
 
-<p class="fontTitle">5. Analysis Code</p>
+<p class="fontTitle">4. Analysis Code</p>
 <p>In addition to the evaluation code, we also provide a function <span class="fontMono">analyze()</span> for performing a detailed breakdown of false positives. This was inspired by <a href="http://web.engr.illinois.edu/~dhoiem/projects/detectionAnalysis/" target="_blank">Diagnosing Error in Object Detectors</a> by Derek Hoiem et al., but is quite different in implementation and details. The code generates plots like this:</p>
 <p>
-  <img src="images/MSRA_analysis_person.jpg" class="wide40" />
-  <img src="images/MSRA_analysis_all.jpg" class="wide40" />
+  <img src="images/detections-analysis-MSRA15-person.jpg" class="wide40" />
+  <img src="images/detections-analysis-MSRA15-all.jpg" class="wide40" />
 </p>
 <p>Both plots show analysis of the <a href="http://arxiv.org/abs/1512.03385" target="_blank">ResNet</a> (bbox) detector from Kaiming He et al., winner of the <a href="#detections-challenge2015">2015 Detection Challenge</a>. The first plot shows a breakdown of errors of ResNet for the person class; the second plot is an overall analysis of ResNet averaged over all categories.</p>
 <p>Each plot is a series of precision recall curves where each PR curve is guaranteed to be strictly higher than the previous as the evaluation setting becomes more permissive. The curves are as follows:</p>
@@ -113,25 +91,3 @@
 <p>The area under each curve is shown in brackets in the legend. In the case of the ResNet detector, overall AP at IoU=.75 is .399 and perfect localization would increase AP to .682. Interesting, removing all class confusions (both within supercategory and across supercategories) would only raise AP slightly to .713. Removing background fp would bump performance to .870 AP and the rest of the errors are missing detections (although presumably if more detections were added this would also add lots of fps). In summary, ResNet's errors are dominated by imperfect localization and background confusions.</p>
 <p>For a given detector, the code generates a total of 372 plots! There are 80 categories, 12 supercategories, and 1 overall result, for a total of 93 different settings, and the analysis is performed at 4 scales (all, small, medium, large, so 93*4=372 plots). The file naming is [supercategory]-[category]-[size].pdf for the 80*4 per-category results, overall-[supercategory]-[size].pdf for the 12*4 per supercategory results, and overall-all-[size].pdf for the 1*4 overall results. Of all the plots, typically the overall and supercategory results are of the most interest.</p>
 <p><b>Note:</b> <span class="fontMono">analyze()</span> can take significant time to run, please be patient. As such, we typically do not run this code on the evaluation server; you must run the code locally using the validation set. Finally, currently <span class="fontMono">analyze()</span> is only part of the Matlab API; <i>Python code coming soon</i>.</p>
-
-<p class="fontTitle">6. Upload Results</p>
-<p><b>Note: 2017 evaluation servers will be opened shortly. Currently the old servers are still running.</b></p>
-<p>This section describes the <i>upload instructions</i> for submitting results to the <a href="https://competitions.codalab.org/competitions/5181" target="_blank">detection evaluation server</a>. Submitting results allows you to participate in the <a href="#detections-challenge2017">COCO Detection Challenge</a> and compare results to the state-of-the-art on the <a href="#detections-leaderboard">detection leaderboard</a>. Before you continue, please carefully review the <a href="#guidelines">guidelines</a> for using the COCO test sets.</p>
-<p>First, please create an account on <a href="https://codalab.org" target="_blank">CodaLab</a> if you have not done so previously. Before uploading your results to the evaluation server, you will need to create a JSON file containing your results in the correct <a href="#format">format</a>. The file should be named "detections_[testset]_[alg]_results.json". Replace [alg] with your algorithm name and [testset] with either "test-dev2017" or "test2017" depending on the test split you are using. Place the JSON file into a zip file named "detections_[testset]_[alg]_results.zip". To submit your zipped result file to the COCO Detection Challenge click on the “Participate” tab on the CodaLab <a href="https://competitions.codalab.org/competitions/5181" target="_blank">detection evaluation server</a>. Select the challenge type (bbox or segm) and test split (test-dev or test). When you select “Submit / View Results” you will be given the option to submit new results. Please fill in the required fields and click “Submit”. A pop-up will prompt you to select the results zip file for upload. After the file is uploaded the evaluation server will begin processing. To view the status of your submission please select “Refresh Status”. Please be patient, the evaluation may take quite some time to complete (~20min on test-dev and ~40min on the full test set). If the status of your submission is “Failed” please check your file is named correctly and has the right <a href="#format">format</a>.</p>
-<p>After you submit your results to the evaluation server, you can control whether your results are publicly posted to the CodaLab leaderboard. To toggle the public visibility of your results please select either “post to leaderboard” or “remove from leaderboard”. Only one result can be published to the leaderboard at any time. In addition to the CodaLab leaderboard, we also host our own more detailed <a href="#detections-leaderboard">leaderboard</a> that includes additional results and method information (such as paper references). Note that the CodaLab leaderboard may contain results not yet migrated to our own leaderboard. Once results are migrated to our public leaderboard they cannot be removed (but they can be updated).</p>
-<p>After evaluation is complete and the server shows a status of “Finished”, you will have the option to download your evaluation results by selecting “Download evaluation output from scoring step.” The zip file will contain three files:</p>
-<div class="json fontMono">
-  <div class="jsonreg">
-    <div class="jsonblk">
-      detections_[testset]_[alg]_eval.json<br/>
-      metadata<br/>
-      scores.txt
-    </div>
-    <div class="jsonblk">
-      % aggregated evaluation on test <br/>
-      % auto generated (safe to ignore) <br/>
-      % auto generated (safe to ignore)
-    </div>
-  </div>
-</div>
-<p>The format of the json eval file is described earlier on this page.</p>

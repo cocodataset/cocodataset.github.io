@@ -1,10 +1,11 @@
 <p class="fontTitle">COCO 2017 Keypoint Challenge</p>
-<p align="center"><a href="images/keypoints-challenge2016-big.png"><img src="images/keypoints-challenge2016.png" class="wide"/></a></p>
+<p class="fontBig">The <a href="https://places-coco2017.github.io/#winners">Challenge Winners</a> have now been announced! Up-to-date results are on the <a href="#keypoints-leaderboard">keypoints leaderboard</a>. Note that the evaluation server on test-dev remains open for uploading of new results.</p>
+<p align="center"><a href="images/keypoints-challenge-splash-big.png"><img src="images/keypoints-challenge-splash.png" class="wide"/></a></p>
 
 <p class="fontTitle">1. Overview</p>
 <p>The COCO 2017 Keypoint Challenge requires localization of person keypoints in challenging, uncontrolled conditions. The keypoint challenge involves simultaneously detecting people <i>and</i> localizing their keypoints (person locations are <i>not</i> given at test time). For full details of this task please see the <a href="#keypoints-eval">keypoint evaluation</a> page.</p>
 <p>This challenge is part of the <a href="https://places-coco2017.github.io/">Joint COCO and Places Recognition Challenge Workshop</a> at ICCV 2017. For further details about the joint workshop please visit the workshop website. Please also see the concurrent COCO 2017 <a href="#detections-challenge2017">Detection</a> and <a href="#stuff-challenge2017">Stuff</a> Challenges.</p>
-<p>The COCO train, validation, and test sets, containing more than 200,000 images and 250,000 person instances labeled with keypoints (the majority of people in COCO at medium and large scales) are available for <a href="#download">download</a>. Annotations on train and val (with over 150,000 people and 1.5 million labeled keypoints) are publicly available.</p>
+<p>The COCO train, validation, and test sets, containing more than 200,000 images and 250,000 person instances labeled with keypoints (the majority of people in COCO at medium and large scales) are available for <a href="#download">download</a>. Annotations on train and val (with over 150,000 people and 1.7 million labeled keypoints) are publicly available.</p>
 <p>This is the second COCO keypoint challenge and it generally follows the <a href="#keypoints-challenge2016">COCO 2016 Keypoint Challenge</a>. In particular, the same overall data and metrics are being used for this year's challenge. The mains differences are that now <b>(1) the test set only contains two splits: test-dev and test-challenge,</b> and <b>(2) the train/val sets are arranged differently</b>. Please see the <a href="#download">download</a> and <a href="#guidelines">guidelines</a> pages for details about the setup for the 2017 data and test splits.</p>
 
 <p class="fontTitle">2. Dates</p>
@@ -15,27 +16,26 @@
 </div>
 
 <p class="fontTitle">3. Organizers</p>
-<div>Tsung-Yi Lin (Cornell)</div>
+<div>Tsung-Yi Lin (Cornell Tech)</div>
 <div>Genevieve Patterson (Microsoft Research)</div>
 <div>Matteo Ruggero Ronchi (Caltech)</div>
-<div>Yin Cui (Cornell)</div>
-<div>Michael Maire (TTI Chicago)</div>
+<div>Yin Cui (Cornell Tech)</div>
+<div>Michael Maire (TTI-Chicago)</div>
 <div>Piotr Dollár (Facebook AI Research)</div>
 
 <p class="fontTitle">4. Award Committee</p>
 <div>Genevieve Patterson (Microsoft Research)</div>
 <div>Matteo Ruggero Ronchi (Caltech)</div>
-<div>Yin Cui (Cornell)</div>
-<div>Michael Maire (TTI Chicago)</div>
-<div>Serge Belongie (Cornell)</div>
+<div>Yin Cui (Cornell Tech)</div>
+<div>Michael Maire (TTI-Chicago)</div>
+<div>Serge Belongie (Cornell Tech)</div>
 <div>Lubomir Bourdev (WaveOne, Inc.)</div>
 <div>James Hays (Georgia Tech)</div>
 <div>Pietro Perona (Caltech)</div>
 <div>Deva Ramanan (CMU)</div>
 
 <p class="fontTitle">5. Challenge Guidelines</p>
-<p>The <a href="#keypoints-eval">keypoint evaluation</a> page lists detailed information regarding how submissions will be scored and gives instructions for submitting results to the evaluation server. The test set is divided into two splits: test-dev and test-challenge. Test-dev is as the default test set for testing under general circumstances and is used to maintain a public <a href="#keypoints-leaderboard">leaderboard</a> that is updated upon submission. Test-challenge is used for the workshop competition; results will be revealed during the workshop at ICCV 2017. Competitors are recommended but not restricted to train their algorithms on COCO 2017 train and val sets. The <a href="#download">download</a> page has links to all 2017 data. Please specify any and all external data used for training in the "method description" when uploading results to the evaluation server. A more thorough explanation of all these details is available on the <a href="#guidelines">guidelines</a> page, please be sure to review it carefully prior to participating. By the challenge deadline, results must be submitted to the <a href="https://competitions.codalab.org/competitions/12061" target="_blank">keypoint evaluation server</a>. Competitors' algorithms will be evaluated according to the metrics described on the <a href="#keypoints-eval">evaluation</a> page. Challenge participants with the most successful and innovative methods will be invited to present.</p>
+<p>Competitors are recommended but not restricted to train their algorithms on COCO 2017 train and val sets. The <a href="#download">download</a> page has links to all COCO 2017 images and ground-truth annotations as well as details of the annotation format. The COCO test set is divided into two splits: test-dev and test-challenge. Test-dev is as the default test set for testing under general circumstances and is used to maintain a public <a href="#keypoints-leaderboard">leaderboard</a> that is updated upon submission. Test-challenge is used for the workshop competition; results will be revealed during the workshop at ICCV 2017. When participating in the challenge, please specify any and all external data used for training in the "method description" when uploading results to the evaluation server. A more thorough explanation of all these details is available on the <a href="#guidelines">guidelines</a> page, please be sure to review it carefully prior to participating. By the challenge deadline, results in the correct <a href="#format">format</a> must be <a href="#upload">uploaded</a> to the <a href="https://competitions.codalab.org/competitions/12061" target="_blank">keypoint evaluation server</a>. The <a href="#keypoints-eval">keypoint evaluation</a> page lists detailed information regarding how submissions will be scored. Challenge participants with the most successful and innovative methods will be invited to present at the workshop.</p>
 
 <p class="fontTitle">6. Tools and Instructions</p>
-<p>We provide extensive API support for the COCO images, annotations, and evaluation code. To download the COCO API, please visit our <a href="https://github.com/pdollar/coco">GitHub repository</a>. For an overview of how to use the API, please visit the <a href="#download">download</a> page.</p>
-<p>Due to the large size of COCO and the complexity of this challenge, the process of competing in this challenge may not seem simple. To help, we provide explanations and instructions for each step of the process on the <a href="#download">download</a>, <a href="#format">format</a>, <a href="#guidelines">guidelines</a>, and <a href="#keypoints-eval">evaluation</a> pages. For additional questions, please contact <a href="mailto:cocodataset@outlook.com">cocodataset@outlook.com</a>.</p>
+<p>We provide extensive API support for the COCO images, annotations, and evaluation code. To download the COCO API, please visit our <a href="https://github.com/cocodataset/cocoapi">GitHub repository</a>. For an overview of how to use the API, please visit the <a href="#download">download</a> page. Due to the large size of COCO and the complexity of this challenge, the process of competing in this challenge may not seem simple. To help, we provide explanations and instructions for each step of the process on the <a href="#download">download</a>, <a href="#format">format</a>, <a href="#guidelines">guidelines</a>, <a href="#upload">upload</a>, and <a href="#keypoints-eval">evaluation</a> pages. For additional questions, please contact <a href="mailto:info@cocodataset.org">info@cocodataset.org</a>.</p>

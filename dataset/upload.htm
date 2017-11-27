@@ -1,0 +1,45 @@
+<p class="fontTitle">Upload Results to Evaluation Server</p>
+<p>This page describes the <i>upload instructions</i> for submitting results to the evaluation servers for the COCO <a href="#detections-challenge2017">detection</a>, <a href="#keypoints-challenge2017">keypoints</a>, and <a href="#stuff-challenge2017">stuff</a> challenges (the <a href="#captions-challenge2015">captioning</a> challenge has separate upload instructions). Submitting results allows you to participate in the challenges and compare results to the state-of-the-art on the public leaderboards. Note that you can obtain results on val by running the evaluation code in the COCO API locally; submitting to the evaluation server provides results on the test sets. We now give detailed instructions for submitting to the evaluation server:</p>
+
+<p>(1) Create an account on <a href="https://codalab.org" target="_blank">CodaLab</a>. This will allow you to participate in all COCO challenges.</p>
+
+<p>(2) Carefully review the <a href="#guidelines">guidelines</a> for entering the COCO challenges and using the test sets.</p>
+
+<p>(3) Prepare a JSON file containing your results in the correct <a href="#format">results format</a> for the challenge you wish to enter.</p>
+
+<p>(4) File naming: the JSON file should be named "[type]_[testset]_[alg]_results.json". Replace [type] with the challenge type, [testset] with the test split you are using, and [alg] with your algorithm name. Finally place the JSON file into a zip file named "[type]_[testset]_[alg]_results.zip". Summary:</p>
+
+<div class="json">
+  <div class=""><b>Filename</b>: [type]_[testset]_[alg]_results.json</div><br/>
+  <div class="jsonktxt fontBlue">[type]</div><div class="jsonvtxt">challenge type: "detections", "person_keypoints", or "stuff"</div>
+  <div class="jsonktxt fontBlue">[testset]</div><div class="jsonvtxt">test split: "val2017", "test-dev2017", or "test-challenge2017"</div>
+  <div class="jsonktxt fontBlue">[alg]</div><div class="jsonvtxt">your algorithm name</div>
+</div>
+
+<p>(5) To submit your zipped result file to the COCO Challenge click on the “Participate” tab on the appropriate CodaLab evaluation server. Select the test split and for detection only the test type (bbox or segm). When you select “Submit / View Results” you will be given the option to submit new results. Please fill in the required fields and click “Submit”. A pop-up will prompt you to select the results zip file for upload. After the file is uploaded the evaluation server will begin processing. To view the status of your submission please select “Refresh Status”. Please be patient, the evaluation may take quite some time to complete (from ~20m to a few hours). If the status of your submission is “Failed” please check your file is <i>named correctly</i> and has the right <a href="#format">format</a>. The links for the evaluation servers are as follows:</p>
+<div class="json">
+  <div class="jsonktxt">detection server:</div><div class="jsonvtxt"><a href="https://competitions.codalab.org/competitions/5181" target="_blank">https://competitions.codalab.org/competitions/5181</a></div>
+  <div class="jsonktxt">keypoints server:</div><div class="jsonvtxt"><a href="https://competitions.codalab.org/competitions/12061" target="_blank">https://competitions.codalab.org/competitions/12061</a></div>
+  <div class="jsonktxt">stuff server:</div><div class="jsonvtxt"><a href="https://competitions.codalab.org/competitions/17443" target="_blank">https://competitions.codalab.org/competitions/17443</a></div>
+</div>
+
+<p>(6) Please enter submission information into Codalab. The most important fields are "Team name", "Method description", and "Publication URL", which are used to populate the COCO leaderboard. Additionally, under "user setting" in the upper right, please add "Team members". There have been issues with the "Method Description", we may collect these via email if necessary. These settings are not intuitive, but we have no control of the Codalab website. For the "Method description", especially for COCO challenge entries, we encourage participants to give detailed method information that will help the award committee invite participants with the most innovative methods. Listing external data used is mandatory. You may also consider giving some basic performance breakdowns on test-dev (e.g., single model versus ensemble results), runtime, or any other information you think may be pertinent to highlight the novelty or efficacy of your method.
+
+<p>(7) After you submit your results to the test-dev eval server, you can control whether your results are publicly posted to the CodaLab leaderboard. To toggle the public visibility of your results please select either “post to leaderboard” or “remove from leaderboard”. Only one result can be published to the leaderboard at any time. In addition to the CodaLab leaderboard, we also host our own more detailed leaderboards for <a href="#detections-leaderboard">detection</a>, <a href="#keypoints-leaderboard">keypoints</a>, and <a href="#stuff-leaderboard">stuff</a> that include additional results and method information (such as paper references). Note that the CodaLab leaderboards may contain results not yet migrated to our own leaderboards. Once results are migrated to our public leaderboard they cannot be removed (but they can be updated). For the challenge leaderboards, it will only be populated at the time challenge winners are announced.</p>
+
+<p>(8) After evaluation is complete and the server shows a status of “Finished”, you will have the option to download your evaluation results by selecting “Download evaluation output from scoring step.” The zip file will contain three files:</p>
+<div class="json fontMono">
+  <div class="jsonreg">
+    <div class="jsonblk">
+      eval.json<br/>
+      metadata<br/>
+      scores.txt
+    </div>
+    <div class="jsonblk">
+      % aggregated evaluation on test <br/>
+      % auto generated (safe to ignore) <br/>
+      % auto generated (safe to ignore)
+    </div>
+  </div>
+</div>
+<p>The format of the json eval output file is described on the relevant evaluation pages.</p>

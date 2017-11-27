@@ -24,9 +24,9 @@
 <body>
   <script>$(function(){datasetTabNav()});</script>
   <div id="header"><div id="headerBody">
-    <img id="headerImage" src="images/logo.png" alt="Logo" />
+    <img id="headerImage" src="images/coco-logo.png" alt="Logo" />
     <div id="headerTabs">
-      <div id="headerEmail">cocodataset@outlook.com</div>
+      <div id="headerEmail">info@cocodataset.org</div>
       <ul class="nav nav-tabs">
         <li class="active">
           <div class="nav-tab-header"></div>
@@ -40,44 +40,48 @@
           <div class="nav-tab-header"></div>
           <a class="dropdown-toggle" data-toggle="dropdown">Dataset<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a data-toggle="tab" href="#overview">Overview</a></li>
-            <li><a data-toggle="tab" href="#download">Download</a></li>
-            <li><a data-toggle="tab" href="#explore">Explore</a></li>
-            <li><a data-toggle="tab" href="#external">External</a></li>
-            <li><a data-toggle="tab" href="#termsofuse">Terms of Use</a></li>
+            <li><a data-toggle="tab" href="#overview"><i class="glyphicon glyphicon-info-sign"></i> Overview</a></li>
+            <li><a data-toggle="tab" href="#explore"><i class="glyphicon glyphicon-search"></i> Explore</a></li>
+            <li><a data-toggle="tab" href="#download"><i class="glyphicon glyphicon-download"></i> Download</a></li>
+            <li><a data-toggle="tab" href="#external"><i class="glyphicon glyphicon-cloud-download"></i> External</a></li>
+            <li><a data-toggle="tab" href="#termsofuse"><i class="glyphicon glyphicon-list-alt"></i> Terms of Use</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <div class="nav-tab-header"></div>
           <a class="dropdown-toggle" data-toggle="dropdown">Tasks<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a data-toggle="tab" href="#detections-challenge2017">Detection 2017</a></li>
-            <li><a data-toggle="tab" href="#keypoints-challenge2017">Keypoints 2017</a></li>
-            <li><a data-toggle="tab" href="#stuff-challenge2017">Stuff 2017</a></li>
+            <li><a data-toggle="tab" href="#detections-challenge2017"><i class="glyphicon glyphicon-king"></i> Detection 2017</a></li>
+            <li><a data-toggle="tab" href="#keypoints-challenge2017"><i class="glyphicon glyphicon-king"></i> Keypoints 2017</a></li>
+            <li><a data-toggle="tab" href="#stuff-challenge2017"><i class="glyphicon glyphicon-king"></i> Stuff 2017</a></li>
             <li class="divider"></li>
-            <li><a data-toggle="tab" href="#detections-challenge2016">Detection 2016</a></li>
-            <li><a data-toggle="tab" href="#keypoints-challenge2016">Keypoints 2016</a></li>
+            <li><a data-toggle="tab" href="#detections-challenge2016"><i class="glyphicon glyphicon-king"></i> Detection 2016</a></li>
+            <li><a data-toggle="tab" href="#keypoints-challenge2016"><i class="glyphicon glyphicon-king"></i> Keypoints 2016</a></li>
             <li class="divider"></li>
-            <li><a data-toggle="tab" href="#detections-challenge2015">Detection 2015</a></li>
-            <li><a data-toggle="tab" href="#captions-challenge2015">Captioning 2015</a></li>
+            <li><a data-toggle="tab" href="#detections-challenge2015"><i class="glyphicon glyphicon-king"></i> Detection 2015</a></li>
+            <li><a data-toggle="tab" href="#captions-challenge2015"><i class="glyphicon glyphicon-king"></i> Captioning 2015</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <div class="nav-tab-header"></div>
           <a class="dropdown-toggle" data-toggle="dropdown">Evaluate<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a data-toggle="tab" href="#format">Results Format</a></li>
-            <li><a data-toggle="tab" href="#guidelines">Test Guidelines</a></li>
+            <li><a>Participate:</a></li>
+            <li><a data-toggle="tab" href="#format">&nbsp;<i class="glyphicon glyphicon-cog"></i> Results Format</a></li>
+            <li><a data-toggle="tab" href="#guidelines">&nbsp;<i class="glyphicon glyphicon-cog"></i> Test Guidelines</a></li>
+            <li><a data-toggle="tab" href="#upload">&nbsp;<i class="glyphicon glyphicon-cog"></i> Upload Results</a></li>
             <li class="divider"></li>
-            <li><a data-toggle="tab" href="#detections-eval">Eval: Detection</a></li>
-            <li><a data-toggle="tab" href="#keypoints-eval">Eval: Keypoints</a></li>
-            <li><a data-toggle="tab" href="#stuff-eval">Eval: Stuff</a></li>
-            <li><a data-toggle="tab" href="#captions-eval">Eval: Captions</a></li>
+            <li><a>Evaluate:</a></li>
+            <li><a data-toggle="tab" href="#detections-eval">&nbsp;<i class="glyphicon glyphicon-stats"></i> Detection</a></li>
+            <li><a data-toggle="tab" href="#keypoints-eval">&nbsp;<i class="glyphicon glyphicon-stats"></i> Keypoints</a></li>
+            <li><a data-toggle="tab" href="#stuff-eval">&nbsp;<i class="glyphicon glyphicon-stats"></i> Stuff</a></li>
+            <li><a data-toggle="tab" href="#captions-eval">&nbsp;<i class="glyphicon glyphicon-stats"></i> Captions</a></li>
             <li class="divider"></li>
-            <li><a data-toggle="tab" href="#detections-leaderboard">Leader: Detection</a></li>
-            <li><a data-toggle="tab" href="#keypoints-leaderboard">Leader: Keypoints</a></li>
-            <li><a data-toggle="tab" href="#stuff-leaderboard">Leader: Stuff</a></li>
-            <li><a data-toggle="tab" href="#captions-leaderboard">Leader: Captioning</a></li>
+            <li><a>Leaderboards:</a></li>
+            <li><a data-toggle="tab" href="#detections-leaderboard">&nbsp;<i class="glyphicon glyphicon-th-list"></i> Detection</a></li>
+            <li><a data-toggle="tab" href="#keypoints-leaderboard">&nbsp;<i class="glyphicon glyphicon-th-list"></i> Keypoints</a></li>
+            <li><a data-toggle="tab" href="#stuff-leaderboard">&nbsp;<i class="glyphicon glyphicon-th-list"></i> Stuff</a></li>
+            <li><a data-toggle="tab" href="#captions-leaderboard">&nbsp;<i class="glyphicon glyphicon-th-list"></i> Captions</a></li>
           </ul>
         </li>
       </ul>
@@ -86,5 +90,8 @@
   <div id="content" class="tab-content" >
     <div role="tabpanel" class="tab-pane fade active in" id="home"></div>
   </div>
-  <div id="footer"><div><a href="#termsofuse">Terms of Use</a></div></div>
+  <div id="footer"><div>
+    <a href="https://github.com/cocodataset/cocoapidataset.github.io" target="_blank">Github Page Source</a>
+    <a href="#termsofuse">Terms of Use</a>
+  </div></div>
 </body>

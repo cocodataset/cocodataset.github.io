@@ -3,12 +3,20 @@ html, body {
   font-size:14px;
   background:white;
   color:#1d2125;
-  height:100%;
   margin:0;
   padding:0;
   border:0;
   line-height:1.3;
   text-align:justify;
+  box-sizing:border-box;
+}
+html {
+  height:100%;
+}
+body {
+  position:relative;
+  min-height:100%;
+  padding-bottom:60px;
 }
 p {
   margin:20px 0;
@@ -28,6 +36,10 @@ a img {
   font-size:20px;
   font-weight:300;
 }
+.fontBigger {
+  font-size:18px;
+  font-weight:300;
+}
 .fontBig {
   font-size:16px;
   font-weight:300;
@@ -40,6 +52,9 @@ a img {
 }
 .fontBlue {
   color:#3355bb;
+}
+.fontBoldish {
+  font-weight:500;
 }
 .fontBold {
   font-weight:700;
@@ -56,7 +71,7 @@ ul.noBullet {
   margin:0;
 }
 li.checkBullet {
-  background:url(../images/check.gif) no-repeat left top;
+  background:url(../images/icons/iconCheck.gif) no-repeat left top;
   height:22px;
   padding-left:38px;
 }
@@ -77,19 +92,19 @@ a[aria-expanded=false] .glyphicon-chevron-down {
 }
 /* HEADER ------------------------------------ */
 #header {
-  height:154px;
+  height:134px;
   border-top:2px solid #e16c03;
   background:#1d2125;
 }
 #headerBody {
   width:800px;
-  height:150px;
+  height:130px;
   margin:0 auto;
 }
 #headerImage {
   display:inline-block;
   vertical-align:top;
-  margin-top:50px;
+  margin-top:30px;
   margin-left:15px;
   margin-right:30px;
   width:285px;
@@ -99,7 +114,7 @@ a[aria-expanded=false] .glyphicon-chevron-down {
   display:inline-block;
   vertical-align:top;
   width:465px;
-  padding-top:70px;
+  padding-top:50px;
 }
 #headerEmail {
   display:inline-block;
@@ -159,7 +174,6 @@ a[aria-expanded=false] .glyphicon-chevron-down {
 #content {
   margin:auto;
   width:800px;
-  min-height:600px;
   padding-left:20px;
 }
 .columnFeatures {
@@ -208,21 +222,24 @@ a[aria-expanded=false] .glyphicon-chevron-down {
 }
 /* FOOTER ------------------------------------ */
 #footer {
-  margin-top:40px;
   width:100%;
-  height:180px;
+  height:30px;
+  position:absolute;
+  bottom:0;
   background-color:#1d2125;
-  border-bottom:150px solid white;
 }
 #footer div {
+  padding-left:20px;
   margin:auto;
   width:800px;
 }
 #footer a {
   display:inline-block;
-  padding-left:85%;
   padding-top:6px;
   color:white;
+}
+#footer a:last-of-type  {
+  float:right;
 }
 /* EXTERNAL ------------------------------------ */
 .external-container {
@@ -275,15 +292,15 @@ td.ldbdDate {
   font-size:10px;
 }
 td.ldbdPlus {
-  background:url('../images/iconOpen.png') no-repeat center center;
+  background:url('../images/icons/iconOpen.png') no-repeat center center;
   width:20px !important;
   cursor:pointer;
 }
 tr.shown td.ldbdPlus {
-  background:url('../images/iconClose.png') no-repeat center center;
+  background:url('../images/icons/iconClose.png') no-repeat center center;
 }
 .ldbdPerCat td.ldbdPlus {
-  background:url('../images/iconBack.png') no-repeat center center;
+  background:url('../images/icons/iconBack.png') no-repeat center center;
 }
 .ldbdMore td {
   text-align:left;
