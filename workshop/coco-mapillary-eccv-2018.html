@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>COCO + Mapillary 2018 | ECCV 2018</title>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+  <link rel="stylesheet" href="../other/cocostyles.css" />
+  <link rel="stylesheet" href="../other/workshopstyle.css" />
+</head>
+<body>
+  <div class="eccv18header">
+    <div class="eccv18headercontent">
+      <div class="eccv18title shadow">COCO + Mapillary</div>
+      <div class="eccv18subtitle shadow">Joint Recognition Challenge Workshop at ECCV 2018</div>
+    </div>
+  </div>
+
+  <div id="content">
+    <h2>0. Quick Links</h2>
+    <p class="fontBigger">
+      <a href="../index.htm#detections-challenge2018">Detection (Instance Segmentation) - COCO</a><br
+      <a href="">Detection (Instance Segmentation) - Mapillary</a><br/>
+      <a href="../index.htm#panoptic-challenge2018">Panoptic Segmentation - COCO</a><br
+      <a href="">Panoptic Segmentation - Mapillary</a><br/>
+      <a href="../index.htm#keypoints-challenge2018">Keypoints - COCO</a><br/>
+    </p>
+
+    <h2>1. Overview</h2>
+    <p>The goal of the joint COCO and Mapillary Challenge is to study object recognition in the context of scene understanding. While both the COCO and Mapillary Challeng challenges look at the general problem of visual recognition, the underlying datasets and the specific tasks in the challenges probe different aspects of the problem.</p>
+
+    <p><a href="../index.htm">COCO</a> is a widely used visual recognition dataset, designed to spur object detection research with a focus on full scene understanding. In particular: detecting non-iconic views of objects, localizing objects in images with pixel level precision, and detection in complex scenes. <a>Mapillary Vistas</a> is a new street-level image dataset with emphasis on high-level, semantic image understanding, with applications for autonomous vehicles and robot navigation. The dataset features locations from all around the world and is diverse in terms of weather and illumination conditions, capturing sensor characteristics, etc.</p>
+
+    <p>Mapillary is complementary to COCO in terms of dataset focus and can be readily used for studying various recognition tasks in a visually distinct domain from COCO. COCO focuses on recognition in natural scenes, while Mapillary focuses on recognition of street-view scenes. <i>We encourage teams to participate in challenges across both datasets</i> to better understand the current landscape of datasets and methods.</p>
+
+    <p>Challenge tasks: COCO helped popularize <a href="../index.htm#detections-challenge2018">instance segmentation</a> and this year both COCO and Mapillary feature this task, where the goal is to simultaneously detect and segment each object instance. As detection has matured over the years, <b>COCO is no longer featuring the bounding-box detection task</b>. While the leaderboard will remain open, the bounding-box detection task is not a workshop challenge; instead we encourage researchers to focus on the more challenging and visually informative instance segmentation task. As in previous years, COCO features the popular person <a href="../index.htm#keypoints-challenge2018">keypoint challenge</a> track.</p>
+
+    <p>This year we are pleased to introduce the <a href="../index.htm#panoptic-challenge2018">panoptic segmentation</a> task with the goal of advancing the state of the art in scene segmentation. Panoptic segmentation addresses both stuff and thing class, unifying the typically distinct semantic and instance segementation tasks. The definition of panoptic is “including everything visible in one view”, in this context panoptic refers to a unified, global view of segmentation. The aim is to generate coherent scene segmentations that are rich and complete, an important step toward real-world vision systems. For more details about the panoptic task, including evaluation metrics, please see this <a href="https://arxiv.org/abs/1801.00868">paper</a>. Both COCO and Mapillary will feature panoptic segmentation challenges.</p>
+
+    <p>This workshop offers the opportunity to benchmark computer vision algorithms on the COCO and Mapillary Vistas datasets. The instance and panoptic segmentation tasks on the two datasets are the same, and we use unified data formats and evaluation criteria for both. We hope that jointly studying the unified tasks across two distinct visual domains will provide a highly comprehensive evaluation suite for modern visual recognition and segmentation algorithms and yield new insights.</p>
+
+    <h2>2. COCO Challenges</h2>
+    <p><a href="http://cocodataset.org/">COCO</a> is an image dataset designed to spur object detection research with a focus on detecting objects in context. The annotations include pixel-level segmentation of object belonging to 80 categories, keypoint annotations for person instances, stuff segmentations for 91 categories, and five image captions per image. The specific tracks in the COCO 2018 Challenges are (1) object detection segmentation masks (instance segmentation), (2) person keypoint estimation, and (3) panoptic segmentation. We describe each next. Note: <i>neither the detection task with bounding-box output nor the stuff segmentation task will be featured at the COCO 2018 challenge</i> (but evaluation servers remain open for both tasks).</p>
+
+    <div class="subsection">
+      <h3>2.1. COCO Detection Challenge</h3>
+      <p align="center"><a href="../index.htm#detections-challenge2018"><img src="../images/detections-challenge-splash.png" class="wide" /></a></p>
+      <p>The COCO 2018 Detection Challenge is designed to push the state of the art in object detection forward. Note: only the detection task with object segmentation output (that is, instance segmentation) will be featured at the COCO 2018 challenge. For full details of this task please see the <a href="../index.htm#detections-challenge2018">COCO Detection Challenge</a> page.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>2.2. COCO Panoptic Segmentation Challenge</h3>
+      <p align="center"><a href="../index.htm#panoptic-challenge2018"><img src="../images/panoptic-challenge-splash.png" class="wide" /></a></p>
+      <p>The COCO 2018 Panoptic Segmentation Challenge has the goal of advancing the state of the art in scene segmentation. Panoptic segmentation addresses both stuff and thing class, unifying the previously distinct COCO <a href="../index.htm#detections-challenge2018">Instance Segmentation</a> and <a href="../index.htm#stuff-challenge2018">Stuff Segmentation</a> tasks. For full details of this task please see the <a href="../index.htm#panoptic-challenge2018">COCO Panoptic Challenge</a> page.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>2.3. COCO Keypoint Challenge</h3>
+      <p align="center"><a href="../index.htm#keypoints-challenge2018"><img src="../images/keypoints-challenge-splash.png" class="wide" /></a></p>
+      <p>The COCO 2018 Keypoint Challenge requires localization of person keypoints in challenging, uncontrolled conditions. The keypoint challenge involves simultaneously detecting people <i>and</i> localizing their keypoints (person locations are <i>not</i> given at test time). For full details of this task please see the <a href="../index.htm#keypoints-challenge2018">COCO Keypoints Challenge</a> page.</p>
+    </div>
+
+    <h2>3. Mapillary Challenges</h2>
+    <div class="subsection">
+      Coming soon!
+    </div>
+
+    <h2>4. Challenge Dates</h2>
+    <div class="json">
+      <div class="jsonktxt fontBlue">August 10, 2018</div><div class="jsonvtxt">Submission deadline (11:59 PST)</div>
+      <div class="jsonktxt">August 26, 2018</div><div class="jsonvtxt">Challenge winners notified</div>
+      <div class="jsonktxt">September 9, 2018</div><div class="jsonvtxt">Winners present at ECCV 2018 Workshop</div>
+    </div>
+
+    <a name="schedule"></a>
+    <h2>5. Workshop Schedule - 09.09.2018</h2>
+    <div class="subsection">
+      Coming not so soon.
+    </div>
+
+    <h2>6. Invited Speakers </h2>
+    <div class="subsection">
+      Coming not so soon.
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>
+      Workshop questions?<br/>
+      Email <a href="info@cocodataset.org">info@cocodataset.org</a> or <a href="">coming soon</a><br/>
+      COCO and Mapillary Teams
+    </p>
+  </footer>
+</body>
