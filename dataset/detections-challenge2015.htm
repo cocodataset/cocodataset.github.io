@@ -1,13 +1,15 @@
-<h1>COCO 2015 Detection Challenge<br/><br/>
+<h1>COCO 2015 Object Detection Task</h1>
+<p><img src="images/detections-challenge-splash.png" class="wide"/></p>
+<h1>
   1st Place Detection and Segmentation: Team MSRA<br/>
   2nd Place Detection and Segmentation: Team FAIRCNN<br/>
   Best Student Entry: Team ION
 </h1>
 <p>Detection results and winners' methods were presented at the ICCV 2015 <a href="http://image-net.org/challenges/ilsvrc+mscoco2015" target="_blank">ImageNet and COCO Visual Recognition Challenges Joint Workshop</a> (slides and recording of all talks are now available). Challenge winners along with up-to-date results are available to view on the <a href="#detections-leaderboard">leaderboard</a>. The evaluation server remains open for upload of new results.</p>
-<p align="center"><img src="images/detections-challenge-splash.png" class="wide"/></p>
 
 <h1>1. Overview</h1>
-<p>We are pleased to announce the COCO 2015 Detection Challenge. This competition is designed to push the state of the art in object detection forward. Teams are encouraged to compete in either (or both) of two object detection challenges: using bounding box output or object segmentation output.</p>
+<p>We are pleased to announce the COCO Object Detection Task. This task is designed to push the state of the art in object detection forward. Teams are encouraged to compete in either (or both) of two object detection tasks: using bounding box output or object segmentation output.</p>
+<p>This detection challenge is part of the <a href="http://image-net.org/challenges/ilsvrc+mscoco2015" target="_blank">ImageNet and COCO Visual Recognition Challenges</a> joint workshop at ICCV 2015. For further details about the joint workshop please visit the workshop website.</p>
 <p>The COCO train, validation, and test sets, containing more than 200,000 images and 80 object categories, are available on the <a href="#download">download</a> page. All object instance are annotated with a detailed segmentation mask. Annotations on the training and validation sets (with over 500,000 object instances segmented) are publicly available.</p>
 
 <h1>2. Dates</h1>
@@ -17,7 +19,6 @@
   <div class="jsonktxt">December 10, 2015</div><div class="jsonvtxt">Challenge results released</div>
   <div class="jsonktxt">December 17, 2015</div><div class="jsonvtxt">Winner presents at ICCV 2015 Workshop</div>
 </div>
-<p>This detection challenge is part of the <a href="http://image-net.org/challenges/ilsvrc+mscoco2015" target="_blank">ImageNet and COCO Visual Recognition Challenges</a> joint workshop at ICCV 2015. For further details about the joint workshop please visit the workshop website.</p>
 
 <h1>3. Organizers</h1>
 <div>Tsung-Yi Lin (Cornell Tech)</div>
@@ -36,9 +37,3 @@
 <div>Michael Maire (TTI-Chicago)</div>
 <div>Pietro Perona (Caltech)</div>
 <div>Deva Ramanan (CMU)</div>
-
-<h1>5. Challenge Guidelines</h1>
-<p>The <a href="#detections-eval">detection evaluation</a> page lists detailed information regarding how submissions will be scored. To limit overfitting while giving researchers more flexibility to test their system, we have divided the test set into a number of splits, including test-dev, test-standard, and test-challenge. Test-dev is used for debugging and validation experiments and allows for unlimited submission to the evaluation server. Test-standard is used to maintain a public <a href="#detections-leaderboard">leaderboard</a>. Finally, test-challenge is used for the workshop competition; results will be revealed during the workshop at ICCV 2015. A more thorough explanation is available on the <a href="#guidelines">guidelines</a> page. Competitors are recommended but not restricted to train their algorithms on COCO 2014 train and val sets. The <a href="#download">download</a> page contains links to all COCO 2014 train+val images and associated annotations as well as the 2015 test images.  Please specify any and all external data used for training in the "method description" when uploading results to the evaluation server. By the challenge deadline, results must be <a href="#upload">uploaded</a> to the evaluation server. Competitors' algorithms will be evaluated according to the rules described on the <a href="#detections-eval">evaluation</a> page. Challenge participants with the most successful and innovative methods will be invited to present. After careful consideration, this challenge uses a more comprehensive comparison metric than the traditional AP at Intersection over Union (IoU) threshold of 0.5. Specifically, AP is averaged over multiple IoU values between 0.5 and 1.0; this rewards detectors with better localization. Please refer to the "Metrics" section of the <a href="#detections-eval">evaluation</a> page for a detailed explanation.</p>
-
-<h1>6. Tools and Instructions</h1>
-<p>We provide extensive API support for the COCO images, annotations, and evaluation code. To download the COCO API, please visit our <a href="https://github.com/cocodataset/cocoapi">GitHub repository</a>. For an overview of how to use the API, please visit the <a href="#download">download</a> page. Due to the large size of COCO and the complexity of this challenge, the process of competing in this challenge may not seem simple. To help, we provide explanations and instructions for each step of the process on the <a href="#download">download</a>, <a href="#format-data">data format</a>, <a href="#format-results">results format</a>, <a href="#guidelines">guidelines</a>, <a href="#upload">upload</a>, and <a href="#detections-eval">evaluation</a> pages. For additional questions, please contact <a href="mailto:info@cocodataset.org">info@cocodataset.org</a>.</p>
