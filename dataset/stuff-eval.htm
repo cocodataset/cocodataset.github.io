@@ -1,9 +1,9 @@
 <h1>1. Stuff Evaluation</h1>
 <p>This page describes the <i>stuff evaluation metrics</i> used by COCO. The evaluation code provided here can be used to obtain results on the publicly available COCO validation set. It computes multiple metrics described below. To obtain results on the COCO test set, for which ground-truth annotations are hidden, generated results must be <a href="#upload">uploaded</a> to the evaluation server. The exact same evaluation code, described below, is used to evaluate results on the test set.</p>
-<p>The COCO 2017 Stuff Segmentation Challenge builds on the COCO-Stuff project as described on <a href="https://github.com/nightrome/cocostuff">this website</a> and in this <a href="https://arxiv.org/abs/1612.03716">research paper</a>. This challenge includes and extends the original dataset release. Please note that in order to scale annotation, stuff segmentations were collected on superpixel segmentations of an image.</p>
+<p>The COCO Stuff Segmentation Task builds on the COCO-Stuff project as described on <a href="https://github.com/nightrome/cocostuff">this website</a> and in this <a href="https://arxiv.org/abs/1612.03716">research paper</a>. This task includes and extends the original dataset release. Please note that in order to scale annotation, stuff segmentations were collected on superpixel segmentations of an image.</p>
 
 <h1>2. Classes</h1>
-<p>The stuff labels for the COCO 2017 Stuff Segmentation Challenge are organized in a <a href="images/stuff-labelhierarchy.png">semantic hierarchy</a>. Additionally there is a single 'other' category and a supercategory of the same name that subsumes all the thing categories in COCO. For compatibility with the COCO thing categories we use the following category ids:</p>
+<p>The stuff labels are organized in a <a href="images/stuff-labelhierarchy.png">semantic hierarchy</a>. Additionally there is a single 'other' category and a supercategory of the same name that subsumes all the thing categories in COCO. For compatibility with the COCO thing categories we use the following category ids:</p>
 <div class="json fontMono">
   <div class="jsonk">1-91</div><div class="jsonv">% thing categories (not used for stuff segmentation)</div>
   <div class="jsonk">92-182</div><div class="jsonv">% stuff categories</div>
