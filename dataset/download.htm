@@ -1,9 +1,9 @@
 <div class="columnApi">
-  <p class="fontTitle">Tools</p>
-  <p class="fontSubtitle"><a href="https://github.com/cocodataset/cocoapi" target="_blank">COCO API</a></p>
+  <h1>Tools</h1>
+  <h2><a href="https://github.com/cocodataset/cocoapi" target="_blank">COCO API</a></h2>
 </div>
 <div class="columnDownloads">
-  <p class="fontTitle">Images</p>
+  <h1>Images</h1>
   <p class="fontSmall">
     <a href="http://images.cocodataset.org/zips/train2014.zip">2014 Train images [83K/13GB]</a><br/>
     <a href="http://images.cocodataset.org/zips/val2014.zip">2014 Val images [41K/6GB]</a><br/>
@@ -16,7 +16,7 @@
   </p>
 </div>
 <div class="columnDownloads">
-  <p class="fontTitle">Annotations</p>
+  <h1>Annotations</h1>
   <p class="fontSmall">
     <a href="http://images.cocodataset.org/annotations/annotations_trainval2014.zip">2014 Train/Val annotations [241MB]</a><br/>
     <a href="http://images.cocodataset.org/annotations/image_info_test2014.zip">2014 Testing Image info [1MB]</a><br/>
@@ -27,7 +27,7 @@
     <a href="http://images.cocodataset.org/annotations/image_info_unlabeled2017.zip">2017 Unlabeled Image info [4MB]</a><br/>
   </p>
 </div>
-<p class="fontTitle">1. Overview</p>
+<h1>1. Overview</h1>
 
 <p>Which dataset splits should you download? Each year's split is associated with different challenges. Specifically:</p>
 <div class="json">
@@ -58,7 +58,7 @@ By downloading this dataset, you agree to our <a href="#termsofuse">Terms of Use
 <p><b>2017 Update:</b> The main change in 2017 is that instead of an 80K/40K train/val split, based on community feedback the split is now 115K/5K for train/val. The same exact images are used, and no new annotations for detection/keypoints are provided. However, new in 2017 are stuff annotations on 40K train images (subset of the full 115K train images from 2017) and 5K val images. Also, for testing, in 2017 the test set only has two splits (dev / challenge), instead of the four splits (dev / standard / reserve / challenge) used in previous years. Finally, new in 2017 we are releasing 120K unlabeled images from COCO that follow the same class distribution as the labeled images; this may be useful for semi-supervised learning on COCO.</p>
 <p><b>Note:</b> Annotations last updated <i>09/05/2017</i> (stuff annotations added). If you find any issues with the data please let us know!</p>
 
-<p class="fontTitle">2. COCO API</p>
+<h1>2. COCO API</h1>
 <p>The COCO API assists in loading, parsing, and visualizing annotations in COCO. The API supports object instance, object keypoint, and image caption annotations (for captions not all functionality is defined). For additional details see: <a href="https://github.com/cocodataset/cocoapi/blob/master/MatlabAPI/CocoApi.m" target="_blank">CocoApi.m</a>, <a href="https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/coco.py" target="_blank">coco.py</a>, and <a href="https://github.com/cocodataset/cocoapi/blob/master/LuaAPI/CocoApi.lua" target="_blank">CocoApi.lua</a> for Matlab, Python, and Lua code, respectively, and also the <a href="https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocoDemo.ipynb" target="_blank">Python API demo</a>.</p>
 <div class="json">
   <div>Throughout the API "ann"=annotation, "cat"=category, and "img"=image.</div>
@@ -73,7 +73,7 @@ By downloading this dataset, you agree to our <a href="#termsofuse">Terms of Use
   <div class="jsonkfunc">showAnns</div><div class="jsonvtxt">Display the specified annotations.</div>
 </div>
 
-<p class="fontTitle">3. MASK API</p>
+<h1>3. MASK API</h1>
 <p>COCO provides segmentation masks for every object instance. This creates two challenges: storing masks compactly and performing mask computations efficiently. We solve both challenges using a custom Run Length Encoding (RLE) scheme. The size of the RLE representation is proportional to the number of boundaries pixels of a mask and operations such as area, union, or intersection can be computed efficiently directly on the RLE. Specifically, assuming fairly simple shapes, the RLE representation is O(&radic;n) where n is number of pixels in the object, and common computations are likewise O(&radic;n). Naively computing the same operations on the decoded masks (stored as an array) would be O(n).</p>
 <p>The MASK API provides an interface for manipulating masks stored in RLE format. The API is defined below, for additional details see: <a href="https://github.com/cocodataset/cocoapi/blob/master/MatlabAPI/MaskApi.m" target="_blank">MaskApi.m</a>, <a href="https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/mask.py" target="_blank">mask.py</a>, or <a href="https://github.com/cocodataset/cocoapi/blob/master/LuaAPI/MaskApi.lua" target="_blank">MaskApi.lua</a>. Finally, we note that a majority of ground truth masks are stored as polygons (which are quite compact), these polygons are converted to RLE when needed.</p>
 <div class="json">
@@ -87,7 +87,7 @@ By downloading this dataset, you agree to our <a href="#termsofuse">Terms of Use
   <div class="jsonkfunc">frPoly</div><div class="jsonvtxt">Convert polygon to encoded mask.</div>
 </div>
 
-<p class="fontTitle">4. Annotation format</p>
+<h1>4. Annotation format</h1>
 <p>COCO currently has three annotation types: object instances, object keypoints, and image captions. The annotations are stored using the <a href="http://json.org/" target="_blank">JSON</a> file format. All annotations share the basic data structure below:</p>
 <div class="json">
   <div class="jsonreg">{</div>
@@ -125,7 +125,7 @@ By downloading this dataset, you agree to our <a href="#termsofuse">Terms of Use
 </div>
 <p>The data structures specific to the various annotation types are described below.</p>
 
-<p class="fontSubtitle">4.1. Object Instance Annotations</p>
+<h2>4.1. Object Instance Annotations</h2>
 <p>Each instance annotation contains a series of fields, including the category id and segmentation mask of the object. The segmentation format depends on whether the instance represents a single object (iscrowd=0 in which case polygons are used) or a collection of objects (iscrowd=1 in which case RLE is used). Note that a single object (iscrowd=0) may require multiple polygons, for example if occluded. Crowd annotations (iscrowd=1) are used to label large groups of objects (e.g. a crowd of people). In addition, an enclosing bounding box is provided for each object (box coordinates are measured from the top left image corner and are 0-indexed). Finally, the categories field of the annotation structure stores the mapping of category id to category and supercategory names. See also the <a href="#detections-challenge2018">Detection Challenge</a>.</p>
 <div class="json">
   <div class="jsonreg">annotation{</div>
@@ -145,7 +145,7 @@ By downloading this dataset, you agree to our <a href="#termsofuse">Terms of Use
   <div class="jsonreg">}]</div>
 </div>
 
-<p class="fontSubtitle">4.2. Object Keypoint Annotations</p>
+<h2>4.2. Object Keypoint Annotations</h2>
 <p>A keypoint annotation contains all the data of the object annotation (including id, bbox, etc.) and two additional fields. First, "keypoints" is a length 3k array where k is the total number of keypoints defined for the category. Each keypoint has a 0-indexed location x,y and a visibility flag v defined as v=0: not labeled (in which case x=y=0), v=1: labeled but not visible, and v=2: labeled and visible. A keypoint is considered visible if it falls inside the object segment. "num_keypoints" indicates the number of labeled keypoints (v>0) for a given object (many objects, e.g. crowds and small objects, will have num_keypoints=0). Finally, for each category, the categories struct has two additional fields: "keypoints," which is a length k array of keypoint names, and "skeleton", which defines connectivity via a list of keypoint edge pairs and is used for visualization. Currently keypoints are only labeled for the person category (for most medium/large non-crowd person instances). See also the <a href="#keypoints-challenge2018">Keypoint Challenge</a>.</p>
 <div class="json">
   <div class="jsonreg">annotation{</div>
@@ -163,10 +163,10 @@ By downloading this dataset, you agree to our <a href="#termsofuse">Terms of Use
   "[cloned]": denotes fields copied from object instance annotations defined in 4.1.</div>
 </div>
 
-<p class="fontSubtitle">4.3. Stuff Segmentation Annotations</p>
+<h2>4.3. Stuff Segmentation Annotations</h2>
 <p>The stuff annotation format is identical and fully compatible to the object instance annotation format above (except iscrowd is unnecessary and set to 0 by default). We provide annotations in both JSON and png format for easier access, as well as <a href="https://github.com/nightrome/coco">conversion scripts</a> between the two formats. In the JSON format, each category present in an image is encoded with a single RLE annotation (see Mask API above for more details). The category_id represents the id of the current stuff category. For more details on stuff categories and supercategories see the <a href="#stuff-eval">stuff evaluation</a> page.</p>
 
-<p class="fontSubtitle">4.4. Image Caption Annotations</p>
+<h2>4.4. Image Caption Annotations</h2>
 <p>These annotations are used to store image captions. Each caption describes the specified image and each image has at least 5 captions (some images have more). See also the <a href="#captions-challenge2015">Captioning Challenge</a>.</p>
 <div class="json">
   <div class="jsonreg">annotation{</div>

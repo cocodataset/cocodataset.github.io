@@ -1,4 +1,4 @@
-<p class="fontTitle">Test Guidelines</p>
+<h1>Test Guidelines</h1>
 <p>The COCO data can be obtained from the <a href="#download">download page.</a> Each challenge has a different training / validation / testing set, details are provided on the download page and summarized here:</p>
 <div class="json">
   <div class="jsonktxt">2014 Train/Val</div><div class="jsonvtxt"><a href="#detections-challenge2015">Detection 2015</a>, <a href="#captions-challenge2015">Captioning 2015</a>, <a href="#detections-challenge2016">Detection 2016</a>, <a href="#keypoints-challenge2016">Keypoints 2016</a></div>
@@ -11,10 +11,10 @@
 <p>The recommended training data for participating in any COCO challenge consists of the corresponding COCO training set. Validation data may also be used for training when submitting results on the test set (although starting in 2017 the validation set only has 5K images, so the benefits of this are minimized). Note that the 2017 train/val data includes the same images as the 2014 train/val data just organized differently, so there is no benefit of using 2014 training data for the 2017 competition.</p>
 <p><i>External data</i> of any form is allowed. Any and all external data used for training must be specified in the "method description" when uploading results to the server. We emphasize that any form of annotation or use of the COCO test sets for supervised or unsupervised training is strictly forbidden. <b>Note: please explicitly specify any and all external data used for training in the "method description" when uploading results to the evaluation server.</b></p>
 
-<p class="fontTitle">Test Set Splits</p>
+<h1>Test Set Splits</h1>
 <p>Prior to 2017, the test set had four splits (dev / standard / reserve / challenge). Starting in 2017, we simplified the test set to only the dev / challenge splits, with the other two splits removed. The original purpose of the four splits was to protect the integrity of the challenge while giving researchers flexibility to test their system. After multiple years of running the challenges, we saw no evidence of overfitting to specific splits (the output space complexity and the test set size protect against simple attacks such as <a href="http://blog.mrtz.org/2015/03/09/competition.html" targe="_blank">wacky boosting</a>). Therefore, we simplified participation in the challenges accordingly in 2017.</p>
 
-<p class="fontSubtitle">2017 Test Set Splits</p>
+<h2>2017 Test Set Splits</h2>
 <p>The 2017 COCO Test set consists of ~40K test images. The test set is divided into two roughly equally sized splits of ~20K images each: <i>test-dev</i> and <i>test-challenge</i>. Each is described in detail below. Additionally, when uploading to evaluation servers, we now allow submission of the 5K val split for debugging the upload process. Note that test set guidelines have changed in 2017, you can see the 2015 guidelines for old usage information. The test splits in 2017 are as follows:</p>
 <div class="json fontMono">
   <table class="datasetSplits">
@@ -29,7 +29,7 @@
 <p>The images belonging to each split are defined in image_info_test-dev2017 (for test-dev) and image_info_test2017 (for combined test-dev and test-challenge). Info for test-challenge images is not explicitly provided. Instead, results must be submitted on the full test set (both test-dev and test-challenge) when participating in the challenge. This serves two goals. First, participants get automatic feedback on their submission by seeing evaluation results on test-dev prior to the challenge workshop. Second, after the challenge workshop, it gives future participants an opportunity to compare against challenge entries on the test-dev split. We emphasize that when submitting to the full test set (image_info_test2017), results must be generated on all images without differentiating between the splits. Finally, we note that 2017 dev / challenge splits contain the same images as the 2015 dev / challenge splits so results across years are directly comparable.</p>
 <p>It is not acceptable to create multiple accounts for a single project to circumvent the submission upload limits. If a group publishes two papers describing unrelated methods, separate user accounts may be created. For challenges, a group may create multiple accounts only if submitting substantially different methods to the challenge (e.g., based on different papers). To debug the upload process, we allow participants to submit unlimited evaluation results on the val set.</p>
 
-<p class="fontSubtitle">2015 Test Set Splits</p>
+<h2>2015 Test Set Splits</h2>
 <p>This test set was used for 2015 and 2016 detection and keypoint challenges. <i>It is no longer used and the evaluation servers are closed</i>. However, for historical reference, you may obtain full information on the 2015 test splits by clicking <a href="#Guidelines2015" data-toggle="collapse" aria-expanded="false" aria-controls="gsutil-rsync"><i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-down"></i>here</a>.</p>
 <div id="Guidelines2015" class="collapse">
   The 2015 COCO Test set consists of ~80K test images. To limit overfitting while giving researchers more flexibility to test their system, we have divided the test set into four roughly equally sized splits of ~20K images each: <i>test-dev</i>, <i>test-standard</i>, <i>test-challenge</i>, and <i>test-reserve</i>. Submission to the test set automatically results in submission on each split (identities of the splits are not publicly revealed). In addition, to allow for debugging and validation experiments, we allow researcher <i>unlimited</i> submission to test-dev. Each test split serves a distinct role; details below.<br/><br/>
@@ -52,5 +52,5 @@
   <p>The differences between the validation and test-dev sets are threefold: guaranteed consistent evaluation of test-dev using the evaluation server, test-dev cannot be used for training (annotations are private), and a leaderboard is provided for test-dev, allowing for comparison with the state-of-the-art. We note that the continued popularity of the outdated PASCAL VOC 2007 dataset partially stems from the fact that it allows for simultaneous validation experiments and comparisons to the state-of-the-art. Our goal with test-dev is to provide similar functionality (while keeping annotations private).</p>
 </div>
 
-<p class="fontSubtitle">2014 Test Set Splits</p>
+<h2>2014 Test Set Splits</h2>
 <p>The 2014 test set is only used for the <a href="#captions-challenge2015">captioning challenge</a>. Please see the <a href="#captions-eval">caption eval</a> page for details.</p>

@@ -1,7 +1,7 @@
-<p class="fontTitle">1. Detection Evaluation</p>
+<h1>1. Detection Evaluation</h1>
 <p>This page describes the <i>detection evaluation metrics</i> used by COCO. The evaluation code provided here can be used to obtain results on the publicly available COCO validation set. It computes multiple metrics described below. To obtain results on the COCO test set, for which ground-truth annotations are hidden, generated results must be <a href="#upload">uploaded</a> to the evaluation server. The exact same evaluation code, described below, is used to evaluate results on the test set.</p>
 
-<p class="fontTitle">2. Metrics</p>
+<h1>2. Metrics</h1>
 <p>The following 12 metrics are used for characterizing the performance of an object detector on COCO:</p>
 <div class="json fontMono">
   <div class="jsonreg"><b>Average Precision (AP):</b></div>
@@ -31,7 +31,7 @@
   <li>The evaluation metrics for detection with bounding boxes and segmentation masks are identical in all respects except for the IoU computation (which is performed over boxes or masks, respectively).</li>
 </ol>
 
-<p class="fontTitle">3. Evaluation Code</p>
+<h1>3. Evaluation Code</h1>
 <p>Evaluation code is available on the <a href="https://github.com/cocodataset/cocoapi" target="_blank">COCO github</a>. Specifically, see either <a href="https://github.com/cocodataset/cocoapi/blob/master/MatlabAPI/CocoEval.m" target="_blank">CocoEval.m</a> or <a href="https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/cocoeval.py" target="_blank">cocoeval.py</a> in the Matlab or Python code, respectively. Also see <span class="fontMono">evalDemo</span> in either the Matlab or Python code (<a href="https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocoEvalDemo.ipynb" target="_blank">demo</a>). Before running the evaluation code, please prepare your results in the format described on the <a href="#format">results format</a> page.</p>
 <p>The evaluation parameters are as follows (defaults in brackets, in general no need to change):</p>
 <div class="json">
@@ -71,7 +71,7 @@
 </div>
 <p>Finally <span class="fontMono">summarize()</span> computes the 12 detection metrics defined earlier based on the <span class="fontMono">eval</span> struct.</p>
 
-<p class="fontTitle">4. Analysis Code</p>
+<h1>4. Analysis Code</h1>
 <p>In addition to the evaluation code, we also provide a function <span class="fontMono">analyze()</span> for performing a detailed breakdown of false positives. This was inspired by <a href="http://web.engr.illinois.edu/~dhoiem/projects/detectionAnalysis/" target="_blank">Diagnosing Error in Object Detectors</a> by Derek Hoiem et al., but is quite different in implementation and details. The code generates plots like this:</p>
 <p>
   <img src="images/detections-analysis-MSRA15-person.jpg" class="wide40" />

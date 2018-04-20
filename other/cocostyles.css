@@ -24,17 +24,15 @@ p {
 a img {
   border-width:0;
 }
-.fontTitle {
+h1 {
   font-size:28px;
   font-weight:300;
+  margin:20px 0;
 }
-.fontSubtitle {
+h2 {
   font-size:24px;
   font-weight:300;
-}
-.fontSubsubtitle {
-  font-size:20px;
-  font-weight:300;
+  margin:20px 0;
 }
 .fontBigger {
   font-size:18px;
@@ -209,8 +207,8 @@ a[aria-expanded=false] .glyphicon-chevron-down {
   margin-bottom:25px;
 }
 .iconsImage {
-  margin-top:-20px;
-  margin-bottom:-20px;
+  margin-top:-10px;
+  margin-bottom:-15px;
   width:240px;
 }
 .ccImage {
@@ -254,6 +252,8 @@ a[aria-expanded=false] .glyphicon-chevron-down {
   cursor:pointer;
 }
 .external-container-rt {
+  font-size:28px;
+  font-weight:300;
   vertical-align:top;
   display:table-cell;
   padding-left:25px;
@@ -406,32 +406,24 @@ tr.shown td.ldbdPlus {
 /* Workshop ------------------------------------ */
 .eccv18header {
   background-image:url(../images/banner_eccv18.jpg);
+  text-align:center;
   height:400px;
-}
-.eccv18headercontent {
-  width:1000px;
   margin:auto
 }
 .eccv18title {
-  text-align:center;
-  font-size:80px;
+  font-size:72px;
   font-weight:500;
-  font-family:Helvetica;
   color:white;
   padding-top:150px;
-  margin-bottom:-10px;
+  text-shadow:-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 .eccv18subtitle {
-  text-align:center;
   font-size:24px;
-  font-family:Helvetica;
   color:white;
   border-top:3px solid white;
   border-bottom:3px solid white;
   margin:auto;
-  width:640px;
-}
-.shadow {
+  width:590px;
   text-shadow:-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 .schedule-track {

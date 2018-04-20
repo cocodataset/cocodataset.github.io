@@ -130,8 +130,8 @@ function populateExternalPage() {
     s += '<div class="external-container">';
     s += '<div class="external-container-lf">'+a+'<img class="external-image" src="'+e.src+'"/></a></div>';
     s += '<div class="external-container-rt">';
-    s += '  <div class="external-title fontTitle">'+a+e.name+'</a></div>';
-    s += '  <div class="external-description fontBig">'+e.description+'</div>';
+    s += '  <div>'+a+e.name+'</a></div>';
+    s += '  <div class="fontBig">'+e.description+'</div>';
     s += '</div>';
     s += '</div>';
   }
