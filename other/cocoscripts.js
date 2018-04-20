@@ -20,7 +20,7 @@ function googleAnalytics() {
 function datasetTabNav() {
   // Enable dataset tab controls. See also: https://getbootstrap.com/docs/3.3/javascript/#tabs
   // And: http://stackoverflow.com/questions/12131273/twitter-bootstrap-tabs-url-doesnt-change
-  var tabs = ["people", "overview", "download", "explore", "external", "termsofuse", "detections-challenge2018", "keypoints-challenge2018", "stuff-challenge2018",  "panoptic-challenge2018", "detections-challenge2017", "keypoints-challenge2017", "stuff-challenge2017", "detections-challenge2016", "keypoints-challenge2016", "detections-challenge2015", "captions-challenge2015", "format-results", "guidelines", "upload", "detections-eval", "keypoints-eval", "stuff-eval", "panoptic-eval", "captions-eval", "detections-leaderboard", "keypoints-leaderboard", "stuff-leaderboard", "panoptic-leaderboard", "captions-leaderboard"];
+  var tabs = ["people", "overview", "explore", "download", "external", "termsofuse", "detections-challenge2018", "keypoints-challenge2018", "stuff-challenge2018",  "panoptic-challenge2018", "detections-challenge2017", "keypoints-challenge2017", "stuff-challenge2017", "detections-challenge2016", "keypoints-challenge2016", "detections-challenge2015", "captions-challenge2015", "format-data", "format-results", "guidelines", "upload", "detections-eval", "keypoints-eval", "stuff-eval", "panoptic-eval", "captions-eval", "detections-leaderboard", "keypoints-leaderboard", "stuff-leaderboard", "panoptic-leaderboard", "captions-leaderboard"];
   for( var i=0; i<tabs.length; i++ ) {
     $("#content").append('<div role="tabpanel" class="tab-pane fade" id="' + tabs[i] + '"></div>');
   }
