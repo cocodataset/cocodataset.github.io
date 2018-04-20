@@ -42,7 +42,7 @@ function datasetTabNav() {
 
 var cocoPeople = {
   'Tsung': {'name': 'Tsung-Yi Lin', 'full': 'Google Brain', 'short': 'Google Brain', 'url':'https://vision.cornell.edu/se3/people/tsung-yi-lin/'},
-  'gen': {'name': 'Genevieve Patterson', 'full': 'Microsoft Research', 'short': 'MSR', 'url':'https://www.microsoft.com/en-us/research/people/gen/'},
+  'gen': {'name': 'Genevieve Patterson', 'full': 'MSR, Trash TV', 'short': 'MSR, Trash TV', 'url':'https://www.microsoft.com/en-us/research/people/gen/'},
   'matteo': {'name': 'Matteo R. Ronchi', 'full': 'Caltech', 'short': 'Caltech', 'url':'http://vision.caltech.edu/~mronchi/'},
   'yin': {'name': 'Yin Cui', 'full': 'Cornell Tech', 'short': 'Cornell Tech', 'url':'http://www.cs.cornell.edu/~ycui/'},
   'michael': {'name': 'Michael Maire', 'full': 'TTI-Chicago', 'short': 'TTI-Chicago', 'url':'http://ttic.uchicago.edu/~mmaire/'},
