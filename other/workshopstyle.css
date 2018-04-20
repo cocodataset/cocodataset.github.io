@@ -1,6 +1,6 @@
 .eccv18header {
   background-image:url(../images/banner_eccv18.jpg);
-  height:478px;
+  height:400px;
 }
 .eccv18headercontent {
   width:1000px;
@@ -12,8 +12,8 @@
   font-weight:500;
   font-family:Helvetica;
   color:white;
-  padding-top:250px;
-  margin-bottom:10px;
+  padding-top:150px;
+  margin-bottom:-10px;
 }
 .eccv18subtitle {
   text-align:center;
