@@ -1,5 +1,5 @@
 <h1>Data format</h1>
-<p>COCO has five annotation types: for <a href="#detections-challenge2018">object detection</a>, <a href="#keypoints-challenge2018">keypoint detection</a>, <a href="#stuff-challenge2018">stuff segmentation</a>, <a href="#panoptic-challenge2018">panoptic segmentation</a>, and <a href="#captions-challenge2015">image captioning</a>. The annotations are stored using <a href="http://json.org/" target="_blank">JSON</a>. Please note that the <a href="https://github.com/cocodataset/cocoapi" target="_blank">COCO API</a> described on the <a href="#download">download</a> page can be used to access and manipulate all anotations. All annotations share the same basic data structure below:</p>
+<p>COCO has five annotation types: for <a href="#detection-2018">object detection</a>, <a href="#keypoints-2018">keypoint detection</a>, <a href="#stuff-2018">stuff segmentation</a>, <a href="#panoptic-2018">panoptic segmentation</a>, and <a href="#captions-2015">image captioning</a>. The annotations are stored using <a href="http://json.org/" target="_blank">JSON</a>. Please note that the <a href="https://github.com/cocodataset/cocoapi" target="_blank">COCO API</a> described on the <a href="#download">download</a> page can be used to access and manipulate all anotations. All annotations share the same basic data structure below:</p>
 <div class="json">
   <div class="jsonreg">{</div>
   <div class="jsonk">"info"           </div><div class="jsonv">: info,</div>
@@ -37,7 +37,7 @@
 <p>The data structures specific to the various annotation types are described below.</p>
 
 <h1>1. Object Detection</h1>
-<p>Each object instance annotation contains a series of fields, including the category id and segmentation mask of the object. The segmentation format depends on whether the instance represents a single object (iscrowd=0 in which case polygons are used) or a collection of objects (iscrowd=1 in which case RLE is used). Note that a single object (iscrowd=0) may require multiple polygons, for example if occluded. Crowd annotations (iscrowd=1) are used to label large groups of objects (e.g. a crowd of people). In addition, an enclosing bounding box is provided for each object (box coordinates are measured from the top left image corner and are 0-indexed). Finally, the categories field of the annotation structure stores the mapping of category id to category and supercategory names. See also the <a href="#detections-challenge2018">detection</a> task.</p>
+<p>Each object instance annotation contains a series of fields, including the category id and segmentation mask of the object. The segmentation format depends on whether the instance represents a single object (iscrowd=0 in which case polygons are used) or a collection of objects (iscrowd=1 in which case RLE is used). Note that a single object (iscrowd=0) may require multiple polygons, for example if occluded. Crowd annotations (iscrowd=1) are used to label large groups of objects (e.g. a crowd of people). In addition, an enclosing bounding box is provided for each object (box coordinates are measured from the top left image corner and are 0-indexed). Finally, the categories field of the annotation structure stores the mapping of category id to category and supercategory names. See also the <a href="#detection-2018">detection</a> task.</p>
 <div class="json">
   <div class="jsonreg">annotation{</div>
   <div class="jsonk">"id"             </div><div class="jsonv">: int,</div>
@@ -57,7 +57,7 @@
 </div>
 
 <h1>2. Keypoint Detection</h1>
-<p>A keypoint annotation contains all the data of the object annotation (including id, bbox, etc.) and two additional fields. First, "keypoints" is a length 3k array where k is the total number of keypoints defined for the category. Each keypoint has a 0-indexed location x,y and a visibility flag v defined as v=0: not labeled (in which case x=y=0), v=1: labeled but not visible, and v=2: labeled and visible. A keypoint is considered visible if it falls inside the object segment. "num_keypoints" indicates the number of labeled keypoints (v>0) for a given object (many objects, e.g. crowds and small objects, will have num_keypoints=0). Finally, for each category, the categories struct has two additional fields: "keypoints," which is a length k array of keypoint names, and "skeleton", which defines connectivity via a list of keypoint edge pairs and is used for visualization. Currently keypoints are only labeled for the person category (for most medium/large non-crowd person instances). See also the <a href="#keypoints-challenge2018">keypoint</a> task.</p>
+<p>A keypoint annotation contains all the data of the object annotation (including id, bbox, etc.) and two additional fields. First, "keypoints" is a length 3k array where k is the total number of keypoints defined for the category. Each keypoint has a 0-indexed location x,y and a visibility flag v defined as v=0: not labeled (in which case x=y=0), v=1: labeled but not visible, and v=2: labeled and visible. A keypoint is considered visible if it falls inside the object segment. "num_keypoints" indicates the number of labeled keypoints (v>0) for a given object (many objects, e.g. crowds and small objects, will have num_keypoints=0). Finally, for each category, the categories struct has two additional fields: "keypoints," which is a length k array of keypoint names, and "skeleton", which defines connectivity via a list of keypoint edge pairs and is used for visualization. Currently keypoints are only labeled for the person category (for most medium/large non-crowd person instances). See also the <a href="#keypoints-2018">keypoint</a> task.</p>
 <div class="json">
   <div class="jsonreg">annotation{</div>
   <div class="jsonk">"keypoints"        </div><div class="jsonv">: [x1,y1,v1,...],</div>
@@ -75,13 +75,13 @@
 </div>
 
 <h1>3. Stuff Segmentation</h1>
-<p>The stuff annotation format is identical and fully compatible to the object detection format above (except iscrowd is unnecessary and set to 0 by default). We provide annotations in both JSON and png format for easier access, as well as <a href="https://github.com/nightrome/coco">conversion scripts</a> between the two formats. In the JSON format, each category present in an image is encoded with a single RLE annotation (see the Mask API for more details). The category_id represents the id of the current stuff category. For more details on stuff categories and supercategories see the <a href="#stuff-eval">stuff evaluation</a> page. See also the <a href="#stuff-challenge2018">stuff</a> task.</p>
+<p>The stuff annotation format is identical and fully compatible to the object detection format above (except iscrowd is unnecessary and set to 0 by default). We provide annotations in both JSON and png format for easier access, as well as <a href="https://github.com/nightrome/coco">conversion scripts</a> between the two formats. In the JSON format, each category present in an image is encoded with a single RLE annotation (see the Mask API for more details). The category_id represents the id of the current stuff category. For more details on stuff categories and supercategories see the <a href="#stuff-eval">stuff evaluation</a> page. See also the <a href="#stuff-2018">stuff</a> task.</p>
 
 <h1>4. Panoptic Segmentation</h1>
 <p><b>Details coming soon!</b></p>
 
 <h1>5. Image Captioning</h1>
-<p>These annotations are used to store image captions. Each caption describes the specified image and each image has at least 5 captions (some images have more). See also the <a href="#captions-challenge2015">captioning</a> task.</p>
+<p>These annotations are used to store image captions. Each caption describes the specified image and each image has at least 5 captions (some images have more). See also the <a href="#captions-2015">captioning</a> task.</p>
 <div class="json">
   <div class="jsonreg">annotation{</div>
   <div class="jsonk">"id"               </div><div class="jsonv">: int,</div>
