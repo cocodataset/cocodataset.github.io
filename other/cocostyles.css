@@ -406,25 +406,28 @@ tr.shown td.ldbdPlus {
 /* Workshop ------------------------------------ */
 .eccv18header {
   background-image:url(../images/banner_eccv18.jpg);
+  background-repeat:no-repeat;
+  background-position:center;
   text-align:center;
-  height:400px;
-  margin:auto
+  height:280px;
+  color:white;
+  margin:auto;
 }
 .eccv18title {
   font-size:72px;
   font-weight:500;
-  color:white;
-  padding-top:150px;
+  padding-top:110px;
+  width:600px;
+  margin:auto;
   text-shadow:-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 .eccv18subtitle {
   font-size:24px;
-  color:white;
   border-top:3px solid white;
   border-bottom:3px solid white;
+  width:600px;
   margin:auto;
-  width:590px;
-  text-shadow:-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-shadow:-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black
 }
 .schedule-track {
   background-color:#A5DCFF;
