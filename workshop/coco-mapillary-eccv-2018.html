@@ -18,8 +18,8 @@
     <p class="fontBigger">
       1. <a href="#overview">Overview</a><br>
       2. <a href="#dates">Dates</a><br>
-      3. <a href="#coco-challenges">COCO Challenges</a>: <a href="../index.htm#detection-2018">detection</a>, <a href="../index.htm#panoptic-2018">panoptic</a>, <a href="../index.htm#keypoints-2018">keypoints</a><br>
-      4. <a href="#mapillary-challenges">Mapillary Challenges</a>: <a href="http://research.mapillary.com/eccv18#object-detection-with-instance-segmentation-task">detection</a>, <a href="http://research.mapillary.com/eccv18#panoptic-image-segmentation-task">panoptic</a><br>
+      3. <a href="#coco-challenges">COCO Challenges</a> [<a href="../index.htm#detection-2018">detection</a>, <a href="../index.htm#panoptic-2018">panoptic</a>, <a href="../index.htm#keypoints-2018">keypoints</a>]<br>
+      4. <a href="#mapillary-challenges">Mapillary Challenges</a> [<a href="http://research.mapillary.com/eccv18#detection">detection</a>, <a href="http://research.mapillary.com/eccv18#panoptic">panoptic</a>]<br>
       5. <a href="#schedule">Workshop Schedule</a><br>
       6. <a href="#speakers">Invited Speakers</a><br>
     </p>
@@ -28,9 +28,9 @@
     <h1>1. Overview</h1>
     <p>The goal of the joint COCO and Mapillary Workshop is to study object recognition in the context of scene understanding. While both the COCO and Mapillary challenges look at the general problem of visual recognition, the underlying datasets and the specific tasks in the challenges probe different aspects of the problem.</p>
 
-    <p><a href="../index.htm">COCO</a> is a widely used visual recognition dataset, designed to spur object detection research with a focus on full scene understanding. In particular: detecting non-iconic views of objects, localizing objects in images with pixel level precision, and detection in complex scenes. <a href="https://www.mapillary.com/dataset/vistas">Mapillary Vistas</a> is a new street-level image dataset with emphasis on high-level, semantic image understanding, with applications for autonomous vehicles and robot navigation. The dataset features locations from all around the world and is diverse in terms of weather and illumination conditions, capturing sensor characteristics, etc.</p>
+    <p><a href="../index.htm">COCO</a> is a widely used visual recognition dataset, designed to spur object detection research with a focus on full scene understanding. In particular: detecting non-iconic views of objects, localizing objects in images with pixel level precision, and detection in complex scenes. <a href="https://vistas.mapillary.com/">Mapillary Vistas</a> is a new street-level image dataset with emphasis on high-level, semantic image understanding, with applications for autonomous vehicles and robot navigation. The dataset features locations from all around the world and is diverse in terms of weather and illumination conditions, capturing sensor characteristics, etc.</p>
 
-    <p><a href="https://www.mapillary.com/dataset/vistas">Mapillary Vistas</a> is complementary to COCO in terms of dataset focus and can be readily used for studying various recognition tasks in a visually distinct domain from COCO. COCO focuses on recognition in natural scenes, while Mapillary focuses on recognition of street-view scenes. <i>We encourage teams to participate in challenges across both datasets</i> to better understand the current landscape of datasets and methods.</p>
+    <p><a href="https://vistas.mapillary.com/">Mapillary Vistas</a> is complementary to COCO in terms of dataset focus and can be readily used for studying various recognition tasks in a visually distinct domain from COCO. COCO focuses on recognition in natural scenes, while Mapillary focuses on recognition of street-view scenes. <i>We encourage teams to participate in challenges across both datasets</i> to better understand the current landscape of datasets and methods.</p>
 
     <p>Challenge tasks: COCO helped popularize <a href="../index.htm#detection-2018">instance segmentation</a> and this year both COCO and Mapillary feature this task, where the goal is to simultaneously detect and segment each object instance. As detection has matured over the years, <b>COCO is no longer featuring the bounding-box detection task</b>. While the leaderboard will remain open, the bounding-box detection task is not a workshop challenge; instead we encourage researchers to focus on the more challenging and visually informative instance segmentation task. As in previous years, COCO features the popular person <a href="../index.htm#keypoints-2018">keypoint challenge</a> track.</p>
 
@@ -64,9 +64,9 @@
 
     <a name="mapillary-challenges"></a>
     <h1>4. Mapillary Challenges</h1>
-    <p>This year, <a href="http://research.mapillary.com/eccv18">Mapillary Research</a> is joining the popular COCO recognition tasks with the <a href="https://www.mapillary.com/dataset/vistas"> Mapillary Vistas</a> dataset. Vistas is a diverse, pixel-accurate street-level image dataset for empowering autonomous mobility and transport at global scale. It has been designed and collected to cover diversity in appearance, richness of annotation detail, and geographic extent. The Mapillary challenges are based on the publicly available Vistas Research dataset, featuring:
+    <p>This year, <a href="http://research.mapillary.com/eccv18">Mapillary Research</a> is joining the popular COCO recognition tasks with the <a href="https://vistas.mapillary.com/"> Mapillary Vistas</a> dataset. Vistas is a diverse, pixel-accurate street-level image dataset for empowering autonomous mobility and transport at global scale. It has been designed and collected to cover diversity in appearance, richness of annotation detail, and geographic extent. The Mapillary challenges are based on the publicly available Vistas Research dataset, featuring:
     <ul>
-      <li>29 stuff and 37 thing classes (w instance-specific annotations)</li>
+      <li>28 stuff classes, 37 thing classes (w instance-specific annotations), and 1 void class</li>
       <li>25K high-resolution images (18K train, 2K val, 5K test; w average resolution of ~9 megapixels)</li>
       <li>Global geographic coverage including North and South America, Europe, Africa, Asia, and Oceania</li>
       <li>Highly variable weather conditions (sun, rain, snow, fog, haze) and capture times (dawn, daylight, dusk, night)</li>
@@ -76,12 +76,12 @@
     Challenge tracks based on the Mapillary Vistas dataset will be (1) object detection with segmentation masks (instance segmentation) and (2) panoptic segmentation, in line with COCO's detection and panoptic segmentation tasks, respectively.</p>
 
     <h2>4.1. Mapillary Vistas Object Detection Task</h2>
-    <p><a href="http://research.mapillary.com/eccv18#object-detection-with-instance-segmentation-task"><img src="../images/mapillary-instance.jpg" class="wide" /></a></p>
-    <p>The Mapillary Vistas Object Detection Task emphasizes recognizing individual instances of both static street-image objects (like street lights, signs, poles) but also dynamic street participants (like cars, pedestrians, cyclists). This task aims to push the state-of-the-art in instance segmentation, targeting critical perception tasks for autonomously acting agents like cars or transportation robots. For full details of this task please see the <a href="http://research.mapillary.com/eccv18#object-detection-with-instance-segmentation-task">Mapillary Vistas Object Detection Task</a>.</p>
+    <p><a href="http://research.mapillary.com/eccv18#detection"><img src="../images/mapillary-instance.jpg" class="wide" /></a></p>
+    <p>The Mapillary Vistas Object Detection Task emphasizes recognizing individual instances of both static street-image objects (like street lights, signs, poles) but also dynamic street participants (like cars, pedestrians, cyclists). This task aims to push the state-of-the-art in instance segmentation, targeting critical perception tasks for autonomously acting agents like cars or transportation robots. For full details of this task please see the <a href="http://research.mapillary.com/eccv18#detection">Mapillary Vistas Object Detection Task</a>.</p>
 
     <h2>4.2. Mapillary Vistas Panoptic Segmentation Task</h2>
-    <p><a href="http://research.mapillary.com/eccv18#panoptic-image-segmentation-task"><img src="../images/mapillary-panoptic.png" class="wide" /></a></p>
-    <p>The Mapillary Vistas Panoptic Segmentation Task targets the full perception stack for scene segmentation in street-images. Panoptic segmentation addresses both stuff and thing classes, unifying the typically distinct semantic and instance segmentation tasks. For full details of this task please see the <a href="http://research.mapillary.com/eccv18#panoptic-image-segmentation-task">Mapillary Vistas Panoptic Segmentation Task</a>.</p>
+    <p><a href="http://research.mapillary.com/eccv18#panoptic"><img src="../images/mapillary-panoptic.png" class="wide" /></a></p>
+    <p>The Mapillary Vistas Panoptic Segmentation Task targets the full perception stack for scene segmentation in street-images. Panoptic segmentation addresses both stuff and thing classes, unifying the typically distinct semantic and instance segmentation tasks. For full details of this task please see the <a href="http://research.mapillary.com/eccv18#panoptic">Mapillary Vistas Panoptic Segmentation Task</a>.</p>
 
     <a name="schedule"></a>
     <h1>5. Workshop Schedule - 09.09.2018</h1>
