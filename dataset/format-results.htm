@@ -62,7 +62,7 @@
     <div class="jsonk">"category_id"      </div><div class="jsonv">: int,</div>
     <div class="jsonreg">}</div>
 </div>
-<p>For the panoptic task, each per-image annotation should have two parts: (1) a PNG that stores the <i>class-agnostic image segmentation</i> and (2) a JSON struct that stores the <i>semantic information</i> for each image segment. For details see the ground truth format for panoptic segmentation. Results for evaluation should contain both the JSON and the PNGs.</p>
+<p>For the panoptic task, each per-image annotation should have two parts: (1) a PNG that stores the <i>class-agnostic image segmentation</i> and (2) a JSON struct that stores the <i>semantic information</i> for each image segment. The PNGs should be located in the folder <span class="fontMono">annotations/name/*</span>, where <span class="fontMono">annotations/name.json</span> is the JSON file. For details see the ground truth format for panoptic segmentation. Results for evaluation should contain both the JSON and the PNGs.</p>
 
 <h1>5. Image Captioning</h1>
 <div class="json">
