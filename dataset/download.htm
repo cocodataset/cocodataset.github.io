@@ -23,22 +23,22 @@
     <a href="http://images.cocodataset.org/annotations/image_info_test2015.zip">2015 Testing Image info [2MB]</a><br/>
     <a href="http://images.cocodataset.org/annotations/annotations_trainval2017.zip">2017 Train/Val annotations [241MB]</a><br/>
     <a href="http://images.cocodataset.org/annotations/stuff_annotations_trainval2017.zip">2017 Stuff Train/Val annotations [401MB]</a><br/>
+    <a href="http://images.cocodataset.org/annotations/panoptic_annotations_trainval2017.zip">2017 Panoptic Train/Val annotations [821MB]</a><br/>
     <a href="http://images.cocodataset.org/annotations/image_info_test2017.zip">2017 Testing Image info [1MB]</a><br/>
     <a href="http://images.cocodataset.org/annotations/image_info_unlabeled2017.zip">2017 Unlabeled Image info [4MB]</a><br/>
   </p>
 </div>
 <h1>1. Overview</h1>
 
-<p>Which dataset splits should you download? Each year's split is associated with different challenges. Specifically:</p>
+<p>Which dataset splits should you download? Each year's images are associated with different tasks. Specifically:</p>
 <div class="json">
   <div class="jsonktxt">2014 Train/Val</div><div class="jsonvtxt"><a href="#detection-2015">Detection 2015</a>, <a href="#captions-2015">Captioning 2015</a>, <a href="#detection-2016">Detection 2016</a>, <a href="#keypoints-2016">Keypoints 2016</a></div>
   <div class="jsonktxt">2014 Testing  </div><div class="jsonvtxt"><a href="#captions-2015">Captioning 2015</a></div>
   <div class="jsonktxt">2015 Testing  </div><div class="jsonvtxt"><a href="#detection-2015">Detection 2015</a>, <a href="#detection-2016">Detection 2016</a>, <a href="#keypoints-2016">Keypoints 2016</a></div>
-  <div class="jsonktxt">2017 Train/Val</div><div class="jsonvtxt"><a href="#detection-2017">Detection 2017</a>, <a href="#keypoints-2017">Keypoints 2017</a>, <a href="#stuff-2017">Stuff 2017</a></div>
-  <div class="jsonktxt">2017 Testing  </div><div class="jsonvtxt"><a href="#detection-2017">Detection 2017</a>, <a href="#keypoints-2017">Keypoints 2017</a>, <a href="#stuff-2017">Stuff 2017</a></div>
+  <div class="jsonktxt">2017 Train/Val/Test<br/>&nbsp</div><div class="jsonvtxt"><a href="#detection-2017">Detection 2017</a>, <a href="#keypoints-2017">Keypoints 2017</a>, <a href="#stuff-2017">Stuff 2017</a>,<br/><a href="#detection-2018">Detection 2018</a>, <a href="#keypoints-2018">Keypoints 2018</a>, <a href="#stuff-2018">Stuff 2018</a>, <a href="#panoptic-2018">Panoptic 2018</a></div>
   <div class="jsonktxt">2017 Unlabeled</div><div class="jsonvtxt fontBlue">[optional data for any competition]</div>
 </div>
-<p class="fontSubtle">If you are submitting to a 2017 challenge, you only need to download the 2017 data. You can disregard earlier data splits.</p>
+<p class="fontSubtle">If you are submitting to a 2017 or 2018 task, you only need to download the 2017 images. You can disregard earlier splits. Note: the split year refers to the year the image splits were released, not the year in which the annotations were released.</p>
 <p>For efficiently downloading the images, we recommend using <a href="#gsutil-rsync" data-toggle="collapse" aria-expanded="false" aria-controls="gsutil-rsync"><i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-down"></i>gsutil rsync</a> to avoid the download of large zip files.</p>
 <div id="gsutil-rsync" class="collapse">
   <div class="json">
@@ -52,11 +52,10 @@
     <a href="https://cloud.google.com/storage/docs/gsutil_install">installing gsutil</a> (we note only that you do not need to run <span class="fontMono"> gcloud init</span>).</p>
   </div>
 </div>
-<p>Please follow the instructions in the <a href="https://github.com/cocodataset/cocoapi" target="_blank">COCO API Readme</a> to setup the downloaded COCO data (the images and annotations).
-By downloading this dataset, you agree to our <a href="#termsofuse">Terms of Use</a>.</p>
-<p><b>2018 Update: coming soon!</b> Detection and keypoint data will be unchanged, please use the 2017 data.</p>
+<p>Please follow the instructions in the <a href="https://github.com/cocodataset/cocoapi" target="_blank">COCO API Readme</a> to setup the downloaded COCO data (the images and annotations should go in coco/images/ and coco/annotations/). By downloading this dataset, you agree to our <a href="#termsofuse">Terms of Use</a>.</p>
+<p><b>2018 Update:</b> Detection and keypoint data is unchanged. New in 2018 are annotations for panoptic segmentation for all 2017 images. Stuff annotations on all 2017 images are also coming soon.</p>
 <p><b>2017 Update:</b> The main change in 2017 is that instead of an 80K/40K train/val split, based on community feedback the split is now 115K/5K for train/val. The same exact images are used, and no new annotations for detection/keypoints are provided. However, new in 2017 are stuff annotations on 40K train images (subset of the full 115K train images from 2017) and 5K val images. Also, for testing, in 2017 the test set only has two splits (dev / challenge), instead of the four splits (dev / standard / reserve / challenge) used in previous years. Finally, new in 2017 we are releasing 120K unlabeled images from COCO that follow the same class distribution as the labeled images; this may be useful for semi-supervised learning on COCO.</p>
-<p><b>Note:</b> Annotations last updated <i>09/05/2017</i> (stuff annotations added). If you find any issues with the data please let us know!</p>
+<p><b>Note:</b> Annotations updated <i>6/13/2018</i> (panoptic annotations added). If you find any issues with the data please let us know!</p>
 
 <h1>2. COCO API</h1>
 <p>The COCO API assists in loading, parsing, and visualizing annotations in COCO. The API supports multiple annotation formats (please see the <a href="#format-data">data format</a> page). For additional details see: <a href="https://github.com/cocodataset/cocoapi/blob/master/MatlabAPI/CocoApi.m" target="_blank">CocoApi.m</a>, <a href="https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/coco.py" target="_blank">coco.py</a>, and <a href="https://github.com/cocodataset/cocoapi/blob/master/LuaAPI/CocoApi.lua" target="_blank">CocoApi.lua</a> for Matlab, Python, and Lua code, respectively, and also the <a href="https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocoDemo.ipynb" target="_blank">Python API demo</a>.</p>
