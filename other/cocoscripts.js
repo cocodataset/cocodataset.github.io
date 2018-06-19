@@ -22,7 +22,7 @@ function datasetTabNav() {
   // And: http://stackoverflow.com/questions/12131273/twitter-bootstrap-tabs-url-doesnt-change
   var tabs = ["people", "overview", "explore", "download", "external", "termsofuse", "detection-2018", "keypoints-2018", "stuff-2018",  "panoptic-2018", "detection-2017", "keypoints-2017", "stuff-2017", "detection-2016", "keypoints-2016", "detection-2015", "captions-2015", "format-data", "format-results", "guidelines", "upload", "detection-eval", "keypoints-eval", "stuff-eval", "panoptic-eval", "captions-eval", "detection-leaderboard", "keypoints-leaderboard", "stuff-leaderboard", "panoptic-leaderboard", "captions-leaderboard"];
   for( var i=0; i<tabs.length; i++ ) {
-    $("#content").append('<div role="tabpanel" class="tab-pane fade" id="' + tabs[i] + '"></div>');
+    $("#content").append('<div role="tabpanel" class="tab-pane fade" id="' + tabs[i] + '"></div>\n');
   }
   var loaded = {};
   $('.nav-tabs a').click(function (e) {
@@ -43,19 +43,29 @@ function datasetTabNav() {
 }
 
 var cocoPeople = {
-  'Tsung': {'name': 'Tsung-Yi Lin', 'full': 'Google Brain', 'short': 'Google Brain', 'url':'https://vision.cornell.edu/se3/people/tsung-yi-lin/'},
-  'gen': {'name': 'Genevieve Patterson', 'full': 'MSR, Trash TV', 'short': 'MSR, Trash TV', 'url':'https://www.microsoft.com/en-us/research/people/gen/'},
-  'matteo': {'name': 'Matteo R. Ronchi', 'full': 'Caltech', 'short': 'Caltech', 'url':'http://vision.caltech.edu/~mronchi/'},
-  'yin': {'name': 'Yin Cui', 'full': 'Cornell Tech', 'short': 'Cornell Tech', 'url':'http://www.cs.cornell.edu/~ycui/'},
-  'michael': {'name': 'Michael Maire', 'full': 'TTI-Chicago', 'short': 'TTI-Chicago', 'url':'http://ttic.uchicago.edu/~mmaire/'},
-  'serge': {'name': 'Serge Belongie', 'full': 'Cornell Tech', 'short': 'Cornell Tech', 'url':'http://vision.cornell.edu/se3/people/serge-belongie/'},
-  'lubomir': {'name': 'Lubomir Bourdev', 'full': 'WaveOne, Inc.', 'short': 'WaveOne, Inc.', 'url':'http://www.lubomir.org'},
-  'ross': {'name': 'Ross Girshick', 'full': 'Facebook AI Research', 'short': 'FAIR', 'url':'http://www.cs.berkeley.edu/~rbg/'},
-  'james': {'name': 'James Hays', 'full': 'Georgia Tech', 'short': 'Georgia Tech', 'url':'http://www.cc.gatech.edu/~hays/'},
-  'pietro': {'name': 'Pietro Perona', 'full': 'Caltech', 'short': 'Caltech', 'url':'http://www.vision.caltech.edu/Perona.html'},
-  'deva': {'name': 'Deva Ramanan', 'full': 'CMU', 'short': 'CMU', 'url':'http://www.ics.uci.edu/~dramanan/'},
-  'larry': {'name': 'Larry Zitnick', 'full': 'Facebook AI Research', 'short': 'FAIR', 'url':'http://larryzitnick.org/'},
-  'piotr': {'name': 'Piotr Dollár', 'full': 'Facebook AI Research', 'short': 'FAIR', 'url':'https://pdollar.github.io/'},
+  'TsungYiLin': {'name': 'Tsung-Yi Lin', 'full': 'Google Brain', 'short': 'Google Brain', 'url':'https://vision.cornell.edu/se3/people/tsung-yi-lin/'},
+  'GenevievePatterson': {'name': 'Genevieve Patterson', 'full': 'MSR, Trash TV', 'short': 'MSR, Trash TV', 'url':'https://www.microsoft.com/en-us/research/people/gen/'},
+  'MatteoRonchi': {'name': 'Matteo R. Ronchi', 'full': 'Caltech', 'short': 'Caltech', 'url':'http://vision.caltech.edu/~mronchi/'},
+  'YinCui': {'name': 'Yin Cui', 'full': 'Cornell Tech', 'short': 'Cornell Tech', 'url':'http://www.cs.cornell.edu/~ycui/'},
+  'MichaelMaire': {'name': 'Michael Maire', 'full': 'TTI-Chicago', 'short': 'TTI-Chicago', 'url':'http://ttic.uchicago.edu/~mmaire/'},
+  'SergeBelongie': {'name': 'Serge Belongie', 'full': 'Cornell Tech', 'short': 'Cornell Tech', 'url':'http://vision.cornell.edu/se3/people/serge-belongie/'},
+  'LubomirBourdev': {'name': 'Lubomir Bourdev', 'full': 'WaveOne, Inc.', 'short': 'WaveOne, Inc.', 'url':'http://www.lubomir.org'},
+  'RossGirshick': {'name': 'Ross Girshick', 'full': 'Facebook AI Research', 'short': 'FAIR', 'url':'http://www.cs.berkeley.edu/~rbg/'},
+  'JamesHays': {'name': 'James Hays', 'full': 'Georgia Tech', 'short': 'Georgia Tech', 'url':'http://www.cc.gatech.edu/~hays/'},
+  'PietroPerona': {'name': 'Pietro Perona', 'full': 'Caltech', 'short': 'Caltech', 'url':'http://www.vision.caltech.edu/Perona.html'},
+  'DevaRamanan': {'name': 'Deva Ramanan', 'full': 'CMU', 'short': 'CMU', 'url':'http://www.ics.uci.edu/~dramanan/'},
+  'LarryZitnick': {'name': 'Larry Zitnick', 'full': 'Facebook AI Research', 'short': 'FAIR', 'url':'http://larryzitnick.org/'},
+  'PiotrDollar': {'name': 'Piotr Dollár', 'full': 'Facebook AI Research', 'short': 'FAIR', 'url':'https://pdollar.github.io/'},
+  //'AlexanderKirillov': {'name': 'Alexander Kirillov', 'full': 'Facebook AI Research', 'short': 'FAIR', 'url':'https://hci.iwr.uni-heidelberg.de/vislearn/people/alexander-kirillov/'},
+  //'SamuelRotaBulo': {'name': 'Samuel Rota Bulò', 'full': 'Mapillary Research', 'short': 'Mapillary', 'url':'https://research.mapillary.com/'},
+  //'PeterKontschieder': {'name': 'Peter Kontschieder', 'full': 'Mapillary Research', 'short': 'Mapillary', 'url':'https://research.mapillary.com/'},
+  //'LorenzoPorzi': {'name': 'Lorenzo Porzi', 'full': 'Mapillary Research', 'short': 'Mapillary', 'url':'https://research.mapillary.com/'},
+  //'HolgerCaesar': {'name': 'Holger Caesar', 'full': 'nuTonomy', 'short': 'nuTonomy', 'url':'http://www.it-caesar.com/'},
+  //'JasperUijlings': {'name': 'Jasper Uijlings', 'full': 'Google', 'short': 'Google', 'url':'http://homepages.inf.ed.ac.uk/juijling/'},
+  //'VittorioFerrari': {'name': 'Vittorio Ferrari', 'full': 'Google, U. of Edinburgh)', 'short': 'Google, Edinburgh)', 'url':'http://calvin.inf.ed.ac.uk/'},
+  //'IasonasKokkinos': {'name': 'Iasonas Kokkinos', 'full': 'Facebook AI Research', 'short': 'FAIR', 'url':'http://www0.cs.ucl.ac.uk/staff/I.Kokkinos/'},
+  //'NataliaNeverova': {'name': 'Natalia Neverova', 'full': 'Facebook AI Research', 'short': 'FAIR', 'url':'https://research.fb.com/people/neverova-natalia/'},
+  //'RizaAlpGuler': {'name': 'Rıza Alp Güler', 'full': 'INRIA', 'short': 'INRIA', 'url':'http://alpguler.com/'},
 };
 
 function populateHomePage() {
@@ -67,14 +77,14 @@ function populateHomePage() {
 
 function populatePeoplePage() {
   for( var p in cocoPeople ) {
-    $("#people").append("<div id='"+p+"' class='cocoPerson'><canvas id='"+p+"'></canvas></div> ");
+    $("#people").append("<div id='"+p+"' class='cocoPerson'><canvas id='"+p+"'></canvas></div>");
   }
   $('canvas').each(function(){
     var ctx = $(this)[0].getContext("2d");
     var id = $(this)[0].id;
     var image = new Image();
     $('#'+id).click(function(){window.open(cocoPeople[id]['url'], '_blank')});
-    image.src = 'images/people/'+ id + '.JPG';
+    image.src = 'images/people/'+ id + '.jpg';
     image.ctx = ctx;
     image.pl_id = id;
     $(this).attr('height',200).attr('width',140)

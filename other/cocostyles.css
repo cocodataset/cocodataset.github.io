@@ -203,8 +203,8 @@ a[aria-expanded=false] .glyphicon-chevron-down {
 .cocoPerson {
   display:inline-block;
   cursor:pointer;
-  margin-right:12px;
-  margin-bottom:25px;
+  margin-right:16px;
+  margin-bottom:16px;
 }
 .iconsImage {
   margin-top:-10px;
