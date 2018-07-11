@@ -2,7 +2,44 @@
 <p>This page describes the <i>panoptic evaluation metrics</i> used by COCO. The evaluation code provided here can be used to obtain results on the publicly available COCO validation set. It computes multiple metrics described below. To obtain results on the COCO test set, for which ground-truth annotations are hidden, generated results must be <a href="#upload">uploaded</a> to the evaluation server. The exact same evaluation code, described below, is used to evaluate results on the test set.</p>
 <p><b>Note: the <a href="#download">data</a>, <a href="https://github.com/cocodataset/panopticapi">evaluation code</a>, and <a href="https://competitions.codalab.org/competitions/19507" target="_blank">evaluation server</a> for the panoptic segmentation task are now available! Everything is likely finalized, but if you find any issues with the data, code, or evaluation server please let us know.</b></p>
 
-<h1>2. Panoptic Quality Overview</h2>
+<h1>2. Classes</h1>
+<p>The panoptic task includes all 80 thing categories from the <a href="#detection-2018">detection task</a> and a subset of the 91 stuff categories from the <a href="#stuff-2018">stuff task</a>. Some of the original stuff categories are either <a href="#stuff-merged" data-toggle="collapse" aria-expanded="false" aria-controls="stuff-merged"><i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-down"></i>merged or ignored</a>. Things and stuff categories have the following ranges of ids:</p>
+<div class="json fontMono">
+  <div class="jsonk">1-91</div><div class="jsonv">% thing categories</div>
+  <div class="jsonk">92-200</div><div class="jsonv">% stuff categories</div>
+</div>
+<p>Note: The range of ids is sparse. Some ids aren't presented in the ground truth annotation.</p>
+<div id="stuff-merged" class="collapse">
+  <div class="json">
+    <div class="jsonreg">The following stuff categories were merged into new categories:</div>
+    <div class="jsontab">
+      <div class="jsonreg"><b> tree-merged: branch, tree, bush, leaves;</b></div>
+      <div class="jsonreg"><b> fence-merged: cage, fence, railing;</b></div>
+      <div class="jsonreg"><b> ceiling-merged: ceiling-tile, ceiling-other;</b></div>
+      <div class="jsonreg"><b> sky-other-merged: clouds, sky-other, fog;</b></div>
+      <div class="jsonreg"><b> cabinet-merged: cupboard, cabinet;</b></div>
+      <div class="jsonreg"><b> table-merged: desk-stuff, table;</b></div>
+      <div class="jsonreg"><b> floor-other-merged:  floor-marble, floor-other, floor-tile;</b></div>
+      <div class="jsonreg"><b> pavement-merged: floor-stone, pavement;</b></div>
+      <div class="jsonreg"><b> mountain-merged: hill, mountain;</b></div>
+      <div class="jsonreg"><b> grass-merged: moss, grass, straw;</b></div>
+      <div class="jsonreg"><b> dirt-merged: mud, dirt;</b></div>
+      <div class="jsonreg"><b> paper-merged: napkin, paper;</b></div>
+      <div class="jsonreg"><b> food-other-merged: salad, vegetable, food-other;</b></div>
+      <div class="jsonreg"><b> building-other-merged: skyscraper, building-other;</b></div>
+      <div class="jsonreg"><b> rock-merged: stone, rock;</b></div>
+      <div class="jsonreg"><b> wall-other-merged: wall-other, wall-concrete, wall-panel;</b></div>
+      <div class="jsonreg"><b> rug-merged: mat, rug, carpet.</b></div>
+    </div>
+    <div class="jsonreg">The following stuff categories are ignored:</div>
+    <div class="jsontab">
+      <div class="jsonreg"><b>furniture-other, metal, plastic, solid-other, structural-other, waterdrops, textile-other, cloth, clothes, plant-other, wood, ground-other.</b></div>
+    </div>
+    <div class="jsonreg">Pixels belonging to ignored categories are considered unlabaled.</div>
+  </div>
+</div>
+
+<h1>3. Panoptic Quality Overview</h2>
 <p>Panoptic segmentation aims to unify the typically distinct tasks of semantic segmentation (assign a class label to each pixel) and instance segmentation (detect and segment each object instance). Existing metrics are specialized for either semantic or instance segmentation and cannot be used to evaluate the joint task involving both stuff and thing classes. Rather than using a heuristic combination of disjoint metrics for the two tasks, the panoptic task introduces a new Panoptic Quality (PQ) metric. PQ evaluates performance for all categories, including both stuff and thing categories, in a unified manner.</p>
 <p>Computing PQ involves two steps: (1) segment matching and (2) PQ computation given the matches. Both steps are simple and efficient. First, for each image, the ground truth and predicted segments are matched with an IoU threshold 0.5. Since panoptic segmentation requires non-overlapping segments, if a threshold of 0.5 is used, <i>the matching is unique</i> (a simple proof is in the paper). That is, there can be at most one match per segment and so it is trivial to obtain the matches. After matching, each segment falls into one of three sets: TP (matched pairs), FP (unmatched predicted segments), and FN (unmatched ground truth segments). Given the TP, FP, and FN, the Panoptic Quality (PQ) metric for each category is simply:</p>
 <div class="json fontMono">
