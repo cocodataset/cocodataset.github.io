@@ -83,7 +83,7 @@
   <li>To match an annotation with an image, use the <span class="fontMono">image_id</span> field (that is <span class="fontMono">annotation.image_id==image.id</span>).</li>
   <li>For each annotation, per-pixel segment ids are stored as a single PNG at <span class="fontMono">annotation.file_name</span>. The PNGs are in a folder with the same name as the JSON, i.e., <span class="fontMono">annotations/name/</span> for <span class="fontMono">annotations/name.json</span>. Each segment (whether it's a stuff or thing segment) is assigned a unique id. Unlabeled pixels (void) are assigned a value of 0. Note that when you load the PNG as an RGB image, you will need to compute the <span class="fontMono">ids</span> via <span class="fontMono">ids=R+G*256+B*256^2</span>.</li>
   <li>For each annotation, per-segment info is stored in <span class="fontMono">annotation.segments_info</span>. <span class="fontMono">segment_info.id</span> stores the unique id of the segment and is used to retrieve the corresponding mask from the PNG (<span class="fontMono">ids==segment_info.id</span>). <span class="fontMono">category_id</span> gives the semantic category and <span class="fontMono">iscrowd</span> indicates the segment encompasses a group of objects (relevant for thing categories only). The <span class="fontMono">bbox</span> and <span class="fontMono">area</span> fields provide additional info about the segment.</li>
-  <li>The COCO panoptic task has the same thing categories as the detection task, whereas the stuff categories differ from those in the stuff task (due to merging and dropping of rare and noisy categories; these details will be documented shortly). Finally, each category struct has an additional field <span class="fontMono">isthing</span> that distinguishes stuff and thing categories.</li>
+  <li>The COCO panoptic task has the same thing categories as the detection task, whereas the stuff categories differ from those in the stuff task (for details see the <a href="#panoptic-eval">panoptic evaluation</a> page). Finally, each category struct has two additional fields: <span class="fontMono">isthing</span> that distinguishes stuff and thing categories and <span class="fontMono">color</span> that is useful for consistent visualization.</li>
 </ol><br/>
 <div class="json">
   <div class="jsonreg">annotation{</div>
@@ -105,6 +105,7 @@
   <div class="jsonk">"name"           </div><div class="jsonv">: str,</div>
   <div class="jsonk">"supercategory"  </div><div class="jsonv">: str,</div>
   <div class="jsonk">"isthing"        </div><div class="jsonv">: 0 or 1,</div>
+  <div class="jsonk">"color"          </div><div class="jsonv">: [R,G,B],</div>
   <div class="jsonreg">}]</div>
 </div>
 
