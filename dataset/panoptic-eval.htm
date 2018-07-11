@@ -3,39 +3,38 @@
 <p><b>Note: the <a href="#download">data</a>, <a href="https://github.com/cocodataset/panopticapi">evaluation code</a>, and <a href="https://competitions.codalab.org/competitions/19507" target="_blank">evaluation server</a> for the panoptic segmentation task are now available! Everything is likely finalized, but if you find any issues with the data, code, or evaluation server please let us know.</b></p>
 
 <h1>2. Classes</h1>
-<p>The panoptic task includes all 80 thing categories from the <a href="#detection-2018">detection task</a> and a subset of the 91 stuff categories from the <a href="#stuff-2018">stuff task</a>. Some of the original stuff categories are either <a href="#stuff-merged" data-toggle="collapse" aria-expanded="false" aria-controls="stuff-merged"><i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-down"></i>merged or ignored</a>. Things and stuff categories have the following ranges of ids:</p>
+<p>The panoptic task includes all 80 thing categories from the <a href="#detection-2018">detection</a> task and a subset of the 91 stuff categories from the <a href="#stuff-2018">stuff</a> task, with any overlaps manually resolved. Some of the original stuff categories are either <a href="#stuff-merged" data-toggle="collapse" aria-expanded="false" aria-controls="stuff-merged"><i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-down"></i>merged or ignored</a> to ensure higher consistency of the ground truth (full details will be given in the paper). Things and stuff categories have the following ranges of ids (note that not all ids are used due to the removal of some classes):</p>
 <div class="json fontMono">
-  <div class="jsonk">1-91</div><div class="jsonv">% thing categories</div>
-  <div class="jsonk">92-200</div><div class="jsonv">% stuff categories</div>
+  <div class="jsonk">1-91</div><div class="jsonv">% thing categories (80 total)</div>
+  <div class="jsonk">92-182</div><div class="jsonv">% original stuff categories (36 total)</div>
+  <div class="jsonk">183-200</div><div class="jsonv">% merged stuff categories (17 total)</div>
 </div>
-<p>Note: The range of ids is sparse. Some ids aren't presented in the ground truth annotation.</p>
-<div id="stuff-merged" class="collapse">
+<div id="stuff-merged" class="collapse"><br/>
   <div class="json">
-    <div class="jsonreg">The following stuff categories were merged into new categories:</div>
+    <div class="jsonreg">The following new stuff categories were created by merging old stuff categories:</div>
     <div class="jsontab">
-      <div class="jsonreg"><b> tree-merged: branch, tree, bush, leaves;</b></div>
-      <div class="jsonreg"><b> fence-merged: cage, fence, railing;</b></div>
-      <div class="jsonreg"><b> ceiling-merged: ceiling-tile, ceiling-other;</b></div>
-      <div class="jsonreg"><b> sky-other-merged: clouds, sky-other, fog;</b></div>
-      <div class="jsonreg"><b> cabinet-merged: cupboard, cabinet;</b></div>
-      <div class="jsonreg"><b> table-merged: desk-stuff, table;</b></div>
-      <div class="jsonreg"><b> floor-other-merged:  floor-marble, floor-other, floor-tile;</b></div>
-      <div class="jsonreg"><b> pavement-merged: floor-stone, pavement;</b></div>
-      <div class="jsonreg"><b> mountain-merged: hill, mountain;</b></div>
-      <div class="jsonreg"><b> grass-merged: moss, grass, straw;</b></div>
-      <div class="jsonreg"><b> dirt-merged: mud, dirt;</b></div>
-      <div class="jsonreg"><b> paper-merged: napkin, paper;</b></div>
-      <div class="jsonreg"><b> food-other-merged: salad, vegetable, food-other;</b></div>
-      <div class="jsonreg"><b> building-other-merged: skyscraper, building-other;</b></div>
-      <div class="jsonreg"><b> rock-merged: stone, rock;</b></div>
-      <div class="jsonreg"><b> wall-other-merged: wall-other, wall-concrete, wall-panel;</b></div>
-      <div class="jsonreg"><b> rug-merged: mat, rug, carpet.</b></div>
-    </div>
-    <div class="jsonreg">The following stuff categories are ignored:</div>
+      <div class="jsonreg"><b>tree-merged</b>: branch, tree, bush, leaves</div>
+      <div class="jsonreg"><b>fence-merged</b>: cage, fence, railing</div>
+      <div class="jsonreg"><b>ceiling-merged</b>: ceiling-tile, ceiling-other</div>
+      <div class="jsonreg"><b>sky-other-merged</b>: clouds, sky-other, fog</div>
+      <div class="jsonreg"><b>cabinet-merged</b>: cupboard, cabinet</div>
+      <div class="jsonreg"><b>table-merged</b>: desk-stuff, table</div>
+      <div class="jsonreg"><b>floor-other-merged</b>:  floor-marble, floor-other, floor-tile</div>
+      <div class="jsonreg"><b>pavement-merged</b>: floor-stone, pavement</div>
+      <div class="jsonreg"><b>mountain-merged</b>: hill, mountain</div>
+      <div class="jsonreg"><b>grass-merged</b>: moss, grass, straw</div>
+      <div class="jsonreg"><b>dirt-merged</b>: mud, dirt</div>
+      <div class="jsonreg"><b>paper-merged</b>: napkin, paper</div>
+      <div class="jsonreg"><b>food-other-merged</b>: salad, vegetable, food-other</div>
+      <div class="jsonreg"><b>building-other-merged</b>: skyscraper, building-other</div>
+      <div class="jsonreg"><b>rock-merged</b>: stone, rock</div>
+      <div class="jsonreg"><b>wall-other-merged</b>: wall-other, wall-concrete, wall-panel</div>
+      <div class="jsonreg"><b>rug-merged</b>: mat, rug, carpet</b></div>
+    </div><br/>
+    <div class="jsonreg">The following stuff categories were removed (their pixels are set to void):</div>
     <div class="jsontab">
-      <div class="jsonreg"><b>furniture-other, metal, plastic, solid-other, structural-other, waterdrops, textile-other, cloth, clothes, plant-other, wood, ground-other.</b></div>
+      <div class="jsonreg">furniture-other, metal, plastic, solid-other, structural-other, waterdrops, textile-other, cloth, clothes, plant-other, wood, ground-other</div>
     </div>
-    <div class="jsonreg">Pixels belonging to ignored categories are considered unlabaled.</div>
   </div>
 </div>
 
