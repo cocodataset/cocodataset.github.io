@@ -268,8 +268,8 @@ a[aria-expanded=false] .glyphicon-chevron-down {
   margin-bottom:20px;
 }
 .ldbdTabHead {
-  padding: 0px 0px;
-  width:60px;
+  padding: 5px 0px;
+  width:100px;
 }
 .ldbdTabs a {
   padding: 5px 10px !important;
