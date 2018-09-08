@@ -1,6 +1,13 @@
 <script>$(function(){initLeaderboardDetection()});</script>
 <h1>Detection Leaderboard</h1>
 <ul class="nav nav-pills ldbdTabs fontBigger">
+  <li class="ldbdTabHead">BBOX:</li>
+  <li><a data-toggle="tab" id="a_bbox_dev2015">Dev</a></li>
+  <li><a data-toggle="tab" id="a_bbox_standard2015">Standard15</a></li>
+  <li><a data-toggle="tab" id="a_bbox_challenge2015">Challenge15</a></li>
+  <li><a data-toggle="tab" id="a_bbox_challenge2016">Challenge16</a></li>
+  <li><a data-toggle="tab" id="a_bbox_challenge2017">Challenge17</a></li>
+  <br/>
   <li class="ldbdTabHead">SEGM:</li>
   <li class="active"><a data-toggle="tab" id="a_segm_dev2015">Dev</a></li>
   <li><a data-toggle="tab" id="a_segm_standard2015">Standard15</a></li>
@@ -9,13 +16,6 @@
   <li><a data-toggle="tab" id="a_segm_challenge2017">Challenge17</a></li>
   <br/>
   <li><a data-toggle="tab" id="a_segm_challenge2018">Challenge18</a></li>
-  <br/>
-  <li class="ldbdTabHead">BBOX:</li>
-  <li><a data-toggle="tab" id="a_bbox_dev2015">Dev</a></li>
-  <li><a data-toggle="tab" id="a_bbox_standard2015">Standard15</a></li>
-  <li><a data-toggle="tab" id="a_bbox_challenge2015">Challenge15</a></li>
-  <li><a data-toggle="tab" id="a_bbox_challenge2016">Challenge16</a></li>
-  <li><a data-toggle="tab" id="a_bbox_challenge2017">Challenge17</a></li>
 </ul>
 <div class="tab-content" id="ldbdDetection">
   <table class="table order-column hover fontSmall ldbdData">
