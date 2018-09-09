@@ -161,7 +161,7 @@ function initLeaderboardDetection() {
 }
 
 function initLeaderboardKeypoints() {
-  var types = ["kpt_dev", "kpt_standard", "kpt_challenge2016", "kpt_challenge2017"];
+  var types = ["kpt_dev", "kpt_standard", "kpt_challenge2016", "kpt_challenge2017", "kpt_challenge2018"];
   var metrics = ["AP", "AP_50", "AP_75", "AP_medium", "AP_large", "AR", "AR_50", "AR_75", "AR_medium", "AR_large"];
   var table = "ldbdKeypoints";
   initLeaderboard(types, metrics, table, 0);
