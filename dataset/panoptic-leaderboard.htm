@@ -1,2 +1,45 @@
+<script>$(function(){initLeaderboardPanoptic()});</script>
 <h1>Panoptic Leaderboard</h1>
-<h1 class="fontBold">Coming soon!</h1>
+<ul class="nav nav-pills ldbdTabs fontBigger">
+  <li class="active"><a data-toggle="tab" id="a_panoptic_dev">Dev</a></li>
+  <li><a data-toggle="tab" id="a_panoptic_challenge2018">Challenge18</a></li>
+</ul>
+<div class="tab-content" id="ldbdPanoptic">
+  <table class="table order-column hover fontSmall ldbdData">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>PQ</th>
+        <th>SQ</th>
+        <th>RQ</th>
+        <th>PQ<sup>Th</sup></th>
+        <th>SQ<sup>Th</sup></th>
+        <th>RQ<sup>Th</sup></th>
+        <th>PQ<sup>St</sup></th>
+        <th>SQ<sup>St</sup></th>
+        <th>RQ<sup>St</sup></th>
+        <th>date</th>
+      </tr>
+    </thead>
+  </table>
+  <h1>Metrics</h1>
+  <div class="json fontMono">
+    <div class="jsonreg"><b>Average Panoptic Metrics:</b></div>
+    <div class="jsonk">PQ</div><div class="jsonv">% Panoptic Quality <b>(primary challenge metric)</b></div>
+    <div class="jsonk">SQ</div><div class="jsonv">% Segmentation Quality component of PQ</div>
+    <div class="jsonk">RQ</div><div class="jsonv">% Recognition Quality component of PQ</div>
+    <div class="jsonreg"><b>Panoptic Metrics for Things Categories:</b></div>
+    <div class="jsonk">PQ<sup>Th</sup></div><div class="jsonv">% PQ for things categories only</div>
+    <div class="jsonk">SQ<sup>Th</sup></div><div class="jsonv">% SQ for things categories only</div>
+    <div class="jsonk">RQ<sup>Th</sup></div><div class="jsonv">% RQ for over things categories only</div>
+    <div class="jsonreg"><b>Panoptic Metrics for Stuff Categories:</b></div>
+    <div class="jsonk">PQ<sup>St</sup></div><div class="jsonv">% PQ for stuff categories only</div>
+    <div class="jsonk">SQ<sup>St</sup></div><div class="jsonv">% SQ for stuff categories only</div>
+    <div class="jsonk">RQ<sup>St</sup></div><div class="jsonv">% RQ for stuff categories only</div>
+  </div></br>
+  <p>
+    Please see the <a href="#panoptic-eval">evaluation</a> page for more detailed information about the metrics, and the <a href="#panoptic-2018">task</a> and <a href="#guidelines">guidelines</a> pages for more information about the panoptic task and dataset splits.
+    Note: leaderboard results are imported from <a href="https://competitions.codalab.org/competitions/19507" target="_blank">CodaLab Panoptic Server</a> and may not contain the latest results.
+  </p>
+</div>

@@ -174,6 +174,13 @@ function initLeaderboardStuff() {
   initLeaderboard(types, metrics, table, 2);
 }
 
+function initLeaderboardPanoptic() {
+  var types = ["panoptic_dev", "panoptic_challenge2018"];
+  var metrics = ["PQ", "SQ", "RQ", "PQTH", "SQTH", "RQTH", "PQST", "SQST", "RQST"];
+  var table = "ldbdPanoptic";
+  initLeaderboard(types, metrics, table, 0);
+}
+
 function initLeaderboardCaptions() {
   // initialize C5 and C40 captioning leaderboards
   var types1 = ["cap_c5", "cap_c40"];
