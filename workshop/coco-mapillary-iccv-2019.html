@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>COCO + Mapillary 2019 | ICCV 2018</title>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+  <link rel="stylesheet" href="../other/cocostyles.css" />
+</head>
+<body>
+  <div class="iccv19header">
+    <div class="iccv19title">COCO + Mapillary</div>
+    <div class="iccv19subtitle">Joint Recognition Challenge Workshop at ICCV 2019</div>
+  </div>
+
+  <div id="content">
+    <h1>Table of Contents</h1>
+    <ol class="fontBigger">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#dates">Dates</a></li>
+      <li><a href="#rules">New Rules and Awards</a></li>
+      <li><a href="#coco-challenges">COCO Challenges</a></li>
+      <ul>
+        <li><a href="#coco-detection">COCO Detection</a></li>
+        <li><a href="#coco-panoptic">COCO Panoptic</a></li>
+        <li><a href="#coco-keypoints">COCO Keypoints</a></li>
+        <li> <a href="#coco-densepose">COCO DensePose</a></li>
+      </ul>
+      <li><a href="#mapillary-challenges">Mapillary Challenges</a></li>
+      <ul>
+        <li><a href="#mapillary-detection">Mapillary Detection</a></li>
+        <li><a href="#mapillary-panoptic">Mapillary Panoptic</a></li>
+      </ul>
+      <li><a href="#speakers">Invited Speaker</a></li>
+      <li><a href="#schedule">Workshop Schedule</a></li>
+    </ol>
+
+    <a name="overview"></a>
+    <h1>1. Overview</h1>
+    <p>The goal of the joint COCO and Mapillary Workshop is to study object recognition in the context of scene understanding. While both the COCO and Mapillary challenges look at the general problem of visual recognition, the underlying datasets and the specific tasks in the challenges probe different aspects of the problem.</p>
+
+    <p><a href="../index.htm">COCO</a> is a widely used visual recognition dataset, designed to spur object detection research with a focus on full scene understanding. In particular: detecting non-iconic views of objects, localizing objects in images with pixel level precision, and detection in complex scenes. <a href="https://vistas.mapillary.com/">Mapillary Vistas</a> is a new street-level image dataset with emphasis on high-level, semantic image understanding, with applications for autonomous vehicles and robot navigation. The dataset features locations from all around the world and is diverse in terms of weather and illumination conditions, capturing sensor characteristics, etc.</p>
+
+    <p><a href="https://vistas.mapillary.com/">Mapillary Vistas</a> is complementary to COCO in terms of dataset focus and can be readily used for studying various recognition tasks in a visually distinct domain from COCO. COCO focuses on recognition in natural scenes, while Mapillary focuses on recognition of street-view scenes. <i>We encourage teams to participate in challenges across both datasets</i> to better understand the current landscape of datasets and methods.</p>
+
+    <p>Challenge tasks: COCO helped popularize <a href="../index.htm#detection-2019">instance segmentation</a> and this year both COCO and Mapillary feature this task, where the goal is to simultaneously detect and segment each object instance. As detection has matured over the years, <b>COCO is no longer featuring the bounding-box detection task</b>. While the leaderboard will remain open, the bounding-box detection task is not a workshop challenge; instead we encourage researchers to focus on the more challenging and visually informative instance segmentation task. As in previous years, COCO features the popular person <a href="../index.htm#keypoints-2019">keypoint</a> challenge track. In addition, this year COCO features a <a href="http://densepose.org/" target="_blank">DensePose</a> track for mapping all human pixels to a 3D surface of the human body. </p>
+
+    <p>This year we feature <a href="../index.htm#panoptic-2019">panoptic segmentation</a> task for the second time. Panoptic segmentation addresses both stuff and thing classes, unifying the typically distinct semantic and instance segmentation tasks. The definition of panoptic is “including everything visible in one view”, in this context panoptic refers to a unified, global view of segmentation. The aim is to generate coherent scene segmentations that are rich and complete, an important step toward real-world vision systems. For more details about the panoptic task, including evaluation metrics, please see this <a href="https://arxiv.org/abs/1801.00868">paper</a>. Both COCO and Mapillary will feature panoptic segmentation challenges.</p>
+
+    <p>This workshop offers the opportunity to benchmark computer vision algorithms on the COCO and Mapillary Vistas datasets. The instance and panoptic segmentation tasks on the two datasets are the same, and we use unified data formats and evaluation criteria for both. We hope that jointly studying the unified tasks across two distinct visual domains will provide a highly comprehensive evaluation suite for modern visual recognition and segmentation algorithms and yield new insights.</p>
+
+    <a name="dates"></a>
+    <h1>2. Challenge Dates</h1>
+    <div class="json">
+      <div class="jsonktxt fontBlue">October 4, 2019</div><div class="jsonvtxt">Submission deadline (11:59 PST)</div>
+      <div class="jsonktxt">October 11, 2019</div><div class="jsonvtxt">Technical report submission deadline</div>
+      <div class="jsonktxt">October 18, 2019</div><div class="jsonvtxt">Challenge winners notified</div>
+      <div class="jsonktxt">October 27, 2019</div><div class="jsonvtxt">Winners present at ICCV 2019 Workshop</div>
+    </div>
+
+    <a name="rules"></a>
+    <h1>3. <strong>New Rules and Awards</strong></h1>
+    <ul>
+      <li>Participants must submit a <strong>technical report</strong> that includes a detailed ablation study of their submission (suggested length 1-4 pages). The reports will be made public. We will provide a latex template for the report. This report will substitute the short text description that we requested previosuly. Only submissions with the report will be considered for any award and will be put in the COCO leaderboard.</li>
+      <li>This year for each challenge track we will have two different awards: <strong>best result award</strong> and <strong>most innovative award</strong>. The most innovative award will be based on the method description in the submitted technical reports and decided by the COCO award committee. The commitee will invite teams to present at the workshop based on the innovations of the submissions rather than the best scores.</li>
+      <li>This year we introduce single <strong>best paper award</strong> for the most innovative ans successful solution across all challenges. The winner will be determined by the workshop organization committee.</li>
+    </ul>
+
+    <a name="coco-challenges"></a>
+    <h1>4. COCO Challenges</h1>
+    <p><a href="http://cocodataset.org/">COCO</a> is an image dataset designed to spur object detection research with a focus on detecting objects in context. The annotations include instance segmentations for object belonging to 80 categories, stuff segmentations for 91 categories, keypoint annotations for person instances, and five image captions per image. The specific tracks in the COCO 2018 Challenges are (1) object detection with segmentation masks (instance segmentation), (2) panoptic segmentation, (3) person keypoint estimation, and (4) DensePose. We describe each next. Note: <i>neither object detection with bounding-box outputs nor stuff segmentation will be featured at the COCO 2019 challenge</i> (but evaluation servers for both tasks remain open).</p>
+
+    <a name="coco-detection"></a>
+    <h2>4.1. COCO Object Detection Task</h2>
+    <p><a href="../index.htm#detection-2019"><img src="../images/detection-splash.png" class="wide" /></a></p>
+    <p>The COCO Object Detection Task is designed to push the state of the art in object detection forward. Note: only the detection task with object segmentation output (that is, instance segmentation) will be featured at the COCO 2019 challenge. For full details of this task please see the <a href="../index.htm#detection-2019">COCO Object Detection Task</a>.</p>
+
+    <a name="coco-panoptic"></a>
+    <h2>4.2. COCO Panoptic Segmentation Task</h2>
+    <p><a href="../index.htm#panoptic-2019"><img src="../images/panoptic-splash.png" class="wide" /></a></p>
+    <p>The COCO Panoptic Segmentation Task has the goal of advancing the state of the art in scene segmentation. Panoptic segmentation addresses both stuff and thing classes, unifying the typically distinct semantic and instance segmentation tasks. For full details of this task please see the <a href="../index.htm#panoptic-2019">COCO Panoptic Segmentation Task</a>.</p>
+
+    <a name="coco-keypoints"></a>
+    <h2>4.3. COCO Keypoint Detection Task</h2>
+    <p><a href="../index.htm#keypoints-2019"><img src="../images/keypoints-splash.png" class="wide" /></a></p>
+    <p>The COCO Keypoint Detection Task requires localization of person keypoints in challenging, uncontrolled conditions. The keypoint task involves simultaneously detecting people <i>and</i> localizing their keypoints (person locations are <i>not</i> given at test time). For full details of this task please see the <a href="../index.htm#keypoints-2019">COCO Keypoint Detection Task</a>.</p>
+
+    <a name="coco-densepose"></a>
+    <h2>4.4. COCO DensePose Task</h2>
+    <p><a href="../index.htm#keypoints-2019"><img src="../images/densepose-splash.png" class="wide" /></a></p>
+    <p>The COCO DensePose Task requires localization of dense person keypoints in challenging, uncontrolled conditions. The DensePose task involves simultaneously detecting people <i>and</i> localizing their dense keypoints, mapping all human pixels to a 3D surface of the human body. For full details of this task please see the <a href="http://densepose.org/" target="_blank">COCO DensePose Task</a>.</p>
+
+    <a name="mapillary-challenges"></a>
+    <h1>5. Mapillary Challenges</h1>
+    <p>This year, <a href="http://research.mapillary.com/iccv19">Mapillary Research</a> is joining the popular COCO recognition tasks with the <a href="https://vistas.mapillary.com/"> Mapillary Vistas</a> dataset. Vistas is a diverse, pixel-accurate street-level image dataset for empowering autonomous mobility and transport at global scale. It has been designed and collected to cover diversity in appearance, richness of annotation detail, and geographic extent. The Mapillary challenges are based on the publicly available Vistas Research dataset, featuring:
+    <ul>
+      <li>28 stuff classes, 37 thing classes (w instance-specific annotations), and 1 void class</li>
+      <li>25K high-resolution images (18K train, 2K val, 5K test; w average resolution of ~9 megapixels)</li>
+      <li>Global geographic coverage including North and South America, Europe, Africa, Asia, and Oceania</li>
+      <li>Highly variable weather conditions (sun, rain, snow, fog, haze) and capture times (dawn, daylight, dusk, night)</li>
+      <li>Broad range of camera sensors, varying focal length, image aspect ratios, and different types of camera noise</li>
+      <li>Different capturing viewpoints (road, sidewalks, off-road)</li>
+    </ul>
+    Challenge tracks based on the Mapillary Vistas dataset will be (1) object detection with segmentation masks (instance segmentation) and (2) panoptic segmentation, in line with COCO's detection and panoptic segmentation tasks, respectively.</p>
+
+    <a name="mapillary-detection"></a>
+    <h2>5.1. Mapillary Vistas Object Detection Task</h2>
+    <p><a href="http://research.mapillary.com/iccv19#detection"><img src="../images/mapillary-instance.png" class="wide" /></a></p>
+    <p>The Mapillary Vistas Object Detection Task emphasizes recognizing individual instances of both static street-image objects (like street lights, signs, poles) but also dynamic street participants (like cars, pedestrians, cyclists). This task aims to push the state-of-the-art in instance segmentation, targeting critical perception tasks for autonomously acting agents like cars or transportation robots. For full details of this task please see the <a href="http://research.mapillary.com/eccv18#detection">Mapillary Vistas Object Detection Task</a>.</p>
+
+    <a name="mapillary-panoptic"></a>
+    <h2>5.2. Mapillary Vistas Panoptic Segmentation Task</h2>
+    <p><a href="http://research.mapillary.com/iccv19#panoptic"><img src="../images/mapillary-panoptic.png" class="wide" /></a></p>
+    <p>The Mapillary Vistas Panoptic Segmentation Task targets the full perception stack for scene segmentation in street-images. Panoptic segmentation addresses both stuff and thing classes, unifying the typically distinct semantic and instance segmentation tasks. For full details of this task please see the <a href="http://research.mapillary.com/eccv18#panoptic">Mapillary Vistas Panoptic Segmentation Task</a>.</p>
+
+    <a name="speakers"></a>
+    <h1>6. Invited Speaker</h1>
+    <p>TBA.</p>
+
+    <a name="schedule"></a>
+    <h1>7. Workshop Schedule - 27.10.2019</h1>
+    <p>TBA.</p>
+
+  </div>
+
+  <div id="footer"><div>
+    <a href="https://github.com/cocodataset/cocodataset.github.io" target="_blank">Github Page Source</a>
+    <a href="../index.htm#termsofuse">Terms of Use</a>
+  </div></div>
+</body>
