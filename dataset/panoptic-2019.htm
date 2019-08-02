@@ -1,0 +1,35 @@
+<h1>COCO 2019 Panoptic Segmentation Task</h1>
+<p><img src="images/panoptic-splash.png" class="wide"/></p>
+
+<h1>1. Overview</h1>
+<p> The COCO Panoptic Segmentation Task is designed to push the state of the art in scene segmentation. Panoptic segmentation addresses both stuff and thing classes, unifying the typically distinct semantic and instance segmentation tasks. The aim is to generate coherent scene segmentations that are rich and complete, an important step toward real-world vision systems such as in autonomous driving or augmented reality. For full details of the panoptic segmentation task please see the <a href="#panoptic-eval">panoptic evaluation</a> page.</p>
+<p>In a bit more detail: things are countable objects such as people, animals, tools. Stuff classes are amorphous regions of similar texture or material such as grass, sky, road. Previous COCO tasks addressed stuff and thing classes separately, see the <a href="#detection-2018">instance segmentation</a> and <a href="#stuff-2018">stuff segmentation</a> tasks, respectively. To encourage the study of stuff and things in a unified framework, we introduce the COCO Panoptic Segmentation Task. The definition of 'panoptic' is "including everything visible in one view", in our context panoptic refers to a unified, global view of segmentation. The panoptic segmentation task involves assigning a semantic label and instance id for each pixel of an image, which requires generating dense, coherent scene segmentations. The stuff annotations for this task come from the <a href="https://github.com/nightrome/cocostuff">COCO-Stuff project</a> described in this <a href="https://arxiv.org/abs/1612.03716">paper</a>. For more details about the panoptic task, including evaluation metrics, please see the <a href="https://arxiv.org/abs/1801.00868">panoptic segmentation paper</a>.</p>
+<p>The panoptic segmentation task is part of the <a href="workshop/coco-mapillary-iccv-2019.html">Joint COCO and Mapillary Recognition Challenge Workshop</a> at ICCV 2018. For further details about the joint workshop please visit the workshop page. Researchers are encouraged to participate in both the COCO and Mapillary Panoptic Segmentation Tasks (the tasks share identical data formats and evaluation metrics). Please also see the related COCO <a href="#detection-2019">detection</a>, <a href="#keypoints-2019">keypoint</a>, and <a href="#stuff-2019">stuff</a> tasks.</p>
+<p>The panoptic task uses all the annotated COCO images and includes the 80 thing categories from the <a href="#detection-2019">detection</a> task and a subset of the 91 stuff categories from the <a href="#stuff-2019">stuff</a> task, with any overlaps manually resolved. The Panoptic Quality (PQ) metric is used for performance evaluation, for details see the <a href="#panoptic-eval">panoptic evaluation</a> page.</p>
+
+<h1>2. Dates</h1>
+<div class="json">
+  <div class="jsonktxt fontBlue">October 4, 2019</div><div class="jsonvtxt">Submission deadline (11:59 PST)</div>
+  <div class="jsonktxt">October 11, 2019</div><div class="jsonvtxt">Technical report submission deadline</div>
+  <div class="jsonktxt">October 18, 2019</div><div class="jsonvtxt">Challenge winners notified</div>
+  <div class="jsonktxt">October 27, 2019</div><div class="jsonvtxt">Winners present at ICCV 2019 Workshop</div>
+</div>
+
+<h1>3. New Rules and Awards</h1>
+<ul>
+  <li>Participants must submit a <strong>technical report</strong> that includes a detailed ablation study of their submission (suggested length 1-4 pages). The reports will be made public. We will provide a latex template for the report. This report will substitute the short text description that we requested previosuly. Only submissions with the report will be considered for any award and will be put in the COCO leaderboard.</li>
+  <li>This year for each challenge track we will have two different awards: <strong>best result award</strong> and <strong>most innovative award</strong>. The most innovative award will be based on the method description in the submitted technical reports and decided by the COCO award committee. The commitee will invite teams to present at the workshop based on the innovations of the submissions rather than the best scores.</li>
+  <li>This year we introduce single <strong>best paper award</strong> for the most innovative ans successful solution across all challenges. The winner will be determined by the workshop organization committee.</li>
+</ul>
+
+<h1>4. Organizers</h1>
+<div>TBD</div>
+
+<h1>5. Award Committee</h1>
+<div>TBD</div>
+
+<h1>6. Task Guidelines</h1>
+<p>Participants are recommended but not restricted to train their algorithms on COCO 2017 train and val sets. The <a href="#download">download</a> page has links to all COCO 2017 data. The COCO test set is divided into two splits: test-dev and test-challenge. Test-dev is as the default test set for testing under general circumstances and is used to maintain a public <a href="#panoptic-leaderboard">leaderboard</a>. Test-challenge is used for the workshop competition; results will be revealed at the workshop. When participating in this task, please specify any and all external data used for training in the "method description" when uploading results to the evaluation server. A more thorough explanation of all these details is available on the <a href="#guidelines">guidelines</a> page, please be sure to review it carefully prior to participating. Results in the correct <a href="#format-results">format</a> must be <a href="#upload">uploaded</a> to the <a href="https://competitions.codalab.org/competitions/19507" target="_blank">evaluation server</a>. The <a href="#panoptic-eval">evaluation</a> page lists detailed information regarding how results will be evaluated.</p>
+
+<h1>7. Tools and Instructions</h1>
+<p>We provide extensive API support for the COCO images, annotations, and evaluation code. To download the COCO Panoptic API, please visit our <a href="https://github.com/cocodataset/panopticapi">GitHub repository</a>. <b>Please note that the main COCO API does not currently work for panoptic annotations.</b> Due to the large size of COCO and the complexity of this task, the process of participating may not seem simple. To help, we provide explanations and instructions for each step of the process on the <a href="#download">download</a>, <a href="#format-data">data format</a>, <a href="#format-results">results format</a>, <a href="#guidelines">guidelines</a>, <a href="#upload">upload</a>, and <a href="#panoptic-eval">evaluation</a> pages. For additional questions, please contact <a href="mailto:info@cocodataset.org">info@cocodataset.org</a>.</p>

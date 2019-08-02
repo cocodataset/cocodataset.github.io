@@ -429,6 +429,33 @@ tr.shown td.ldbdPlus {
   margin:auto;
   text-shadow:-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black
 }
+.iccv19header {
+  background-image:url(../images/banner_iccv19.png);
+  background-repeat:no-repeat;
+  background-position:center;
+  text-align:center;
+  height:480px;
+  color:black;
+  margin:auto;
+}
+.iccv19title {
+  position: relative;
+  left: -180px;
+  font-size:60px;
+  font-weight:500;
+  padding-top:170px;
+  width:550px;
+  margin:auto;
+}
+.iccv19subtitle {
+  position: relative;
+  left: -180px;
+  font-size:22px;
+  border-top:3px solid black;
+  border-bottom:3px solid black;
+  width:550px;
+  margin:auto;
+}
 .schedule-track {
   background-color:#A5DCFF;
 }
