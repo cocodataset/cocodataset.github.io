@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
-  <title>COCO + Mapillary 2019 | ICCV 2018</title>
+  <title>COCO + Mapillary | ICCV 2019</title>
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
@@ -31,6 +31,7 @@
         <li><a href="#mapillary-detection">Mapillary Detection</a></li>
         <li><a href="#mapillary-panoptic">Mapillary Panoptic</a></li>
       </ul>
+      <li><a href="#lvis-challenge">Guest Competition: The First LVIS Challenge</a></li>
       <li><a href="#speakers">Invited Speaker</a></li>
       <li><a href="#schedule">Workshop Schedule</a></li>
     </ol>
@@ -43,7 +44,7 @@
 
     <p><a href="https://vistas.mapillary.com/">Mapillary Vistas</a> is complementary to COCO in terms of dataset focus and can be readily used for studying various recognition tasks in a visually distinct domain from COCO. COCO focuses on recognition in natural scenes, while Mapillary focuses on recognition of street-view scenes. <i>We encourage teams to participate in challenges across both datasets</i> to better understand the current landscape of datasets and methods.</p>
 
-    <p>Challenge tasks: COCO helped popularize <a href="../index.htm#detection-2019">instance segmentation</a> and this year both COCO and Mapillary feature this task, where the goal is to simultaneously detect and segment each object instance. As detection has matured over the years, <b>COCO is no longer featuring the bounding-box detection task</b>. While the leaderboard will remain open, the bounding-box detection task is not a workshop challenge; instead we encourage researchers to focus on the more challenging and visually informative instance segmentation task. As in previous years, COCO features the popular person <a href="../index.htm#keypoints-2019">keypoint</a> challenge track. In addition, this year COCO features a <a href="http://densepose.org/" target="_blank">DensePose</a> track for mapping all human pixels to a 3D surface of the human body. </p>
+    <p>Challenge tasks: COCO helped popularize <a href="../index.htm#detection-2019">instance segmentation</a> and this year both COCO and Mapillary feature this task, where the goal is to simultaneously detect and segment each object instance. As detection has matured over the years, <b>COCO is no longer featuring the bounding-box detection task</b>. While the leaderboard will remain open, the bounding-box detection task is not a workshop challenge; instead we encourage researchers to focus on the more challenging and visually informative instance segmentation task or to tackle low-shot object detection in the LVIS Challenge. As in previous years, COCO features the popular person <a href="../index.htm#keypoints-2019">keypoint</a> challenge track. In addition, COCO features a <a href="http://densepose.org/" target="_blank">DensePose</a> track for mapping all human pixels to a 3D surface of the human body for the second time. </p>
 
     <p>This year we feature <a href="../index.htm#panoptic-2019">panoptic segmentation</a> task for the second time. Panoptic segmentation addresses both stuff and thing classes, unifying the typically distinct semantic and instance segmentation tasks. The definition of panoptic is “including everything visible in one view”, in this context panoptic refers to a unified, global view of segmentation. The aim is to generate coherent scene segmentations that are rich and complete, an important step toward real-world vision systems. For more details about the panoptic task, including evaluation metrics, please see this <a href="https://arxiv.org/abs/1801.00868">paper</a>. Both COCO and Mapillary will feature panoptic segmentation challenges.</p>
 
@@ -61,9 +62,9 @@
     <a name="rules"></a>
     <h1>3. <strong>New Rules and Awards</strong></h1>
     <ul>
-      <li>Participants must submit a <strong>technical report</strong> that includes a detailed ablation study of their submission (suggested length 1-4 pages). The reports will be made public. We will provide a latex template for the report. This report will substitute the short text description that we requested previosuly. Only submissions with the report will be considered for any award and will be put in the COCO leaderboard.</li>
+      <li>Participants must submit a <strong>technical report</strong> that includes a detailed ablation study of their submission (suggested length 1-4 pages). The reports will be made public. We will provide a latex template for the report. This report will substitute the short text description that we requested previously. Only submissions with the report will be considered for any award and will be put in the COCO leaderboard.</li>
       <li>This year for each challenge track we will have two different awards: <strong>best result award</strong> and <strong>most innovative award</strong>. The most innovative award will be based on the method description in the submitted technical reports and decided by the COCO award committee. The commitee will invite teams to present at the workshop based on the innovations of the submissions rather than the best scores.</li>
-      <li>This year we introduce single <strong>best paper award</strong> for the most innovative ans successful solution across all challenges. The winner will be determined by the workshop organization committee.</li>
+      <li>This year we introduce single <strong>best paper award</strong> for the most innovative and successful solution across all challenges. The winner will be determined by the workshop organization committee.</li>
     </ul>
 
     <a name="coco-challenges"></a>
@@ -92,7 +93,7 @@
 
     <a name="mapillary-challenges"></a>
     <h1>5. Mapillary Challenges</h1>
-    <p>This year, <a href="http://research.mapillary.com/iccv19">Mapillary Research</a> is joining the popular COCO recognition tasks with the <a href="https://vistas.mapillary.com/"> Mapillary Vistas</a> dataset. Vistas is a diverse, pixel-accurate street-level image dataset for empowering autonomous mobility and transport at global scale. It has been designed and collected to cover diversity in appearance, richness of annotation detail, and geographic extent. The Mapillary challenges are based on the publicly available Vistas Research dataset, featuring:
+    <p>This year, for the second time, <a href="http://research.mapillary.com/iccv19">Mapillary Research</a> is joining the popular COCO recognition tasks with the <a href="https://vistas.mapillary.com/"> Mapillary Vistas</a> dataset. Vistas is a diverse, pixel-accurate street-level image dataset for empowering autonomous mobility and transport at global scale. It has been designed and collected to cover diversity in appearance, richness of annotation detail, and geographic extent. The Mapillary challenges are based on the publicly available Vistas Research dataset, featuring:
     <ul>
       <li>28 stuff classes, 37 thing classes (w instance-specific annotations), and 1 void class</li>
       <li>25K high-resolution images (18K train, 2K val, 5K test; w average resolution of ~9 megapixels)</li>
@@ -113,13 +114,18 @@
     <p><a href="http://research.mapillary.com/iccv19#panoptic"><img src="../images/mapillary-panoptic.png" class="wide" /></a></p>
     <p>The Mapillary Vistas Panoptic Segmentation Task targets the full perception stack for scene segmentation in street-images. Panoptic segmentation addresses both stuff and thing classes, unifying the typically distinct semantic and instance segmentation tasks. For full details of this task please see the <a href="http://research.mapillary.com/eccv18#panoptic">Mapillary Vistas Panoptic Segmentation Task</a>.</p>
 
+    <a name="lvis-challenge"></a>
+    <h1>6. Guest Competition: The First LVIS Challenge</h1>
+    <p><a href="http://www.lvisdataset.org/"><img src="../images/lvis-splash.png" class="wide" /></a></p>
+    <p>LVIS is a new, large-scale instance segmentation dataset that features > 1000 object categories, many of which have very few training examples. LVIS presents a novel low-shot object detection challenge to encourage new research in object detection. The COCO Workshop is happy to host the inaugural LVIS Challenge! For more information, please see <a href="http://www.lvisdataset.org/" target="_blank">LVIS challenge</a> page. </p>
+
     <a name="speakers"></a>
-    <h1>6. Invited Speaker</h1>
-    <p>TBA.</p>
+    <h1>7. Invited Speaker</h1>
+    <p>TBD.</p>
 
     <a name="schedule"></a>
-    <h1>7. Workshop Schedule - 27.10.2019</h1>
-    <p>TBA.</p>
+    <h1>8. Workshop Schedule - 27.10.2019</h1>
+    <p>TBD.</p>
 
   </div>
 
