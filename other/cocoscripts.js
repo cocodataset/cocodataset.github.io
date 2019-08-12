@@ -46,7 +46,7 @@ var cocoPeople = {
   'TsungYiLin': {'name': 'Tsung-Yi Lin', 'full': 'Google Brain', 'short': 'Google Brain', 'url':'https://vision.cornell.edu/se3/people/tsung-yi-lin/'},
   'GenevievePatterson': {'name': 'Genevieve Patterson', 'full': 'MSR, Trash TV', 'short': 'MSR, Trash TV', 'url':'https://www.microsoft.com/en-us/research/people/gen/'},
   'MatteoRonchi': {'name': 'Matteo R. Ronchi', 'full': 'Caltech', 'short': 'Caltech', 'url':'http://vision.caltech.edu/~mronchi/'},
-  'YinCui': {'name': 'Yin Cui', 'full': 'Cornell Tech', 'short': 'Cornell Tech', 'url':'http://www.cs.cornell.edu/~ycui/'},
+  'YinCui': {'name': 'Yin Cui', 'full': 'Google', 'short': 'Google', 'url':'https://ycui.me/'},
   'MichaelMaire': {'name': 'Michael Maire', 'full': 'TTI-Chicago', 'short': 'TTI-Chicago', 'url':'http://ttic.uchicago.edu/~mmaire/'},
   'SergeBelongie': {'name': 'Serge Belongie', 'full': 'Cornell Tech', 'short': 'Cornell Tech', 'url':'http://vision.cornell.edu/se3/people/serge-belongie/'},
   'LubomirBourdev': {'name': 'Lubomir Bourdev', 'full': 'WaveOne, Inc.', 'short': 'WaveOne, Inc.', 'url':'http://www.lubomir.org'},
@@ -154,7 +154,7 @@ function populateExternalPage() {
 }
 
 function initLeaderboardDetection() {
-  var types = ["bbox_dev2015", "segm_dev2015", "bbox_standard2015", "segm_standard2015", "bbox_challenge2016", "segm_challenge2016", "bbox_challenge2015", "segm_challenge2015", "bbox_challenge2017", "segm_challenge2017", "segm_challenge2018"];
+  var types = ["bbox_dev", "segm_dev", "bbox_standard2015", "segm_standard2015", "bbox_challenge2016", "segm_challenge2016", "bbox_challenge2015", "segm_challenge2015", "bbox_challenge2017", "segm_challenge2017", "segm_challenge2018"];
   var metrics = ["AP", "AP_50", "AP_75", "AP_small", "AP_medium", "AP_large", "AR_max_1", "AR_max_10", "AR_max_100", "AR_small", "AR_medium", "AR_large"];
   var table = "ldbdDetection";
   initLeaderboard(types, metrics, table, 1);
