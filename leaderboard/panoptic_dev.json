@@ -79,12 +79,26 @@
   },
   {
     "leaderboard_name": "panoptic-dev",
+    "date": "2018-12-21",
+    "description": "Panoptic Feature Pyramid Networks",
+    "leaderboard_id": 101,
+    "url": "https://arxiv.org/abs/1901.02446",
+    "team": {
+      "id": 7,
+      "members": "Alexander Kirillov, Ross Girshick, Kaiming He, Piotr Dollár",
+      "name": "PanopticFPN"
+    },
+    "results": "{\"PQ\": 0.409, \"SQ\": 0.785, \"RQ\": 0.501, \"PQTH\": 0.483, \"SQTH\": 0.817, \"RQTH\": 0.583, \"PQST\": 0.297, \"SQST\": 0.737, \"RQST\": 0.373}",
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
     "date": "2018-08-18",
     "description": "we used an ensemble model for the COCO 2018 Panoptic Segmentation Challenge. For the instance segmentation task, we fine tuned a pretrained Mask-RCNN [1] network with the COCO panoptic annotations while we trained from scratch a DeepLabv3+ [2] model for the semantic segmentation task. The two-channel output is created by combining the output of the said models, prioritizing the instance masks over the semantic masks. The panoptic quality of the final output reached 36.0 on the COCO test-dev2017 subset.",
     "leaderboard_id": 101,
     "url": "",
     "team": {
-      "id": 7,
+      "id": 8,
       "members": "Darwin Bautista, Jose Marie Mendoza, Rowel Atienza. Electrical and Electronics Engineering Institute. University of the Philippines.",
       "name": "TeamPH"
     },
@@ -98,7 +112,7 @@
     "leaderboard_id": 101,
     "url": "",
     "team": {
-      "id": 8,
+      "id": 9,
       "members": "",
       "name": "sagieppel"},
     "results": "{\"PQ\": 0.337, \"SQ\": 0.796, \"RQ\": 0.414, \"PQTH\": 0.351, \"SQTH\": 0.804, \"RQTH\": 0.429, \"PQST\": 0.315, \"SQST\": 0.784, \"RQST\": 0.393}",
@@ -111,7 +125,7 @@
     "leaderboard_id": 101,
     "url": "",
     "team": {
-      "id": 9,
+      "id": 10,
       "members": "Qi Zheng, Min Yang, Chenyang Li, Peng Huang, Chao Liang, Jun Chen",
       "name": "MMAP-seg"
     },
@@ -125,7 +139,7 @@
     "leaderboard_id": 101,
     "url": "https://arxiv.org/abs/1809.02110",
     "team": {
-      "id": 10,
+      "id": 11,
       "members": "Daan de Geus, Panagiotis Meletis, Gijs Dubbelman. Eindhoven University of Technology.",
       "name": "MPS-TU Eindhoven"
     },
@@ -139,7 +153,7 @@
     "leaderboard_id": 101,
     "url": "",
     "team": {
-      "id": 11,
+      "id": 12,
       "members": "Ee Heng Chen",
       "name": "LeChen"
     },
@@ -153,7 +167,7 @@
     "leaderboard_id": 101,
     "url": "",
     "team": {
-      "id": 12,
+      "id": 13,
       "members": "Tamaki Kojima",
       "name": "Artemis"
     },
@@ -167,7 +181,7 @@
     "leaderboard_id": 101,
     "url": "",
     "team": {
-      "id": 13,
+      "id": 14,
       "members": "",
       "name": "grasshopyx"
     },
@@ -181,7 +195,7 @@
     "leaderboard_id": 101,
     "url": "",
     "team": {
-      "id": 14,
+      "id": 15,
       "members": "",
       "name": "microljy"
     },
