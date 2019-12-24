@@ -175,7 +175,7 @@ function initLeaderboardStuff() {
 }
 
 function initLeaderboardPanoptic() {
-  var types = ["panoptic_dev", "panoptic_challenge2018"];
+  var types = ["panoptic_dev", "panoptic_challenge2018", "panoptic_challenge2019"];
   var metrics = ["PQ", "SQ", "RQ", "PQTH", "SQTH", "RQTH", "PQST", "SQST", "RQST"];
   var table = "ldbdPanoptic";
   initLeaderboard(types, metrics, table, 0);
