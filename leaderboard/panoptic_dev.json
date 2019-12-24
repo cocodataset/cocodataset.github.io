@@ -52,19 +52,6 @@
     "results_details": ""},
   {
     "leaderboard_name": "panoptic-dev",
-    "date": "2019-08-28",
-    "description": "",
-    "leaderboard_id": 101,
-    "url": "",
-    "team": {
-      "id": 5,
-      "members": "",
-      "name": "SiemensMobilityAI"},
-    "results": "{\"PQ\": 0.416, \"SQ\": 0.785, \"RQ\": 0.509, \"PQTH\": 0.476, \"SQTH\": 0.816, \"RQTH\": 0.575, \"PQST\": 0.326, \"SQST\": 0.740, \"RQST\": 0.409}",
-    "results_details": ""
-  },
-  {
-    "leaderboard_name": "panoptic-dev",
     "date": "2018-08-18",
     "description": "simple combine of semantic from PSPNet50 (train for 50 epochs) and instance from Mask-RCNN101 (train for 180k iterations)",
     "leaderboard_id": 101,
@@ -200,6 +187,188 @@
       "name": "microljy"
     },
     "results": "{\"PQ\": 0.021, \"SQ\": 0.312, \"RQ\": 0.026, \"PQTH\": 0.033, \"SQTH\": 0.410, \"RQTH\": 0.041, \"PQST\": 0.003, \"SQST\": 0.165, \"RQST\": 0.004}",
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2019-10-05",
+    "description": "See <a href=\"../files/panoptic_2019_reports/megvii_coco2019Panoptic-TechReport.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "",
+    "team": {
+      "id": 16,
+      "members": "Shen Wang(Peking University), Tao Liu(Beijing Normal University), Huanyu Liu(Megvii Inc), Yuchen Ma(Megvii Inc), Zeming Li(Megvii Inc), Zhicheng Wang(Megvii Inc), Xinyu Zhou(Megvii Inc), Gang Yu(Megvii Inc), Erjin Zhou(Megvii Inc), Xiangyu Zhang(Megvii Inc), Jian Sun(Megvii Inc)",
+      "name": "Megvii"
+    },
+    "results": "{\"PQ\": 0.547, \"SQ\": 0.836, \"RQ\": 0.643, \"PQTH\": 0.646, \"SQTH\": 0.862, \"RQTH\": 0.746, \"PQST\": 0.398, \"SQST\": 0.797, \"RQST\": 0.488}",
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2019-10-05",
+    "description": "See <a href=\"../files/panoptic_2019_reports/Innovation_coco_report_latest_version.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "",
+    "team": {
+      "id": 17,
+      "members": "Chongsong Chen(1), Jiawei Ren(1), Daisheng Jin(2), Zhongang Cai(1), Cunjun Yu(1), Bairun Wang(2), Mingyuan Zhang(2), Jinyi Wu(3). Affiliations: (1): Nanyang Technological University, (2): Beihang University, (3): National University of Singapore",
+      "name": "Innovation"
+    },
+    "results": "{\"PQ\": 0.535, \"SQ\": 0.833, \"RQ\": 0.633, \"PQTH\": 0.618, \"SQTH\": 0.849, \"RQTH\": 0.724, \"PQST\": 0.410, \"SQST\": 0.809, \"RQST\": 0.496}",
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2019-10-03",
+    "description": "See <a href=\"../files/panoptic_2019_reports/zigzag_panoptic.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "",
+    "team": {
+      "id": 18,
+      "members": "Dingguo Shen, Siting Shen, Yuanfeng Ji, Di Lin. VCC (Shenzhen University)",
+      "name": "VCC"
+    },
+    "results": "{\"PQ\": 0.502, \"SQ\": 0.819, \"RQ\": 0.603, \"PQTH\": 0.583, \"SQTH\": 0.838, \"RQTH\": 0.692, \"PQST\": 0.380, \"SQST\": 0.790, \"RQST\": 0.470}",
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2019-10-05",
+    "description": "See <a href=\"../files/panoptic_2019_reports/COCO_2019_Report_AntVision.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "",
+    "team": {
+      "id": 19,
+      "members": "Weixiang Hong, Qingpei Guo, Wei Zhang, Jingdong Chen, Wei Chu (all Ant Financial Services Group)",
+      "name": "AntVision"
+    },
+    "results": "{\"PQ\": 0.500, \"SQ\": 0.821, \"RQ\": 0.598, \"PQTH\": 0.581, \"SQTH\": 0.839, \"RQTH\": 0.686, \"PQST\": 0.378, \"SQST\": 0.792, \"RQST\": 0.465}",
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2019-10-03",
+    "description": "See <a href=\"../files/panoptic_2019_reports/tech_report_AiRiA-Panoptic.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "",
+    "team": {
+      "id": 20,
+      "members": "Qiang Chen[1,2], Anda Cheng[1,2], Weihan Chen[1,2], Peisong Wang[1], Xiangyu He[1,2], Qinghao Hu[1], Cong Leng[1,3], Jian Cheng[1,2,3]; [1] National Laboratory of Pattern Recognition, Institute of Automation, Chinese Academy of Sciences; [2] University of Chinese Academy  of Sciences; [3] AiRiA",
+      "name": "AiRiA-Panoptic"
+    },
+    "results": "{\"PQ\": 0.502, \"SQ\": 0.817, \"RQ\": 0.599, \"PQTH\": 0.574, \"SQTH\": 0.838, \"RQTH\": 0.680, \"PQST\": 0.393, \"SQST\": 0.787, \"RQST\": 0.478}",
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2019-10-05",
+    "description": "See <a href=\"../files/panoptic_2019_reports/PKU_ZERO.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "",
+    "team": {
+      "id": 21,
+      "members": "Yibo Yang (Peking Univ.), Xia Li (Peking Univ.), HongYang Li (Peking Univ.), Tianchegn Shen (Peking Univ.), Yudong Liu (Peking Univ.), Zhouchen Lin (Peking Univ.)",
+      "name": "PKU_ZERO"
+    },
+    "results": "{\"PQ\": 0.500, \"SQ\": 0.818, \"RQ\": 0.600, \"PQTH\": 0.592, \"SQTH\": 0.836, \"RQTH\": 0.703, \"PQST\": 0.361, \"SQST\": 0.790, \"RQST\": 0.443}",
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2019-10-05",
+    "description": "See <a href=\"../files/panoptic_2019_reports/eleme_panoptic_segmentation_report.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "",
+    "team": {
+      "id": 22,
+      "members": "Shuchun Liu, Feiyun Zhang, Li Long, Weiyuan Shao, Jiajun Wang (all The AI Lab of ELEME Inc)",
+      "name": "Eleme"
+    },
+    "results": "{\"PQ\": 0.470, \"SQ\": 0.814, \"RQ\": 0.564, \"PQTH\": 0.572, \"SQTH\": 0.839, \"RQTH\": 0.676, \"PQST\": 0.315, \"SQST\": 0.775, \"RQST\": 0.394}",
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2019-10-05",
+    "description": "See <a href=\"../files/panoptic_2019_reports/eyecool_tech_report.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "",
+    "team": {
+      "id": 23,
+      "members": "Qi Wang, Hailong Zhang, Shi Ma, Yuanshuai Wang, Mei Yang, Jing Li, Feng Li, Xiangde Zhang (College of Sciences, Northeastern University), Wuming Jiang (Beijing Eyecool Technology Co., Ltd)",
+      "name": "Eyecool"
+    },
+    "results": "{\"PQ\": 0.471, \"SQ\": 0.810, \"RQ\": 0.572, \"PQTH\": 0.538, \"SQTH\": 0.822, \"RQTH\": 0.647, \"PQST\": 0.372, \"SQST\": 0.793, \"RQST\": 0.458}",
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2019-10-05",
+    "description": "See <a href=\"../files/panoptic_2019_reports/Tech_report_2019_panoptic_segmentation_SiemensMobility.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "",
+    "team": {
+      "id": 24,
+      "members": "Mehmet Yildirim, Yogesh Langhe, Jan Richter, Nanzhu Jiang, Yaroslav Tarasenko, Lyubov Klein, Claus Bahlmann (all Siemens Mobility)",
+      "name": "mobility.ai"
+    },
+    "results": "{\"PQ\": 0.470, \"SQ\": 0.800, \"RQ\": 0.563, \"PQTH\": 0.553, \"SQTH\": 0.841, \"RQTH\": 0.653, \"PQST\": 0.345, \"SQST\": 0.738, \"RQST\": 0.429}",
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2019-10-05",
+    "description": "See <a href=\"../files/panoptic_2019_reports/PCV_pixel_consensus_voting.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "",
+    "team": {
+      "id": 25,
+      "members": "Haochen Wang (CMU), Ruotian Luo (TTI-Chicago), Greg Shakhnarovich(TTI-Chicago)",
+      "name": "PCV"
+    },
+    "results": "{\"PQ\": 0.432, \"SQ\": 0.799, \"RQ\": 0.529, \"PQTH\": 0.485, \"SQTH\": 0.815, \"RQTH\": 0.588, \"PQST\": 0.351, \"SQST\": 0.774, \"RQST\": 0.442}",
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2019-08-27",
+    "description": "See <a href=\"../files/panoptic_2019_reports/sagieppel_tech_report_PDF.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "",
+    "team": {
+      "id": 26,
+      "members": "Sagi Eppel, Alan Aspuru-Guzik (both University of Toronto)",
+      "name": "The Matter Lab"
+    },
+    "results": "{\"PQ\": 0.337, \"SQ\": 0.796, \"RQ\": 0.414, \"PQTH\": 0.351, \"SQTH\": 0.804, \"RQTH\": 0.429, \"PQST\": 0.315, \"SQST\": 0.784, \"RQST\": 0.393}",
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2019-10-03",
+    "description": "See <a href=\"../files/panoptic_2019_reports/marweb_weber-iccv_coco.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "",
+    "team": {
+      "id": 27,
+      "members": "Mark Weber, Jonathon Luiten and Bastian Leibe (all RWTH Aachen University)",
+      "name": "RWTHVision"
+    },
+    "results": "{\"PQ\": 0.326, \"SQ\": 0.743, \"RQ\": 0.420, \"PQTH\": 0.350, \"SQTH\": 0.748, \"RQTH\": 0.448, \"PQST\": 0.290, \"SQST\": 0.736, \"RQST\": 0.377}",
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2019-10-04",
+    "description": "See <a href=\"../files/panoptic_2019_reports/FPSNet_Tech_Report_COCO_2019.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "https://arxiv.org/abs/1910.03892",
+    "team": {
+      "id": 28,
+      "members": "Daan de Geus (Eindhoven University of Technology), Panagiotis Meletis (Eindhoven University of Technology), Gijs Dubbelman (Eindhoven University of Technology)",
+      "name": "FPSNet"
+    },
+    "results": "{\"PQ\": 0.298, \"SQ\": 0.743, \"RQ\": 0.379, \"PQTH\": 0.331, \"SQTH\": 0.761, \"RQTH\": 0.416, \"PQST\": 0.249, \"SQST\": 0.715, \"RQST\": 0.324}",
     "results_details": ""
   }
 ]
