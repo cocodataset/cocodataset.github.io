@@ -1,0 +1,49 @@
+<h1>COCO 2020 DensePose Task</h1>
+<p><img src="images/densepose-splash.png" class="wide"/></p>
+
+<h1>1. Overview</h1>
+<p> The COCO DensePose Task is designed to push the state of the art in dense estimation of human pose in challenging, uncontrolled conditions. The DensePose task involves simultaneously detecting people, segmenting their bodies and mapping all image pixels that belong to a human body to the 3D surface of the body. For full details of this task please see the <a href="#densepose-eval">DensePose evaluation</a> page.</p>
+<p>The DensePose task is part of the <a href="workshop/coco-lvis-eccv-2020.html">Joint COCO and LVIS Recognition Challenge Workshop</a> at ECCV 2020. For further details about the joint workshop please visit the workshop page. Please also see the related COCO <a href=#detection-2020">detection</a>, <a href=#panoptic-2020>panoptic</a>, and <a href="#keypoints-2020">keypoint</a> tasks.</p>
+<p>The COCO train, validation, and test sets, containing more than 39,000 images and 56,000 person instances labeled with DensePose annotations are available for download. Annotations on train (<a href="https://dl.fbaipublicfiles.com/densepose/densepose_coco_2014_train.json">train 1</a>, <a href="https://dl.fbaipublicfiles.com/densepose/densepose_coco_2014_valminusminival.json">train 2</a>) and <a href="https://dl.fbaipublicfiles.com/densepose/densepose_coco_2014_minival.json">val</a> with over 48,000 people are publicly available. <a href="https://dl.fbaipublicfiles.com/densepose/densepose_coco_2014_test.json">Test set</a> with the list of images is also available for download.</p>
+<p>Evaluation server for the 2019 task is
+<a href="https://competitions.codalab.org/competitions/20660">open</a>.</p>
+
+<h1>2. Dates</h1>
+<div class="json">
+  <div class="jsonktxt fontBlue">July 31, 2020</div><div class="jsonvtxt">Submission deadline (11:59 PM PST)</div>
+  <div class="jsonktxt">August 3, 2020</div><div class="jsonvtxt">Technical report submission deadline (11:59 PM PST)</div>
+  <div class="jsonktxt">August 10, 2020</div><div class="jsonvtxt">Challenge winners notified</div>
+  <div class="jsonktxt">August 15, 2020</div><div class="jsonvtxt">Presenter's video upload deadline</div>
+  <div class="jsonktxt">August 23, 2020</div><div class="jsonvtxt">ECCV 2020 Workshop</div>
+</div>
+
+<h1>3. New Rules and Awards</h1>
+<ul>
+  <li>Participants must submit a <strong>technical report</strong> that includes a detailed ablation study of their submission (suggested length 1-4 pages). <strong>The way to submit the report will be announced soon.</strong> The reports will be made public. This report will substitute the short text description that we requested previously. Only submissions with the report will be considered for any award and will be put in the COCO leaderboard.</li>
+  <li>This year for each challenge track we will have two different awards: <strong>best result award</strong> and <strong>most innovative award</strong>. The most innovative award will be based on the method description in the submitted technical reports and decided by the COCO award committee. The commitee will invite teams to present at the workshop based on the innovations of the submissions rather than the best scores.</li>
+  <li>This year we will award single <strong>best paper award</strong> for the most innovative and successful solution across all challenges. The winner will be determined by the workshop organization committee.</li>
+</ul>
+
+<h1>4. Organizers</h1>
+<div>Alexander Kirillov (Facebook AI Research)</div>
+<div>Yin Cui (Google Research)</div>
+<div>Tsung-Yi Lin (Google Research)</div>
+<div>Matteo Ruggero Ronchi (Caltech)</div>
+
+<h1>5. Award Committee</h1>
+<div>Yin Cui (Google Research)</div>
+<div>Tsung-Yi Lin (Google Research)</div>
+<div>Alexander Kirillov (Facebook AI Research)</div>
+<div>Matteo Ruggero Ronchi (Caltech)</div>
+<div>Michael Maire (University of Chicago)</div>
+<div>Lubomir Bourdev (WaveOne, Inc.)</div>
+<div>James Hays (Georgia Tech)</div>
+<div>Larry Zitnick (Facebook AI Research)</div>
+<div>Ross Girshick (Facebook AI Research)</div>
+<div>Piotr Dollár (Facebook AI Research)</div>
+
+<h1>6. Task Guidelines</h1>
+<p>Participants are recommended but not restricted to train their algorithms on COCO DensePose train and val sets. The <a href="#download">download</a> page has links to all COCO data. When participating in this task, please specify any and all external data used for training in the "method description" when uploading results to the evaluation server. A more thorough explanation of all these details is available on the <a href="#guidelines">guidelines</a> page, please be sure to review it carefully prior to participating. Results in the correct <a href="#format-results">format</a> must be <a href="#upload">uploaded</a> to the <a href="https://competitions.codalab.org/competitions/20660" target="_blank">evaluation server</a>. The <a href="#densepose-eval">evaluation</a> page lists detailed information regarding how results will be evaluated. Challenge participants with the most successful and innovative methods will be invited to present at the workshop.</p>
+
+<h1>7. Tools and Instructions</h1>
+<p>We provide extensive API support for the COCO images, annotations, and evaluation code. To download the COCO DensePose API, please visit our <a href="https://github.com/facebookresearch/detectron2/tree/master/projects/DensePose">GitHub repository</a>. Due to the large size of COCO and the complexity of this task, the process of participating may not seem simple. To help, we provide explanations and instructions for each step of the process on the <a href="#download">download</a>, <a href="#format-data">data format</a>, <a href="#format-results">results format</a>, <a href="#upload">upload</a>, and <a href="#panoptic-eval">evaluation</a> pages. For additional questions, please contact <a href="mailto:vkhalidov@fb.com">vkhalidov@fb.com</a> and <a href="mailto:nneverova@fb.com">nneverova@fb.com</a>.</p>

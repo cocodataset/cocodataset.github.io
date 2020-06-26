@@ -71,3 +71,22 @@
   <div class="jsonk">"caption"      </div><div class="jsonv">: str,      </div>
   <div class="jsonreg">}]</div>
 </div>
+
+<h1>6. DensePose</h1>
+<p>For the <a href="#densepose-2020">DensePose</a> task, the format of the fields <span class="fontMono">category_id</span>, <span class="fontMono">bbox</span> and <span class="fontMono">image_id<span class="fontMono"> is the same as for the annotation (for details see the <a href="#format-data">data format</a> page):</p>
+
+<div class="json">
+  <div class="jsonreg">[{</div>
+  <div class="jsonk">"image_id"     </div><div class="jsonv">: int,</div>
+  <div class="jsonk">"category_id"  </div><div class="jsonv">: int,</div>
+  <div class="jsonk">"bbox"         </div><div class="jsonv">: [x,y,width,height],</div>
+  <div class="jsonk">"score"        </div><div class="jsonv">: float,</div>
+  <div class="jsonk">"uv_shape"     </div><div class="jsonv">: [channels, height, width],</div>
+  <div class="jsonk">"uv_data"      </div><div class="jsonv">: str,</div>
+  <div class="jsonreg">}]</div>
+</div>
+
+Bounding box coordinates <span class="fontMono">bbox</span> are floats measured from the top left image corner (and are 0-indexed). We recommend rounding coordinates to the nearest tenth of a pixel to reduce the resulting JSON file size. The dense estimates of patch indices and coordinates in the UV space for the specified bounding box are stored in <span class="fontMono">uv_shape</span> and <span class="fontMono">uv_data</span> fields. <span class="fontMono">uv_shape</span> contains the shape of <span class="fontMono">uv_data</span> array, it should be of size <span class="fontMono">(3, height, width)</span>, where <span class="fontMono">height</span> and <span class="fontMono">width</span> should match the bounding box size. <span class="fontMono">uv_data</span> should contain PNG-compressed patch indices and U and V coordinates scaled to the range <span class="fontMono">0-255</span>.</p>
+<p>An example of code that generates results in the form of a <span class="fontMono">pkl</span> file can be found in
+<a href="https://github.com/facebookresearch/DensePose/blob/master/detectron/datasets/json_dataset_evaluator.py">json_dataset_evaluator.py</a>.
+We also provide an <a href="https://github.com/facebookresearch/DensePose/blob/master/challenge/encode_results_for_competition.py">example script</a> to convert dense pose estimation results stored in a <span class="fontMono">pkl</span> file into a PNG-compressed JSON file.</p>

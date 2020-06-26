@@ -1,0 +1,92 @@
+<h1>1. DensePose Evaluation</h1>
+
+<p>This page describes the DensePose evaluation metrics used by COCO. The
+evaluation code provided here can be used to obtain results on the publicly
+available COCO DensePose validation set. It computes multiple metrics
+described below. To obtain results on the COCO DensePose test set, for which
+ground-truth annotations are hidden, generated results must be uploaded to
+the evaluation server. The exact same evaluation code, described below, is
+used to evaluate results on the test set.</p>
+<p><strong>Please note the changes in the evaluation metric of the 2019 challenge compared to 2018
+(see description below).</strong></p>
+
+<h1>2. Evaluation Overview</h1>
+
+<p>The multi-person DensePose task involves simultaneous person detection and
+estimation of correspondences between image pixels that belong to a human body
+and a template 3D model. DensePose evaluation mimics the evaluation metrics
+used for <a href="http://cocodataset.org/#detection-eval" rel="nofollow">object detection</a> and
+<a href="http://cocodataset.org/#keypoints-eval" rel="nofollow">keypoint estimation</a> in the COCO
+challenge, namely average precision (AP) and average recall (AR) and their
+variants.</p>
+<p>At the heart of these metrics is a similarity measure between ground truth
+objects and predicted objects. In the case of object detection,
+<em>Intersection over Union</em> (IoU) serves as this similarity measure (for both
+boxes and segments). Thesholding the IoU defines matches between the ground
+truth and predicted objects and allows computing precision-recall curves.
+In the case of keypoint detection <em>Object Keypoint Similarity</em> (OKS) is used.</p>
+<p>To adopt AP/AR for dense correspondence, an analogous similarity
+measure called <em>Geodesic Point Similarity</em> (GPS) has been introduced,
+which plays the same role as IoU for object detection and OKS for keypoint estimation.</p>
+
+<h1>3. Geodesic Point Similarity</h1>
+
+<p>The geodesic point similarity (GPS) is based on geodesic distances on the template mesh
+between the collected ground truth points and estimated surface coordinates for the same image points as follows:</p>
+<a href="https://www.codecogs.com/eqnedit.php?latex=\text{GPS}&amp;space;=&amp;space;\frac{1}{|P|}\sum_{p_i&amp;space;\in&amp;space;P}\exp\left&amp;space;(\frac{-{d(\hat{p}_i,p_i)}^2}{2\kappa(p_i)^2}\right)," rel="nofollow">
+<img src="https://camo.githubusercontent.com/56b3099c5b3011e9c19a8d1610b5593faf79a61a/68747470733a2f2f6c617465782e636f6465636f67732e636f6d2f6769662e6c617465783f5c746578747b4750537d2673706163653b3d2673706163653b5c667261637b317d7b7c507c7d5c73756d5f7b705f692673706163653b5c696e2673706163653b507d5c6578705c6c6566742673706163653b285c667261637b2d7b64285c6861747b707d5f692c705f69297d5e327d7b325c6b6170706128705f69295e327d5c7269676874292c" title="https://www.codecogs.com/eqnedit.php?latex=\text{GPS} = \frac{1}{|P|}\sum_{p_i \in P}\exp\left(\frac{-{d(\hat{p}_i,p_i)}^2}{2\kappa(p_i)^2}\right)," data-canonical-src="https://latex.codecogs.com/gif.latex?\text{GPS}&amp;space;=&amp;space;\frac{1}{|P|}\sum_{p_i&amp;space;\in&amp;space;P}\exp\left&amp;space;(\frac{-{d(\hat{p}_i,p_i)}^2}{2\kappa(p_i)^2}\right)," style="max-width:100%;"></a>
+<p>where <a href="https://www.codecogs.com/eqnedit.php?latex=&amp;space;d(\hat{p}_i,p_i)&amp;space;" rel="nofollow"><img src="https://camo.githubusercontent.com/aa848d14498285faedded0c91b8ab79be118df8c/68747470733a2f2f6c617465782e636f6465636f67732e636f6d2f6769662e6c617465783f2673706163653b64285c6861747b707d5f692c705f69292673706163653b" title="https://www.codecogs.com/eqnedit.php?latex=d(\hat{p}_i,p_i)" data-canonical-src="https://latex.codecogs.com/gif.latex?&amp;space;d(\hat{p}_i,p_i)&amp;space;" style="max-width:100%;"></a> is the geodesic distance between estimated
+(<a href="https://www.codecogs.com/eqnedit.php?latex=\hat{p}_i" rel="nofollow"> <img src="https://camo.githubusercontent.com/8cc3ea0c3c18e98156fb7ad3f0e58a79793d3682/68747470733a2f2f6c617465782e636f6465636f67732e636f6d2f6769662e6c617465783f5c6861747b707d5f69" title="https://www.codecogs.com/eqnedit.php?latex=\hat{p}_i" data-canonical-src="https://latex.codecogs.com/gif.latex?\hat{p}_i" style="max-width:100%;"></a>) and groundtruth
+(<a href="https://www.codecogs.com/eqnedit.php?latex=p_i" rel="nofollow"><img src="https://camo.githubusercontent.com/227a32ca79dd36597f849d4890f8c2cb82bdb9b3/68747470733a2f2f6c617465782e636f6465636f67732e636f6d2f6769662e6c617465783f705f69" title="https://www.codecogs.com/eqnedit.php?latex=p_i" data-canonical-src="https://latex.codecogs.com/gif.latex?p_i" style="max-width:100%;"></a>)
+human body surface points and
+<a href="https://www.codecogs.com/eqnedit.php?latex=\kappa(p_i)" rel="nofollow"><img src="https://camo.githubusercontent.com/99b3dba7f89d9d4a5b84f19d02d58251cb2b848c/68747470733a2f2f6c617465782e636f6465636f67732e636f6d2f6769662e6c617465783f5c6b6170706128705f6929" title="https://www.codecogs.com/eqnedit.php?latex=\kappa(p_i)" data-canonical-src="https://latex.codecogs.com/gif.latex?\kappa(p_i)" style="max-width:100%;"></a>
+is a per-part normalization factor, defined as the mean geodesic distance between points on the part. <strong>Please note that due to the new per-part normalization the AP numbers do not match those reported in the paper, which are obtained via fixed K = 0.255.</strong></p>
+
+<p>This formulation has a limitation that it is estimated on a set of predefined
+annotated points and therefore does not penalize spurious detections (false positives).
+As a result, the metric erroneously favors predictions with all pixels classified
+as foreground. To account for this, we introduce an additional multiplicative term
+corresponding to the intersection over union (IoU) between the ground truth and the
+predicted foreground masks to obtain an improved <em>masked-GPS</em>.</p>
+
+<h1>4. Masked Geodesic Point Similarity</h1>
+
+<p>The masked geodesic point similarity (GPSm) is calculated as</p>
+<a href="https://www.codecogs.com/eqnedit.php?latex=\text{GPS}^m=\sqrt{\text{GPS}\cdot\mathcal{I}},\quad\text{with}\quad\mathcal{I}=\frac{\mathcal{M}\cap\hat{\mathcal{M}}}{\mathcal{M}\cup\hat{\mathcal{M}}}," rel="nofollow">
+<img src="https://camo.githubusercontent.com/823d980140de5f9978efe35073b101d434938963/68747470733a2f2f6c617465782e636f6465636f67732e636f6d2f6769662e6c617465783f5c746578747b4750537d5e6d3d5c737172747b5c746578747b4750537d5c63646f745c6d61746863616c7b497d7d2c5c717561645c746578747b776974687d5c717561645c6d61746863616c7b497d3d5c667261637b5c6d61746863616c7b4d7d5c6361705c6861747b5c6d61746863616c7b4d7d7d7d7b5c6d61746863616c7b4d7d5c6375705c6861747b5c6d61746863616c7b4d7d7d7d2c" title="https://www.codecogs.com/eqnedit.php?latex=\text{GPS}^m=\sqrt{\text{GPS}\cdot\mathcal{I}},\quad\text{with}\quad\mathcal{I}=\frac{\mathcal{M}\cap\hat{\mathcal{M}}}{\mathcal{M}\cup\hat{\mathcal{M}}}," data-canonical-src="https://latex.codecogs.com/gif.latex?\text{GPS}^m=\sqrt{\text{GPS}\cdot\mathcal{I}},\quad\text{with}\quad\mathcal{I}=\frac{\mathcal{M}\cap\hat{\mathcal{M}}}{\mathcal{M}\cup\hat{\mathcal{M}}}," style="max-width:100%;"></a>
+<p>where GPS is the geodesic point similarity metric value and
+<a href="https://www.codecogs.com/eqnedit.php?latex=\mathcal{I}" rel="nofollow">
+<img src="https://camo.githubusercontent.com/589dd14547466011b61e601bb1ed02edf8f20966/68747470733a2f2f6c617465782e636f6465636f67732e636f6d2f6769662e6c617465783f5c6d61746863616c7b497d" title="https://www.codecogs.com/eqnedit.php?latex=\mathcal{I}" data-canonical-src="https://latex.codecogs.com/gif.latex?\mathcal{I}" style="max-width:100%;"></a>
+is the intersection over union between the ground truth (
+<a href="https://www.codecogs.com/eqnedit.php?latex=\mathcal{M}" rel="nofollow">
+<img src="https://camo.githubusercontent.com/0a904ed6cb85be737688e78985ecca4790313d40/68747470733a2f2f6c617465782e636f6465636f67732e636f6d2f6769662e6c617465783f5c6d61746863616c7b4d7d" title="https://www.codecogs.com/eqnedit.php?latex=\mathcal{M}" data-canonical-src="https://latex.codecogs.com/gif.latex?\mathcal{M}" style="max-width:100%;"></a>
+)
+and the predicted (
+<a href="https://www.codecogs.com/eqnedit.php?latex=\hat{\mathcal{M}}" rel="nofollow">
+<img src="https://camo.githubusercontent.com/50da18765d919cd82789e8a1b89e1dee55e0d00f/68747470733a2f2f6c617465782e636f6465636f67732e636f6d2f6769662e6c617465783f5c6861747b5c6d61746863616c7b4d7d7d" title="https://www.codecogs.com/eqnedit.php?latex=\hat{\mathcal{M}}" data-canonical-src="https://latex.codecogs.com/gif.latex?\hat{\mathcal{M}}" style="max-width:100%;"></a>
+)
+foreground masks.</p>
+
+<h1>5. Metrics</h1>
+
+<p>The following metrics are used to characterize the performance of a dense pose
+estimation algorithm on COCO:</p>
+<div class="json fontMono">
+  <div class="jsonreg"><b>Average Precision (AP):</b></div>
+  <div class="jsonk">AP</div><div class="jsonv">% AP averaged over GPSm values 0.5 : 0.05 : 0.95 <b>(primary challenge metric)</b></div>
+  <div class="jsonk">AP-50</div><div class="jsonv">% AP at GPSm=0.5  (loose metric)</div>
+  <div class="jsonk">AP-75</div><div class="jsonv">% AP at GPSm=0.75 (strict metric)</div>
+  <div class="jsonk">AP-m</div><div class="jsonv">% AP for medium detections: 32<sup>2</sup> &lt; area &lt; 96<sup>2</sup>
+  <div class="jsonk">AP-l</div><div class="jsonv">% AP for large detections:  area &gt; 96<sup>2</sup>
+</div>
+
+<h1>6. Evaluation Code</h1>
+
+<p>Evaluation code is available on the
+<a href="https://github.com/facebookresearch/DensePose/">DensePose</a> github,
+see <a href="https://github.com/facebookresearch/DensePose/blob/master/challenge/2019_COCO_DensePose/densepose_cocoeval.py">densepose_cocoeval.py</a>.
+Before running the evaluation code, please prepare your results in the format
+described on the <a href="/facebookresearch/DensePose/blob/master/challenge/2019_COCO_DensePose/results_format.md">results</a> format page.
+The geodesic distances are pre-computed on a subsampled version of the SMPL
+model to allow faster evaluation. Geodesic distances are computed after
+finding the closest vertices to the estimated UV values in the subsampled mesh.</p>
