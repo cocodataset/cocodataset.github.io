@@ -20,7 +20,7 @@ function googleAnalytics() {
 function datasetTabNav() {
   // Enable dataset tab controls. See also: https://getbootstrap.com/docs/3.3/javascript/#tabs
   // And: http://stackoverflow.com/questions/12131273/twitter-bootstrap-tabs-url-doesnt-change
-  var tabs = ["people", "overview", "explore", "download", "external", "termsofuse", "detection-2020", "keypoints-2020", "panoptic-2020", "detection-2019", "keypoints-2019", "stuff-2019",  "panoptic-2019", "detection-2018", "keypoints-2018", "stuff-2018",  "panoptic-2018", "detection-2017", "keypoints-2017", "stuff-2017", "detection-2016", "keypoints-2016", "detection-2015", "captions-2015", "format-data", "format-results", "guidelines", "upload", "detection-eval", "keypoints-eval", "stuff-eval", "panoptic-eval", "captions-eval", "detection-leaderboard", "keypoints-leaderboard", "stuff-leaderboard", "panoptic-leaderboard", "captions-leaderboard"];
+  var tabs = ["people", "overview", "explore", "download", "external", "termsofuse", "detection-2020", "keypoints-2020", "panoptic-2020", "densepose-2020", "detection-2019", "keypoints-2019", "stuff-2019",  "panoptic-2019", "detection-2018", "keypoints-2018", "stuff-2018",  "panoptic-2018", "detection-2017", "keypoints-2017", "stuff-2017", "detection-2016", "keypoints-2016", "detection-2015", "captions-2015", "format-data", "format-results", "guidelines", "upload", "detection-eval", "keypoints-eval", "stuff-eval", "panoptic-eval", "densepose-eval", "captions-eval", "detection-leaderboard", "keypoints-leaderboard", "stuff-leaderboard", "panoptic-leaderboard", "captions-leaderboard"];
   for( var i=0; i<tabs.length; i++ ) {
     $("#content").append('<div role="tabpanel" class="tab-pane fade" id="' + tabs[i] + '"></div>\n');
   }
@@ -157,6 +157,13 @@ function initLeaderboardDetection() {
   var types = ["bbox_dev2015", "segm_dev2015", "bbox_standard2015", "segm_standard2015", "bbox_challenge2016", "segm_challenge2016", "bbox_challenge2015", "segm_challenge2015", "bbox_challenge2017", "segm_challenge2017", "segm_challenge2018", "segm_challenge2019"];
   var metrics = ["AP", "AP_50", "AP_75", "AP_small", "AP_medium", "AP_large", "AR_max_1", "AR_max_10", "AR_max_100", "AR_small", "AR_medium", "AR_large"];
   var table = "ldbdDetection";
+  initLeaderboard(types, metrics, table, 1);
+}
+
+function initLeaderboardDensePose() {
+  var types = ["dp_challenge2018", "dp_challenge2019"];
+  var metrics = ["AP", "AP_50", "AP_75", "AP_medium", "AP_large"];
+  var table = "ldbdDensePose";
   initLeaderboard(types, metrics, table, 1);
 }
 
