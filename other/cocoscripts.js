@@ -154,7 +154,7 @@ function populateExternalPage() {
 }
 
 function initLeaderboardDetection() {
-  var types = ["bbox_dev2015", "segm_dev2015", "bbox_standard2015", "segm_standard2015", "bbox_challenge2016", "segm_challenge2016", "bbox_challenge2015", "segm_challenge2015", "bbox_challenge2017", "segm_challenge2017", "segm_challenge2018", "segm_challenge2019"];
+  var types = ["bbox_dev2015", "segm_dev2015", "bbox_standard2015", "segm_standard2015", "bbox_challenge2016", "segm_challenge2016", "bbox_challenge2015", "segm_challenge2015", "bbox_challenge2017", "segm_challenge2017", "segm_challenge2018", "segm_challenge2019", "segm_challenge2020"];
   var metrics = ["AP", "AP_50", "AP_75", "AP_small", "AP_medium", "AP_large", "AR_max_1", "AR_max_10", "AR_max_100", "AR_small", "AR_medium", "AR_large"];
   var table = "ldbdDetection";
   initLeaderboard(types, metrics, table, 1);
