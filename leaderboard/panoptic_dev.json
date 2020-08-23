@@ -370,5 +370,33 @@
     },
     "results": "{\"PQ\": 0.298, \"SQ\": 0.743, \"RQ\": 0.379, \"PQTH\": 0.331, \"SQTH\": 0.761, \"RQTH\": 0.416, \"PQST\": 0.249, \"SQST\": 0.715, \"RQST\": 0.324}",
     "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2020-08-23",
+    "description": "See <a href=\"https://s3-us-west-1.amazonaws.com/presentations.cocodataset.org/ECCV20/panoptic/AIC_OpenVision.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "",
+    "team": {
+        "id": 29,
+        "members": "Biwen Lei (Alibaba Group and Zhejiang University), Miaomiao Cui (Alibaba Group), Jianqiang Ren (Alibaba Group), and Shang Liu (Alibaba Group)",
+        "name": "AIC-OpenVisio"
+    },
+    "results": "{\"PQ\": 0.504, \"SQ\": 0.823, \"RQ\": 0.601, \"PQTH\": 0.581, \"SQTH\": 0.844, \"RQTH\": 0.683, \"PQST\": 0.388, \"SQST\": 0.791, \"RQST\": 0.476}", 
+    "results_details": ""
+  },
+  {
+    "leaderboard_name": "panoptic-dev",
+    "date": "2020-08-23",
+    "description": "See <a href=\"https://s3-us-west-1.amazonaws.com/presentations.cocodataset.org/ECCV20/panoptic/ELEME.pdf\">technical report</a>",
+    "leaderboard_id": 101,
+    "url": "",
+    "team": {
+        "id": 30,
+        "members": "Shuchun Liu, Haonan Qiu, Weiyuan Shao, Feiyun Zhang, Yaowu Wei, Peiyao Zhang, and Jiajun Wang (all the AI Lab of ELEME Inc, China)",
+        "name": "ELEME"
+    },
+    "results": "{\"PQ\": 0.499, \"SQ\": 0.812, \"RQ\": 0.596, \"PQTH\": 0.620, \"SQTH\": 0.844, \"RQTH\": 0.730, \"PQST\": 0.315, \"SQST\": 0.763, \"RQST\": 0.394}", 
+    "results_details": ""
   }
 ]

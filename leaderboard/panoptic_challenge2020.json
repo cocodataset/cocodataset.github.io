@@ -1,0 +1,44 @@
+[
+    {
+        "leaderboard_name": "panoptic-challenge2020",
+        "date": "2019-10-05",
+        "description": "See <a href=\"../files/panoptic_2019_reports/megvii_coco2019Panoptic-TechReport.pdf\">technical report</a>",
+        "leaderboard_id": 103,
+        "url": "",
+        "team": {
+            "id": 1,
+            "members": "Shen Wang(Peking University), Tao Liu(Beijing Normal University), Huanyu Liu(Megvii Inc), Yuchen Ma(Megvii Inc), Zeming Li(Megvii Inc), Zhicheng Wang(Megvii Inc), Xinyu Zhou(Megvii Inc), Gang Yu(Megvii Inc), Erjin Zhou(Megvii Inc), Xiangyu Zhang(Megvii Inc), Jian Sun(Megvii Inc)",
+            "name": "Megvii [2019 winner]"
+        },
+        "results": "{\"PQ\": 0.546, \"SQ\": 0.836, \"RQ\": 0.643, \"PQTH\": 0.642, \"SQTH\": 0.860, \"RQTH\": 0.744, \"PQST\": 0.402, \"SQST\": 0.800, \"RQST\": 0.491}",
+        "results_details": ""
+    },
+    {
+        "leaderboard_name": "panoptic-challenge2020",
+        "date": "2020-08-23",
+        "description": "See <a href=\"https://s3-us-west-1.amazonaws.com/presentations.cocodataset.org/ECCV20/panoptic/ELEME.pdf\">technical report</a>",
+        "leaderboard_id": 103,
+        "url": "",
+        "team": {
+            "id": 2,
+            "members": "Shuchun Liu, Haonan Qiu, Weiyuan Shao, Feiyun Zhang, Yaowu Wei, Peiyao Zhang, and Jiajun Wang (all the AI Lab of ELEME Inc, China)",
+            "name": "ELEME"
+        },
+        "results": "{\"PQ\": 0.519, \"SQ\": 0.820, \"RQ\": 0.622, \"PQTH\": 0.618, \"SQTH\": 0.840, \"RQTH\": 0.732, \"PQST\": 0.379, \"SQST\": 0.790, \"RQST\": 0.457}",
+        "results_details": ""
+    },
+    {
+        "leaderboard_name": "panoptic-challenge2020",
+        "date": "2020-08-23",
+        "description": "See <a href=\"https://s3-us-west-1.amazonaws.com/presentations.cocodataset.org/ECCV20/panoptic/AIC_OpenVision.pdf\">technical report</a>",
+        "leaderboard_id": 103,
+        "url": "",
+        "team": {
+            "id": 2,
+            "members": "Biwen Lei (Alibaba Group and Zhejiang University), Miaomiao Cui (Alibaba Group), Jianqiang Ren (Alibaba Group), and Shang Liu (Alibaba Group)",
+            "name": "AIC-OpenVisio"
+        },
+        "results": "{\"PQ\": 0.501, \"SQ\": 0.820, \"RQ\": 0.599, \"PQTH\": 0.576, \"SQTH\": 0.841, \"RQTH\": 0.680, \"PQST\": 0.388, \"SQST\": 0.790, \"RQST\": 0.477}",
+        "results_details": ""
+    }
+]
