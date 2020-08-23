@@ -380,7 +380,7 @@
     "team": {
         "id": 29,
         "members": "Biwen Lei (Alibaba Group and Zhejiang University), Miaomiao Cui (Alibaba Group), Jianqiang Ren (Alibaba Group), and Shang Liu (Alibaba Group)",
-        "name": "AIC-OpenVisio"
+        "name": "AIC-OpenVision"
     },
     "results": "{\"PQ\": 0.504, \"SQ\": 0.823, \"RQ\": 0.601, \"PQTH\": 0.581, \"SQTH\": 0.844, \"RQTH\": 0.683, \"PQST\": 0.388, \"SQST\": 0.791, \"RQST\": 0.476}", 
     "results_details": ""
