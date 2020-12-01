@@ -223,7 +223,7 @@ function createDisplay(imageId, captions, catToSegms, flickrUrl, cocoUrl) {
   var canvas = display.find('.canvas')[0];
   var ctx = canvas.getContext("2d");
   var img = new Image;
-  img.src = cocoUrl;
+  img.src = cocoUrl.replace("http://images.cocodataset.org", "https://s3.us-east-1.amazonaws.com/images.cocodataset.org");
   img.onload = function () {
     canvas.width = this.width;
     canvas.height = this.height;
