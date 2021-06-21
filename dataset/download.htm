@@ -84,3 +84,47 @@
   <div class="jsonkfunc">frBbox</div><div class="jsonvtxt">Convert bounding boxes to encoded masks.</div>
   <div class="jsonkfunc">frPoly</div><div class="jsonvtxt">Convert polygon to encoded mask.</div>
 </div>
+
+<h1>4. FiftyOne</h1>
+<p>We have partnered with the team behind <a href="https://fiftyone.ai">FiftyOne</a>, an
+open-source tool for dataset visualization and model analysis, to make it
+easier to download, visualize, and evaluate COCO.
+</p>
+<p><a href="https://fiftyone.ai"><img class="wide" src="images/fiftyone-example.png"></a></p>
+
+<p>
+Downloading COCO is now as easy as any other dataset in the
+<a href="https://voxel51.com/docs/fiftyone/user_guide/dataset_zoo/index.html">FiftyOne Dataset Zoo</a>:
+<pre>dataset = fiftyone.zoo.load_zoo_dataset("coco-2017")</pre>
+
+<p>
+FiftyOne also provides methods allowing you to
+download and visualize specific subsets of the dataset with only the labels
+and classes that you care about in a couple of lines of code.
+</p>
+
+<pre>
+dataset = fiftyone.zoo.load_zoo_dataset(
+    "coco-2017",
+    split="validation",
+    label_types=["detections", "segmentations", "keypoints"],
+    classes=["person", "car"],
+    max_samples=50,
+)
+
+# Visualize the dataset in the FiftyOne App
+session = fiftyone.launch_app(dataset)
+</pre>
+
+<p>
+Once you start training models on COCO, you can use
+<a href="https://cocodataset.org/#detection-eval">FiftyOne's COCO-style evaluation</a>
+to better understand your model performance, visualize individual
+false positives, plot PR curves, and interact with confusion matrices.
+</p>
+<p>
+For additional details see the FiftyOne and COCO integration <a
+    href="https://fiftyone.ai">documentation</a> or
+<a href="https://voxel51.com/docs/fiftyone/tutorials/evaluate_detections.html">tutorial</a>.
+
+</p>
