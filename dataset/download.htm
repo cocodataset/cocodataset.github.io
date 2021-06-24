@@ -86,14 +86,13 @@
 </div>
 
 <h1>4. FiftyOne</h1>
-<p>We have partnered with the team behind <a href="https://fiftyone.ai">FiftyOne</a>, an
-open-source tool for dataset visualization and model analysis, to make it
-easier to download, visualize, and evaluate COCO.
+<p>
+<a class="fontBoldish" href="https://fiftyone.ai">FiftyOne</a> is an open-source tool facilitating visualization and access to COCO data resources and serves as an evaluation tool for model analysis on COCO.
 </p>
 <p><a href="https://fiftyone.ai"><img class="wide" src="images/fiftyone-example.png"></a></p>
 
 <p>
-Downloading COCO is now as easy as any other dataset in the
+COCO can now be downloaded from the
 <a href="https://voxel51.com/docs/fiftyone/user_guide/dataset_zoo/index.html">FiftyOne Dataset Zoo</a>:
 <pre>dataset = fiftyone.zoo.load_zoo_dataset("coco-2017")</pre>
 
@@ -119,13 +118,12 @@ session = fiftyone.launch_app(dataset)
 <p>
 Once you start training models on COCO, you can use
 <a href="https://cocodataset.org/#detection-eval">FiftyOne's COCO-style evaluation</a>
-to better understand your model performance,
+to understand your model performance with detailed analysis,
 <a href="https://voxel51.com/docs/fiftyone/user_guide/using_views.html#evaluation-patches">visualize individual false positives</a>,
 <a href="https://voxel51.com/docs/fiftyone/user_guide/evaluation.html#map-and-pr-curves">plot PR curves</a>, and
 <a href="https://voxel51.com/docs/fiftyone/user_guide/plots.html#confusion-matrices">interact with confusion matrices</a>.
 </p>
 <p>
-For additional details see the FiftyOne and COCO integration <a href="https://fiftyone.ai">documentation</a> or
-<a href="https://voxel51.com/docs/fiftyone/tutorials/evaluate_detections.html">tutorial</a>.
+For additional details see the FiftyOne and COCO integration <a href="https://voxel51.com/docs/fiftyone/integrations/coco.html">documentation</a>.
 
 </p>
