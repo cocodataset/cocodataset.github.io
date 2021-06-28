@@ -91,3 +91,23 @@
 <p>The area under each curve is shown in brackets in the legend. In the case of the ResNet detector, overall AP at IoU=.75 is .399 and perfect localization would increase AP to .682. Interesting, removing all class confusions (both within supercategory and across supercategories) would only raise AP slightly to .713. Removing background fp would bump performance to .870 AP and the rest of the errors are missing detections (although presumably if more detections were added this would also add lots of fps). In summary, ResNet's errors are dominated by imperfect localization and background confusions.</p>
 <p>For a given detector, the code generates a total of 372 plots! There are 80 categories, 12 supercategories, and 1 overall result, for a total of 93 different settings, and the analysis is performed at 4 scales (all, small, medium, large, so 93*4=372 plots). The file naming is [supercategory]-[category]-[size].pdf for the 80*4 per-category results, overall-[supercategory]-[size].pdf for the 12*4 per supercategory results, and overall-all-[size].pdf for the 1*4 overall results. Of all the plots, typically the overall and supercategory results are of the most interest.</p>
 <p><b>Note:</b> <span class="fontMono">analyze()</span> can take significant time to run, please be patient. As such, we typically do not run this code on the evaluation server; you must run the code locally using the validation set. Finally, currently <span class="fontMono">analyze()</span> is only part of the Matlab API; <i>Python code coming soon</i>.</p>
+
+<h1>5. Visualization Code</h1>
+<p>
+<a class="fontBoldish" href="https://fiftyone.ai">FiftyOne</a> is an open-source tool facilitating visualization and access to COCO data resources and serves as an evaluation tool for model analysis on COCO.
+</p>
+
+<p>
+FiftyOne provides
+<a
+    href="https://voxel51.com/docs/fiftyone/integrations/coco.html">COCO-style object detection evaluation</a> to not only
+compute AP but also easily
+<a href="https://voxel51.com/docs/fiftyone/user_guide/using_views.html#evaluation-patches">visualize individual sample- and object-level results</a>,
+<a href="https://voxel51.com/docs/fiftyone/user_guide/evaluation.html#map-and-pr-curves">view precision-recall curves</a>, and
+<a href="https://voxel51.com/docs/fiftyone/user_guide/plots.html#confusion-matrices">plot interactive confusion matrices</a>.
+</p>
+<p>
+Please see <a href="https://voxel51.com/docs/fiftyone/integrations/coco.html">this guide</a> on how to run the metric.
+</p>
+
+<p><a href="https://fiftyone.ai"><img class="wide" src="images/fiftyone-evaluation.png"></a></p>
